@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Modding;
 using RandomizerMod.Randomization;
-using RandomizerMod.Components;
 using static RandomizerMod.RandoLogger;
 using static RandomizerMod.LogHelper;
 using UnityEngine;
@@ -69,9 +69,12 @@ namespace RandomizerMod
             RandomizerMod.Instance.Settings.MarkLocationFound(location);
             UpdateHelperLog();
 
-            RecentItems.AddItem(item);
-
             item = LogicManager.RemoveDuplicateSuffix(item);
+
+            if (RandomizerMod.Instance.globalSettings.RecentItems)
+            {
+                RecentItems.AddItem(item, location, showArea: true);
+            }
 
             switch (action)
             {
@@ -85,6 +88,10 @@ namespace RandomizerMod
                         string intName = LogicManager.GetItemDef(item).intName;
                     }
                     PlayerData.instance.IncrementInt(LogicManager.GetItemDef(item).intName);
+                    if (LogicManager.GetItemDef(item).intName == nameof(PlayerData.instance.flamesCollected))
+                    {
+                        RandomizerMod.Instance.Settings.TotalFlamesCollected += 1;
+                    }
                     break;
 
                 case GiveAction.Charm:
@@ -395,6 +402,18 @@ namespace RandomizerMod
                         EventRegister.SendEvent("ADD BLUE HEALTH");
                     }
                     break;
+            }
+
+            // With Cursed Nail active, drop the vine platform so they can escape from thorns without softlocking
+            // Break the Thorns Vine here; this works whether or not the item is a shiny.
+            if (location == "Thorns_of_Agony" && RandomizerMod.Instance.Settings.CursedNail && RandomizerMod.Instance.Settings.ExtraPlatforms)
+            {
+                if (GameObject.Find("Vine") is GameObject vine)
+                {
+                    VinePlatformCut vinecut = vine.GetComponent<VinePlatformCut>();
+                    bool activated = ReflectionHelper.GetAttr<VinePlatformCut, bool>(vinecut, "activated");
+                    if (!activated) vinecut.Cut();
+                }
             }
 
             // additive, kingsoul, bool type items can all have additive counts

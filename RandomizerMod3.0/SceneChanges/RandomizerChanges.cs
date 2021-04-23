@@ -122,17 +122,6 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
-                // With Cursed Nail active, drop the vine platform so they can escape from Thorns
-                case SceneNames.Fungus1_14 when RandomizerMod.Instance.Settings.CursedNail:
-
-                    PlayMakerFSM shinyFSM = GameObject.Find("Shiny Item").LocateMyFSM("Shiny Control");
-                    
-                    // The FSM will visit the Finish state, regardless of what the item is at Thorns
-                    shinyFSM.GetState("Finish").AddFirstAction(new RandomizerExecuteLambda(() => {
-                        GameObject.Find("Vine").GetComponent<VinePlatformCut>().Cut();
-                    }));
-                    break;
-
                 // Platforms to climb back up from Mantis Lords with only wings
                 case SceneNames.Fungus2_15 when !RandomizerMod.Instance.Settings.RandomizeTransitions:
                     {
@@ -510,6 +499,14 @@ namespace RandomizerMod.SceneChanges
                         GameObject s2 = Object.Instantiate(bounceShroom);
                         s2.transform.SetPosition3D(21.7f, 133f, 0f);
                         s2.SetActive(true);
+                    }
+                    break;
+
+                // We have to get rid of the Enraged Guardian Boss Geo reward if CG2 isn't present in the scene
+                case SceneNames.Mines_32 when RandomizerMod.Instance.Settings.RandomizeBossGeo:
+                    if (!Ref.PD.GetBool(nameof(Ref.PD.defeatedMegaBeamMiner)))
+                    {
+                        Object.Destroy(GameObject.Find("New Shiny Boss Geo"));
                     }
                     break;
 

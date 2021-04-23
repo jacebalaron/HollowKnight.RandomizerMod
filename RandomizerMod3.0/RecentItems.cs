@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using Modding;
 using RandomizerMod.Randomization;
 using UnityEngine;
 
-namespace RandomizerMod.Components
+namespace RandomizerMod
 {
     static internal class RecentItems
     {
@@ -24,30 +25,32 @@ namespace RandomizerMod.Components
                 new CanvasUtil.RectData(new Vector2(200, 100), Vector2.zero,
                 new Vector2(0.87f, 0.95f), new Vector2(0.87f, 0.95f)));
 
-            canvas.SetActive(true);
+            if (invPanels <= 0) Show();
         }
 
         public static void Destroy()
         {
-            if (canvas != null) Object.DestroyImmediate(canvas);
+            if (canvas != null) Object.Destroy(canvas);
             canvas = null;
-
-            foreach (GameObject item in items)
-            {
-                Object.DestroyImmediate(item);
-            }
 
             items.Clear();
         }
 
-        public static void AddItem(string item)
+        public static void AddItem(string item, string location, bool showArea = true)
         {
             if (canvas == null)
             {
                 Create();
             }
-            
+
+            item = RandomizerMod.Instance.Settings.GetEffectiveItem(item);
+
             string itemName = LanguageStringManager.GetLanguageString(LogicManager.GetItemDef(item).nameKey, "UI");
+            string areaName = LogicManager.ShopNames.Contains(location)
+                ? location
+                : RandoLogger.CleanAreaName(LogicManager.GetItemDef(location).areaName);
+
+            string msg = showArea ? itemName + "\nfrom " + areaName : itemName;
 
             GameObject basePanel = CanvasUtil.CreateBasePanel(canvas,
                 new CanvasUtil.RectData(new Vector2(200, 50), Vector2.zero,
@@ -57,7 +60,7 @@ namespace RandomizerMod.Components
             CanvasUtil.CreateImagePanel(basePanel, RandomizerMod.GetSprite(spriteKey),
                 new CanvasUtil.RectData(new Vector2(50, 50), Vector2.zero, new Vector2(0f, 0.5f),
                     new Vector2(0f, 0.5f)));
-            CanvasUtil.CreateTextPanel(basePanel, itemName, 24, TextAnchor.MiddleLeft,
+            CanvasUtil.CreateTextPanel(basePanel, msg, 24, TextAnchor.MiddleLeft,
                 new CanvasUtil.RectData(new Vector2(400, 100), Vector2.zero,
                 new Vector2(1.2f, 0.5f), new Vector2(1.2f, 0.5f)),
                 CanvasUtil.GetFont("Perpetua"));
@@ -65,7 +68,7 @@ namespace RandomizerMod.Components
             items.Enqueue(basePanel);
             if (items.Count > MaxItems)
             {
-                Object.DestroyImmediate(items.Dequeue());
+                Object.Destroy(items.Dequeue());
             }
 
             UpdatePositions();
@@ -85,7 +88,7 @@ namespace RandomizerMod.Components
         public static void Show()
         {
             if (canvas == null) return;
-            canvas.SetActive(true);
+            canvas.SetActive(RandomizerMod.Instance.globalSettings.RecentItems);
         }
 
         public static void Hide()
@@ -94,9 +97,16 @@ namespace RandomizerMod.Components
             canvas.SetActive(false);
         }
 
-        internal static void ApplyHooks()
+        // Hacky solution to the problem where we open multiple panels at once, which happens when showing lore dialogue in a shop.
+        // In future, a less lazy implementation of shop lore which closes the shop menu (temporarily, perhaps) rather than yeeting 
+        // it off screen would deal with this problem more sensibly.
+        private static int invPanels = 0;
+
+        internal static void Hook()
         {
-            ModHooks.Instance.AfterSavegameLoadHook += OnLoad; 
+            UnHook();
+
+            //ModHooks.Instance.AfterSavegameLoadHook += OnLoad; 
             On.QuitToMenu.Start += OnQuitToMenu;
             On.InvAnimateUpAndDown.AnimateUp += OnInventoryOpen;
             On.InvAnimateUpAndDown.AnimateDown += OnInventoryClose;
@@ -104,40 +114,60 @@ namespace RandomizerMod.Components
             On.UIManager.UIClosePauseMenu += OnUnpause;
         }
 
-        private static void OnLoad(SaveGameData data)
+        internal static void UnHook()
         {
-            RecentItems.Create();
+            //ModHooks.Instance.AfterSavegameLoadHook -= OnLoad;
+            On.QuitToMenu.Start -= OnQuitToMenu;
+            On.InvAnimateUpAndDown.AnimateUp -= OnInventoryOpen;
+            On.InvAnimateUpAndDown.AnimateDown -= OnInventoryClose;
+            On.UIManager.GoToPauseMenu -= OnPause;
+            On.UIManager.UIClosePauseMenu -= OnUnpause;
         }
+
+        // It probably doesn't fit to show a recent items popup on load in non-multi
+        //private static void OnLoad(SaveGameData data)
+        //{
+        //    Create();
+        //}
 
         private static IEnumerator OnQuitToMenu(On.QuitToMenu.orig_Start orig, QuitToMenu self)
         {
-            RecentItems.Destroy(); 
+            Destroy(); 
             return orig(self);
         }
 
         private static void OnInventoryOpen(On.InvAnimateUpAndDown.orig_AnimateUp orig, InvAnimateUpAndDown self)
         {
             orig(self);
-            RecentItems.Hide();
+            invPanels++;
+            Hide();
         }
 
         private static void OnInventoryClose(On.InvAnimateUpAndDown.orig_AnimateDown orig, InvAnimateUpAndDown self)
         {
             orig(self);
-            RecentItems.Show();
+            invPanels--;
+            if (invPanels <= 0) Show();
         }
 
         private static IEnumerator OnPause(On.UIManager.orig_GoToPauseMenu orig, UIManager self)
         {
             //yield return orig(self);
-            RecentItems.Hide();
+            
+            // Failsafe
+            if (invPanels != 0)
+            {
+                LogHelper.LogWarn("Warning: invPanels not equal to 0 on pause");
+                invPanels = 0;
+            }
+            Hide();
             return orig(self);
         }
 
         private static void OnUnpause(On.UIManager.orig_UIClosePauseMenu orig, UIManager self)
         {
             orig(self);
-            RecentItems.Show();
+            Show();
         }
     }
 }

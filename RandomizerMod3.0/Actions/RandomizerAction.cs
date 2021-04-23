@@ -38,6 +38,7 @@ namespace RandomizerMod.Actions
 
             int newShinies = 0;
             int newGrubs = 0;
+            int newRocks = 0;
             string[] shopNames = LogicManager.ShopNames;
 
             // Loop non-shop items
@@ -116,18 +117,27 @@ namespace RandomizerMod.Actions
                     Actions.Add(new DisableLoreTablet(oldItem.sceneName, "Tut_tablet_top", "Inspection"));
                 }
 
-                var hasCost = oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo;
-                var replacedWithGrub = newItem.pool == "Grub" && oldItem.elevation != 0 &&
-                    !(settings.NPCItemDialogue && location == "Vengeful_Spirit");
+                // Some objects destroy themselves based on a pdbool check via the FSM. This executes before we have
+                // a chance to replace with a shiny when coming from a boss scene. Disable that behaviour here;
+                // we need to do it here to cover the grub, rock cases.
+                if (!string.IsNullOrEmpty(oldItem.selfDestructFsmName))
+                {
+                    // With NPC Item Dialogue we shouldn't do this for the VS pickup
+                    if (!(settings.NPCItemDialogue && location == "Vengeful_Spirit"))
+                    {
+                        Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, oldItem.selfDestructFsmName));
+                    }
+                }
+
+                bool hasCost = oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo;
+                bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && !hasCost;
+                bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
+                bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
 
                 if (replacedWithGrub)
                 {
                     var jarName = "Randomizer Grub Jar " + newGrubs++;
-                    if (oldItem.replace)
-                    {
-                        Actions.Add(new ReplaceObjectWithGrubJar(oldItem.sceneName, oldItem.objectName, oldItem.elevation, jarName, newItemName, location));
-                    }
-                    else if (oldItem.newShiny)
+                    if (oldItem.newShiny)
                     {
                         Actions.Add(new CreateNewGrubJar(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewGrubJar.GRUB_JAR_ELEVATION - oldItem.elevation, jarName, newItemName, location));
                     }
@@ -136,19 +146,27 @@ namespace RandomizerMod.Actions
                         Actions.Add(new ReplaceObjectWithGrubJar(oldItem.sceneName, oldItem.objectName, oldItem.elevation, jarName, newItemName, location));
                     }
                 }
+                else if (replacedWithGeoRock)
+                {
+                    var rockName = "Randomizer Geo Rock " + newRocks++;
+                    var subtype = GetRockSubtype(newItem.objectName);
+                    // The 420 geo rock gives 5-geo pieces, so the amount
+                    // spawned must be reduced proportionally.
+                    var geo = newItem.geo;
+                    if (subtype == GeoRockSubtype.Outskirts420) {
+                        geo /= 5;
+                    }
+                    if (oldItem.newShiny)
+                    {
+                        Actions.Add(new CreateNewGeoRock(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewGeoRock.Elevation[subtype] - oldItem.elevation, rockName, newItemName, location, geo, subtype));
+                    }
+                    else
+                    {
+                        Actions.Add(new ReplaceObjectWithGeoRock(oldItem.sceneName, oldItem.objectName, oldItem.elevation, rockName, newItemName, location, geo, subtype));
+                    }
+                }
                 else if (oldItem.replace)
                 {
-                    // Some objects destroy themselves based on a pdbool check via the FSM. This executes before we have
-                    // a chance to replace with a shiny when coming from a boss scene. Disable that behaviour here.
-                    if (!string.IsNullOrEmpty(oldItem.selfDestructFsmName))
-                    {
-                        // With NPC Item Dialogue we shouldn't do this for the VS pickup
-                        if (!settings.NPCItemDialogue || oldItem.objectName != "Vengeful_Spirit")
-                        {
-                            Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, oldItem.selfDestructFsmName));
-                        }
-                    }
-
                     string replaceShinyName = "Randomizer Shiny " + newShinies++;
                     if (location == "Dream_Nail" || location == "Mask_Shard-Brooding_Mawlek" || location == "Nailmaster's_Glory" || location == "Godtuner")
                     {
@@ -405,6 +423,51 @@ namespace RandomizerMod.Actions
                 Actions.Add(new ShowLoreTextInShop(SceneNames.Room_Charm_Shop, "UI List", "Confirm Control"));
                 Actions.Add(new ShowLoreTextInShop(SceneNames.Fungus2_26, "UI List", "Confirm Control"));
             }
+        }
+
+        private static GeoRockSubtype GetRockSubtype(string objName) {
+            GeoRockSubtype subtype = GeoRockSubtype.Default;
+            if (objName.Contains("Abyss")) {
+                subtype = GeoRockSubtype.Abyss;
+            }
+            else if (objName.Contains("City")) {
+                subtype = GeoRockSubtype.City;
+            }
+            else if (objName.Contains("Deepnest")) {
+                subtype = GeoRockSubtype.Deepnest;
+            }
+            else if (objName.Contains("Fung 01")) {
+                subtype = GeoRockSubtype.Fung01;
+            }
+            else if (objName.Contains("Fung 02")) {
+                subtype = GeoRockSubtype.Fung02;
+            }
+            else if (objName.Contains("Grave 01")) {
+                subtype = GeoRockSubtype.Grave01;
+            }
+            else if (objName.Contains("Grave 02")) {
+                subtype = GeoRockSubtype.Grave02;
+            }
+            else if (objName.Contains("Green Path 01")) {
+                subtype = GeoRockSubtype.GreenPath01;
+            }
+            else if (objName.Contains("Green Path 02")) {
+                subtype = GeoRockSubtype.GreenPath02;
+            }
+            else if (objName.Contains("Hive")) {
+                subtype = GeoRockSubtype.Hive;
+            }
+            else if (objName.Contains("Mine")) {
+                subtype = GeoRockSubtype.Mine;
+            }
+            else if (objName.Contains("Outskirts")) {
+                subtype = GeoRockSubtype.Outskirts;
+            }
+            else if (objName == "Giant Geo Egg") {
+                subtype = GeoRockSubtype.Outskirts420;
+            }
+
+            return ObjectCache.GetPreloadedRockType(subtype);
         }
 
         public static string GetAdditivePrefix(string itemName)

@@ -93,6 +93,11 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool JinnSellAll
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
         public bool Quirrel
         {
             get => GetBool(false);
@@ -271,6 +276,11 @@ namespace RandomizerMod
         {
             get => GetBool(false);
             set => SetBool(value);
+        }
+        public int TotalFlamesCollected
+        {
+            get => GetInt(0);
+            set => SetInt(value);
         }
 
         public bool RandomizeBossEssence
@@ -619,14 +629,19 @@ namespace RandomizerMod
                 item = additiveSet[count];
             }
             // Add special case for dealing with L/R shade cloak; if they already have at least one dash in each direction
-            // we just show Shade Cloak
-            else if (LogicManager.GetItemDef(item).pool == "SplitCloak")
+            // we just show Shade Cloak, to prevent possible confusion. In RecentItems, it's probably more helpful to show
+            // the direction of the shade cloak, so as not to destroy relevant information.
+            // - Deactivated because I felt that destroying the information about which shade cloak it is is more
+            // annoying than showing an incorrect dash direction.
+            /*
+            if (LogicManager.GetItemDef(item).pool == "SplitCloak" && compressSplit)
             {
                 if (GetAdditiveCount("Left_Mothwing_Cloak") > 0 && GetAdditiveCount("Right_Mothwing_Cloak") > 0)
                 {
                     item = "Shade_Cloak";
                 }
             }
+            */
             return item;
         }
 
@@ -674,6 +689,18 @@ namespace RandomizerMod
     public class GlobalSettings : BaseSettings
     {
         public bool NPCItemDialogue
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+
+        public bool RecentItems
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+
+        public bool ReducePreloads
         {
             get => GetBool(true);
             set => SetBool(value);

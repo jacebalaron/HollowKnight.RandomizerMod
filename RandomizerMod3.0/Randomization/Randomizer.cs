@@ -16,7 +16,8 @@ namespace RandomizerMod.Randomization
         None,
         InProgress,
         Validating,
-        Completed
+        Completed,
+        HelperLog
     }
 
     internal static class Randomizer
@@ -600,6 +601,20 @@ namespace RandomizerMod.Randomization
                             foreach (string i in vm.progressionShopItems[location])
                             {
                                 tm.UpdateReachableTransitions(i, true, pm);
+                            }
+                        }
+                        // It is possible for a shop to be both a vanilla progression location and contain randomized items, if
+                        // Charms or Keys are unrandomized
+                        if (ItemManager.shopItems.TryGetValue(location, out List<string> shopItems))
+                        {
+                            foreach (string newItem in shopItems)
+                            {
+                                items.Remove(newItem);
+                                if (LogicManager.GetItemDef(newItem).progression)
+                                {
+                                    pm.Add(newItem);
+                                    if (RandomizerMod.Instance.Settings.RandomizeTransitions) tm.UpdateReachableTransitions(newItem, true, pm);
+                                }
                             }
                         }
                     }
