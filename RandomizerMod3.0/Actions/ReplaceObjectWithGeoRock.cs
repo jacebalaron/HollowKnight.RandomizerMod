@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using SereCore;
@@ -53,16 +53,28 @@ namespace RandomizerMod.Actions
 
             if (obj == null) return;
 
+            // Rocks store their world position using a GetPosition (space = world) action and 
+            // then set their local position to be that using a SetPosition (space = self) action
+            // later. This never causes issues with rocks not placed by us, because rocks never 
+            // have a parent that is displaced from the origin. In some special cases 
+            // (e.g. Shade Cloak, Spire grub) this is not the case, so it is sensible not 
+            // to parent rocks placed there.
+            bool isSpecialLocation = obj.transform.parent != null &&
+                !(obj.transform.parent.position.x == 0f && obj.transform.parent.position.y == 0f);
+
             // Put a geo rock in the same location as the original
             GameObject rock = ObjectCache.GeoRock(_subtype);
             rock.name = _rockName;
-            if (obj.transform.parent != null)
+            if (obj.transform.parent != null && !isSpecialLocation)
             {
                 rock.transform.SetParent(obj.transform.parent);
             }
 
             rock.transform.position = obj.transform.position;
-            rock.transform.localPosition = obj.transform.localPosition;
+            if (!isSpecialLocation)
+            {
+                rock.transform.localPosition = obj.transform.localPosition;
+            }
             rock.transform.position += Vector3.up * (CreateNewGeoRock.Elevation[_subtype] - _elevation);
             if (_subtype == GeoRockSubtype.Outskirts420) {
                 var t = rock.transform;
