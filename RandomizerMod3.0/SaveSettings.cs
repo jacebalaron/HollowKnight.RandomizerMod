@@ -44,7 +44,11 @@ namespace RandomizerMod
         {
             AfterDeserialize += () =>
             {
-                RandomizerAction.CreateActions(ItemPlacements, this);
+                if (Randomizer)
+                {
+                    RandomizerMod.Instance.HookRandomizer();
+                    RandomizerAction.CreateActions(ItemPlacements, this);
+                }
             };
         }
 
@@ -622,10 +626,10 @@ namespace RandomizerMod
         // if the pickup is part of an additive group.
         public string GetEffectiveItem(string item)
         {
-            var additiveSet = LogicManager.AdditiveItemSets.FirstOrDefault(set => set.Contains(item));
+            string[] additiveSet = LogicManager.AdditiveItemSets.FirstOrDefault(set => set.Contains(item));
             if (additiveSet != null)
             {
-                var count = Math.Min(GetAdditiveCount(item), additiveSet.Length - 1);
+                int count = Math.Min(GetAdditiveCount(item), additiveSet.Length - 1);
                 item = additiveSet[count];
             }
             // Add special case for dealing with L/R shade cloak; if they already have at least one dash in each direction

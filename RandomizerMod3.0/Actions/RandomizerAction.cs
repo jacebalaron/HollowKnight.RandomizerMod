@@ -120,7 +120,7 @@ namespace RandomizerMod.Actions
                 // Some objects destroy themselves based on a pdbool check via the FSM. This executes before we have
                 // a chance to replace with a shiny when coming from a boss scene. Disable that behaviour here;
                 // we need to do it here to cover the grub, rock cases.
-                if (!string.IsNullOrEmpty(oldItem.selfDestructFsmName))
+                if (!string.IsNullOrEmpty(oldItem.selfDestructFsmName) && oldItem.replace)
                 {
                     // With NPC Item Dialogue we shouldn't do this for the VS pickup
                     if (!(settings.NPCItemDialogue && location == "Vengeful_Spirit"))
@@ -129,14 +129,14 @@ namespace RandomizerMod.Actions
                     }
                 }
 
-                bool hasCost = oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo;
+                bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) && location != "Vessel_Fragment-Basin";
                 bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && !hasCost;
                 bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
                 bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
 
                 if (replacedWithGrub)
                 {
-                    var jarName = "Randomizer Grub Jar " + newGrubs++;
+                    string jarName = "Randomizer Grub Jar " + newGrubs++;
                     if (oldItem.newShiny)
                     {
                         Actions.Add(new CreateNewGrubJar(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewGrubJar.GRUB_JAR_ELEVATION - oldItem.elevation, jarName, newItemName, location));
@@ -144,15 +144,23 @@ namespace RandomizerMod.Actions
                     else
                     {
                         Actions.Add(new ReplaceObjectWithGrubJar(oldItem.sceneName, oldItem.objectName, oldItem.elevation, jarName, newItemName, location));
+                        // Add a PreventSelfDestruct for shiny items not typically replaced.
+                        // Add the action only for items which set a bool, because only those will use a
+                        // PlayerData rather than a SceneData check for their original Self Destruction.
+                        if (!oldItem.replace && oldItem.fsmName == "Shiny Control" && !string.IsNullOrEmpty(oldItem.boolName))
+                        {
+                            Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
+                        }
+
                     }
                 }
                 else if (replacedWithGeoRock)
                 {
-                    var rockName = "Randomizer Geo Rock " + newRocks++;
-                    var subtype = GetRockSubtype(newItem.objectName);
+                    string rockName = "Randomizer Geo Rock " + newRocks++;
+                    GeoRockSubtype subtype = GetRockSubtype(newItem.objectName);
                     // The 420 geo rock gives 5-geo pieces, so the amount
                     // spawned must be reduced proportionally.
-                    var geo = newItem.geo;
+                    int geo = newItem.geo;
                     if (subtype == GeoRockSubtype.Outskirts420) {
                         geo /= 5;
                     }
@@ -163,6 +171,13 @@ namespace RandomizerMod.Actions
                     else
                     {
                         Actions.Add(new ReplaceObjectWithGeoRock(oldItem.sceneName, oldItem.objectName, oldItem.elevation, rockName, newItemName, location, geo, subtype));
+                        // Add a PreventSelfDestruct for shiny items not typically replaced 
+                        // Add the action only for items which set a bool, because only those will use a
+                        // PlayerData rather than a SceneData check for their original Self Destruction.
+                        if (!oldItem.replace && oldItem.fsmName == "Shiny Control" && !string.IsNullOrEmpty(oldItem.boolName))
+                        {
+                            Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
+                        }
                     }
                 }
                 else if (oldItem.replace)
@@ -215,7 +230,8 @@ namespace RandomizerMod.Actions
                     oldItem.objectName = "Randomizer Chest Shiny";
                     oldItem.fsmName = "Shiny Control";
                     oldItem.type = ItemType.Charm;
-                } else if (oldItem.type == ItemType.Flame)
+                }
+                else if (oldItem.type == ItemType.Flame)
                 {
                     // Even if the new item is also a flame, this action should still run in order to
                     // guarantee that the player can't be locked out of getting it by upgrading their
@@ -249,7 +265,12 @@ namespace RandomizerMod.Actions
                         altTest: () => RandomizerMod.Instance.Settings.CheckLocationFound(location)));
                 }
 
-                if (replacedWithGrub)
+                if (location == "Vessel_Fragment-Basin")
+                {
+                    Actions.Add(new ReplaceBasinVesselWithShiny(oldItem.objectName));
+                }
+
+                if (replacedWithGrub || replacedWithGeoRock)
                 {
                     continue;
                 }

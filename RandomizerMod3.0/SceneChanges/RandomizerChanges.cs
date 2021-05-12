@@ -44,7 +44,7 @@ namespace RandomizerMod.SceneChanges
                     break;
 
                 // Platforms to climb up to tram in basin from left with no items
-                case SceneNames.Abyss_03 when !RandomizerMod.Instance.Settings.RandomizeTransitions:
+                case SceneNames.Abyss_03 when !RandomizerMod.Instance.Settings.RandomizeRooms:
                     {
                         GameObject platform = ObjectCache.SmallPlatform;
                         platform.transform.SetPosition2D(34f, 7f);
@@ -232,11 +232,6 @@ namespace RandomizerMod.SceneChanges
                     break;
                 */
 
-                // Removes the prompt to donate to the 3000 geo fountain in Basin
-                case SceneNames.Abyss_04:
-                    Object.Destroy(GameObject.Find("Fountain Donation"));
-                    break;
-
                 // Opens lifeblood door in Abyss with any amount of blue health
                 case SceneNames.Abyss_06_Core:
                     if (PlayerData.instance.healthBlue > 0 || PlayerData.instance.joniHealthBlue > 0 || GameManager.instance.entryGateName == "left1")
@@ -328,7 +323,7 @@ namespace RandomizerMod.SceneChanges
                 // Edits Dream Nail location to change scene to seer and
                 // re-enable minion charms
                 case SceneNames.Dream_Nailcollection:
-                    var finish = FSMUtility.LocateFSM(GameObject.Find("Randomizer Shiny"), "Shiny Control").GetState("Finish");
+                    FsmState finish = FSMUtility.LocateFSM(GameObject.Find("Randomizer Shiny"), "Shiny Control").GetState("Finish");
                     finish.AddAction(new RandomizerChangeScene("RestingGrounds_07", "right1"));
                     finish.AddAction(new RandomizerExecuteLambda(() => {
                         FSMUtility.LocateFSM(HeroController.instance.gameObject, "ProxyFSM").Fsm.GetFsmBool("No Charms").Value = false;
@@ -520,7 +515,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Mines_32 when RandomizerMod.Instance.Settings.RandomizeBossGeo:
                     if (!Ref.PD.GetBool(nameof(Ref.PD.defeatedMegaBeamMiner)))
                     {
-                        Object.Destroy(GameObject.Find("New Shiny Boss Geo"));
+                        DestroyAllObjectsNamed("New Shiny Boss Geo");
                     }
                     break;
 
@@ -1026,7 +1021,7 @@ namespace RandomizerMod.SceneChanges
 
         private static void DestroyAllObjectsNamed(string name)
         {
-            foreach (var go in GameObject.FindObjectsOfType<GameObject>())
+            foreach (GameObject go in GameObject.FindObjectsOfType<GameObject>())
             {
                 if (go.name.Contains(name))
                 {

@@ -78,7 +78,7 @@ namespace RandomizerMod
 
         private static string NameOfItemPlacedAt(string location)
         {
-            var item = LogicManager.GetItemDef(RandomizerMod.Instance.Settings.GetItemPlacedAt(location));
+            ReqDef item = LogicManager.GetItemDef(RandomizerMod.Instance.Settings.GetItemPlacedAt(location));
             return GetLanguageString(item.nameKey, "UI");
         }
 
@@ -175,6 +175,11 @@ namespace RandomizerMod
                     case SceneNames.Fungus1_24:
                         return NameOfItemPlacedAt("Queen's_Gardens_Map");
                 }
+            }
+
+            if (RandomizerMod.Instance.Settings.RandomizeVesselFragments && sheetTitle == "Prompts" && key == "GEO_RELIEVE")
+            {
+                return Language.Language.GetInternal(key, sheetTitle).Replace("?", $" for a {NameOfItemPlacedAt("Vessel_Fragment-Basin")}?");
             }
 
             // Used to show which mantis claw piece we have in inventory. Changed the Mantis Claw shop name/description to

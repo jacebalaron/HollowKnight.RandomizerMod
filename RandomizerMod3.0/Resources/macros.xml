@@ -32,8 +32,9 @@
   <macro name="FOCUS">NONRANDOMFOCUS | Focus</macro>
 
   <!--More macros related to directed skills-->
-  <macro name="LEFTBALDURS">FIREBALL | QUAKE | (Grubberfly's_Elegy + LEFTSLASH) | Glowing_Womb | (LEFTDASH + Dash_Slash) | (MILDSKIPS + (Weaversong | (Spore_Shroom + FOCUS))) | (((Mark_of_Pride + LEFTSLASH) | Cyclone_Slash | (LEFTDASH + LEFTSLASH)) + SPICYSKIPS)</macro>
-  <macro name="RIGHTBALDURS">FIREBALL | QUAKE | (Grubberfly's_Elegy + RIGHTSLASH) | Glowing_Womb | (RIGHTDASH + Dash_Slash) | (MILDSKIPS + (Weaversong | (Spore_Shroom + FOCUS))) | (((Mark_of_Pride + RIGHTSLASH) | Cyclone_Slash | (RIGHTDASH + RIGHTSLASH)) + SPICYSKIPS)</macro>
+  <macro name="ALLBALDURS">FIREBALL | QUAKE | Glowing_Womb | (MILDSKIPS + (Weaversong | (Spore_Shroom + FOCUS))) | (Cyclone_Slash + SPICYSKIPS)</macro>
+  <macro name="LEFTBALDURS">ALLBALDURS | (Grubberfly's_Elegy + LEFTSLASH) | (LEFTDASH + Dash_Slash) | (((Mark_of_Pride + LEFTSLASH) | (LEFTDASH + LEFTSLASH)) + SPICYSKIPS)</macro>
+  <macro name="RIGHTBALDURS">ALLBALDURS | (Grubberfly's_Elegy + RIGHTSLASH) | (RIGHTDASH + Dash_Slash) | (((Mark_of_Pride + RIGHTSLASH) | (RIGHTDASH + RIGHTSLASH)) + SPICYSKIPS)</macro>
   <macro name="AIRSTALL">FIREBALLSKIPS + (FIREBALL | SCREAM)</macro>
   <macro name="LEFTTUNNEL">SPIKETUNNELS + LEFTDASH + (Dashmaster | AIRSTALL)</macro>
   <macro name="RIGHTTUNNEL">SPIKETUNNELS + RIGHTDASH + (Dashmaster | AIRSTALL)</macro>
@@ -97,7 +98,7 @@
   <macro name="Crossroads_27">Crossroads_27[right1] | Crossroads_27[bot1] | Crossroads_27[left1] | Crossroads_27[left2]</macro>
   <macro name="Crossroads_33">Crossroads_33[top1] | Crossroads_33[left1] | Crossroads_33[left2] | Crossroads_33[right1] | Crossroads_33[right2]</macro>
   
-  <macro name="Fungus1_04">(Fungus1_04[left1] + (FULLDASH | WINGS | (ACID + RIGHTCLAW) | (SUPERDASH + FULLCLAW))) | Fungus1_04[right1]</macro>
+  <macro name="Fungus1_04">(Fungus1_04[left1] + (FULLDASH | WINGS | (ACID + RIGHTCLAW) | (SUPERDASH + FULLCLAW) | (RIGHTDASH + LEFTCLAW))) | Fungus1_04[right1]</macro>
   <macro name="Fungus1_11">Fungus1_11[left1] | Fungus1_11[top1] | Fungus1_11[bot1] | Fungus1_11[right1] | Fungus1_11[right2]</macro>
   <macro name="Fungus1_21">Fungus1_21[left1] | Fungus1_21[top1] | (Fungus1_21[right1] + (LEFTCLAW | (RIGHTCLAW + SUPERDASH) | WINGS | LEFTDASH)) | Fungus1_21[bot1]</macro>
   <macro name="Fungus1_30">Fungus1_30[left1] | Fungus1_30[right1] | Fungus1_30[top1] | Fungus1_30[top3]</macro>
@@ -198,7 +199,7 @@
   <macro name="Fungus3_11">Fungus3_11[left1] | (Fungus3_11[left2] + LEFTCLAW) | (Fungus3_11[right1] + (LEFTCLAW | WINGS))</macro>
   <macro name="Fungus3_13">Fungus3_13[left1] | Fungus3_13[left2] | Fungus3_13[left3] | Fungus3_13[bot1] | Fungus3_13[right1]</macro>
   <macro name="Fungus3_22">Fungus3_22[right1] | Fungus3_22[left1] | Fungus3_22[bot1]</macro>
-  <macro name="Fungus3_34">Fungus3_34[left1] | Fungus3_34[right1] | Fungus3_34[top1]</macro>
+  <macro name="Fungus3_34">(Fungus3_34[left1] + (RIGHTDASH | SUPERDASH | WINGS)) | Fungus3_34[right1] | Fungus3_34[top1]</macro>
   <macro name="Fungus3_40">Fungus3_40[top1] | Fungus3_40[right1]</macro>
   
   <macro name="Cliffs_01">Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] | Cliffs_01[right4]</macro>
