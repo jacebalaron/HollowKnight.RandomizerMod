@@ -17,10 +17,11 @@ using RandomizerMod.SceneChanges;
 using System.Security.Cryptography;
 
 using Object = UnityEngine.Object;
+using RandomizerMod.MultiWorld;
 
 namespace RandomizerMod
 {
-    public class RandomizerMod : Mod
+    public class RandomizerMod : Mod, IMultiWorldCompatibleRandomizer
     {
         private static Dictionary<string, Sprite> _sprites;
         private static Dictionary<string, string> _secondaryBools;
