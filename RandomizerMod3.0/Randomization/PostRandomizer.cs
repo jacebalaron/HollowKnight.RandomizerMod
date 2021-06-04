@@ -2,29 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RandomizerMod.Actions;
 using static RandomizerMod.LogHelper;
 using static RandomizerMod.Randomization.Randomizer;
 
 namespace RandomizerMod.Randomization
 {
-    internal static class PostRandomizer
+    public static class PostRandomizer
     {
         public static void PostRandomizationTasks()
         {
             RemovePlaceholders();
             SaveAllPlacements();
-            // Locations in the Vanilla manager where the location is a shop count as vanilla; otherwise, if the item and location
-            // do not match we should log them. In particular, the split cloak pieces in the vanilla manager should be logged.
-            (int, string, string)[] orderedILPairs = RandomizerMod.Instance.Settings.ItemPlacements
-                .Except(VanillaManager.Instance.ItemPlacements.Where(pair => (pair.Item1 == pair.Item2) || LogicManager.ShopNames.Contains(pair.Item2)))
-                .Select(pair => (ItemManager.locationOrder.TryGetValue(pair.Item2, out int loc) ? loc : 0, pair.Item1, pair.Item2))
-                .ToArray();
+            (int, string, string)[] orderedILPairs = getOrderedILPairs();
 
             if (RandomizerMod.Instance.Settings.CreateSpoilerLog)
             {
                 RandoLogger.LogAllToSpoiler(orderedILPairs, RandomizerMod.Instance.Settings._transitionPlacements.Select(kvp => (kvp.Key, kvp.Value)).ToArray());
                 RandoLogger.LogItemsToCondensedSpoiler(orderedILPairs);
             }
+
+            RandomizerAction.CreateActions(RandomizerMod.Instance.Settings.ItemPlacements, RandomizerMod.Instance.Settings);
+        }
+
+        public static (int, string, string)[] getOrderedILPairs()
+        {
+            // Locations in the Vanilla manager where the location is a shop count as vanilla; otherwise, if the item and location
+            // do not match we should log them. In particular, the split cloak pieces in the vanilla manager should be logged.
+            return RandomizerMod.Instance.Settings.ItemPlacements
+                .Except(VanillaManager.Instance.ItemPlacements.Where(pair => (pair.Item1 == pair.Item2) || LogicManager.ShopNames.Contains(pair.Item2)))
+                .Select(pair => (ItemManager.locationOrder.TryGetValue(pair.Item2, out int loc) ? loc : 0, pair.Item1, pair.Item2))
+                .ToArray();
         }
 
         private static void RemovePlaceholders()

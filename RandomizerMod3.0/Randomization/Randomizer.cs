@@ -2,9 +2,7 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
-using RandomizerMod.Actions;
 using static RandomizerMod.LogHelper;
-using System.Text;
 using static RandomizerMod.Randomization.PreRandomizer;
 using static RandomizerMod.Randomization.PostRandomizer;
 using static RandomizerMod.Randomization.SpanningTree;
@@ -62,9 +60,6 @@ namespace RandomizerMod.Randomization
                 RandomizeItems();
                 if (!randomizationError) break;
             }
-
-            PostRandomizationTasks();
-            RandomizerAction.CreateActions(RandomizerMod.Instance.Settings.ItemPlacements, RandomizerMod.Instance.Settings);
         }
 
         private static void RandomizeTransitions()

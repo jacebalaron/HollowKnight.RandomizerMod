@@ -238,6 +238,16 @@ namespace RandomizerMod
             return _logicParseThread == null || !_logicParseThread.IsAlive;
         }
 
+        public void SetStartGameButtonVisibility(bool visibility)
+        {
+            MenuChanger.SetStartGameButtonVisibility(visibility);
+        }
+
+        public MultiWorldMenu CreateMultiWorldMenu()
+        {
+            return MenuChanger.CreateMultiWorldMenu();
+        }
+
         public void StartNewGame()
         {
             if (!Settings.Randomizer)
@@ -258,7 +268,10 @@ namespace RandomizerMod
             try
             {
                 Randomizer.Randomize();
+        
+                // Time for MultiWorld to modify itemsPlacements and update RandomizerMod.Instance.Settings.ItemPlacements
 
+                PostRandomizer.PostRandomizationTasks();
                 RandoLogger.UpdateHelperLog();
             }
             catch (Exception e)
@@ -749,7 +762,6 @@ namespace RandomizerMod
             }
         }
         
-
         private void HandleSceneChanges(Scene from, Scene to)
         {
             if (Ref.GM.IsGameplayScene())

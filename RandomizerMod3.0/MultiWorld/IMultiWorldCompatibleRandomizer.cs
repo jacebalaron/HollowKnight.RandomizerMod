@@ -6,8 +6,11 @@
         public MWMenu mwMenu {
             
         };
-        public RandoResult Randomize();
-        public void StartNewGame(RandoResult);
-        */
+        
+        RandoResult Randomize();
+        void StartNewGame(RandoResult);*/
+        MultiWorldMenu CreateMultiWorldMenu();
+
+        void SetStartGameButtonVisibility(bool visibility);
     }
 }

@@ -111,7 +111,9 @@
     <Compile Include="Actions\ChangeCrystalShamanReward.cs" />
     <Compile Include="Actions\ChangeSanctumShamanReward.cs" />
     <Compile Include="Actions\ShowLoreTextInShop.cs" />
+    <Compile Include="Extensions\RandoMenuItem.cs" />
     <Compile Include="MultiWorld\IMultiWorldCompatibleRandomizer.cs" />
+    <Compile Include="MultiWorld\MultiWorldMenu.cs" />
     <Compile Include="RecentItems.cs" />
     <Compile Include="CustomSkills.cs" />
     <Compile Include="GiveItemActions.cs" />
@@ -435,4 +437,7 @@
     <EmbeddedResource Include="Resources\Prompts\ShadowdashReflected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>C:\Users\Ofir\Documents\Projects\HollowKnight\RandomizerMod\RandomizerMod3.0\bin\Debug\copy_mod_to_mods.bat</PostBuildEvent>
+  </PropertyGroup>
 </Project>

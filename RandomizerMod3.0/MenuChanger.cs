@@ -8,15 +8,14 @@ using static RandomizerMod.LogHelper;
 using Object = UnityEngine.Object;
 using Random = System.Random;
 using RandomizerMod.Randomization;
+using RandomizerMod.MultiWorld;
 
 namespace RandomizerMod
 {
     internal static class MenuChanger
     {
-        private static readonly Color TRUE_COLOR = Color.Lerp(Color.white, Color.yellow, 0.5f);
-        private static readonly Color FALSE_COLOR = Color.grey;
-        private static readonly Color LOCKED_TRUE_COLOR = Color.Lerp(Color.grey, Color.yellow, 0.5f);
-        private static readonly Color LOCKED_FALSE_COLOR = Color.Lerp(Color.grey, Color.black, 0.5f);
+        private static MenuButton startRandoBtn;
+        private static MenuButton back;
 
         public static void EditUI()
         {
@@ -32,16 +31,16 @@ namespace RandomizerMod
 
             MenuButton classic = (MenuButton)playScreen.defaultHighlight;
             MenuButton steel = (MenuButton)classic.FindSelectableOnDown();
-            MenuButton back = (MenuButton)steel.FindSelectableOnDown();
+            back = (MenuButton)steel.FindSelectableOnDown();
 
             GameObject parent = steel.transform.parent.gameObject;
 
             Object.Destroy(parent.GetComponent<VerticalLayoutGroup>());
 
             // Create new buttons
-            MenuButton startRandoBtn = classic.Clone("StartRando", MenuButton.MenuButtonType.Proceed,
+            startRandoBtn = classic.Clone("StartRando", MenuButton.MenuButtonType.Proceed,
                 new Vector2(0, 0), "Start Game", "Randomizer", RandomizerMod.GetSprite("UI.logo"));
-            
+
             /*
             MenuButton startNormalBtn = classic.Clone("StartNormal", MenuButton.MenuButtonType.Proceed,
                 new Vector2(0, -200), "Start Game", "Non-Randomizer");
@@ -85,7 +84,7 @@ namespace RandomizerMod
             RandoMenuItem<bool> RandoBossEssenceBtn = new RandoMenuItem<bool>(back, new Vector2(700, 240), "Boss Essence", false, true);
             RandoMenuItem<bool> RandoBossGeoBtn = new RandoMenuItem<bool>(back, new Vector2(1100, 240), "Boss Geo", false, true);
 
-            RandoMenuItem<bool> RandoPalaceBtn = new RandoMenuItem<bool>(back, new Vector2(0, 400), "Palace Totems/Tablets", false, true);
+            RandoMenuItem<bool> RandoPalaceBtn = new RandoMenuItem<bool>(back, new Vector2(0, 740), "Palace Totems/Tablets", false, true);
 
             RandoMenuItem<bool> RandoStartItemsBtn = new RandoMenuItem<bool>(back, new Vector2(900, 80), "Randomize Start Items", false, true);
             RandoMenuItem<string> RandoStartLocationsModeBtn = new RandoMenuItem<string>(back, new Vector2(900, 0), "Start Location Setting", "Select", "Random");
@@ -115,7 +114,7 @@ namespace RandomizerMod
             RandoMenuItem<string> cursedBtn = new RandoMenuItem<string>(back, new Vector2(0, 960), "Cursed", "no", "noo", "noooo", "noooooooo", "noooooooooooooooo", "Oh yeah", "Just focus");
             RandoMenuItem<bool> splitCloakBtn = new RandoMenuItem<bool>(back, new Vector2(-250, 880), "Split Cloak", false, true);
             RandoMenuItem<bool> splitClawBtn = new RandoMenuItem<bool>(back, new Vector2(250, 880), "Split Claw", false, true);
-            RandoMenuItem<bool> cursedNailBtn = new RandoMenuItem<bool>(back, new Vector2(0, 800), "Cursed Nail", false, true);
+            RandoMenuItem<bool> cursedNailBtn = new RandoMenuItem<bool>(back, new Vector2(0, 810), "Cursed Nail", false, true);
             RandoMenuItem<bool> RandoSpoilerBtn = new RandoMenuItem<bool>(back, new Vector2(0, 0), "Create Spoiler Log", true, false);
 
             // Create seed entry field
@@ -159,14 +158,14 @@ namespace RandomizerMod
             CreateLabel(back, new Vector2(-900, 460), "Quality of Life");
             CreateLabel(back, new Vector2(900, 1290), "Item Randomization");
             CreateLabel(back, new Vector2(900, 160), "Start Settings");
-            CreateLabel(back, new Vector2(0, 200), "Use of Benchwarp mod may be required");
+            CreateLabel(back, new Vector2(0, 80), "Use of Benchwarp mod may be required");
             CreateLabel(back, new Vector2(0, 1300), "Seed:");
-
             // We don't need these old buttons anymore
             Object.Destroy(classic.gameObject);
             Object.Destroy(steel.gameObject);
             Object.Destroy(parent.FindGameObjectInChildren("GGButton"));
-            Object.Destroy(back.gameObject);
+            // TODO remove Object.Destroy(back.gameObject);
+            back.gameObject.SetActive(false);
 
             // Gotta put something here, we destroyed the old default
             playScreen.defaultHighlight = startRandoBtn;
@@ -432,7 +431,7 @@ namespace RandomizerMod
                 {
                     StartLocationsListBtn.SetSelection("King's Pass");
                     StartLocationsListBtn.Lock();
-                    StartLocationsListBtn.SetColor(LOCKED_FALSE_COLOR);
+                    StartLocationsListBtn.SetColor(RandoMenuItem<int>.LOCKED_FALSE_COLOR);
                     return;
                 }
                 else StartLocationsListBtn.Unlock();
@@ -699,6 +698,114 @@ namespace RandomizerMod
             //startSteelRandoBtn.AddEvent(EventTriggerType.Submit, garbage => StartGame(true));
         }
 
+        public static MultiWorldMenu CreateMultiWorldMenu()
+        {
+            back.gameObject.SetActive(true);
+            MenuButton existingButton = back;
+            LogWarn("W0");
+
+            RandoMenuItem<string> multiworldBtn = new RandoMenuItem<string>(existingButton, new Vector2(0, 480), "Multiworld", "No", "Yes");
+            LogWarn("W0.1");
+
+            RandoMenuItem<bool> multiworldReadyBtn = new RandoMenuItem<bool>(existingButton, new Vector2(0, 300), "Ready", false, true);
+            LogWarn("W0.2");
+
+            multiworldReadyBtn.Button.gameObject.SetActive(false);
+
+            InputField createInputObject()
+            {
+                GameObject gameObject = existingButton.Clone("entry", MenuButton.MenuButtonType.Activate, new Vector2(0, 1130)).gameObject;
+                Object.DestroyImmediate(gameObject.GetComponent<MenuButton>());
+                Object.DestroyImmediate(gameObject.GetComponent<EventTrigger>());
+                Object.DestroyImmediate(gameObject.transform.Find("Text").GetComponent<AutoLocalizeTextUI>());
+                Object.DestroyImmediate(gameObject.transform.Find("Text").GetComponent<FixVerticalAlign>());
+                Object.DestroyImmediate(gameObject.transform.Find("Text").GetComponent<ContentSizeFitter>());
+
+                RectTransform rect = gameObject.transform.Find("Text").GetComponent<RectTransform>();
+                rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.sizeDelta = new Vector2(337, 63.2f);
+
+                InputField input = gameObject.AddComponent<InputField>();
+                input.textComponent = gameObject.transform.Find("Text").GetComponent<Text>();
+                input.colors = new ColorBlock
+                {
+                    highlightedColor = Color.yellow,
+                    pressedColor = Color.red,
+                    disabledColor = Color.black,
+                    normalColor = Color.white,
+                    colorMultiplier = 2f
+                };
+
+                return input;
+            }
+            LogWarn("W1");
+
+            InputField urlInput = createInputObject();
+            urlInput.transform.localPosition = new Vector3(50, 415);
+            urlInput.text = "127.0.0.1";
+            urlInput.textComponent.fontSize = urlInput.textComponent.fontSize - 6;
+
+            urlInput.caretColor = Color.white;
+            urlInput.contentType = InputField.ContentType.Standard;
+            urlInput.navigation = Navigation.defaultNavigation;
+            urlInput.caretWidth = 8;
+            urlInput.characterLimit = 0;
+            LogWarn("W2");
+
+            InputField nicknameInput = createInputObject();
+            nicknameInput.transform.localPosition = new Vector3(0, 415);
+            nicknameInput.text = "whoAmI";
+            nicknameInput.textComponent.fontSize = nicknameInput.textComponent.fontSize - 6;
+
+            nicknameInput.caretColor = Color.white;
+            nicknameInput.contentType = InputField.ContentType.Standard;
+            
+            nicknameInput.navigation = Navigation.defaultNavigation;
+            nicknameInput.caretWidth = 8;
+            nicknameInput.characterLimit = 15;
+
+            nicknameInput.gameObject.SetActive(false);
+            LogWarn("W3");
+
+            InputField roomInput = createInputObject();
+            roomInput.transform.localPosition = new Vector3(0, 370);
+            roomInput.text = "";
+            roomInput.textComponent.fontSize = roomInput.textComponent.fontSize - 6;
+
+            roomInput.caretColor = Color.white;
+            roomInput.contentType = InputField.ContentType.Standard;
+            roomInput.navigation = Navigation.defaultNavigation;
+            roomInput.caretWidth = 8;
+            roomInput.characterLimit = 15;
+
+            roomInput.gameObject.SetActive(false);
+            LogWarn("W4");
+
+            GameObject urlLabel = CreateLabel(existingButton, new Vector2(-155, 420), "URL:");
+            urlLabel.transform.localScale = new Vector3(0.8f, 0.8f);
+            GameObject nicknameLabel = CreateLabel(existingButton, new Vector2(-300, 420), "Nickname:");
+            nicknameLabel.transform.localScale = new Vector3(0.8f, 0.8f);
+            nicknameLabel.SetActive(false);
+            GameObject roomLabel = CreateLabel(existingButton, new Vector2(-300, 375), "Room:");
+            roomLabel.transform.localScale = new Vector3(0.8f, 0.8f);
+            roomLabel.SetActive(false);
+            GameObject readyPlayers = CreateLabel(existingButton, new Vector2(-0, 540), "");
+            readyPlayers.transform.localScale = new Vector3(0.5f, 0.5f);
+            LogWarn("W5");
+
+            MenuButton rejoinBtn = existingButton.Clone("Rejoin", MenuButton.MenuButtonType.Proceed, new Vector2(0, 230), "Rejoin");
+            rejoinBtn.ClearEvents();
+            rejoinBtn.gameObject.SetActive(false);
+
+            back.gameObject.SetActive(false);
+            return new MultiWorldMenu(multiworldBtn, multiworldReadyBtn, urlLabel, urlInput, nicknameLabel, nicknameInput, roomLabel, roomInput, readyPlayers, rejoinBtn);
+        }
+
+        public static void SetStartGameButtonVisibility(bool visible)
+        {
+            startRandoBtn.gameObject.SetActive(visible); 
+        }
+
         private static void ParseSeedInput(string input)
         {
             if (int.TryParse(input, out int newSeed))
@@ -711,191 +818,15 @@ namespace RandomizerMod
             }
         }
 
-        private static void CreateLabel(MenuButton baseObj, Vector2 position, string text)
+        private static GameObject CreateLabel(MenuButton baseObj, Vector2 position, string text)
         {
             GameObject label = baseObj.Clone(text + "Label", MenuButton.MenuButtonType.Activate, position, text)
                 .gameObject;
             Object.Destroy(label.GetComponent<EventTrigger>());
             Object.Destroy(label.GetComponent<MenuButton>());
+            return label;
         }
 
-        private class RandoMenuItem<T> where T : IEquatable<T>
-        {
-            public delegate void RandoMenuItemChanged(RandoMenuItem<T> item);
-
-            private readonly FixVerticalAlign _align;
-            private readonly T[] _selections;
-            private readonly Text _text;
-            private int _currentSelection;
-            private bool _locked = false;
-
-            public RandoMenuItem(MenuButton baseObj, Vector2 position, string name, params T[] values)
-            {
-                if (string.IsNullOrEmpty(name))
-                {
-                    throw new ArgumentNullException(nameof(name));
-                }
-
-                if (baseObj == null)
-                {
-                    throw new ArgumentNullException(nameof(baseObj));
-                }
-
-                if (values == null || values.Length == 0)
-                {
-                    throw new ArgumentNullException(nameof(values));
-                }
-
-                _selections = values;
-                Name = name;
-
-                Button = baseObj.Clone(name + "Button", MenuButton.MenuButtonType.Activate, position, string.Empty);
-
-                _text = Button.transform.Find("Text").GetComponent<Text>();
-                _text.fontSize = 36;
-                _align = Button.gameObject.GetComponentInChildren<FixVerticalAlign>(true);
-
-                Button.ClearEvents();
-                Button.AddEvent(EventTriggerType.Submit, GotoNext);
-
-                RefreshText();
-            }
-
-            public T CurrentSelection => _selections[_currentSelection];
-
-            public MenuButton Button { get; }
-
-            public string Name { get; }
-
-            public event RandoMenuItemChanged Changed
-            {
-                add => ChangedInternal += value;
-                remove => ChangedInternal -= value;
-            }
-
-            private event RandoMenuItemChanged ChangedInternal;
-
-            public void SetSelection(T obj)
-            {
-                if (_locked) return;
-
-                for (int i = 0; i < _selections.Length; i++)
-                {
-                    if (_selections[i].Equals(obj))
-                    {
-                        _currentSelection = i;
-                        break;
-                    }
-                }
-
-                RefreshText(false);
-            }
-
-            private void GotoNext(BaseEventData data = null)
-            {
-                if (_locked) return;
-
-                _currentSelection++;
-                if (_currentSelection >= _selections.Length)
-                {
-                    _currentSelection = 0;
-                }
-
-                RefreshText();
-            }
-
-            private void GotoPrev(BaseEventData data = null)
-            {
-                if (_locked) return;
-
-                _currentSelection--;
-                if (_currentSelection < 0)
-                {
-                    _currentSelection = _selections.Length - 1;
-                }
-
-                RefreshText();
-            }
-
-            private void RefreshText(bool invokeEvent = true)
-            {
-                if (typeof(T) == typeof(bool))
-                {
-                    _text.text = Name;
-                }
-                else
-                {
-                    _text.text = Name + ": " + _selections[_currentSelection];
-                }
-
-                _align.AlignText();
-                SetColor();
-
-                if (invokeEvent)
-                {
-                    ChangedInternal?.Invoke(this);
-                }
-            }
-
-            internal void SetColor(Color? c = null)
-            {
-                if (c is Color forceColor)
-                {
-                    _text.color = forceColor;
-                    return;
-                }
-
-                if (!(_selections[_currentSelection] is bool value))
-                {
-                    if (_locked)
-                    {
-                        _text.color = LOCKED_FALSE_COLOR;
-                    }
-                    else
-                    {
-                        _text.color = Color.white;
-                    }
-                    return;
-                }
-
-                if (!_locked && value)
-                {
-                    _text.color = TRUE_COLOR;
-                }
-                else if (!_locked && !value)
-                {
-                    _text.color = FALSE_COLOR;
-                }
-                else if (_locked && value)
-                {
-                    _text.color = LOCKED_TRUE_COLOR;
-                }
-                else if (_locked && value)
-                {
-                    _text.color = LOCKED_FALSE_COLOR;
-                }
-                else
-                {
-                    _text.color = Color.red;
-                }
-            }
-            
-            internal Color GetColor()
-            {
-                return _text.color;
-            }
-
-            internal void Lock()
-            {
-                _locked = true;
-                SetColor();
-            }
-
-            internal void Unlock()
-            {
-                _locked = false;
-                SetColor();
-            }
-        }
+        
     }
 }

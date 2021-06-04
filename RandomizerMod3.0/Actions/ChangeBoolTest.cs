@@ -55,7 +55,7 @@ namespace RandomizerMod.Actions
             else
             {
                 FsmEvent trueEvent = pdBoolTest.isTrue;
-                string trueName = trueEvent != null ? trueEvent.Name : null;
+                string trueName = trueEvent?.Name;
                 FsmEvent falseEvent = pdBoolTest.isFalse;
                 string falseName = falseEvent != null ? falseEvent.Name : null;
 
