@@ -5905,6 +5905,108 @@
     <progression>true</progression>
   </item>
   
+  <!--Egg Shop-->
+  <item name="450_Geo-Egg_Shop_1">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>20.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
+    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>rancidEggs</costType>
+    <cost>3</cost>
+  </item>
+  <item name="450_Geo-Egg_Shop_2">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>22.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
+    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>rancidEggs</costType>
+    <cost>4</cost>
+  </item>
+  <item name="450_Geo-Egg_Shop_3">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>24.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
+    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>rancidEggs</costType>
+    <cost>7</cost>
+  </item>
+  <item name="450_Geo-Egg_Shop_4">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>26.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
+    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>rancidEggs</costType>
+    <cost>10</cost>
+  </item>
+  <item name="450_Geo-Egg_Shop_5">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>28.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
+    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>rancidEggs</costType>
+    <cost>12</cost>
+  </item>
+  
 <!--REFERENCES-->
   <item name="Grubfather">
     <boolName></boolName>

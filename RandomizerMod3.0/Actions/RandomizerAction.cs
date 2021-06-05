@@ -129,7 +129,9 @@ namespace RandomizerMod.Actions
                     }
                 }
 
-                bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue);
+                bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) 
+                    && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue)
+                    && oldItem.costType != AddYNDialogueToShiny.CostType.rancidEggs;
                 bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && !hasCost;
                 bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
                 bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
@@ -179,6 +181,17 @@ namespace RandomizerMod.Actions
                             Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
                         }
                     }
+                }
+                else if (location.StartsWith("450_Geo-Egg_Shop"))
+                {
+                    string newShinyName = "Randomizer Shiny " + location;     // lazy way to let the Jiji FSM edit determine what to do about the shiny
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, oldItem.objectName, newShinyName, oldItem.x, oldItem.y,
+                        () => Ref.PD.jinnEggsSold >= oldItem.cost));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
                 }
                 else if (oldItem.replace)
                 {

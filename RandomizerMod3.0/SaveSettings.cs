@@ -206,6 +206,17 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool EggShop
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+        public int MaxEggCost => VariableCosts
+            .Where(pair => LogicManager.GetItemDef(pair.Item1).costType == AddYNDialogueToShiny.CostType.rancidEggs)
+            .Select(pair => pair.Item2)
+            .Max();
+
+
         public bool RandomizeRelics
         {
             get => GetBool(false);

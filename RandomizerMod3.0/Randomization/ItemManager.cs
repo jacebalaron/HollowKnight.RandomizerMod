@@ -159,6 +159,8 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.RandomizeFocus) items.UnionWith(LogicManager.GetItemsByPool("Cursed"));
             if (RandomizerMod.Instance.Settings.CursedNail) items.UnionWith(LogicManager.GetItemsByPool("CursedNail"));
 
+            if (RandomizerMod.Instance.Settings.EggShop) items.UnionWith(LogicManager.GetItemsByPool("EggShopLocation"));
+
             if (RandomizerMod.Instance.Settings.RandomizeClawPieces && RandomizerMod.Instance.Settings.RandomizeSkills)
             {
                 items.UnionWith(LogicManager.GetItemsByPool("SplitClaw"));
@@ -285,6 +287,8 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.RandomizeBossEssence) locations.UnionWith(LogicManager.GetItemsByPool("Essence_Boss"));
             if (RandomizerMod.Instance.Settings.RandomizeBossGeo) locations.UnionWith(LogicManager.GetItemsByPool("Boss_Geo"));
             if (RandomizerMod.Instance.Settings.RandomizeFocus) locations.UnionWith(LogicManager.GetItemsByPool("Cursed"));
+
+            if (RandomizerMod.Instance.Settings.EggShop) locations.UnionWith(LogicManager.GetItemsByPool("EggShopLocation"));
 
             // With Lore tablets randomized, we need to remove the World Sense and Focus locations from the pool
             if (RandomizerMod.Instance.Settings.RandomizeLoreTablets)

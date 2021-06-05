@@ -671,6 +671,7 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.RandomizeCloakPieces = splitCloakBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeClawPieces = splitClawBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CursedNail = cursedNailBtn.CurrentSelection;
+                    RandomizerMod.Instance.Settings.EggShop = true;
 
                     RandomizerMod.Instance.Settings.Randomizer = rando;
                     RandomizerMod.Instance.Settings.RandomizeAreas = modeBtn.CurrentSelection.EndsWith("Area Randomizer");
