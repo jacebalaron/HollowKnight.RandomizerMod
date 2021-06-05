@@ -63,8 +63,12 @@ namespace RandomizerMod.SceneChanges
             convoChoice.RemoveActionsOfType<BoolTest>();
             convoChoice.RemoveActionsOfType<PlayerDataBoolTrueAndFalse>();
             convoChoice.RemoveActionsOfType<SendEvent>();
-            convoChoice.AddTransition("FINISHED", "Offer");
-            // Always display the Jiji:SHADE_OFFER convo (which we set in LanguageStringManager)
+            convoChoice.AddTransition("FINISHED", "Greet");
+            // Always display the Jiji:GREET convo
+            FsmState greet = jijiFsm.GetState("Greet");
+            greet.ClearTransitions();
+            greet.AddTransition("CONVO_FINISH", "Offer");
+            // Always display the Jiji:SHADE_OFFER convo
             // Display the Prompts:JIJI_OFFER YN prompt
             // No: Jiji:DECLINE
 

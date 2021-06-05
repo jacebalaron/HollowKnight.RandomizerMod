@@ -182,6 +182,53 @@ namespace RandomizerMod
                 return Language.Language.GetInternal(key, sheetTitle).Replace("?", $" for a {NameOfItemPlacedAt("Vessel_Fragment-Basin")}?");
             }
 
+            #region Egg Shop
+
+            if (RandomizerMod.Instance.Settings.EggShop)
+            {
+                if (key == "JIJI_OFFER" && sheetTitle == "Prompts")
+                {
+                    Log(Language.Language.GetInternal("MEET2", "Jiji"));
+                    return "Give Jiji all your rancid eggs?";
+                }
+                else if (key == "DECLINE" && sheetTitle == "Jiji")
+                {
+                    return "Oh? Well, if you have no desire to get my items, I can not help you.";
+                }
+                else if (key == "RITUAL_BEGIN" && sheetTitle == "Jiji")
+                {
+                    // return "Mmmm... I will enjoy this morsel tremendously. Now, as promised, we will begin the ritual."
+                }
+                else if (key == "GREET" && sheetTitle == "Jiji")
+                {
+                    return "Ah, hello. How have you been faring? Have you come to me because of your eggs? Let me see...";
+                }
+
+                else if (key == "SHADE_OFFER" && sheetTitle == "Jiji")
+                {
+                    StringBuilder convo = new StringBuilder();
+                    int ctr = 0;
+                    foreach (string location in LogicManager.GetItemsByPool("EggShopLocation"))
+                    {
+                        
+                        int cost = RandomizerMod.Instance.Settings.VariableCosts.First(pair => pair.Item1 == location).Item2;
+                        cost -= Ref.PD.jinnEggsSold;
+                        if (cost <= 0) continue;
+
+                        convo.Append(ctr == 0 ? "" : "<br>");
+
+                        string item = NameOfItemPlacedAt(location);
+                        convo.Append($"{cost} more eggs: {item}");
+
+                        ctr++;
+                    }
+                    return convo.ToString();
+                }
+
+            }
+            #endregion
+
+
             // Used to show which mantis claw piece we have in inventory. Changed the Mantis Claw shop name/description to
             // use a different entry, for the unlikely event that Mantis Claw and claw pieces can appear in the same seed in the future.
             // Bypass this check if they have claw (so show the usual text)
