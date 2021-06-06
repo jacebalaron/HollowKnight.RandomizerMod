@@ -41,7 +41,9 @@ namespace RandomizerMod.SceneChanges
                     // Restore normal Jiji behaviour after all eggs have been sold
                     if (Ref.PD.jinnEggsSold < RandomizerMod.Instance.Settings.MaxEggCost)
                     {
-                        PlayMakerFSM jijiFsm = GameObject.Find("Jiji NPC").LocateMyFSM("Conversation Control");
+                        GameObject jiji = GameObject.Find("Jiji NPC");
+
+                        PlayMakerFSM jijiFsm = jiji.LocateMyFSM("Conversation Control");
                         EnableEggShop(jijiFsm);
                     }
                 }
@@ -101,7 +103,6 @@ namespace RandomizerMod.SceneChanges
                 {
                     GameObject shiny = shinytransform.gameObject;
 
-                    RandomizerMod.Instance.Log(shiny.name);
                     if (!shiny.name.StartsWith("Randomizer Shiny ")) continue;
                     string location = shiny.name.Substring(17);
 
