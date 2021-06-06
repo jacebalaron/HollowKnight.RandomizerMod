@@ -702,14 +702,9 @@ namespace RandomizerMod
         {
             back.gameObject.SetActive(true);
             MenuButton existingButton = back;
-            LogWarn("W0");
-
+            
             RandoMenuItem<string> multiworldBtn = new RandoMenuItem<string>(existingButton, new Vector2(0, 480), "Multiworld", "No", "Yes");
-            LogWarn("W0.1");
-
             RandoMenuItem<bool> multiworldReadyBtn = new RandoMenuItem<bool>(existingButton, new Vector2(0, 300), "Ready", false, true);
-            LogWarn("W0.2");
-
             multiworldReadyBtn.Button.gameObject.SetActive(false);
 
             InputField createInputObject()
@@ -738,7 +733,6 @@ namespace RandomizerMod
 
                 return input;
             }
-            LogWarn("W1");
 
             InputField urlInput = createInputObject();
             urlInput.transform.localPosition = new Vector3(50, 415);
@@ -750,7 +744,6 @@ namespace RandomizerMod
             urlInput.navigation = Navigation.defaultNavigation;
             urlInput.caretWidth = 8;
             urlInput.characterLimit = 0;
-            LogWarn("W2");
 
             InputField nicknameInput = createInputObject();
             nicknameInput.transform.localPosition = new Vector3(0, 415);
@@ -765,7 +758,6 @@ namespace RandomizerMod
             nicknameInput.characterLimit = 15;
 
             nicknameInput.gameObject.SetActive(false);
-            LogWarn("W3");
 
             InputField roomInput = createInputObject();
             roomInput.transform.localPosition = new Vector3(0, 370);
@@ -779,7 +771,6 @@ namespace RandomizerMod
             roomInput.characterLimit = 15;
 
             roomInput.gameObject.SetActive(false);
-            LogWarn("W4");
 
             GameObject urlLabel = CreateLabel(existingButton, new Vector2(-155, 420), "URL:");
             urlLabel.transform.localScale = new Vector3(0.8f, 0.8f);
@@ -791,14 +782,20 @@ namespace RandomizerMod
             roomLabel.SetActive(false);
             GameObject readyPlayers = CreateLabel(existingButton, new Vector2(-0, 540), "");
             readyPlayers.transform.localScale = new Vector3(0.5f, 0.5f);
-            LogWarn("W5");
 
             MenuButton rejoinBtn = existingButton.Clone("Rejoin", MenuButton.MenuButtonType.Proceed, new Vector2(0, 230), "Rejoin");
             rejoinBtn.ClearEvents();
             rejoinBtn.gameObject.SetActive(false);
 
+            MenuButton startMultiWorldBtn = startRandoBtn.Clone("StartMultiWorld", MenuButton.MenuButtonType.Proceed,
+                startRandoBtn.transform.localPosition, "Start Game", "MultiWorld", RandomizerMod.GetSprite("UI.logo"));
+            startMultiWorldBtn.transform.localScale = new Vector2(0.75f, 0.75f);
+            startMultiWorldBtn.GetComponent<StartGameEventTrigger>().bossRush = true;
+            
+            startMultiWorldBtn.gameObject.SetActive(false);
+
             back.gameObject.SetActive(false);
-            return new MultiWorldMenu(multiworldBtn, multiworldReadyBtn, urlLabel, urlInput, nicknameLabel, nicknameInput, roomLabel, roomInput, readyPlayers, rejoinBtn);
+            return new MultiWorldMenu(multiworldBtn, multiworldReadyBtn, urlLabel, urlInput, nicknameLabel, nicknameInput, roomLabel, roomInput, readyPlayers, rejoinBtn, startMultiWorldBtn);
         }
 
         public static void SetStartGameButtonVisibility(bool visible)
