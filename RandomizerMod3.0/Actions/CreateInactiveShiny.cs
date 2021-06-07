@@ -62,7 +62,7 @@ namespace RandomizerMod.Actions
 
                 string parentName = string.IsNullOrEmpty(_parent) ? _newShinyName + " Parent" : _parent;
 
-                if (GameObject.Find("Jiji NPC").FindGameObjectInChildren(parentName) is GameObject go)
+                if (GameObject.Find(parentName) is GameObject go)
                 {
                     shiny.transform.SetParent(go.transform);
                     shiny.transform.localPosition = new Vector3(0, 0, shiny.transform.position.z);
