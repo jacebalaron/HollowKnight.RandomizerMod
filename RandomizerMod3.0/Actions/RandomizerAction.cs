@@ -385,7 +385,7 @@ namespace RandomizerMod.Actions
                     int cost = oldItem.cost;
                     if (oldItem.costType == AddYNDialogueToShiny.CostType.Essence || oldItem.costType == AddYNDialogueToShiny.CostType.Grub)
                     {
-                        cost = settings.VariableCosts.First(pair => pair.Item1 == location).Item2;
+                        cost = settings.GetVariableCost(location);
                     }
 
                     Actions.Add(new AddYNDialogueToShiny(

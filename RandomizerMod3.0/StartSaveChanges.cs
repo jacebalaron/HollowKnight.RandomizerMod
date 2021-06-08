@@ -130,6 +130,8 @@ namespace RandomizerMod
                 if (RandomizerMod.Instance.Settings.RandomizeBossEssence) randomizationSettingsSeed += 1;
                 randomizationSettingsSeed = randomizationSettingsSeed << 1;
                 if (RandomizerMod.Instance.Settings.RandomizeBossGeo) randomizationSettingsSeed += 1;
+                randomizationSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.EggShop) randomizationSettingsSeed += 1;
 
                 int miscSettingsSeed = 0;
                 if (RandomizerMod.Instance.Settings.DuplicateMajorItems) miscSettingsSeed += 1;

@@ -24,7 +24,7 @@ namespace RandomizerMod.SceneChanges
                     foreach (string location in LogicManager.GetItemsByPool("EggShopLocation"))
                     {
                         if (!RandomizerMod.Instance.Settings.CheckLocationFound(location)
-                            && Ref.PD.jinnEggsSold >= RandomizerMod.Instance.Settings.VariableCosts.First(pair => pair.Item1 == location).Item2)
+                            && Ref.PD.jinnEggsSold >= RandomizerMod.Instance.Settings.GetVariableCost(location))
                         {
                             uncollectedJijiShinies = true;
                             break;
@@ -110,7 +110,7 @@ namespace RandomizerMod.SceneChanges
                     if (!shiny.name.StartsWith("Randomizer Shiny ")) continue;
                     string location = shiny.name.Substring(17);
 
-                    if (Ref.PD.jinnEggsSold >= RandomizerMod.Instance.Settings.VariableCosts.First(pair => pair.Item1 == location).Item2)
+                    if (Ref.PD.jinnEggsSold >= RandomizerMod.Instance.Settings.GetVariableCost(location))
                     {
                         shiny.SetActive(true);
                     }

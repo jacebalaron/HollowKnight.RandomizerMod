@@ -142,6 +142,23 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.RandomizePaleOre) items.UnionWith(LogicManager.GetItemsByPool("Ore"));
             if (RandomizerMod.Instance.Settings.RandomizeCharmNotches) items.UnionWith(LogicManager.GetItemsByPool("Notch"));
             if (RandomizerMod.Instance.Settings.RandomizeGeoChests) items.UnionWith(LogicManager.GetItemsByPool("Geo"));
+
+            if (RandomizerMod.Instance.Settings.EggShop) items.UnionWith(LogicManager.GetItemsByPool("EggShopLocation"));
+            if (RandomizerMod.Instance.Settings.RandomizeRancidEggs)
+            {
+                if (!RandomizerMod.Instance.Settings.EggShop)
+                {
+                    items.UnionWith(LogicManager.GetItemsByPool("Egg"));
+                }
+                else
+                {
+                    for (int i = 0; i < 20; i++)
+                    {
+                        items.Add($"Rancid_Egg_({i})");
+                    }
+                }
+            }
+
             if (RandomizerMod.Instance.Settings.RandomizeRelics) items.UnionWith(LogicManager.GetItemsByPool("Relic"));
             if (RandomizerMod.Instance.Settings.RandomizeMaps) items.UnionWith(LogicManager.GetItemsByPool("Map"));
             if (RandomizerMod.Instance.Settings.RandomizeStags) items.UnionWith(LogicManager.GetItemsByPool("Stag"));
@@ -161,22 +178,6 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.CursedNail) items.UnionWith(LogicManager.GetItemsByPool("CursedNail"));
             if (RandomizerMod.Instance.Settings.CursedNotches) items.UnionWith(LogicManager.GetItemsByPool("CursedNotch"));
             if (RandomizerMod.Instance.Settings.CursedMasks) items.UnionWith(LogicManager.GetItemsByPool("CursedMask"));
-
-            if (RandomizerMod.Instance.Settings.EggShop) items.UnionWith(LogicManager.GetItemsByPool("EggShopLocation"));
-            if (RandomizerMod.Instance.Settings.RandomizeRancidEggs)
-            {
-                if (!RandomizerMod.Instance.Settings.EggShop)
-                { 
-                    items.UnionWith(LogicManager.GetItemsByPool("Egg")); 
-                }
-                else
-                {
-                    for (int i = 0; i < 20; i++)
-                    {
-                        items.Add($"Rancid_Egg_({i})");
-                    }
-                }
-            }
 
 
             if (RandomizerMod.Instance.Settings.RandomizeClawPieces && RandomizerMod.Instance.Settings.RandomizeSkills)

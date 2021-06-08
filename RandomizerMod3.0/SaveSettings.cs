@@ -35,6 +35,7 @@ namespace RandomizerMod
         public int MaxOrder => _orderedLocations.Count;
 
         public (string, int)[] VariableCosts => _variableCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
+        public int GetVariableCost(string item) => _variableCosts[item]; 
         public (string, int)[] ShopCosts => _shopCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
 
         public bool RandomizeTransitions => RandomizeAreas || RandomizeRooms;

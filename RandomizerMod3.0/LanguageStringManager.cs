@@ -206,19 +206,23 @@ namespace RandomizerMod
 
                 else if (key == "SHADE_OFFER" && sheetTitle == "Jiji")
                 {
+                    List<(string, int)> eggShopItems = LogicManager.GetItemsByPool("EggShopLocation")
+                        .Select(loc => (loc, RandomizerMod.Instance.Settings.GetVariableCost(loc)))
+                        .ToList();
+
+                    eggShopItems.Sort((pair1, pair2) => pair1.Item2.CompareTo(pair2.Item2));
+
                     StringBuilder convo = new StringBuilder();
                     int ctr = 0;
-                    foreach (string location in LogicManager.GetItemsByPool("EggShopLocation"))
+                    foreach ((string location, int cost) in eggShopItems)
                     {
-                        
-                        int cost = RandomizerMod.Instance.Settings.VariableCosts.First(pair => pair.Item1 == location).Item2;
-                        cost -= Ref.PD.jinnEggsSold;
-                        if (cost <= 0) continue;
+                        int topay = cost - Ref.PD.jinnEggsSold;
+                        if (topay <= 0) continue;
 
                         convo.Append(ctr == 0 ? "" : "<br>");
 
                         string item = NameOfItemPlacedAt(location);
-                        convo.Append($"{cost} more eggs: {item}");
+                        convo.Append($"{topay} more eggs: {item}");
 
                         ctr++;
                     }
