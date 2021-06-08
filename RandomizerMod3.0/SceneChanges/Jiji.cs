@@ -16,42 +16,46 @@ namespace RandomizerMod.SceneChanges
     {
         public static void JijiSceneEdits(Scene newScene)
         {
-            if (newScene.name != SceneNames.Room_Ouiji) return;
-
-            if (RandomizerMod.Instance.Settings.EggShop)
+            if (newScene.name == SceneNames.Room_Ouiji)
             {
-                bool uncollectedJijiShinies = false;
-                foreach (string location in LogicManager.GetItemsByPool("EggShopLocation"))
+                if (RandomizerMod.Instance.Settings.EggShop)
                 {
-                    if (!RandomizerMod.Instance.Settings.CheckLocationFound(location) 
-                        && Ref.PD.jinnEggsSold >= RandomizerMod.Instance.Settings.VariableCosts.First(pair => pair.Item1 == location).Item2)
+                    bool uncollectedJijiShinies = false;
+                    foreach (string location in LogicManager.GetItemsByPool("EggShopLocation"))
                     {
-                        uncollectedJijiShinies = true;
-                        break;
+                        if (!RandomizerMod.Instance.Settings.CheckLocationFound(location)
+                            && Ref.PD.jinnEggsSold >= RandomizerMod.Instance.Settings.VariableCosts.First(pair => pair.Item1 == location).Item2)
+                        {
+                            uncollectedJijiShinies = true;
+                            break;
+                        }
+                    }
+
+                    if (uncollectedJijiShinies)
+                    {
+                        GameObject.Find("Jiji NPC").LocateMyFSM("Approach").GetState("Idle").ClearTransitions();
+                    }
+
+                    else
+                    {
+                        // Restore normal Jiji behaviour after all eggs have been sold
+                        if (Ref.PD.jinnEggsSold < RandomizerMod.Instance.Settings.MaxEggCost)
+                        {
+                            GameObject jiji = GameObject.Find("Jiji NPC");
+
+                            PlayMakerFSM jijiFsm = jiji.LocateMyFSM("Conversation Control");
+                            EnableEggShop(jijiFsm);
+                        }
                     }
                 }
-
-                if (uncollectedJijiShinies)
-                {
-                    GameObject.Find("Jiji NPC").LocateMyFSM("Approach").GetState("Idle").ClearTransitions();
-                }
-
                 else
                 {
-                    // Restore normal Jiji behaviour after all eggs have been sold
-                    if (Ref.PD.jinnEggsSold < RandomizerMod.Instance.Settings.MaxEggCost)
-                    {
-                        GameObject jiji = GameObject.Find("Jiji NPC");
-
-                        PlayMakerFSM jijiFsm = jiji.LocateMyFSM("Conversation Control");
-                        EnableEggShop(jijiFsm);
-                    }
+                    EnableJijiHints();
                 }
             }
-            else
+            else if (newScene.name == SceneNames.Room_Jinn)
             {
-                EnableJijiHints();
-                EnableJinn();
+                FixJinn();
             }
         }
 
@@ -145,33 +149,37 @@ namespace RandomizerMod.SceneChanges
             }
         }
 
-        public static void EnableJinn()
+        public static void FixJinn()
         {
+            GameObject Jinn = GameObject.Find("Jinn NPC");
 
-            GameObject Jinn = ObjectCache.Jinn;
-            if (Jinn == null) return;
-
-            Jinn.SetActive(true);
-            Jinn.transform.position = GameObject.Find("Jiji NPC").transform.position + new Vector3(-10f, 0, 0);
-            FsmState transaction = Jinn.LocateMyFSM("Conversation Control").GetState("Transaction");
-            transaction.RemoveActionsOfType<RandomInt>();
-            transaction.RemoveActionsOfType<CallMethodProper>();
-            transaction.AddFirstAction(new RandomizerExecuteLambda(() => HeroController.instance.AddGeo(450)));
-
-            // Jinn Sell All
-            if (RandomizerMod.Instance.Settings.JinnSellAll)
+            // Destroy Jinn if Jiji isn't bought out
+            if (RandomizerMod.Instance.Settings.MaxEggCost > Ref.PD.jinnEggsSold)
             {
-                PlayMakerFSM fsm = Jinn.FindGameObjectInChildren("Talk NPC").LocateMyFSM("Conversation Control");
-                fsm.GetState("Talk Finish").AddFirstAction(new RandomizerExecuteLambda(() =>
+                UnityEngine.Object.Destroy(Jinn);
+            }
+            else
+            {
+                FsmState transaction = Jinn.LocateMyFSM("Conversation Control").GetState("Transaction");
+                transaction.RemoveActionsOfType<RandomInt>();
+                transaction.RemoveActionsOfType<CallMethodProper>();
+                transaction.AddFirstAction(new RandomizerExecuteLambda(() => HeroController.instance.AddGeo(450)));
+
+                // Jinn Sell All
+                if (RandomizerMod.Instance.Settings.JinnSellAll)
                 {
-                    int n = Ref.PD.GetInt(nameof(Ref.PD.rancidEggs));
-                    if (n > 0)
+                    PlayMakerFSM fsm = Jinn.FindGameObjectInChildren("Talk NPC").LocateMyFSM("Conversation Control");
+                    fsm.GetState("Talk Finish").AddFirstAction(new RandomizerExecuteLambda(() =>
                     {
-                        Ref.Hero.AddGeo(450 * n);
-                        Ref.PD.SetInt(nameof(Ref.PD.rancidEggs), Ref.PD.GetInt(nameof(Ref.PD.rancidEggs)) - n);
-                        Ref.PD.SetInt(nameof(Ref.PD.jinnEggsSold), Ref.PD.GetInt(nameof(Ref.PD.jinnEggsSold)) + n);
-                    }
-                }));
+                        int n = Ref.PD.GetInt(nameof(Ref.PD.rancidEggs));
+                        if (n > 0)
+                        {
+                            Ref.Hero.AddGeo(450 * n);
+                            Ref.PD.SetInt(nameof(Ref.PD.rancidEggs), Ref.PD.GetInt(nameof(Ref.PD.rancidEggs)) - n);
+                            Ref.PD.SetInt(nameof(Ref.PD.jinnEggsSold), Ref.PD.GetInt(nameof(Ref.PD.jinnEggsSold)) + n);
+                        }
+                    }));
+                }
             }
         }
     }
