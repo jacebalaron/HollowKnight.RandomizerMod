@@ -24,6 +24,7 @@ namespace RandomizerMod.Randomization
     {
         public const int MAX_GRUB_COST = 23;
         public static int MAX_ESSENCE_COST => RandomizerMod.Instance.Settings.RandomizeBossEssence ? 1800 : 900;
+        public const int MAX_EGG_COST = 14;
 
         public static ItemManager im;
         public static TransitionManager tm;

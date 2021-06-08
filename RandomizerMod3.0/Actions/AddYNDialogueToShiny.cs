@@ -24,7 +24,7 @@ namespace RandomizerMod.Actions
             Dreamnail,
             whisperingRoot,
             Spore,
-            rancidEggs
+            RancidEggs
         }
 
         private readonly int _cost;
@@ -62,7 +62,7 @@ namespace RandomizerMod.Actions
                 return;
             }
 
-            if (_type == CostType.rancidEggs)
+            if (_type == CostType.RancidEggs)
             {
                 throw new System.NotImplementedException();
             }

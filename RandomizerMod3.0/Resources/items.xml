@@ -6277,9 +6277,9 @@
     <newShiny>true</newShiny>
     <x>20.5</x>
     <y>7.4</y>
-    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
-    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
-    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>EggShopLocation</pool>
@@ -6297,9 +6297,9 @@
     <newShiny>true</newShiny>
     <x>22.5</x>
     <y>7.4</y>
-    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
-    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
-    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>EggShopLocation</pool>
@@ -6317,9 +6317,9 @@
     <newShiny>true</newShiny>
     <x>24.5</x>
     <y>7.4</y>
-    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
-    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
-    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>EggShopLocation</pool>
@@ -6337,9 +6337,9 @@
     <newShiny>true</newShiny>
     <x>26.5</x>
     <y>7.4</y>
-    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
-    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
-    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>EggShopLocation</pool>
@@ -6357,9 +6357,9 @@
     <newShiny>true</newShiny>
     <x>28.5</x>
     <y>7.4</y>
-    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
-    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
-    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>EggShopLocation</pool>
@@ -6370,6 +6370,20 @@
     <areaName>Dirtmouth</areaName>
     <costType>rancidEggs</costType>
     <cost>12</cost>
+  </item>
+  <!--Use a separate item with egg shop active so we can have the progression flag be active-->
+  <item name="Rancid_Egg">
+    <intName>rancidEggs</intName>
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>Int</action>
+    <pool>EggShopItem</pool>
+    <nameKey>INV_NAME_RANCIDEGG</nameKey>
+    <shopDescKey>INV_DESC_RANCIDEGG</shopDescKey>
+    <shopSpriteKey>ShopIcons.RancidEgg</shopSpriteKey>
+    <progression>true</progression>
   </item>
   
 <!--REFERENCES-->
@@ -6398,6 +6412,19 @@
     <shopDescKey></shopDescKey>
     <shopSpriteKey></shopSpriteKey>
     <areaName>Resting_Grounds</areaName>
+  </item>
+  <item name="Jiji">
+    <boolName></boolName>
+    <sceneName></sceneName>
+    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
+    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <type>Trinket</type>
+    <pool>Fake</pool>
+    <nameKey></nameKey>
+    <shopDescKey></shopDescKey>
+    <shopSpriteKey></shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
   </item>
   <item name="Equipped">
     <boolName></boolName>

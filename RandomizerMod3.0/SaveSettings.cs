@@ -212,7 +212,7 @@ namespace RandomizerMod
             set => SetBool(value);
         }
         public int MaxEggCost => !EggShop ? 0 : VariableCosts
-            .Where(pair => LogicManager.GetItemDef(pair.Item1).costType == AddYNDialogueToShiny.CostType.rancidEggs)
+            .Where(pair => LogicManager.GetItemDef(pair.Item1).costType == AddYNDialogueToShiny.CostType.RancidEggs)
             .Select(pair => pair.Item2)
             .Max();
 

@@ -82,6 +82,10 @@ namespace RandomizerMod
                     {
                         altLocation = "Grubfather";
                     }
+                    else if (LogicManager.GetItemDef(location).costType == Actions.AddYNDialogueToShiny.CostType.RancidEggs)
+                    {
+                        altLocation = "Jiji";
+                    }
                 }
 
                 if (pm.CanGet(altLocation))

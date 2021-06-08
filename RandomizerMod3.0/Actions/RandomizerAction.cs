@@ -131,7 +131,7 @@ namespace RandomizerMod.Actions
 
                 bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) 
                     && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue)
-                    && oldItem.costType != AddYNDialogueToShiny.CostType.rancidEggs;
+                    && oldItem.costType != AddYNDialogueToShiny.CostType.RancidEggs;
                 bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && !hasCost;
                 bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
                 bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
