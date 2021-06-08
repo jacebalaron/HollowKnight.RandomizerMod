@@ -121,8 +121,8 @@ namespace RandomizerMod
                 Stopwatch helperWatch = new Stopwatch();
                 helperWatch.Start();
 
-                string log = string.Empty;
-                void AddToLog(string message) => log += message + Environment.NewLine;
+                StringBuilder log = new StringBuilder();
+                void AddToLog(string message) => log.AppendLine(message);
 
                 MakeHelperLists();
 
@@ -278,7 +278,7 @@ namespace RandomizerMod
                 helperWatch.Stop();
                 File.Create(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt")).Dispose();
                 LogHelper("Generating helper log:");
-                LogHelper(log);
+                LogHelper(log.ToString());
                 LogHelper("Generated helper log in " + helperWatch.Elapsed.TotalSeconds + " seconds.");
             }).Start();
         }
@@ -290,10 +290,12 @@ namespace RandomizerMod
         public static void InitializeTracker()
         {
             File.Create(Path.Combine(Application.persistentDataPath, "RandomizerTrackerLog.txt")).Dispose();
-            string log = "Starting tracker log for new randomizer file.";
-            void AddToLog(string s) => log += "\n" + s;
+
+            StringBuilder log = new StringBuilder();
+            log.AppendLine("Starting tracker log for new randomizer file.");
+            void AddToLog(string s) => log.AppendLine(s);
             AddSettingsToLog(AddToLog);
-            LogTracker(log);
+            LogTracker(log.ToString());
         }
         public static void LogTransitionToTracker(string entrance, string exit)
         {
@@ -425,13 +427,19 @@ namespace RandomizerMod
             AddToLog($"Grimmkin flames: {RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames}");
             AddToLog($"Boss essence: {RandomizerMod.Instance.Settings.RandomizeBossEssence}");
             AddToLog($"Boss geo: {RandomizerMod.Instance.Settings.RandomizeBossGeo}");
-            AddToLog($"Focus: {RandomizerMod.Instance.Settings.RandomizeFocus}");
             AddToLog($"Split cloak: {RandomizerMod.Instance.Settings.RandomizeCloakPieces}");
             AddToLog($"Split claw: {RandomizerMod.Instance.Settings.RandomizeClawPieces}");
+            AddToLog($"Focus: {RandomizerMod.Instance.Settings.RandomizeFocus}");
+            AddToLog($"Swim: {RandomizerMod.Instance.Settings.RandomizeSwim}");
             AddToLog($"Cursed nail: {RandomizerMod.Instance.Settings.CursedNail}");
+            AddToLog($"Cursed notches: {RandomizerMod.Instance.Settings.CursedNotches}");
+            AddToLog($"Cursed masks: {RandomizerMod.Instance.Settings.CursedMasks}");
             AddToLog($"Duplicate major items: {RandomizerMod.Instance.Settings.DuplicateMajorItems}");
+            AddToLog($"Randomized notch costs: {RandomizerMod.Instance.Settings.RandomizeNotchCosts}");
             AddToLog("QUALITY OF LIFE");
             AddToLog($"Salubra: {RandomizerMod.Instance.Settings.CharmNotch}");
+            AddToLog($"Reduced Preloads: {RandomizerMod.Instance.globalSettings.ReducePreloads}");
+            AddToLog($"Recent Items: {RandomizerMod.Instance.globalSettings.RecentItems}");
             AddToLog($"Early geo: {RandomizerMod.Instance.Settings.EarlyGeo}");
             AddToLog($"Extra platforms: {RandomizerMod.Instance.Settings.ExtraPlatforms}");
             AddToLog($"NPC item dialogue: {RandomizerMod.Instance.Settings.NPCItemDialogue}");
@@ -440,8 +448,8 @@ namespace RandomizerMod
 
         private static string GetTransitionSpoiler((string, string)[] transitionPlacements)
         {
-            string log = string.Empty;
-            void AddToLog(string message) => log += message + Environment.NewLine;
+            StringBuilder log = new StringBuilder();
+            void AddToLog(string message) => log.AppendLine(message);
 
             try
             {
@@ -507,13 +515,13 @@ namespace RandomizerMod
             {
                 RandomizerMod.Instance.LogError("Error while creating transition spoiler log: " + e);
             }
-            return log;
+            return log.ToString();
         }
 
         private static string GetItemSpoiler((int, string, string)[] orderedILPairs)
         {
-            string log = string.Empty;
-            void AddToLog(string message) => log += message + Environment.NewLine;
+            StringBuilder log = new StringBuilder();
+            void AddToLog(string message) => log.AppendLine(message);
             try
             {
                 orderedILPairs = orderedILPairs.OrderBy(triplet => triplet.Item1).ToArray();
@@ -573,7 +581,7 @@ namespace RandomizerMod
             {
                 RandomizerMod.Instance.LogError("Error while creating item spoiler log: " + e);
             }
-            return log;
+            return log.ToString();
         }
 
         public static void LogCondensedSpoiler(string message)
@@ -605,8 +613,8 @@ namespace RandomizerMod
 
         private static string GetCondensedItemSpoiler((int, string, string)[] orderedILPairs)
         {
-            string log = string.Empty;
-            void AddToLog(string message) => log += message + Environment.NewLine;
+            StringBuilder log = new StringBuilder();
+            void AddToLog(string message) => log.AppendLine(message);
             try
             {
                 // Major progression
@@ -620,6 +628,7 @@ namespace RandomizerMod
                 string cdash = "Crystal Heart:" + Environment.NewLine;
                 string tear = "Isma's Tear:" + Environment.NewLine;
                 string dnail = "Dream Nail:" + Environment.NewLine;
+                string swim = "Swim:" + Environment.NewLine;
 
                 // Spells
                 string vs = "Vengeful Spirit:" + Environment.NewLine;
@@ -737,6 +746,9 @@ namespace RandomizerMod
                         case "Isma's_Tear":
                         case "Isma's_Tear_(1)":
                             tear += "- " + itemLocation + cost + Environment.NewLine;
+                            break;
+                        case "Swim":
+                            swim += "- " + itemLocation + cost + Environment.NewLine;
                             break;
                         case "Dream_Nail":
                         case "Dream_Nail_(1)":
@@ -903,7 +915,12 @@ namespace RandomizerMod
                 {
 
                     AddToLog("----------Major Progression:----------");
-                    AddToLog(dash + claw + wings + cdash + tear + dnail);
+                    string majorProgression = dash + claw + wings + cdash + tear + dnail;
+                    if (RandomizerMod.Instance.Settings.RandomizeSwim)
+                    {
+                        majorProgression += swim;
+                    }
+                    AddToLog(majorProgression);
                     AddToLog("----------Spells:----------");
                     if (RandomizerMod.Instance.Settings.RandomizeFocus)
                     {
@@ -913,6 +930,7 @@ namespace RandomizerMod
                     {
                         AddToLog(vs + dive + wraiths);
                     }
+                    
                     AddToLog("----------Nail Arts:----------");
                     AddToLog(cyclone + dashslash + greatslash);
                 }
@@ -966,7 +984,7 @@ namespace RandomizerMod
             {
                 RandomizerMod.Instance.LogError("Error while creating condensed item spoiler log: " + e);
             }
-            return log;
+            return log.ToString();
         }
 
         public static string CleanAreaName(string name)

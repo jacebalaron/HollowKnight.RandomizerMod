@@ -164,11 +164,9 @@ namespace RandomizerMod.Randomization
         public string waypoint;
         public string areaTransition;
         public string roomTransition;
-        
-        // control for menu select
-        public bool itemSafe; // safe := no items required to get to Dirtmouth
-        public bool areaSafe; // safe := no items required to get to an area transition
-        public bool roomSafe; // safe := no items required to get to a room transition
+
+        // Primitive logic -- check MenuChanger / PreRandomizer for supported flags
+        public string logic;
     }
 
 #pragma warning restore 0649
@@ -669,7 +667,7 @@ namespace RandomizerMod.Randomization
                 string op = GetNextOperator(infix, ref i);
 
                 // Easiest way to deal with whitespace between operators
-                if (op.Trim(' ') == string.Empty)
+                if (op.Trim() == string.Empty)
                 {
                     continue;
                 }
@@ -855,8 +853,10 @@ namespace RandomizerMod.Randomization
             progressionBitMask.Add("NONRANDOMFOCUS", (128, 0));
             progressionBitMask.Add("CURSED", (256, 0));
             progressionBitMask.Add("NONRANDOMNAIL", (512, 0));
+            progressionBitMask.Add("NONCURSEDMASKS", (1024, 0));
+            progressionBitMask.Add("NONCURSEDNOTCHES", (2048, 0));
 
-            int i = 10;
+            int i = progressionBitMask.Count;
 
             foreach (string itemName in ItemNames)
             {
@@ -957,7 +957,7 @@ namespace RandomizerMod.Randomization
                 i++;
             }
 
-            return infix.Substring(start, i - start).Trim(' ');
+            return infix.Substring(start, i - start).Trim();
         }
 
         private static void ParseAdditiveItemXML(XmlNodeList nodes)

@@ -184,7 +184,10 @@ namespace RandomizerMod.SceneChanges
                     break;
 
                 // Platforms to prevent itemless softlock when checking left waterways
-                case SceneNames.Waterways_04 when !RandomizerMod.Instance.Settings.RandomizeTransitions:
+                case SceneNames.Waterways_04 when 
+                !RandomizerMod.Instance.Settings.RandomizeTransitions 
+                && RandomizerMod.Instance.Settings.StartName != "West Waterways"
+                && (!RandomizerMod.Instance.Settings.RandomizeSwim || RandomizerMod.Instance.Settings.GetBool(name: "canSwim")):
                     {
                         GameObject[] platforms = new GameObject[4];
                         platforms[0] = ObjectCache.SmallPlatform;
@@ -470,31 +473,48 @@ namespace RandomizerMod.SceneChanges
                         hivePlatformEasy.SetActive(true);
                     }
                     break;
-
-                // Platforms for open mode
-                case SceneNames.Fungus1_13 when RandomizerMod.Instance.Settings.StartName == "Far Greenpath":
+                
+                case SceneNames.Fungus1_13:
+                    switch (RandomizerMod.Instance.Settings.StartName)
                     {
-                        GameObject leftGPQGplat = ObjectCache.SmallPlatform;
-                        leftGPQGplat.transform.SetPosition2D(45f, 16.5f);
-                        leftGPQGplat.SetActive(true);
-                        GameObject rightGPQGplat = ObjectCache.SmallPlatform;
-                        rightGPQGplat.transform.SetPosition2D(64f, 16.5f);
-                        rightGPQGplat.SetActive(true);
+                        // Platforms for open mode
+                        case "Far Greenpath":
+                            {
+                                GameObject leftGPQGplat = ObjectCache.SmallPlatform;
+                                leftGPQGplat.transform.SetPosition2D(45f, 16.5f);
+                                leftGPQGplat.SetActive(true);
+                                GameObject rightGPQGplat = ObjectCache.SmallPlatform;
+                                rightGPQGplat.transform.SetPosition2D(64f, 16.5f);
+                                rightGPQGplat.SetActive(true);
+                            }
+                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            {
+                                sceneName = "Fungus1_13",
+                                id = "Vine Platform (1)",
+                                activated = true,
+                                semiPersistent = false
+                            });
+                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            {
+                                sceneName = "Fungus1_13",
+                                id = "Vine Platform (2)",
+                                activated = true,
+                                semiPersistent = false
+                            });
+                            break;
+                        // With the Lower Greenpath start, getting to the rest of Greenpath requires
+                        // cutting the vine to the right of the vessel fragment.
+                        case "Lower Greenpath" when RandomizerMod.Instance.Settings.CursedNail:
+                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            {
+                                sceneName = "Fungus1_13",
+                                id = "Vine Platform",
+                                activated = true,
+                                semiPersistent = false
+                            });
+                            break;
                     }
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
-                    {
-                        sceneName = "Fungus1_13",
-                        id = "Vine Platform (1)",
-                        activated = true,
-                        semiPersistent = false
-                    });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
-                    {
-                        sceneName = "Fungus1_13",
-                        id = "Vine Platform (2)",
-                        activated = true,
-                        semiPersistent = false
-                    });
+                    
                     break;
 
                 // Bounce shrooms to prevent softlock for Fungal Core start in open mode without claw
