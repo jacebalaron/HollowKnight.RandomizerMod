@@ -387,6 +387,9 @@ namespace RandomizerMod
                     return RandomizeGeoChests;
                 case "Egg":
                     return RandomizeRancidEggs;
+                case "EggShopItem":
+                case "EggShopLocation":
+                    return EggShop;
                 case "Relic":
                     return RandomizeRelics;
                 case "Map":

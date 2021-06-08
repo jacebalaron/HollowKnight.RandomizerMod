@@ -6288,7 +6288,7 @@
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Dirtmouth</areaName>
-    <costType>rancidEggs</costType>
+    <costType>RancidEggs</costType>
     <cost>3</cost>
   </item>
   <item name="450_Geo-Egg_Shop_2">
@@ -6308,7 +6308,7 @@
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Dirtmouth</areaName>
-    <costType>rancidEggs</costType>
+    <costType>RancidEggs</costType>
     <cost>4</cost>
   </item>
   <item name="450_Geo-Egg_Shop_3">
@@ -6328,7 +6328,7 @@
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Dirtmouth</areaName>
-    <costType>rancidEggs</costType>
+    <costType>RancidEggs</costType>
     <cost>7</cost>
   </item>
   <item name="450_Geo-Egg_Shop_4">
@@ -6348,7 +6348,7 @@
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Dirtmouth</areaName>
-    <costType>rancidEggs</costType>
+    <costType>RancidEggs</costType>
     <cost>10</cost>
   </item>
   <item name="450_Geo-Egg_Shop_5">
@@ -6368,7 +6368,7 @@
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Dirtmouth</areaName>
-    <costType>rancidEggs</costType>
+    <costType>RancidEggs</costType>
     <cost>12</cost>
   </item>
   <!--Use a separate item with egg shop active so we can have the progression flag be active-->
