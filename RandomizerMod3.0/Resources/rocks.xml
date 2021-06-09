@@ -3544,6 +3544,8 @@
     <itemLogic>Greenpath + (LEFTDASH | LEFTCLAW | WINGS | SUPERDASH | AIRSTALL | SHADESKIPS)</itemLogic>
     <areaLogic>Greenpath + (LEFTDASH | LEFTCLAW | WINGS | SUPERDASH | AIRSTALL | SHADESKIPS)</areaLogic>
     <roomLogic>Fungus1_29[left1] | Fungus1_29[right1]</roomLogic>
+    <enemyName>Mega Moss Charger</enemyName>
+    <pdBool>killedMegaMossCharger</pdBool>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Boss_Geo</pool>
@@ -3561,6 +3563,9 @@
     <itemLogic>Right_City + (WINGS | ((LEFTDASH | LEFTCLAW) + (RIGHTDASH | RIGHTCLAW)) | Upper_King's_Station | (Lower_King's_Station + RIGHTCLAW))</itemLogic>
     <areaLogic>Right_City + (WINGS | ((LEFTDASH | LEFTCLAW) + (RIGHTDASH | RIGHTCLAW)) | Ruins2_04[right1] | (Ruins2_04[door_Ruin_Elevator] + ANYCLAW))</areaLogic>
     <roomLogic>Ruins_House_02[left1]</roomLogic>
+    <enemyName>Gorgeous Husk</enemyName>
+    <boolDataScene>Ruins_House_02</boolDataScene>
+    <boolDataId>Gorgeous Husk</boolDataId>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Boss_Geo</pool>
@@ -3578,6 +3583,9 @@
     <itemLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + SUPERDASH + MILDSKIPS))</itemLogic>
     <areaLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + SUPERDASH + MILDSKIPS))</areaLogic>
     <roomLogic>Ruins1_23[top1] | (Ruins1_23 + (LEFTCLAW | WINGS | (RIGHTCLAW + SUPERDASH + MILDSKIPS)))</roomLogic>
+    <enemyName>Mage Knight</enemyName>
+    <boolDataScene>Ruins1_23</boolDataScene>
+    <boolDataId>Battle Scene v2</boolDataId>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Boss_Geo</pool>
@@ -3595,6 +3603,9 @@
     <itemLogic>Soul_Sanctum + ELEGANT + MINIBOSS</itemLogic>
     <areaLogic>Ruins1_31[right1] + ELEGANT + MINIBOSS</areaLogic>
     <roomLogic>Ruins1_31b + MINIBOSS</roomLogic>
+    <enemyName>Mage Knight</enemyName>
+    <boolDataScene>Ruins1_31</boolDataScene>
+    <boolDataId>Battle Scene v2</boolDataId>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Boss_Geo</pool>
@@ -3612,6 +3623,9 @@
     <itemLogic>Upper_Crystal_Peak + (SIDESLASH | UPSLASH | Great_Slash | Cyclone_Slash | (ANYDASH + Dash_Slash))</itemLogic>
     <areaLogic>Upper_Crystal_Peak + (SIDESLASH | UPSLASH | Great_Slash | Cyclone_Slash | (ANYDASH + Dash_Slash))</areaLogic>
     <roomLogic>Mines_18 + (SIDESLASH | UPSLASH | Great_Slash | Cyclone_Slash | (ANYDASH + Dash_Slash))</roomLogic>
+    <enemyName>Mega Zombie Beam Miner (1)</enemyName>
+    <boolDataScene>Mines_18</boolDataScene>
+    <boolDataId>Mega Zombie Beam Miner (1)</boolDataId>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Boss_Geo</pool>
@@ -3629,6 +3643,9 @@
     <itemLogic>Upper_Crystal_Peak + ANYCLAW + WINGS + BOSS + (SIDESLASH | UPSLASH | Great_Slash | Cyclone_Slash | (ANYDASH + Dash_Slash))</itemLogic>
     <areaLogic>Upper_Crystal_Peak + ANYCLAW + WINGS + BOSS + (SIDESLASH | UPSLASH | Great_Slash | Cyclone_Slash | (ANYDASH + Dash_Slash))</areaLogic>
     <roomLogic>Mines_18 + Mines_32[bot1] + BOSS + (SIDESLASH | UPSLASH | Great_Slash | Cyclone_Slash | (ANYDASH + Dash_Slash))</roomLogic>
+    <enemyName>Zombie Beam Miner Rematch</enemyName>
+    <boolDataScene>Mines_32</boolDataScene>
+    <boolDataId>Zombie Beam Miner Rematch</boolDataId>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Boss_Geo</pool>
@@ -3663,6 +3680,8 @@
     <itemLogic>Greenpath + (SIDESLASH | UPSLASH | MILDSKIPS | FIREBALL | QUAKE | SCREAM | WINGS | Cyclone_Slash | Great_Slash | (ANYDASH + Dash_Slash))</itemLogic>
     <areaLogic>Greenpath + (SIDESLASH | UPSLASH | MILDSKIPS | FIREBALL | QUAKE | SCREAM | WINGS | Cyclone_Slash | Great_Slash | (ANYDASH + Dash_Slash))</areaLogic>
     <roomLogic>(Fungus1_20_v02[bot1] | Fungus1_20_v02[bot2] | Fungus1_20_v02[right1]) + (SIDESLASH | UPSLASH | MILDSKIPS | FIREBALL | QUAKE | SCREAM | WINGS | Cyclone_Slash | Great_Slash | (ANYDASH + Dash_Slash))</roomLogic>
+    <enemyName>Giant Buzzer</enemyName>
+    <pdBool>zoteRescuedBuzzer</pdBool>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Boss_Geo</pool>

@@ -15,7 +15,8 @@ namespace RandomizerMod.Actions
         public enum ActionType
         {
             GameObject,
-            PlayMakerFSM
+            PlayMakerFSM,
+            EnemyDeath
         }
 
         private static readonly List<RandomizerAction> Actions = new List<RandomizerAction>();
@@ -193,6 +194,31 @@ namespace RandomizerMod.Actions
                     oldItem.fsmName = "Shiny Control";
                     oldItem.type = ItemType.Charm;
                 }
+                else if (!string.IsNullOrEmpty(oldItem.pdBool))
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y, oldItem.pdBool));
+                    Actions.Add(new ActivateEnemyShiny(oldItem.sceneName, oldItem.enemyName, parentName));
+                    
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
+                else if (!string.IsNullOrEmpty(oldItem.boolDataId))
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y, 
+                        oldItem.boolDataScene, oldItem.boolDataId));
+                    Actions.Add(new ActivateEnemyShiny(oldItem.sceneName, oldItem.enemyName, parentName));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
                 else if (oldItem.replace)
                 {
                     string replaceShinyName = "Randomizer Shiny " + newShinies++;
@@ -235,13 +261,9 @@ namespace RandomizerMod.Actions
                     {
                         newShinyName = "New Shiny"; // legacy name for scene edits
                     }
-                    else if (location.StartsWith("Boss_Geo"))
+                    else if (location.StartsWith("Boss_Geo-Gruz_Mother"))
                     {
                         newShinyName = "New Shiny Boss Geo";
-                    }
-                    else if (location == "Split_Mothwing_Cloak")
-                    {
-                        newShinyName = "New Shiny Split Cloak";
                     }
                     Actions.Add(new CreateNewShiny(oldItem.sceneName, oldItem.x, oldItem.y, newShinyName));
                     oldItem.objectName = newShinyName;
@@ -579,11 +601,13 @@ namespace RandomizerMod.Actions
             UnHook();
 
             On.PlayMakerFSM.OnEnable += ProcessFSM;
+            On.HealthManager.Die += OnEnemyDeath;
         }
 
         public static void UnHook()
         {
             On.PlayMakerFSM.OnEnable -= ProcessFSM;
+            On.HealthManager.Die -= OnEnemyDeath;
         }
 
         public static void ProcessFSM(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM fsm)
@@ -633,6 +657,34 @@ namespace RandomizerMod.Actions
                 }
             }
         }
+
+        private static void OnEnemyDeath(On.HealthManager.orig_Die orig, HealthManager hm, 
+            float? attackDirection, AttackTypes attackType, bool ignoreEvasion)
+        {
+            string scene = Ref.GM.GetSceneNameString();
+
+            foreach (RandomizerAction action in Actions)
+            {
+                if (action.Type != ActionType.EnemyDeath)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    action.Process(scene, hm);
+                }
+                catch (Exception e)
+                {
+                    LogError(
+                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                }
+            }
+
+            orig(hm, attackDirection, attackType, ignoreEvasion);   // Call the original after we set the geo
+        }
+
+
 
         public abstract void Process(string scene, Object changeObj);
     }

@@ -120,6 +120,12 @@ namespace RandomizerMod.Randomization
         public string inspectName;
         public string inspectFsmName;
 
+        // Boss Geo flags
+        public string enemyName;
+        public string pdBool; // Some bosses (e.g. MMC) don't have a scene data check
+        public string boolDataScene; // Some bosses (e.g. soul warriors) don't have a playerdata check
+        public string boolDataId;
+
         public string chestName;
         public string chestFsmName;
 

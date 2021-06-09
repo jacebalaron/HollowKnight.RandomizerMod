@@ -29,7 +29,7 @@ namespace RandomizerMod.SceneChanges
             ModHooks.Instance.ObjectPoolSpawnHook += FixExplosionPogo;
             On.EnemyHitEffectsArmoured.RecieveHitEffect += FalseKnightNoises;
             On.PlayMakerFSM.OnEnable += FsmSceneEdits;
-            ModHooks.Instance.OnEnableEnemyHook += BossRewardReplacement.ReplaceBossRewards;
+            // ModHooks.Instance.OnEnableEnemyHook += BossRewardReplacement.ReplaceBossRewards;
             On.PlayMakerFSM.OnEnable += ModifyFSM;
         }
 
@@ -38,7 +38,7 @@ namespace RandomizerMod.SceneChanges
             ModHooks.Instance.ObjectPoolSpawnHook -= FixExplosionPogo;
             On.EnemyHitEffectsArmoured.RecieveHitEffect -= FalseKnightNoises;
             On.PlayMakerFSM.OnEnable -= FsmSceneEdits;
-            ModHooks.Instance.OnEnableEnemyHook -= BossRewardReplacement.ReplaceBossRewards;
+            // ModHooks.Instance.OnEnableEnemyHook -= BossRewardReplacement.ReplaceBossRewards;
             On.PlayMakerFSM.OnEnable -= ModifyFSM;
         }
 

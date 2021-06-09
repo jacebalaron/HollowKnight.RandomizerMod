@@ -24,6 +24,31 @@ namespace RandomizerMod.Actions
             _activeCheck = activeCheck;
         }
 
+        public CreateInactiveShiny(string sceneName, string parent, string newShinyName, float x, float y, string pdBool)
+        {
+            _sceneName = sceneName;
+            _newShinyName = newShinyName;
+            _parent = parent;
+            _x = x;
+            _y = y;
+            _activeCheck = () => Ref.PD.GetBool(pdBool);
+        }
+
+        public CreateInactiveShiny(string sceneName, string parent, string newShinyName, float x, float y, string boolDataScene, string boolDataId)
+        {
+            _sceneName = sceneName;
+            _newShinyName = newShinyName;
+            _parent = parent;
+            _x = x;
+            _y = y;
+            _activeCheck = () =>
+            {
+                PersistentBoolData boolData = new PersistentBoolData() { id = boolDataId, sceneName = boolDataScene };
+                boolData = SceneData.instance.FindMyState(boolData) ?? boolData;
+                return boolData.activated && !boolData.semiPersistent;
+            };
+        }
+
 
         public override ActionType Type => ActionType.GameObject;
 

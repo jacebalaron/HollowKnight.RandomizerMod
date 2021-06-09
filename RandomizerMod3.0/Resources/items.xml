@@ -6158,6 +6158,8 @@
     <itemLogic>Greenpath</itemLogic>
     <areaLogic>Greenpath</areaLogic>
     <roomLogic>Fungus1_04</roomLogic>
+    <enemyName>Hornet Boss 1</enemyName>
+    <pdBool>hornet1Defeated</pdBool>
     <pool>SplitCloakLocation</pool>
     <areaName>Greenpath</areaName>
   </item>
