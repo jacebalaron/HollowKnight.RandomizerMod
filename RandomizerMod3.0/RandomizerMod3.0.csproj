@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Actions\ActivateEnemyShiny.cs" />
     <Compile Include="Actions\AddYNDialogueToShiny.cs" />
+    <Compile Include="Actions\ChangeGruzMomReward.cs" />
     <Compile Include="Actions\ChangeShinyIntoGeo.cs" />
     <Compile Include="Actions\AddShinyToChest.cs" />
     <Compile Include="Actions\ChangeBoolTest.cs" />

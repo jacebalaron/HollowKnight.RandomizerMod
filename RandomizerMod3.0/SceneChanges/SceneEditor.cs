@@ -94,7 +94,7 @@ namespace RandomizerMod.SceneChanges
         {
             EditStagStations(self);
             DisableInfectedCrossroads(self);
-            BossRewardReplacement.DestroyGruzmomGeo(self);
+            // BossRewardReplacement.DestroyGruzmomGeo(self);
 
             orig(self);
         }

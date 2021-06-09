@@ -194,6 +194,19 @@ namespace RandomizerMod.Actions
                     oldItem.fsmName = "Shiny Control";
                     oldItem.type = ItemType.Charm;
                 }
+                else if (location == "Boss_Geo-Gruz_Mother")
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y,
+                        oldItem.boolDataScene, oldItem.boolDataId));
+                    Actions.Add(new ChangeGruzMomReward(parentName));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
                 else if (!string.IsNullOrEmpty(oldItem.pdBool))
                 {
                     string newShinyName = "Randomizer Shiny " + newShinies++;

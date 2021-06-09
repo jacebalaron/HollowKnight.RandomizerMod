@@ -3663,6 +3663,8 @@
     <itemLogic>Crossroads</itemLogic>
     <areaLogic>Crossroads</areaLogic>
     <roomLogic>Crossroads_04</roomLogic>
+    <boolDataScene>Crossroads_04</boolDataScene>
+    <boolDataId>Battle Scene</boolDataId>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Boss_Geo</pool>
