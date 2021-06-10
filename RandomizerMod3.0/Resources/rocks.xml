@@ -701,9 +701,9 @@
     <objectName>Geo Rock 2</objectName>
     <replace>true</replace>
     <elevation>-0.8</elevation>
-    <itemLogic>Crossroads</itemLogic>
-    <areaLogic>Crossroads</areaLogic>
-    <roomLogic>Crossroads_42[left1] | Crossroads_42[right1]</roomLogic>
+    <itemLogic>Crossroads + (2MASKS | LIFEBLOOD)</itemLogic>
+    <areaLogic>Crossroads + (2MASKS | LIFEBLOOD)</areaLogic>
+    <roomLogic>(Crossroads_42[left1] | Crossroads_42[right1]) + (2MASKS | LIFEBLOOD)</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>
@@ -735,7 +735,7 @@
     <objectName>Geo Rock 1</objectName>
     <replace>true</replace>
     <elevation>-0.8</elevation>
-    <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Fungal_Wastes + (ACID | RIGHTCLAW | SUPERDASH | AIRSTALL)))</itemLogic>
+    <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Main_Fungal_Wastes + (ACID | RIGHTCLAW | SUPERDASH | AIRSTALL)))</itemLogic>
     <areaLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | Crossroads_18[bot1])</areaLogic>
     <roomLogic>Crossroads_52[left1] + QUAKE</roomLogic>
     <type>Geo</type>
@@ -752,7 +752,7 @@
     <objectName>Geo Rock 2</objectName>
     <replace>true</replace>
     <elevation>3.3</elevation>
-    <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Fungal_Wastes + (ACID | RIGHTCLAW | SUPERDASH | AIRSTALL)))</itemLogic>
+    <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Main_Fungal_Wastes + (ACID | RIGHTCLAW | SUPERDASH | AIRSTALL)))</itemLogic>
     <areaLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | Crossroads_18[bot1])</areaLogic>
     <roomLogic>Crossroads_52[left1] + QUAKE</roomLogic>
     <type>Geo</type>
@@ -1311,8 +1311,8 @@
     <objectName>Geo Rock Outskirts</objectName>
     <replace>true</replace>
     <elevation>-0.9</elevation>
-    <itemLogic>Center_Right_Kingdom's_Edge</itemLogic>
-    <areaLogic>Center_Right_Kingdom's_Edge</areaLogic>
+    <itemLogic>(Center_Right_Kingdom's_Edge + (ACID | LEFTDASH | WINGS | AIRSTALL | 2MASKS)) | Upper_Kingdom's_Edge</itemLogic>
+    <areaLogic>(Center_Right_Kingdom's_Edge + (ACID | LEFTDASH | WINGS | AIRSTALL | 2MASKS)) | Upper_Kingdom's_Edge</areaLogic>
     <roomLogic>Deepnest_East_04</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -1447,7 +1447,7 @@
     <objectName>Geo Rock Deepnest (5)</objectName>
     <replace>true</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS))</itemLogic>
+    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
     <roomLogic>Deepnest_Spider_Town[left1] + (FULLCLAW | (WINGS + ANYCLAW))</roomLogic>
     <type>Geo</type>
@@ -1464,7 +1464,7 @@
     <objectName>Geo Rock Deepnest (6)</objectName>
     <replace>true</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS))</itemLogic>
+    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
     <roomLogic>Deepnest_Spider_Town[left1] + (FULLCLAW | (WINGS + ANYCLAW))</roomLogic>
     <type>Geo</type>
@@ -1481,7 +1481,7 @@
     <objectName>Geo Rock Deepnest</objectName>
     <replace>true</replace>
     <elevation>-0.7</elevation>
-    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS))</itemLogic>
+    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
     <roomLogic>Deepnest_Spider_Town[left1] + (FULLCLAW | (WINGS + ANYCLAW))</roomLogic>
     <type>Geo</type>
@@ -1498,7 +1498,7 @@
     <objectName>Geo Rock Deepnest (1)</objectName>
     <replace>true</replace>
     <elevation>-0.6</elevation>
-    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS))</itemLogic>
+    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
     <roomLogic>Deepnest_Spider_Town[left1] + (FULLCLAW | (WINGS + ANYCLAW))</roomLogic>
     <type>Geo</type>
@@ -1515,7 +1515,7 @@
     <objectName>Geo Rock Deepnest (2)</objectName>
     <replace>true</replace>
     <elevation>-0.6</elevation>
-    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS))</itemLogic>
+    <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
     <roomLogic>Deepnest_Spider_Town[left1] + (FULLCLAW | (WINGS + ANYCLAW))</roomLogic>
     <type>Geo</type>
@@ -2025,8 +2025,8 @@
     <objectName>Geo Rock Fung 01</objectName>
     <replace>true</replace>
     <elevation>8.8</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Left_Fungal_Wastes</itemLogic>
+    <areaLogic>Left_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_04</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2042,8 +2042,8 @@
     <objectName>Geo Rock Fung 01</objectName>
     <replace>true</replace>
     <elevation>-0.6</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
+    <areaLogic>Main_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_08[left1] | Fungus2_08[left2] | Fungus2_08[right1]</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2059,8 +2059,8 @@
     <objectName>Geo Rock Fung 01</objectName>
     <replace>true</replace>
     <elevation>-0.6</elevation>
-    <itemLogic>Fungal_Wastes + (RIGHTDASH | RIGHTCLAW | WINGS)</itemLogic>
-    <areaLogic>Fungal_Wastes + (RIGHTDASH | RIGHTCLAW | WINGS)</areaLogic>
+    <itemLogic>Main_Fungal_Wastes + (RIGHTDASH | RIGHTCLAW | WINGS)</itemLogic>
+    <areaLogic>Main_Fungal_Wastes + (RIGHTDASH | RIGHTCLAW | WINGS)</areaLogic>
     <roomLogic>(Fungus2_10[right1] | Fungus2_10[right2] | Fungus2_10[bot1]) + (RIGHTDASH | RIGHTCLAW | WINGS)</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2076,8 +2076,8 @@
     <objectName>Geo Rock Fung 01</objectName>
     <replace>true</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
+    <areaLogic>Main_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_11[top1] | Fungus2_11[left1] | Fungus2_11[left2] | Fungus2_11[right1]</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2093,8 +2093,8 @@
     <objectName>Geo Rock Fung 02</objectName>
     <replace>true</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
+    <areaLogic>Main_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_11[top1] | Fungus2_11[left1] | Fungus2_11[left2] | Fungus2_11[right1]</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2212,7 +2212,7 @@
     <objectName>Geo Rock 2 (1)</objectName>
     <replace>true</replace>
     <elevation>-0.8</elevation>
-    <itemLogic>(Fungal_Wastes + (LEFTCLAW | WINGS | SHADESKIPS | SPICYSKIPS)) | (Mantis_Village + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW | (WINGS + MILDSKIPS)))</itemLogic>
+    <itemLogic>(Main_Fungal_Wastes + (LEFTCLAW | WINGS | (SHADESKIPS + 4MASKS) | SPICYSKIPS)) | (Mantis_Village + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW | (WINGS + MILDSKIPS)))</itemLogic>
     <areaLogic>Fungus2_14[top1] | (Mantis_Village + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))</areaLogic>
     <roomLogic>Fungus2_14[top1] | (Fungus2_14 + (WINGS | LEFTDASH | SUPERDASH | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))</roomLogic>
     <type>Geo</type>
@@ -2229,9 +2229,9 @@
     <objectName>Geo Rock 2</objectName>
     <replace>true</replace>
     <elevation>-0.8</elevation>
-    <itemLogic>(Fungal_Wastes + WINGS) | (Mantis_Village + ((LEFTCLAW + (RIGHTDASH | SUPERDASH | RIGHTCLAW))))</itemLogic>
-    <areaLogic>(Fungus2_14[top1] | (Mantis_Village + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))) + ((LEFTCLAW + (RIGHTDASH | SUPERDASH)) | WINGS | RIGHTCLAW)</areaLogic>
-    <roomLogic>(Fungus2_14[top1] | (Fungus2_14 + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))) + ((LEFTCLAW + (RIGHTDASH | SUPERDASH)) | WINGS | RIGHTCLAW)</roomLogic>
+    <itemLogic>(Main_Fungal_Wastes + WINGS) | (Mantis_Village + ((LEFTCLAW + (RIGHTDASH | SUPERDASH | RIGHTCLAW | MILDSKIPS))))</itemLogic>
+    <areaLogic>(Fungus2_14[top1] | (Mantis_Village + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))) + ((LEFTCLAW + (RIGHTDASH | SUPERDASH | MILDSKIPS)) | WINGS | RIGHTCLAW)</areaLogic>
+    <roomLogic>(Fungus2_14[top1] | (Fungus2_14 + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))) + ((LEFTCLAW + (RIGHTDASH | SUPERDASH | MILDSKIPS)) | WINGS | RIGHTCLAW)</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>
@@ -2247,7 +2247,7 @@
     <replace>true</replace>
     <elevation>-0.8</elevation>
     <itemLogic>Lower_Mantis_Village + (ANYCLAW | WINGS | RIGHTDASH | SUPERDASH)</itemLogic>
-    <areaLogic>Lower_Mantis_Village + (ANYCLAW | WINGS | RIGHTDASH | SUPERDASH)</areaLogic>
+    <areaLogic>(Lower_Mantis_Village + (ANYCLAW | WINGS | RIGHTDASH | SUPERDASH)) | (Fungus2_15[left1] + RIGHTCLAW)</areaLogic>
     <roomLogic>Fungus2_15 + (ANYCLAW | WINGS | RIGHTDASH | SUPERDASH)</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2264,7 +2264,7 @@
     <replace>true</replace>
     <elevation>-0.9</elevation>
     <itemLogic>Lower_Mantis_Village</itemLogic>
-    <areaLogic>Lower_Mantis_Village</areaLogic>
+    <areaLogic>Lower_Mantis_Village | (Fungus2_15[left1] + RIGHTCLAW)</areaLogic>
     <roomLogic>Fungus2_15</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2280,8 +2280,8 @@
     <objectName>Geo Rock Fung 01</objectName>
     <replace>true</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
+    <areaLogic>Main_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_18[right1]</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2297,8 +2297,8 @@
     <objectName>Geo Rock Fung 02 (2)</objectName>
     <replace>true</replace>
     <elevation>-0.6</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
+    <areaLogic>Main_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_18[right1]</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2314,8 +2314,8 @@
     <objectName>Geo Rock Fung 02 (1)</objectName>
     <replace>true</replace>
     <elevation>-0.4</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
+    <areaLogic>Main_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_18[right1]</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2331,8 +2331,8 @@
     <objectName>Geo Rock Fung 01 (1)</objectName>
     <replace>true</replace>
     <elevation>10.2</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Left_Fungal_Wastes</itemLogic>
+    <areaLogic>Left_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_18[top1] | Fungus2_18[right1] | (Fungus2_18[bot1] + (RIGHTCLAW | WINGS))</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2586,9 +2586,15 @@
     <objectName>Geo Rock City 1</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Lower_Left_Waterways + (LEFTCLAW | WINGS)</itemLogic>
-    <areaLogic>(Lower_Left_Waterways + (LEFTCLAW | WINGS)) | (GG_Pipeway[left1] + RIGHTCLAW)</areaLogic>
-    <roomLogic>(GG_Pipeway[left1] | GG_Pipeway[right1]) + (ANYCLAW | WINGS)</roomLogic>
+    <itemLogic>Lower_Left_Waterways + ((LEFTCLAW + RIGHTSUPERDASH) | (ANYCLAW + (RIGHTDASH | SWIM)) | WINGS)</itemLogic>
+    <areaLogic>
+      Lower_Left_Waterways + ((LEFTCLAW + RIGHTSUPERDASH) | (ANYCLAW + (RIGHTDASH | SWIM)) | WINGS)
+      | GG_Pipeway[left1] + ((LEFTCLAW + RIGHTSUPERDASH) | (ANYCLAW + (RIGHTDASH | SWIM)) | WINGS)
+    </areaLogic>
+    <roomLogic>
+      GG_Pipeway[left1] + ((LEFTCLAW + RIGHTSUPERDASH) | (ANYCLAW + (RIGHTDASH | SWIM)) | WINGS)
+      | GG_Pipeway[right1] + ((LEFTCLAW + RIGHTSUPERDASH) | (ANYCLAW + (RIGHTDASH | SWIM)) | WINGS)
+    </roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>
@@ -3181,9 +3187,12 @@
     <objectName>Geo Rock Fung 02 (1)</objectName>
     <replace>true</replace>
     <elevation>-0.3</elevation>
-    <itemLogic>Junk_Pit + FULLCLAW + (RIGHTDASH | WINGS | SUPERDASH)</itemLogic>
-    <areaLogic>Junk_Pit + FULLCLAW + (RIGHTDASH | WINGS | SUPERDASH)</areaLogic>
-    <roomLogic>Room_GG_Shortcut[top1] | (Room_GG_Shortcut[left1] + ((FULLCLAW + (RIGHTDASH | SUPERDASH | MILDSKIPS)) | (RIGHTCLAW + WINGS) | (LEFTCLAW + WINGS + RIGHTDASH)))</roomLogic>
+    <itemLogic>Junk_Pit_Shortcut + ((RIGHTCLAW + ((LEFTCLAW + SUPERDASH) | WINGS | (RIGHTDASH + SWIM))) | (LEFTCLAW + WINGS + MILDSKIPS + (LEFTDASH | LEFTSUPERDASH)))</itemLogic>
+    <areaLogic>Junk_Pit_Shortcut + ((RIGHTCLAW + ((LEFTCLAW + SUPERDASH) | WINGS | (RIGHTDASH + SWIM))) | (LEFTCLAW + WINGS + MILDSKIPS + (LEFTDASH | LEFTSUPERDASH)))</areaLogic>
+    <roomLogic>
+      Room_GG_Shortcut[top1] 
+      | Room_GG_Shortcut[left1] + ((RIGHTCLAW + ((LEFTCLAW + SUPERDASH) | WINGS | (RIGHTDASH + SWIM))) | (LEFTCLAW + WINGS + MILDSKIPS + (LEFTDASH | LEFTSUPERDASH)))
+    </roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>
@@ -3198,9 +3207,12 @@
     <objectName>Geo Rock Fung 01</objectName>
     <replace>true</replace>
     <elevation>-0.3</elevation>
-    <itemLogic>Junk_Pit + FULLCLAW + (RIGHTDASH | WINGS | SUPERDASH)</itemLogic>
-    <areaLogic>Junk_Pit + FULLCLAW + (RIGHTDASH | WINGS | SUPERDASH)</areaLogic>
-    <roomLogic>Room_GG_Shortcut[top1] | (Room_GG_Shortcut[left1] + ((FULLCLAW + (RIGHTDASH | SUPERDASH | MILDSKIPS)) | (RIGHTCLAW + WINGS) | (LEFTCLAW + WINGS + RIGHTDASH)))</roomLogic>
+    <itemLogic>Junk_Pit_Shortcut + ((RIGHTCLAW + ((LEFTCLAW + SUPERDASH) | WINGS | (RIGHTDASH + SWIM))) | (LEFTCLAW + WINGS + MILDSKIPS + (LEFTDASH | LEFTSUPERDASH)))</itemLogic>
+    <areaLogic>Junk_Pit_Shortcut + ((RIGHTCLAW + ((LEFTCLAW + SUPERDASH) | WINGS | (RIGHTDASH + SWIM))) | (LEFTCLAW + WINGS + MILDSKIPS + (LEFTDASH | LEFTSUPERDASH)))</areaLogic>
+    <roomLogic>
+      Room_GG_Shortcut[top1]
+      | Room_GG_Shortcut[left1] + ((RIGHTCLAW + ((LEFTCLAW + SUPERDASH) | WINGS | (RIGHTDASH + SWIM))) | (LEFTCLAW + WINGS + MILDSKIPS + (LEFTDASH | LEFTSUPERDASH)))
+    </roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>
@@ -3283,8 +3295,8 @@
     <objectName>Geo Rock City 1</objectName>
     <replace>true</replace>
     <elevation>0.001</elevation>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_32[right1] + ANYCLAW + QUAKE</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -3334,9 +3346,12 @@
     <objectName>Geo Rock City 1</objectName>
     <replace>true</replace>
     <elevation>0.001</elevation>
-    <itemLogic>Lower_King's_Station + (RIGHTCLAW | (WINGS + (SHADESKIPS | LEFTCLAW | MILDSKIPS)))</itemLogic>
-    <areaLogic>Lower_King's_Station + (RIGHTCLAW | (WINGS + (SHADESKIPS | LEFTCLAW | MILDSKIPS)))</areaLogic>
-    <roomLogic>Ruins2_06 + (RIGHTCLAW | (WINGS + (LEFTCLAW | MILDSKIPS)))</roomLogic>
+    <itemLogic>Lower_King's_Station + (RIGHTCLAW | (WINGS + (LEFTCLAW | MILDSKIPS)) | (SHADESKIPS + (WINGS | LEFTCLAW)))</itemLogic>
+    <areaLogic>Lower_King's_Station + (RIGHTCLAW | (WINGS + (LEFTCLAW | MILDSKIPS)) | (SHADESKIPS + (WINGS | LEFTCLAW)))</areaLogic>
+    <roomLogic>
+      (Ruins2_06[left1] | Ruins2_06[top1] | Ruins2_06[right1] | Ruins2_06[right2]) + (RIGHTCLAW | (WINGS + (LEFTCLAW | MILDSKIPS)))
+      | Ruins2_06[left2] + (RIGHTSUPERDASH | WINGS | SWIM | (RIGHTCLAW + RIGHTDASH + MILDSKIPS)) + (RIGHTCLAW | (WINGS + (LEFTCLAW | MILDSKIPS)))
+    </roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>
@@ -3472,7 +3487,11 @@
     <elevation>0.001</elevation>
     <itemLogic>Far_Left_Waterways</itemLogic>
     <areaLogic>Far_Left_Waterways</areaLogic>
-    <roomLogic>Waterways_04b[left1] | Waterways_04b[right1] | (Waterways_04b[right2] + ((LEFTCLAW + ((SUPERDASH + RIGHTCLAW) | WINGS | SPICYSKIPS)) | (WINGS + MILDSKIPS)))</roomLogic>
+    <roomLogic>
+      Waterways_04b[left1]
+      | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | (RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH))
+      | Waterways_04b[right2] + (WINGS | (LEFTCLAW + MILDSKIPS)) + (LEFTCLAW | MILDSKIPS) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW))
+    </roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>

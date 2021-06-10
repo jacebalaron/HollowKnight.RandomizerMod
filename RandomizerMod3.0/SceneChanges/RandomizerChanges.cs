@@ -52,6 +52,11 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
+                // Removes the prompt to donate to the 3000 geo fountain in Basin
+                case SceneNames.Abyss_04 when !RandomizerMod.Instance.Settings.NPCItemDialogue:
+                    Object.Destroy(GameObject.Find("Fountain Donation"));
+                    break;
+
                 // Platform to climb out of Abyss with only wings
                 case SceneNames.Abyss_06_Core:
                     {
@@ -179,7 +184,10 @@ namespace RandomizerMod.SceneChanges
                     break;
 
                 // Platforms to prevent itemless softlock when checking left waterways
-                case SceneNames.Waterways_04 when !RandomizerMod.Instance.Settings.RandomizeTransitions:
+                case SceneNames.Waterways_04 when 
+                !RandomizerMod.Instance.Settings.RandomizeTransitions 
+                && RandomizerMod.Instance.Settings.StartName != "West Waterways"
+                && (!RandomizerMod.Instance.Settings.RandomizeSwim || RandomizerMod.Instance.Settings.GetBool(name: "canSwim")):
                     {
                         GameObject[] platforms = new GameObject[4];
                         platforms[0] = ObjectCache.SmallPlatform;
@@ -387,7 +395,7 @@ namespace RandomizerMod.SceneChanges
 
                 // Destroy the Mantis Claw pickup when playing with split claw
                 case SceneNames.Fungus2_14 when RandomizerMod.Instance.Settings.RandomizeClawPieces:
-                    Object.Destroy(GameObject.Find("Shiny Item Stand"));
+                    Object.Destroy(newScene.FindGameObject("Shiny Item Stand"));
                     break;
 
                 // Make city crest gate openable infinite times and not hard save
@@ -465,31 +473,48 @@ namespace RandomizerMod.SceneChanges
                         hivePlatformEasy.SetActive(true);
                     }
                     break;
-
-                // Platforms for open mode
-                case SceneNames.Fungus1_13 when RandomizerMod.Instance.Settings.StartName == "Far Greenpath":
+                
+                case SceneNames.Fungus1_13:
+                    switch (RandomizerMod.Instance.Settings.StartName)
                     {
-                        GameObject leftGPQGplat = ObjectCache.SmallPlatform;
-                        leftGPQGplat.transform.SetPosition2D(45f, 16.5f);
-                        leftGPQGplat.SetActive(true);
-                        GameObject rightGPQGplat = ObjectCache.SmallPlatform;
-                        rightGPQGplat.transform.SetPosition2D(64f, 16.5f);
-                        rightGPQGplat.SetActive(true);
+                        // Platforms for open mode
+                        case "Far Greenpath":
+                            {
+                                GameObject leftGPQGplat = ObjectCache.SmallPlatform;
+                                leftGPQGplat.transform.SetPosition2D(45f, 16.5f);
+                                leftGPQGplat.SetActive(true);
+                                GameObject rightGPQGplat = ObjectCache.SmallPlatform;
+                                rightGPQGplat.transform.SetPosition2D(64f, 16.5f);
+                                rightGPQGplat.SetActive(true);
+                            }
+                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            {
+                                sceneName = "Fungus1_13",
+                                id = "Vine Platform (1)",
+                                activated = true,
+                                semiPersistent = false
+                            });
+                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            {
+                                sceneName = "Fungus1_13",
+                                id = "Vine Platform (2)",
+                                activated = true,
+                                semiPersistent = false
+                            });
+                            break;
+                        // With the Lower Greenpath start, getting to the rest of Greenpath requires
+                        // cutting the vine to the right of the vessel fragment.
+                        case "Lower Greenpath" when RandomizerMod.Instance.Settings.CursedNail:
+                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            {
+                                sceneName = "Fungus1_13",
+                                id = "Vine Platform",
+                                activated = true,
+                                semiPersistent = false
+                            });
+                            break;
                     }
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
-                    {
-                        sceneName = "Fungus1_13",
-                        id = "Vine Platform (1)",
-                        activated = true,
-                        semiPersistent = false
-                    });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
-                    {
-                        sceneName = "Fungus1_13",
-                        id = "Vine Platform (2)",
-                        activated = true,
-                        semiPersistent = false
-                    });
+                    
                     break;
 
                 // Bounce shrooms to prevent softlock for Fungal Core start in open mode without claw
@@ -515,7 +540,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Mines_32 when RandomizerMod.Instance.Settings.RandomizeBossGeo:
                     if (!Ref.PD.GetBool(nameof(Ref.PD.defeatedMegaBeamMiner)))
                     {
-                        DestroyAllObjectsNamed("New Shiny Boss Geo");
+                        Object.Destroy(newScene.FindGameObject("New Shiny Boss Geo"));
                     }
                     break;
 
@@ -557,7 +582,7 @@ namespace RandomizerMod.SceneChanges
 
                 // Destroy lever in ApplyRandomizerChanges so we can make EditStagStations an FSM function
                 case SceneNames.RestingGrounds_09 when RandomizerMod.Instance.Settings.RandomizeStags:
-                    Object.Destroy(GameObject.Find("Ruins Lever"));
+                    Object.Destroy(newScene.FindGameObject("Ruins Lever"));
                     break;
 
                 // Make Sly pickup send Sly back upstairs -- warps player out to prevent resulting softlock from trying to enter the shop from a missing transition 
