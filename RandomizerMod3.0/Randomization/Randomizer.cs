@@ -6,6 +6,7 @@ using static RandomizerMod.LogHelper;
 using static RandomizerMod.Randomization.PreRandomizer;
 using static RandomizerMod.Randomization.PostRandomizer;
 using static RandomizerMod.Randomization.SpanningTree;
+using RandomizerMod.Actions;
 
 namespace RandomizerMod.Randomization
 {
@@ -60,6 +61,8 @@ namespace RandomizerMod.Randomization
                 RandomizeItems();
                 if (!randomizationError) break;
             }
+
+            PostRandomizationTasks();
         }
 
         private static void RandomizeTransitions()

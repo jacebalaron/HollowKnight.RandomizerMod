@@ -22,6 +22,7 @@ namespace RandomizerMod
         {
             // Reset settings
             RandomizerMod.Instance.Settings = new SaveSettings();
+            PostRandomizer.InitializeTasks();
 
             // Fetch data from vanilla screen
             MenuScreen playScreen = Ref.UI.playModeMenuScreen;
@@ -214,7 +215,7 @@ namespace RandomizerMod
 
             // Create some labels
             CreateLabel(back, new Vector2(900, 160), "Start Settings");
-            CreateLabel(back, new Vector2(0, 80), "Use of Benchwarp mod may be required");
+            CreateLabel(back, new Vector2(0, 200), "Use of Benchwarp mod may be required");
             CreateLabel(back, new Vector2(0, 1300), "Seed:");
             // We don't need these old buttons anymore
             Object.Destroy(classic.gameObject);
@@ -788,8 +789,8 @@ namespace RandomizerMod
             back.gameObject.SetActive(true);
             MenuButton existingButton = back;
             
-            RandoMenuItem<string> multiworldBtn = new RandoMenuItem<string>(existingButton, new Vector2(0, 480), "Multiworld", "No", "Yes");
-            RandoMenuItem<bool> multiworldReadyBtn = new RandoMenuItem<bool>(existingButton, new Vector2(0, 300), "Ready", false, true);
+            RandoMenuItem<string> multiworldBtn = new RandoMenuItem<string>(existingButton, new Vector2(0, 800), "Multiworld", "No", "Yes");
+            RandoMenuItem<bool> multiworldReadyBtn = new RandoMenuItem<bool>(existingButton, new Vector2(0, 600), "Ready", false, true);
             multiworldReadyBtn.Button.gameObject.SetActive(false);
 
             InputField createInputObject()
@@ -820,9 +821,9 @@ namespace RandomizerMod
             }
 
             InputField urlInput = createInputObject();
-            urlInput.transform.localPosition = new Vector3(50, 415);
+            urlInput.transform.localPosition = new Vector3(0, 860);
             urlInput.text = "127.0.0.1";
-            urlInput.textComponent.fontSize = urlInput.textComponent.fontSize - 6;
+            urlInput.textComponent.fontSize = urlInput.textComponent.fontSize - 5;
 
             urlInput.caretColor = Color.white;
             urlInput.contentType = InputField.ContentType.Standard;
@@ -831,9 +832,9 @@ namespace RandomizerMod
             urlInput.characterLimit = 0;
 
             InputField nicknameInput = createInputObject();
-            nicknameInput.transform.localPosition = new Vector3(0, 415);
+            nicknameInput.transform.localPosition = new Vector3(0, 720);
             nicknameInput.text = "whoAmI";
-            nicknameInput.textComponent.fontSize = nicknameInput.textComponent.fontSize - 6;
+            nicknameInput.textComponent.fontSize = nicknameInput.textComponent.fontSize - 5;
 
             nicknameInput.caretColor = Color.white;
             nicknameInput.contentType = InputField.ContentType.Standard;
@@ -845,9 +846,9 @@ namespace RandomizerMod
             nicknameInput.gameObject.SetActive(false);
 
             InputField roomInput = createInputObject();
-            roomInput.transform.localPosition = new Vector3(0, 370);
+            roomInput.transform.localPosition = new Vector3(0, 660);
             roomInput.text = "";
-            roomInput.textComponent.fontSize = roomInput.textComponent.fontSize - 6;
+            roomInput.textComponent.fontSize = roomInput.textComponent.fontSize - 5;
 
             roomInput.caretColor = Color.white;
             roomInput.contentType = InputField.ContentType.Standard;
@@ -857,26 +858,27 @@ namespace RandomizerMod
 
             roomInput.gameObject.SetActive(false);
 
-            GameObject urlLabel = CreateLabel(existingButton, new Vector2(-155, 420), "URL:");
+            GameObject urlLabel = CreateLabel(existingButton, new Vector2(-200, 865), "URL:");
             urlLabel.transform.localScale = new Vector3(0.8f, 0.8f);
-            GameObject nicknameLabel = CreateLabel(existingButton, new Vector2(-300, 420), "Nickname:");
+            GameObject nicknameLabel = CreateLabel(existingButton, new Vector2(-300, 725), "Nickname:");
             nicknameLabel.transform.localScale = new Vector3(0.8f, 0.8f);
             nicknameLabel.SetActive(false);
-            GameObject roomLabel = CreateLabel(existingButton, new Vector2(-300, 375), "Room:");
+            GameObject roomLabel = CreateLabel(existingButton, new Vector2(-300, 665), "Room:");
             roomLabel.transform.localScale = new Vector3(0.8f, 0.8f);
             roomLabel.SetActive(false);
-            GameObject readyPlayers = CreateLabel(existingButton, new Vector2(-0, 540), "");
+            GameObject readyPlayers = CreateLabel(existingButton, new Vector2(0, 540), "");
             readyPlayers.transform.localScale = new Vector3(0.5f, 0.5f);
 
-            MenuButton rejoinBtn = existingButton.Clone("Rejoin", MenuButton.MenuButtonType.Proceed, new Vector2(0, 230), "Rejoin");
+            MenuButton rejoinBtn = existingButton.Clone("Rejoin", MenuButton.MenuButtonType.Proceed, new Vector2(0, 280), "Rejoin");
             rejoinBtn.ClearEvents();
             rejoinBtn.gameObject.SetActive(false);
 
-            MenuButton startMultiWorldBtn = startRandoBtn.Clone("StartMultiWorld", MenuButton.MenuButtonType.Proceed,
-                startRandoBtn.transform.localPosition, "Start Game", "MultiWorld", RandomizerMod.GetSprite("UI.logo"));
+            MenuButton startMultiWorldBtn = existingButton.Clone("StartMultiWorld", MenuButton.MenuButtonType.Proceed,
+                new Vector3(0, 400), "Start Game"); // add if clone goes back to startRandoBtn , "MultiWorld", RandomizerMod.GetSprite("UI.logo"));
             startMultiWorldBtn.transform.localScale = new Vector2(0.75f, 0.75f);
-            startMultiWorldBtn.GetComponent<StartGameEventTrigger>().bossRush = true;
-            
+            startMultiWorldBtn.ClearEvents();
+            // add if clone goes back to startRandoBtn startMultiWorldBtn.GetComponent<StartGameEventTrigger>().bossRush = true;
+
             startMultiWorldBtn.gameObject.SetActive(false);
 
             back.gameObject.SetActive(false);

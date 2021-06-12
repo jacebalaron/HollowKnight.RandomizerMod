@@ -10,19 +10,37 @@ namespace RandomizerMod.Randomization
 {
     public static class PostRandomizer
     {
+        public static Action PostRandomizationActions;
+
+        // Make this function be called every EditUI or so to allow MW hooks to be disposed automatically
         public static void PostRandomizationTasks()
         {
-            RemovePlaceholders();
-            SaveAllPlacements();
-            (int, string, string)[] orderedILPairs = getOrderedILPairs();
+            PostRandomizationActions.Invoke();
+        }
+
+        internal static void InitializeTasks()
+        {
+            PostRandomizationActions = RemovePlaceholders;
+            PostRandomizationActions += SaveAllPlacements;
 
             if (RandomizerMod.Instance.Settings.CreateSpoilerLog)
             {
-                RandoLogger.LogAllToSpoiler(orderedILPairs, RandomizerMod.Instance.Settings._transitionPlacements.Select(kvp => (kvp.Key, kvp.Value)).ToArray());
-                RandoLogger.LogItemsToCondensedSpoiler(orderedILPairs);
+                // Do not export spoiler tasks to lambdas, since MW postpones their call by their action's method name
+                PostRandomizationActions += CreateSpoilers;
             }
+            PostRandomizationActions += () => 
+                RandomizerAction.CreateActions(RandomizerMod.Instance.Settings.ItemPlacements, RandomizerMod.Instance.Settings);
+        }
 
-            RandomizerAction.CreateActions(RandomizerMod.Instance.Settings.ItemPlacements, RandomizerMod.Instance.Settings);
+        internal static void CreateSpoilers()
+        {
+            (int, string, string)[] orderedILPairs = getOrderedILPairs();
+
+            // For MW: LogAllToSpoiler - Provide a pre-generated ItemsSpoiler section from server which emits the itemspoiler generation call
+            RandoLogger.LogAllToSpoiler(orderedILPairs, RandomizerMod.Instance.Settings._transitionPlacements.Select(kvp => (kvp.Key, kvp.Value)).ToArray());
+         
+            // For MW: LogItemsToCondensedSpoiler - Provide allIlPairs.Where(Either Key is player's);
+            RandoLogger.LogItemsToCondensedSpoiler(orderedILPairs);
         }
 
         public static (int, string, string)[] getOrderedILPairs()

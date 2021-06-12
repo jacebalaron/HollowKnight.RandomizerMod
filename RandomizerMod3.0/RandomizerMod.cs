@@ -273,9 +273,6 @@ namespace RandomizerMod
             {
                 Randomizer.Randomize();
         
-                // Time for MultiWorld to modify itemsPlacements and update RandomizerMod.Instance.Settings.ItemPlacements
-
-                PostRandomizer.PostRandomizationTasks();
                 RandoLogger.UpdateHelperLog();
             }
             catch (Exception e)
