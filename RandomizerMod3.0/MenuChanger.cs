@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using RandomizerMod.Extensions;
+﻿using RandomizerMod.Extensions;
 using SereCore;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -789,9 +787,8 @@ namespace RandomizerMod
             back.gameObject.SetActive(true);
             MenuButton existingButton = back;
             
-            RandoMenuItem<string> multiworldBtn = new RandoMenuItem<string>(existingButton, new Vector2(0, 800), "Multiworld", "No", "Yes");
-            RandoMenuItem<bool> multiworldReadyBtn = new RandoMenuItem<bool>(existingButton, new Vector2(0, 600), "Ready", false, true);
-            multiworldReadyBtn.Button.gameObject.SetActive(false);
+            RandoMenuItem<string> multiWorldBtn = new RandoMenuItem<string>(existingButton, new Vector2(0, 800), "Multiworld", "No", "Yes");
+            RandoMenuItem<bool> multiWorldReadyBtn = new RandoMenuItem<bool>(existingButton, new Vector2(0, 600), "Ready", false, true);
 
             InputField createInputObject()
             {
@@ -843,7 +840,6 @@ namespace RandomizerMod
             nicknameInput.caretWidth = 8;
             nicknameInput.characterLimit = 15;
 
-            nicknameInput.gameObject.SetActive(false);
 
             InputField roomInput = createInputObject();
             roomInput.transform.localPosition = new Vector3(0, 660);
@@ -856,38 +852,26 @@ namespace RandomizerMod
             roomInput.caretWidth = 8;
             roomInput.characterLimit = 15;
 
-            roomInput.gameObject.SetActive(false);
 
             GameObject urlLabel = CreateLabel(existingButton, new Vector2(-200, 865), "URL:");
             urlLabel.transform.localScale = new Vector3(0.8f, 0.8f);
             GameObject nicknameLabel = CreateLabel(existingButton, new Vector2(-300, 725), "Nickname:");
             nicknameLabel.transform.localScale = new Vector3(0.8f, 0.8f);
-            nicknameLabel.SetActive(false);
             GameObject roomLabel = CreateLabel(existingButton, new Vector2(-300, 665), "Room:");
             roomLabel.transform.localScale = new Vector3(0.8f, 0.8f);
-            roomLabel.SetActive(false);
             GameObject readyPlayers = CreateLabel(existingButton, new Vector2(0, 540), "");
             readyPlayers.transform.localScale = new Vector3(0.5f, 0.5f);
 
             MenuButton rejoinBtn = existingButton.Clone("Rejoin", MenuButton.MenuButtonType.Proceed, new Vector2(0, 280), "Rejoin");
             rejoinBtn.ClearEvents();
-            rejoinBtn.gameObject.SetActive(false);
 
-            MenuButton startMultiWorldBtn = existingButton.Clone("StartMultiWorld", MenuButton.MenuButtonType.Proceed,
-                new Vector3(0, 400), "Start Game"); // add if clone goes back to startRandoBtn , "MultiWorld", RandomizerMod.GetSprite("UI.logo"));
+            MenuButton startMultiWorldBtn = startRandoBtn.Clone("StartMultiWorld", MenuButton.MenuButtonType.Proceed,
+                new Vector3(0, -160), "Start Game", "MultiWorld", RandomizerMod.GetSprite("UI.logo"));
             startMultiWorldBtn.transform.localScale = new Vector2(0.75f, 0.75f);
-            startMultiWorldBtn.ClearEvents();
-            // add if clone goes back to startRandoBtn startMultiWorldBtn.GetComponent<StartGameEventTrigger>().bossRush = true;
-
-            startMultiWorldBtn.gameObject.SetActive(false);
 
             back.gameObject.SetActive(false);
-            return new MultiWorldMenu(multiworldBtn, multiworldReadyBtn, urlLabel, urlInput, nicknameLabel, nicknameInput, roomLabel, roomInput, readyPlayers, rejoinBtn, startMultiWorldBtn);
-        }
-
-        public static void SetStartGameButtonVisibility(bool visible)
-        {
-            startRandoBtn.gameObject.SetActive(visible); 
+            return new MultiWorldMenu(multiWorldBtn, multiWorldReadyBtn, urlLabel, urlInput, nicknameLabel, nicknameInput, 
+                roomLabel, roomInput, readyPlayers, rejoinBtn, startMultiWorldBtn, startRandoBtn);
         }
 
         private static void ParseSeedInput(string input)

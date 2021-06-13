@@ -242,11 +242,6 @@ namespace RandomizerMod
             return _logicParseThread == null || !_logicParseThread.IsAlive;
         }
 
-        public void SetStartGameButtonVisibility(bool visibility)
-        {
-            MenuChanger.SetStartGameButtonVisibility(visibility);
-        }
-
         public MultiWorldMenu CreateMultiWorldMenu()
         {
             return MenuChanger.CreateMultiWorldMenu();

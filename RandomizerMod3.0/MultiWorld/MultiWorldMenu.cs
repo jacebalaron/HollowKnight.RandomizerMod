@@ -10,7 +10,8 @@ namespace RandomizerMod.MultiWorld
         public MultiWorldMenu(RandoMenuItem<string> multiworldBtn, RandoMenuItem<bool> multiworldReadyBtn,
                               GameObject urlLabel, InputField urlInput, GameObject nicknameLabel,
                               InputField nicknameInput, GameObject roomLabel, InputField roomInput,
-                              GameObject readyPlayers, MenuButton rejoinBtn, MenuButton startMultiWorldBtn)
+                              GameObject readyPlayers, MenuButton rejoinBtn, MenuButton startMultiWorldBtn,
+                              MenuButton startRandoBtn)
         {
             MultiWorldBtn = multiworldBtn;
             MultiWorldReadyBtn = multiworldReadyBtn;
@@ -23,6 +24,7 @@ namespace RandomizerMod.MultiWorld
             ReadyPlayersLabel = readyPlayers;
             RejoinBtn = rejoinBtn;
             StartMultiWorldBtn = startMultiWorldBtn;
+            StartRandoBtn = startRandoBtn;
         }
 
         public RandoMenuItem<string> MultiWorldBtn { get; }
@@ -36,5 +38,6 @@ namespace RandomizerMod.MultiWorld
         public GameObject ReadyPlayersLabel { get; }
         public MenuButton RejoinBtn { get; }
         public MenuButton StartMultiWorldBtn { get; }
+        public MenuButton StartRandoBtn { get; }
     }
 }
