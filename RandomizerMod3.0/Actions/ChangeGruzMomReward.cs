@@ -36,6 +36,12 @@ namespace RandomizerMod.Actions
                     t.SetPosition2D(fsm.gameObject.transform.position);
                     t.gameObject.SetActive(true);
                 }
+
+                if (parent.name.Contains("Randomizer Shiny"))
+                {
+                    parent.transform.DetachChildren();
+                    Object.Destroy(parent);
+                }
             }));
         }
     }
