@@ -679,14 +679,15 @@
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Forgotten_Crossroads</areaName>
   </item>
+  <!--The names of these two rocks may be the wrong way round - the alcove is the one behind the eating goam-->
   <item name="Geo_Rock-Crossroads_Goam_Alcove">
     <sceneName>Crossroads_42</sceneName>
     <objectName>Geo Rock 1</objectName>
     <replace>true</replace>
     <elevation>2.5</elevation>
-    <itemLogic>Crossroads</itemLogic>
-    <areaLogic>Crossroads</areaLogic>
-    <roomLogic>Crossroads_42[left1] | Crossroads_42[right1]</roomLogic>
+    <itemLogic>Crossroads + (2MASKS | LIFEBLOOD)</itemLogic>
+    <areaLogic>Crossroads + (2MASKS | LIFEBLOOD)</areaLogic>
+    <roomLogic>(Crossroads_42[left1] | Crossroads_42[right1]) + (2MASKS | LIFEBLOOD)</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>
@@ -696,14 +697,15 @@
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Forgotten_Crossroads</areaName>
   </item>
+  <!--The names of these two rocks may be the wrong way round - the damage boost is the one in the center of the room-->
   <item name="Geo_Rock-Crossroads_Goam_Damage_Boost">
     <sceneName>Crossroads_42</sceneName>
     <objectName>Geo Rock 2</objectName>
     <replace>true</replace>
     <elevation>-0.8</elevation>
-    <itemLogic>Crossroads + (2MASKS | LIFEBLOOD)</itemLogic>
-    <areaLogic>Crossroads + (2MASKS | LIFEBLOOD)</areaLogic>
-    <roomLogic>(Crossroads_42[left1] | Crossroads_42[right1]) + (2MASKS | LIFEBLOOD)</roomLogic>
+    <itemLogic>Crossroads</itemLogic>
+    <areaLogic>Crossroads</areaLogic>
+    <roomLogic>Crossroads_42[left1] | Crossroads_42[right1]</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>
@@ -2501,9 +2503,9 @@
     <objectName>Geo Rock Green Path 01</objectName>
     <replace>true</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Right_Fog_Canyon</itemLogic>
-    <areaLogic>Right_Fog_Canyon</areaLogic>
-    <roomLogic>Fungus3_26</roomLogic>
+    <itemLogic>Right_Fog_Canyon + (4MASKS | FIREBALL)</itemLogic>
+    <areaLogic>Right_Fog_Canyon + (4MASKS | FIREBALL)</areaLogic>
+    <roomLogic>Fungus3_26 + (4MASKS | FIREBALL)</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>

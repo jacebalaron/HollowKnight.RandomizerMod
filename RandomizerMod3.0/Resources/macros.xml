@@ -90,7 +90,7 @@
   <!--Combat Macros-->
   <macro name="NAILCOMBAT">(SIDESLASH | UPSLASH | ((Cyclone_Slash | Great_Slash) + MILDCOMBATSKIPS) | SPICYCOMBATSKIPS)</macro>
   <macro name="MINIBOSS">(FIREBALL | SCREAM | QUAKE | SPICYCOMBATSKIPS) + NAILCOMBAT</macro>
-  <macro name="AERIALMINIBOSS">((FIREBALL | SCREAM) + (ANYDASH | MILDCOMBATSKIPS) + NAILCOMBAT) | SPICYCOMBATSKIPS</macro>
+  <macro name="AERIALMINIBOSS">(((FIREBALL | SCREAM) + (ANYDASH | MILDCOMBATSKIPS)) | SPICYCOMBATSKIPS) + (SIDESLASH | UPSLASH | ((Cyclone_Slash | Great_Slash) + SPICYCOMBATSKIPS))</macro>
   <macro name="BOSS">((Vengeful_Spirit + Shade_Soul) | (Desolate_Dive + Descending_Dark) | (Howling_Wraiths + Abyss_Shriek) | (FIREBALL + QUAKE) | (SCREAM + QUAKE) | (FIREBALL + SCREAM)) + (ANYDASH | MILDCOMBATSKIPS) + NAILCOMBAT</macro>
   <macro name="BOSSFLUKE">((Vengeful_Spirit + Shade_Soul) | (Howling_Wraiths + Abyss_Shriek) | (BOSS + MILDCOMBATSKIPS) | (CURSED + (Vengeful_Spirit | Howling_Wraiths)))</macro>
 
