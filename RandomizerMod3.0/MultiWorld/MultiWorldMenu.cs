@@ -1,7 +1,6 @@
 ﻿using RandomizerMod.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
-using static RandomizerMod.MenuChanger;
 
 namespace RandomizerMod.MultiWorld
 {

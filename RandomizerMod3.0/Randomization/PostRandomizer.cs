@@ -12,12 +12,12 @@ namespace RandomizerMod.Randomization
     {
         public static Action PostRandomizationActions;
 
-        // Make this function be called every EditUI or so to allow MW hooks to be disposed automatically
-        public static void PostRandomizationTasks()
+        public static void RunPostRandomizationTasks()
         {
             PostRandomizationActions.Invoke();
         }
 
+        // Tasks names in this functions are crucial for MW's functionality
         internal static void InitializeTasks()
         {
             PostRandomizationActions = RemovePlaceholders;
@@ -25,22 +25,31 @@ namespace RandomizerMod.Randomization
 
             if (RandomizerMod.Instance.Settings.CreateSpoilerLog)
             {
-                // Do not export spoiler tasks to lambdas, since MW postpones their call by their action's method name
                 PostRandomizationActions += CreateSpoilers;
             }
-            PostRandomizationActions += () => 
-                RandomizerAction.CreateActions(RandomizerMod.Instance.Settings.ItemPlacements, RandomizerMod.Instance.Settings);
+            
+            PostRandomizationActions += CreateActions; 
         }
 
         internal static void CreateSpoilers()
         {
             (int, string, string)[] orderedILPairs = getOrderedILPairs();
-
-            // For MW: LogAllToSpoiler - Provide a pre-generated ItemsSpoiler section from server which emits the itemspoiler generation call
+            Log("Spoiler time!");
+            // TODO For MW: LogAllToSpoiler - Provide a pre-generated ItemsSpoiler section from server which emits the itemspoiler generation call
             RandoLogger.LogAllToSpoiler(orderedILPairs, RandomizerMod.Instance.Settings._transitionPlacements.Select(kvp => (kvp.Key, kvp.Value)).ToArray());
          
-            // For MW: LogItemsToCondensedSpoiler - Provide allIlPairs.Where(Either Key is player's);
+            // TODO For MW: LogItemsToCondensedSpoiler - Provide allIlPairs.Where(Either Key is player's);
             RandoLogger.LogItemsToCondensedSpoiler(orderedILPairs);
+
+            foreach (var item in orderedILPairs)
+            {
+                Log($"{item.Item2} at {item.Item3}");
+            }
+        }
+
+        private static void CreateActions()
+        {
+            RandomizerAction.CreateActions(RandomizerMod.Instance.Settings.ItemPlacements, RandomizerMod.Instance.Settings);
         }
 
         public static (int, string, string)[] getOrderedILPairs()

@@ -62,7 +62,7 @@ namespace RandomizerMod.Randomization
                 if (!randomizationError) break;
             }
 
-            PostRandomizationTasks();
+            RunPostRandomizationTasks();
         }
 
         private static void RandomizeTransitions()
