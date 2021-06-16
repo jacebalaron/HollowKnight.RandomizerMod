@@ -442,7 +442,4 @@
     <EmbeddedResource Include="Resources\ShopIcons\Swim.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>C:\Users\Ofir\Documents\Projects\HollowKnight\RandomizerMod\RandomizerMod3.0\bin\Debug\copy_mod_to_mods.bat</PostBuildEvent>
-  </PropertyGroup>
 </Project>
