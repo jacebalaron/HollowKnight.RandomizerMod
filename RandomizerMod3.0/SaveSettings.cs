@@ -597,6 +597,11 @@ namespace RandomizerMod
             return _shopCosts[item];
         }
 
+        public void RemoveShopCost(string item)
+        {
+            if (!_shopCosts.ContainsKey(item)) return;
+            _shopCosts.Remove(item);
+        }
 
         public void MarkItemFound(string item)
         {
@@ -626,6 +631,7 @@ namespace RandomizerMod
 
         public void MarkLocationFound(string location)
         {
+            if (string.IsNullOrEmpty(location)) return;
             _obtainedLocations[location] = true;
         }
 
