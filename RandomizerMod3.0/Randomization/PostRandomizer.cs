@@ -33,6 +33,8 @@ namespace RandomizerMod.Randomization
 
         internal static void CreateSpoilers()
         {
+            // Locations in the Vanilla manager where the location is a shop count as vanilla; otherwise, if the item and location
+            // do not match we should log them. In particular, the split cloak pieces in the vanilla manager should be logged.
             (int, string, string)[] orderedILPairs = getOrderedILPairs();
             Log("Spoiler time!");
             // TODO For MW: LogAllToSpoiler - Provide a pre-generated ItemsSpoiler section from server which emits the itemspoiler generation call
@@ -54,8 +56,6 @@ namespace RandomizerMod.Randomization
 
         public static (int, string, string)[] getOrderedILPairs()
         {
-            // Locations in the Vanilla manager where the location is a shop count as vanilla; otherwise, if the item and location
-            // do not match we should log them. In particular, the split cloak pieces in the vanilla manager should be logged.
             return RandomizerMod.Instance.Settings.ItemPlacements
                 .Except(VanillaManager.Instance.ItemPlacements.Where(pair => (pair.Item1 == pair.Item2) || LogicManager.ShopNames.Contains(pair.Item2)))
                 .Select(pair => (ItemManager.locationOrder.TryGetValue(pair.Item2, out int loc) ? loc : 0, pair.Item1, pair.Item2))

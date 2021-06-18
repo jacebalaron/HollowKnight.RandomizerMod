@@ -544,6 +544,11 @@ namespace RandomizerMod
             _itemPlacements[item] = location;
         }
 
+        public void RemoveItem(string oldItem)
+        {
+            _itemPlacements.Remove(oldItem);
+        }
+
         public void AddOrderedLocation(string location, int order)
         {
             _orderedLocations[location] = order;

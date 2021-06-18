@@ -238,35 +238,40 @@ namespace RandomizerMod
                     }
                 }
 
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine();
-                sb.AppendLine("Randomized Notch Costs");
-                Dictionary<int, string> charmNums = LogicManager.ItemNames.Select(i => (i, LogicManager.GetItemDef(i)))
-                    .Where(p => p.Item2.pool == "Charm" && p.Item2.action == GiveAction.Charm)
-                    .ToDictionary(p => p.Item2.charmNum, p => p.i);
-                charmNums[36] = "Kingsoul";
-                charmNums[40] = "Grimmchild";
-
-                int count = 0;
-                for (int i = 0; i < 40; i++)
+                try
                 {
-                    count += costs[i];
-                    PlayerData.instance.SetInt($"charmCost_{i + 1}", costs[i]);
-                    if (charmNums.TryGetValue(i + 1, out string name))
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine();
+                    sb.AppendLine("Randomized Notch Costs");
+                    Dictionary<int, string> charmNums = LogicManager.ItemNames.Select(i => (i, LogicManager.GetItemDef(i)))
+                        .Where(p => p.Item2.pool == "Charm" && p.Item2.action == GiveAction.Charm)
+                        .ToDictionary(p => p.Item2.charmNum, p => p.i);
+                    charmNums[36] = "Kingsoul";
+                    charmNums[40] = "Grimmchild";
+
+                    int count = 0;
+                    for (int i = 0; i < 40; i++)
                     {
-                        sb.AppendLine($"{name}: {costs[i]}");
-                        string nameKey = $"CHARM_NAME_{i + 1}";
-                        if (i >= 22 && i <= 24) nameKey += "_G";
-                        LanguageStringManager.SetString("UI", nameKey, $"{name.Replace("_", " ")} [{costs[i]}]");
+                        count += costs[i];
+                        PlayerData.instance.SetInt($"charmCost_{i + 1}", costs[i]);
+                        if (charmNums.TryGetValue(i + 1, out string name))
+                        {
+                            sb.AppendLine($"{name}: {costs[i]}");
+                            string nameKey = $"CHARM_NAME_{i + 1}";
+                            if (i >= 22 && i <= 24) nameKey += "_G";
+                            LanguageStringManager.SetString("UI", nameKey, $"{name.Replace("_", " ")} [{costs[i]}]");
+                        }
+                        else
+                        {
+                            sb.AppendLine($"Unknown charm with id {i + 1}: {costs[i]}");
+                        }
                     }
-                    else
-                    {
-                        sb.AppendLine($"Unknown charm with id {i + 1}: {costs[i]}");
-                    }
+                    sb.AppendLine($"Total: {count}, within the allowed range of [{minTotal}, {maxTotal}].");
+                    sb.AppendLine($"This is {Mathf.Round(count / 90f * 100)}% of the vanilla total.");
+                    RandoLogger.LogSpoiler(sb.ToString());
                 }
-                sb.AppendLine($"Total: {count}, within the allowed range of [{minTotal}, {maxTotal}].");
-                sb.AppendLine($"This is {Mathf.Round(count / 90f * 100)}% of the vanilla total.");
-                RandoLogger.LogSpoiler(sb.ToString());
+                // This happens when there's more than a single charm instance known to LogicManager 
+                catch (ArgumentException) { }
             }
 
             for (int i = 1; i < 5; i++)
