@@ -103,6 +103,14 @@ namespace RandomizerMod.SceneChanges
                         Object.Destroy(GameObject.Find("Quake Floor").FindGameObjectInChildren("Active").FindGameObjectInChildren("msk_generic (3)"));
                     }
                     break;
+                case SceneNames.Deepnest_East_03:
+                    // When entering from one of the other entrances, it's possible that the player will reach Cornifer before the big title popup
+                    // appears; this can lead to a hard lock if the player interacts with Cornifer and then the popup appears during the interaction.
+                    if (!GameManager.instance.entryGateName.StartsWith("left"))
+                    {
+                        Ref.PD.SetBool(nameof(PlayerData.visitedOutskirts), true);
+                    }
+                    break;
                 case SceneNames.Fungus2_15:
                     if (GameManager.instance.entryGateName.StartsWith("left"))
                     {
