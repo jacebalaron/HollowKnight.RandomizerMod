@@ -11,6 +11,8 @@ using RandomizerMod.Randomization;
 using SereCore;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using HutongGames.PlayMaker;
+using RandomizerMod.FsmStateActions;
 using static RandomizerMod.LogHelper;
 using static RandomizerMod.GiveItemActions;
 using RandomizerMod.SceneChanges;
@@ -113,7 +115,7 @@ namespace RandomizerMod
                 (SceneNames.Tutorial_01, "_Props/Tut_tablet_top"),
                 (SceneNames.Tutorial_01, "_Props/Geo Rock 1"),
                 (SceneNames.Cliffs_02, "Soul Totem 5"),
-                (SceneNames.Room_Jinn, "Jinn NPC"),
+                //(SceneNames.Room_Jinn, "Jinn NPC"),
                 (SceneNames.Abyss_19, "Grub Bottle/Grub"),
                 (SceneNames.Abyss_19, "Grub Bottle")
             };
@@ -147,6 +149,7 @@ namespace RandomizerMod
             ModHooks.Instance.GetPlayerBoolHook += BoolGetOverride;
             ModHooks.Instance.SetPlayerBoolHook += BoolSetOverride;
             On.PlayMakerFSM.OnEnable += FixVoidHeart;
+            On.PlayMakerFSM.OnEnable += FixFury;
             On.GameManager.BeginSceneTransition += EditTransition;
             On.PlayerData.CountGameCompletion += RandomizerCompletion;
             On.PlayerData.SetInt += FixGrimmkinUpgradeCost;
@@ -168,6 +171,7 @@ namespace RandomizerMod
             ModHooks.Instance.GetPlayerBoolHook -= BoolGetOverride;
             ModHooks.Instance.SetPlayerBoolHook -= BoolSetOverride;
             On.PlayMakerFSM.OnEnable -= FixVoidHeart;
+            On.PlayMakerFSM.OnEnable -= FixFury;
             On.GameManager.BeginSceneTransition -= EditTransition;
             On.PlayerData.CountGameCompletion -= RandomizerCompletion;
             On.PlayerData.SetInt -= FixGrimmkinUpgradeCost;
@@ -289,7 +293,7 @@ namespace RandomizerMod
 
         public override string GetVersion()
         {
-            string ver = "3.12";
+            string ver = "3.12b";
 
             ver += $"({Math.Abs(MakeAssemblyHash() % 997)})";
 
@@ -644,6 +648,48 @@ namespace RandomizerMod
             }
         }
 
+        // Make Fury work properly when the player only has 1 max mask due to
+        // Cursed Masks.
+        // The game doesn't really expect the player to ever have Fury active when
+        // loading in or sitting at a bench.
+        private void FixFury(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
+        {
+            orig(self);
+            if (self.FsmName == "Fury" && self.gameObject.name == "Charm Effects")
+            {
+                var init = self.GetState("Init");
+                init.ClearTransitions();
+                init.AddTransition("FINISHED", "Check HP");
+
+                // Make Fury activate when equipped at 1 health
+                // (The game broadcasts an UPDATE BLUE HEALTH event whenever the player
+                // equips or unequips a charm)
+                self.GetState("Idle").AddTransition("UPDATE BLUE HEALTH", "Check HP");
+
+                // Make Fury deactivate when unequipped at 1 health
+                var checkEquipped = new FsmState(init) { Name = "Check Equipped" };
+                checkEquipped.ClearTransitions();
+                checkEquipped.AddTransition("EQUIPPED", "Stay Furied");
+                checkEquipped.AddTransition("NOT EQUIPPED", "Deactivate");
+                checkEquipped.Actions = new FsmStateAction[] {
+                    new RandomizerExecuteLambda(() => self.SendEvent(Ref.PD.equippedCharm_6 ? "EQUIPPED" : "NOT EQUIPPED"))
+                };
+                self.AddState(checkEquipped);
+
+                void PatchRecheck(FsmState s)
+                {
+                    s.RemoveTransitionsTo("Deactivate");
+                    s.AddTransition("HERO HEALED FULL", "Recheck");
+                    // This is an original transition that we don't want to change
+                    s.AddTransition("ALL CHARMS END", "Deactivate");
+                    s.AddTransition("UPDATE BLUE HEALTH", checkEquipped.Name);
+                }
+
+                PatchRecheck(self.GetState("Activate"));
+                PatchRecheck(self.GetState("Stay Furied"));
+            }
+        }
+
         // Will be moved out of RandomizerMod in the future
 
         public string LastRandomizedEntrance = null;
@@ -664,6 +710,16 @@ namespace RandomizerMod
                 orig(self, info);
                 return;
             }
+
+            // Reroute Jiji to Jinn
+            if (self.sceneName == SceneNames.Room_Ouiji && info.SceneName == SceneNames.Town)
+            {
+                info.SceneName = SceneNames.Room_Jinn;
+                info.EntryGateName = "left1";
+                orig(self, info);
+                return;
+            }
+
             if (RandomizerMod.Instance.Settings.RandomizeTransitions)
             {
                 TransitionPoint tp = Object.FindObjectsOfType<TransitionPoint>().FirstOrDefault(x => x.entryPoint == info.EntryGateName && x.targetScene == info.SceneName);
@@ -701,6 +757,9 @@ namespace RandomizerMod
 
                     transitionName = self.sceneName + "[" + name + "]";
                 }
+
+                // Use Jinn in place of Jiji for the randomized exit
+                if (transitionName == "Room_Jinn[left1]") transitionName = "Room_Ouiji[left1]";
 
                 if (Instance.Settings._transitionPlacements.TryGetValue(transitionName, out string destination))
                 {

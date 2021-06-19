@@ -157,6 +157,14 @@ namespace RandomizerMod
                 if (RandomizerMod.Instance.Settings.RandomizeRooms) miscSettingsSeed += 1;
                 miscSettingsSeed <<= 1;
                 if (RandomizerMod.Instance.Settings.RandomizeAreas || RandomizerMod.Instance.Settings.ConnectAreas) miscSettingsSeed += 1;
+                miscSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.CursedMasks) miscSettingsSeed += 1;
+                miscSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.CursedNotches) miscSettingsSeed += 1;
+                miscSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.RandomizeSwim) miscSettingsSeed += 1;
+                miscSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.RandomizeNotchCosts) miscSettingsSeed += 1;
 
                 int settingsSeed = 0;
                 unchecked
@@ -184,6 +192,81 @@ namespace RandomizerMod
                 else if (action == GiveAction.SpawnGeo) action = GiveAction.AddGeo;
 
                 GiveItem(action, item, "Equipped");
+            }
+
+            if (RandomizerMod.Instance.Settings.CursedNotches)
+            {
+                PlayerData.instance.charmSlots = 1;
+            }
+
+            if (RandomizerMod.Instance.Settings.CursedMasks)
+            {
+                PlayerData.instance.maxHealth = 1;
+                PlayerData.instance.maxHealthBase = 1;
+            }
+
+            if (RandomizerMod.Instance.Settings.RandomizeNotchCosts)
+            {
+                Random rng = new Random(RandomizerMod.Instance.Settings.Seed + 1111);
+                int[] costs = new int[40];
+                int minTotal = 60;
+                int maxTotal = 120;
+
+                for (int total = rng.Next(minTotal, maxTotal); total > 0; total--)
+                {
+                    int i = rng.Next(40);
+                    while (costs[i] >= 6)
+                    {
+                        i = rng.Next(40);
+                    }
+                    costs[i]++;
+                }
+
+                // clamp dashmaster/sprintmaster for logic purposes
+                if (!RandomizerMod.Instance.Settings.CursedNotches && costs[30] > 2 && costs[36] > 2)
+                {
+                    int d;
+                    if (rng.Next(2) == 0) d = 30;
+                    else d = 36;
+                    
+                    while (costs[d] > 2)
+                    {
+                        int e = rng.Next(40);
+                        while (costs[e] >= 6) e = rng.Next(40);
+                        costs[d]--;
+                        costs[e]++;
+                    }
+                }
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine();
+                sb.AppendLine("Randomized Notch Costs");
+                Dictionary<int, string> charmNums = LogicManager.ItemNames.Select(i => (i, LogicManager.GetItemDef(i)))
+                    .Where(p => p.Item2.pool == "Charm" && p.Item2.action == GiveAction.Charm)
+                    .ToDictionary(p => p.Item2.charmNum, p => p.i);
+                charmNums[36] = "Kingsoul";
+                charmNums[40] = "Grimmchild";
+
+                int count = 0;
+                for (int i = 0; i < 40; i++)
+                {
+                    count += costs[i];
+                    PlayerData.instance.SetInt($"charmCost_{i + 1}", costs[i]);
+                    if (charmNums.TryGetValue(i + 1, out string name))
+                    {
+                        sb.AppendLine($"{name}: {costs[i]}");
+                        string nameKey = $"CHARM_NAME_{i + 1}";
+                        if (i >= 22 && i <= 24) nameKey += "_G";
+                        LanguageStringManager.SetString("UI", nameKey, $"{name.Replace("_", " ")} [{costs[i]}]");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"Unknown charm with id {i + 1}: {costs[i]}");
+                    }
+                }
+                sb.AppendLine($"Total: {count}, within the allowed range of [{minTotal}, {maxTotal}].");
+                sb.AppendLine($"This is {Mathf.Round(count / 90f * 100)}% of the vanilla total.");
+                RandoLogger.LogSpoiler(sb.ToString());
             }
 
             for (int i = 1; i < 5; i++)

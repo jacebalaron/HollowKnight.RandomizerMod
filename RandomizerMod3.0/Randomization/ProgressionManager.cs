@@ -228,6 +228,9 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.Cursed) Add("CURSED");
             if (!RandomizerMod.Instance.Settings.RandomizeFocus) Add("NONRANDOMFOCUS");
             if (!RandomizerMod.Instance.Settings.CursedNail) Add("NONRANDOMNAIL");
+            if (!RandomizerMod.Instance.Settings.CursedMasks) Add("NONCURSEDMASKS");
+            if (!RandomizerMod.Instance.Settings.CursedNotches) Add("NONCURSEDNOTCHES");
+            if (!RandomizerMod.Instance.Settings.RandomizeSwim) Add("Swim");
 
             share = tempshare;
         }
@@ -240,7 +243,7 @@ namespace RandomizerMod.Randomization
                 case RandomizerState.InProgress:
                     return new Dictionary<string, int>();
                 case RandomizerState.Validating:
-                    locations = ItemManager.nonShopItems.Where(kvp => LogicManager.GetItemDef(kvp.Value).pool == pool).ToDictionary(kvp => kvp.Value, kvp => 1);
+                    locations = ItemManager.nonShopItems.Where(kvp => LogicManager.GetItemDef(kvp.Value).pool == pool).ToDictionary(kvp => kvp.Key, kvp => 1);
                     foreach (var kvp in ItemManager.shopItems)
                     {
                         if (kvp.Value.Any(item => LogicManager.GetItemDef(item).pool == pool))
