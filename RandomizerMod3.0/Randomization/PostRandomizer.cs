@@ -22,24 +22,21 @@ namespace RandomizerMod.Randomization
         {
             PostRandomizationActions = RemovePlaceholders;
             PostRandomizationActions += SaveAllPlacements;
-
-            if (RandomizerMod.Instance.Settings.CreateSpoilerLog)
-            {
-                PostRandomizationActions += CreateSpoilers;
-            }
-            
+            PostRandomizationActions += CreateSpoilers;
             PostRandomizationActions += CreateActions; 
         }
 
         internal static void CreateSpoilers()
         {
+            if (!RandomizerMod.Instance.Settings.CreateSpoilerLog) return;
+
             // Locations in the Vanilla manager where the location is a shop count as vanilla; otherwise, if the item and location
             // do not match we should log them. In particular, the split cloak pieces in the vanilla manager should be logged.
             (int, string, string)[] orderedILPairs = getOrderedILPairs();
-            Log("Spoiler time!");
+
             // TODO For MW: LogAllToSpoiler - Provide a pre-generated ItemsSpoiler section from server which emits the itemspoiler generation call
             RandoLogger.LogAllToSpoiler(orderedILPairs, RandomizerMod.Instance.Settings._transitionPlacements.Select(kvp => (kvp.Key, kvp.Value)).ToArray());
-         
+
             // TODO For MW: LogItemsToCondensedSpoiler - Provide allIlPairs.Where(Either Key is player's);
             RandoLogger.LogItemsToCondensedSpoiler(orderedILPairs);
 
