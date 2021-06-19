@@ -170,7 +170,6 @@ namespace RandomizerMod
             RandoMenuItem<bool> cursedMasksBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Cursed Masks", false, true);
 
             RandoMenuItem<string> modeBtn = new RandoMenuItem<string>(back, new Vector2(0, 1040), "Mode", "Item Randomizer", "Item + Area Randomizer", "Item + Connected-Area Room Randomizer", "Item + Room Randomizer");
-
             RandoMenuItem<string> cursedBtn = new RandoMenuItem<string>(back, new Vector2(0, 960), "Cursed", "no", "noo", "noooo", "noooooooo", "noooooooooooooooo", "Oh yeah");
             
             RandoMenuItem<bool> RandoSpoilerBtn = new RandoMenuItem<bool>(back, new Vector2(0, 0), "Create Spoiler Log", true, false);
@@ -215,11 +214,11 @@ namespace RandomizerMod
             CreateLabel(back, new Vector2(900, 160), "Start Settings");
             CreateLabel(back, new Vector2(0, 200), "Use of Benchwarp mod may be required");
             CreateLabel(back, new Vector2(0, 1300), "Seed:");
+            
             // We don't need these old buttons anymore
             Object.Destroy(classic.gameObject);
             Object.Destroy(steel.gameObject);
             Object.Destroy(parent.FindGameObjectInChildren("GGButton"));
-            // TODO remove Object.Destroy(back.gameObject);
             back.gameObject.SetActive(false);
 
             // Gotta put something here, we destroyed the old default
@@ -894,7 +893,5 @@ namespace RandomizerMod
             Object.Destroy(label.GetComponent<MenuButton>());
             return label;
         }
-
-        
     }
 }

@@ -812,6 +812,7 @@ namespace RandomizerMod
                 LogError("Error editing menu:\n" + e);
             }
         }
+
         
         private void HandleSceneChanges(Scene from, Scene to)
         {

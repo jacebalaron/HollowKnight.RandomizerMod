@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace RandomizerMod.Extensions
 {
-    public static class MenuButtonExtensions
+    internal static class MenuButtonExtensions
     {
         public static MenuButton Clone(this MenuButton self, string name, MenuButton.MenuButtonType type, Vector2 pos,
             string text = null, string description = null, Sprite image = null)

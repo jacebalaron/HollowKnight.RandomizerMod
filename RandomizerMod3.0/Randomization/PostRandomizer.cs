@@ -39,11 +39,6 @@ namespace RandomizerMod.Randomization
 
             // TODO For MW: LogItemsToCondensedSpoiler - Provide allIlPairs.Where(Either Key is player's);
             RandoLogger.LogItemsToCondensedSpoiler(orderedILPairs);
-
-            foreach (var item in orderedILPairs)
-            {
-                Log($"{item.Item2} at {item.Item3}");
-            }
         }
 
         private static void CreateActions()
