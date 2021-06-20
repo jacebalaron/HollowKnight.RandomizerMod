@@ -40,12 +40,19 @@ namespace RandomizerMod
         public bool RandomizeTransitions => RandomizeAreas || RandomizeRooms;
 
         public bool FreeLantern => !(DarkRooms || RandomizeKeys);
+
+        // Used by mods who are loaded before and have a dependency relation with RandomizerMod
+        public static Action<SaveSettings> PreAfterDeserialize = null;
         public SaveSettings()
         {
             AfterDeserialize += () =>
             {
                 if (Randomizer)
                 {
+                    PreAfterDeserialize.Invoke(this);
+                    // Wiped to prevent old callbacks to be called on next save slots loading
+                    PreAfterDeserialize = null;
+
                     RandomizerMod.Instance.HookRandomizer();
                     RandomizerAction.CreateActions(ItemPlacements, this);
                 }
