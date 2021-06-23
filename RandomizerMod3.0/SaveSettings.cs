@@ -609,6 +609,11 @@ namespace RandomizerMod
             return _shopCosts[item];
         }
 
+        public bool HasShopCost(string item)
+        {
+            return _shopCosts.ContainsKey(item);
+        }
+
         public void RemoveShopCost(string item)
         {
             if (!_shopCosts.ContainsKey(item)) return;
