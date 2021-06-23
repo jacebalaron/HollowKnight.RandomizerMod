@@ -88,7 +88,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_41:
                     if (GameManager.instance.entryGateName.StartsWith("left1"))
                     {
-                        foreach (Transform t in GameObject.Find("Collapser Small (2)").FindGameObjectInChildren("floor1").transform)
+                        foreach (Transform t in newScene.FindGameObject("Collapser Small (2)").FindGameObjectInChildren("floor1").transform)
                         {
                             if (t.gameObject.name.StartsWith("msk")) Object.Destroy(t.gameObject);
                         }
@@ -97,10 +97,11 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_East_02:
                     if (GameManager.instance.entryGateName.StartsWith("bot2"))
                     {
-                        Object.Destroy(GameObject.Find("Quake Floor").FindGameObjectInChildren("Active").FindGameObjectInChildren("msk_generic"));
-                        Object.Destroy(GameObject.Find("Quake Floor").FindGameObjectInChildren("Active").FindGameObjectInChildren("msk_generic (1)"));
-                        Object.Destroy(GameObject.Find("Quake Floor").FindGameObjectInChildren("Active").FindGameObjectInChildren("msk_generic (2)"));
-                        Object.Destroy(GameObject.Find("Quake Floor").FindGameObjectInChildren("Active").FindGameObjectInChildren("msk_generic (3)"));
+                        GameObject active = newScene.FindGameObject("Quake Floor").FindGameObjectInChildren("Active");
+                        Object.Destroy(active.FindGameObjectInChildren("msk_generic"));
+                        Object.Destroy(active.FindGameObjectInChildren("msk_generic (1)"));
+                        Object.Destroy(active.FindGameObjectInChildren("msk_generic (2)"));
+                        Object.Destroy(active.FindGameObjectInChildren("msk_generic (3)"));
                     }
                     break;
                 case SceneNames.Deepnest_East_03:
@@ -127,8 +128,8 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Ruins1_09:
                     if (GameManager.instance.entryGateName.StartsWith("t"))
                     {
-                        Object.Destroy(GameObject.Find("Battle Gate"));
-                        Object.Destroy(GameObject.Find("Battle Scene"));
+                        Object.Destroy(newScene.FindGameObject("Battle Gate"));
+                        Object.Destroy(newScene.FindGameObject("Battle Scene"));
                     }
                     break;
                 case SceneNames.Waterways_04:

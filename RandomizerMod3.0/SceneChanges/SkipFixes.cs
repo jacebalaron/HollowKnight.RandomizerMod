@@ -53,7 +53,7 @@ namespace RandomizerMod.SceneChanges
 
                 // Wings-only pogo to Soul Sanctum
                 case SceneNames.Ruins1_05:
-                    GameObject chandelier = GameObject.Find("ruind_dressing_light_02 (10)");
+                    GameObject chandelier = newScene.FindGameObject("ruind_dressing_light_02 (10)");
                     chandelier.transform.SetPositionX(chandelier.transform.position.x - 2);
                     chandelier.GetComponent<NonBouncer>().active = false;
                     break;

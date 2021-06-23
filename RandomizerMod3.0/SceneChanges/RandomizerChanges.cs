@@ -445,7 +445,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     else
                     {
-                        GameObject.Find("New Shiny").transform.SetPositionY(200f);
+                        newScene.FindGameObject("New Shiny").transform.SetPositionY(200f);
                         IEnumerator LurkerKilled()
                         {
                             yield return new WaitUntil(() => PlayerData.instance.killedPaleLurker || GameManager.instance.sceneName != "GG_Lurker");
