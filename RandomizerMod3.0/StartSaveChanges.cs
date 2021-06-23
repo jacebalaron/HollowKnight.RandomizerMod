@@ -254,7 +254,7 @@ namespace RandomizerMod
                     PlayerData.instance.SetInt($"charmCost_{i + 1}", costs[i]);
                     if (charmNums.TryGetValue(i + 1, out string name))
                     {
-                        sb.AppendLine($"{name}: {costs[i]}");
+                        sb.AppendLine($"{name}: {costs[i]}".Replace('_', ' '));
                     }
                     else
                     {
