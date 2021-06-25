@@ -16,8 +16,6 @@ namespace RandomizerMod
         public static List<Func<GiveAction, string, string, int, bool>> ExternItemHandlers { get; set; } =
             new List<Func<GiveAction, string, string, int, bool>>();
 
-        public static bool RecentItemsShowArea = true;
-
         public enum GiveAction
         {
             Bool = 0,
@@ -90,7 +88,7 @@ namespace RandomizerMod
 
             if (RandomizerMod.Instance.globalSettings.RecentItems)
             {
-                RecentItems.AddItem(item, location, showArea: RecentItemsShowArea);
+                RecentItems.AddItem(item, location);
             }
 
             switch (action)
