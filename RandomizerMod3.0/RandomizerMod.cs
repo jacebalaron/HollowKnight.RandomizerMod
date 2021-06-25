@@ -323,7 +323,7 @@ namespace RandomizerMod
             }
 
             float placedItems = (float)RandomizerMod.Instance.Settings.GetNumLocations();
-            float foundLocations = (float)RandomizerMod.Instance.Settings.GetLocationsFound().Length;
+            float foundItems = (float)RandomizerMod.Instance.Settings.NumItemsFound;
 
             // Count a pair (in, out) as a single transition check
             float randomizedTransitions = RandomizerMod.Instance.Settings.RandomizeRooms ? 445f :
@@ -335,7 +335,7 @@ namespace RandomizerMod
                 return;
             }
 
-            float rawPercent = (foundLocations + foundTransitions) / (placedItems + randomizedTransitions) * 100f;
+            float rawPercent = (foundItems + foundTransitions) / (placedItems + randomizedTransitions) * 100f;
 
             PlayerData.instance.completionPercentage = (float)Math.Floor(rawPercent);
         }

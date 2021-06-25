@@ -32,6 +32,8 @@ namespace RandomizerMod
         /// <remarks>item, location</remarks>
         public (string, string)[] ItemPlacements => _itemPlacements.Select(pair => (pair.Key, pair.Value)).ToArray();
 
+        public int NumItemsFound => _obtainedItems.Keys.Intersect(_itemPlacements.Keys).Count();
+
         public int MaxOrder => _orderedLocations.Count;
 
         public (string, int)[] VariableCosts => _variableCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
