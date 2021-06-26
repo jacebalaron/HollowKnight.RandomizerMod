@@ -104,7 +104,8 @@ namespace RandomizerMod.Randomization
                 foreach (string item in kvp.Value)
                 {
                     if (VanillaManager.Instance.ItemPlacements.Contains((item, kvp.Key))) continue;
-                    RandomizeShopCost(item);
+                    int cost = GetRandomizedShopCost(item);
+                    RandomizerMod.Instance.Settings.AddShopCost(item, cost);
                 }
             }
 
@@ -136,7 +137,7 @@ namespace RandomizerMod.Randomization
             RandomizerMod.Instance.Settings.StartMapZone = (int)startDef.zone;
         }
 
-        public static void RandomizeShopCost(string item)
+        public static int GetRandomizedShopCost(string item)
         {
             int cost;
             ReqDef def = LogicManager.GetItemDef(item);
@@ -168,8 +169,7 @@ namespace RandomizerMod.Randomization
                 cost *= priceFactor;
             }
 
-            cost = Math.Max(cost, 1);
-            RandomizerMod.Instance.Settings.AddShopCost(item, cost);
+            return Math.Max(cost, 1);
         }
 
         public static List<(string, string)> GetPlacedItemPairs()
