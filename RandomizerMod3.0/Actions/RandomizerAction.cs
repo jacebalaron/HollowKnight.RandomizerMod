@@ -47,6 +47,10 @@ namespace RandomizerMod.Actions
                 ReqDef oldItem = LogicManager.GetItemDef(location);
                 ReqDef newItem = LogicManager.GetItemDef(newItemName);
 
+                if (newItemName == location)
+                    continue;
+
+                /* Commented out to prevent affecting vanilla placed items - may cause stuff to break
                 if (!settings.RandomizeMaps && newItem.pool == "Map")
                 {
                     continue;
@@ -75,6 +79,7 @@ namespace RandomizerMod.Actions
                 {
                     continue;
                 }
+                */
 
                 if (settings.NPCItemDialogue)
                 {
