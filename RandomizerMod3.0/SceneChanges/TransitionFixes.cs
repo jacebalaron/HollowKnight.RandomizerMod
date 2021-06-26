@@ -36,7 +36,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
                 case SceneNames.Room_ruinhouse:
-                    PlayMakerFSM dazedSly = GameObject.Find("Sly Dazed").LocateMyFSM("Conversation Control");
+                    PlayMakerFSM dazedSly = newScene.FindGameObject("Sly Dazed").LocateMyFSM("Conversation Control");
                     dazedSly.GetState("Active?").RemoveActionsOfType<BoolTest>();
                     dazedSly.GetState("Active?").AddAction(new RandomizerBoolTest("slyRescued", "FINISHED", "DESTROY"));
                     dazedSly.GetState("Convo Choice").RemoveActionsOfType<BoolTest>();
@@ -46,10 +46,10 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Room_shop:
                     if (!RandomizerMod.Instance.Settings.GetBool(false, "slyRescued"))
                     {
-                        Object.Destroy(GameObject.Find("Sly Shop"));
-                        Object.Destroy(GameObject.Find("Shop Region"));
-                        Object.Destroy(GameObject.Find("Basement Open"));
-                        Object.Destroy(GameObject.Find("door1"));
+                        Object.Destroy(newScene.FindGameObject("Sly Shop"));
+                        Object.Destroy(newScene.FindGameObject("Shop Region"));
+                        Object.Destroy(newScene.FindGameObject("Basement Open"));
+                        Object.Destroy(newScene.FindGameObject("door1"));
                     }
                     break;
             }
@@ -71,7 +71,7 @@ namespace RandomizerMod.SceneChanges
                     if (RandomizerMod.Instance.Settings.RandomizeTransitions)
                     {
                         PlayerData.instance.SetBool("blueVineDoor", true);
-                        PlayMakerFSM BlueDoorFSM = GameObject.Find("Blue Door").LocateMyFSM("Control");
+                        PlayMakerFSM BlueDoorFSM = newScene.FindGameObject("Blue Door").LocateMyFSM("Control");
                         BlueDoorFSM.GetState("Init").RemoveTransitionsTo("Got Charm");
                     }
 
@@ -82,7 +82,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     if (PlayerData.instance.openedBlackEggPath)
                     {
-                        Object.Destroy(GameObject.Find("floor_closed"));
+                        Object.Destroy(newScene.FindGameObject("floor_closed"));
                     }
                     break;
                 case SceneNames.Deepnest_41:
@@ -115,14 +115,14 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Fungus2_15:
                     if (GameManager.instance.entryGateName.StartsWith("left"))
                     {
-                        Object.Destroy(GameObject.Find("deepnest_mantis_gate").FindGameObjectInChildren("Collider"));
-                        Object.Destroy(GameObject.Find("deepnest_mantis_gate"));
+                        Object.Destroy(newScene.FindGameObject("deepnest_mantis_gate").FindGameObjectInChildren("Collider"));
+                        Object.Destroy(newScene.FindGameObject("deepnest_mantis_gate"));
                     }
                     break;
                 case SceneNames.Fungus2_25:
                     if (GameManager.instance.entryGateName.StartsWith("right"))
                     {
-                        Object.Destroy(GameObject.Find("mantis_big_door"));
+                        Object.Destroy(newScene.FindGameObject("mantis_big_door"));
                     }
                     break;
                 case SceneNames.Ruins1_09:
@@ -158,16 +158,16 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
                 case SceneNames.White_Palace_06:
-                    if (GameObject.Find("Path of Pain Blocker") != null)
+                    if (newScene.FindGameObject("Path of Pain Blocker") != null)
                     {
-                        Object.Destroy(GameObject.Find("Path of Pain Blocker"));
+                        Object.Destroy(newScene.FindGameObject("Path of Pain Blocker"));
                     }
                     break;
 
                 // traverse first room of PoP backwards. Doesn't really belong here, but w/e
                 case SceneNames.White_Palace_18:
                     const float SAW = 1.362954f;
-                    GameObject saw = GameObject.Find("saw_collection/wp_saw (4)");
+                    GameObject saw = newScene.FindGameObject("saw_collection/wp_saw (4)");
 
                     GameObject topSaw = Object.Instantiate(saw);
                     topSaw.transform.SetPositionX(165f);
