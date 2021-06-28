@@ -47,39 +47,30 @@ namespace RandomizerMod.Actions
                 ReqDef oldItem = LogicManager.GetItemDef(location);
                 ReqDef newItem = LogicManager.GetItemDef(newItemName);
 
+                // Solution done for MW with different settings compatibility
                 if (newItemName == location)
-                    continue;
-
-                /* Commented out to prevent affecting vanilla placed items - may cause stuff to break
-                if (!settings.RandomizeMaps && newItem.pool == "Map")
                 {
-                    continue;
+                    if (!settings.RandomizeMaps && newItem.pool == "Map")
+                        continue;
+                
+                    if (!settings.RandomizeStags && newItem.pool == "Stag")
+                        continue;
+                    
+                    if (!settings.RandomizeRocks && newItem.pool == "Rock")
+                        continue;
+                    
+                    if (!settings.RandomizeSoulTotems && newItem.pool == "Soul")
+                        continue;
+                    
+                    if (!settings.RandomizePalaceTotems && newItem.pool == "PalaceSoul")
+                        continue;
+                    
+                    if (!settings.RandomizePalaceTablets && newItem.pool == "PalaceLore")
+                        continue;
+                    
+                    if (!settings.RandomizeLoreTablets && newItem.pool == "Lore")
+                        continue;
                 }
-                if (!settings.RandomizeStags && newItem.pool == "Stag") 
-                {
-                    continue;
-                }
-                if (!settings.RandomizeRocks && newItem.pool == "Rock") 
-                {
-                    continue;
-                }
-                if (!settings.RandomizeSoulTotems && newItem.pool == "Soul") 
-                {
-                    continue;
-                }
-                if (!settings.RandomizePalaceTotems && newItem.pool == "PalaceSoul") 
-                {
-                    continue;
-                }
-                if (!settings.RandomizePalaceTablets && newItem.pool == "PalaceLore")
-                {
-                    continue;
-                }
-                if (!settings.RandomizeLoreTablets && newItem.pool == "Lore") 
-                {
-                    continue;
-                }
-                */
 
                 if (settings.NPCItemDialogue)
                 {

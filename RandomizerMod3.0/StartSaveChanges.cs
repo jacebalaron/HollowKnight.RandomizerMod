@@ -244,6 +244,9 @@ namespace RandomizerMod
                 Dictionary<int, string> charmNums = LogicManager.ItemNames.Select(i => (i, LogicManager.GetItemDef(i)))
                     .Where(p => p.Item2.pool == "Charm" && p.Item2.action == GiveAction.Charm && p.Item2.charmNum != -1)
                     .ToDictionary(p => p.Item2.charmNum, p => p.i);
+                charmNums[23] = "Unbreakable_Heart";
+                charmNums[24] = "Unbreakable_Greed";
+                charmNums[25] = "Unbreakable_Strength";
                 charmNums[36] = "Kingsoul";
                 charmNums[40] = "Grimmchild";
 
