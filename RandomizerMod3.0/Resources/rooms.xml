@@ -2735,7 +2735,7 @@
     <sceneName>Deepnest_East_04</sceneName>
     <doorName>right2</doorName>
     <areaName>Kingdoms_Edge</areaName>
-    <logic>Deepnest_East_04 + (LEFTCLAW | WINGS | MILDSKIPS | Deepnest_East_04[left2]) + (WINGS | MILDSKIPS)</logic>
+    <logic>Deepnest_East_04 + (LEFTCLAW | WINGS | MILDSKIPS | Deepnest_East_04[left2]) + (WINGS | (ANYCLAW + MILDSKIPS))</logic>
   </transition>
   <transition name="Deepnest_East_04[right1]">
     <sceneName>Deepnest_East_04</sceneName>
