@@ -84,8 +84,6 @@ namespace RandomizerMod
 
         public static string GetLanguageString(string key, string sheetTitle)
         {
-            Log($"Looking for language string {key} in sheet {sheetTitle}");
-
             if (sheetTitle == "Jiji" && key == "HIVE" && RandomizerMod.Instance.Settings.Jiji)
             {
                 return NextJijiHint();
