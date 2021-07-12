@@ -3540,7 +3540,7 @@
     <logic>
       Waterways_02[top1]
       | Waterways_02[top2]
-      | Waterways_02[top3]
+      | Waterways_02[top3] + QUAKE + (ANYCLAW | WINGS | RIGHTSUPERDASH | (MILDSKIPS + SWIM) | (SPICYSKIPS + RIGHTDASH))
       | Waterways_02[bot1] + (ANYCLAW | WINGS | (MILDSKIPS + SWIM) | (SPICYSKIPS + RIGHTDASH))
       | Waterways_02[bot2]
     </logic>
