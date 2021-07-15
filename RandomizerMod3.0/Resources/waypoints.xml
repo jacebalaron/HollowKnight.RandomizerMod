@@ -81,8 +81,13 @@
   </item>
   <!--Mantis_Outskirts AKA the Bretta bench-->
   <item name="Mantis_Outskirts">
-    <itemLogic>Main_Fungal_Wastes | Right_Mantis_Village | (Mantis_Village + (RIGHTCLAW | WINGS | ACID | SUPERDASH | (RIGHTDASH + MILDSKIPS))) | (Far_Left_Waterways + (LEFTCLAW | WINGS | SHADESKIPS))</itemLogic>
-    <areaLogic>Fungus2_12[left1] | Right_Mantis_Village | (((Far_Left_Waterways + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTDASH))) | (Waterways_09[left1] + (RIGHTDASH | WINGS | LEFTCLAW | ACID))) + Fungus2_23[right2]) | (Mantis_Village + (RIGHTCLAW | WINGS | ACID | SUPERDASH | (RIGHTDASH + MILDSKIPS)))</areaLogic>
+    <itemLogic>Main_Fungal_Wastes | Right_Mantis_Village | (Mantis_Village + (RIGHTCLAW | WINGS | ACID | SUPERDASH | (RIGHTDASH + MILDSKIPS))) | (Far_Left_Waterways + (LEFTCLAW | WINGS | (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH) + (RIGHTDASH | ACID)) | SHADESKIPS))</itemLogic>
+    <areaLogic>
+      Fungus2_12[left1]
+      | Right_Mantis_Village
+      | Fungus2_23[right2] + ((Far_Left_Waterways + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTDASH + (RIGHTDASH | ACID)))) | (Waterways_09[left1] + (RIGHTDASH | WINGS | LEFTCLAW | ACID)))
+      | Mantis_Village + (RIGHTCLAW | WINGS | ACID | SUPERDASH | (RIGHTDASH + MILDSKIPS))
+    </areaLogic>
   </item>
   <!--Right_Mantis_Village AKA the Mantis Village start, atop the block at the entrance-->
   <item name="Right_Mantis_Village">
@@ -442,7 +447,7 @@
   </item>
   <!--Crystal_Peak AKA the Dark Room bench-->
   <item name="Crystal_Peak">
-    <itemLogic>(Crossroads + (LANTERN | QUAKE)) | (Dirtmouth + RIGHTCLAW + (RIGHTDASH | LEFTCLAW) + WINGS + SUPERDASH) | ((SUPERDASH | (WINGS + LEFTDASH)) + (LANTERN | DARKROOMS) + Crystallized_Mound) | Upper_Crystal_Peak</itemLogic>
+    <itemLogic>(Crossroads + (LANTERN | QUAKE)) | ((SUPERDASH | (WINGS + LEFTDASH)) + (LANTERN | DARKROOMS) + Crystallized_Mound) | Upper_Crystal_Peak</itemLogic>
     <areaLogic>(QUAKE + Mines_01[left1]) | Mines_02[left1] | ((SUPERDASH | (WINGS + LEFTDASH)) + (LANTERN | DARKROOMS) + Mines_28[door1]) | Upper_Crystal_Peak</areaLogic>
   </item>
   <!--Upper_Crystal_Peak AKA Mines_20[left1]-->
