@@ -18,6 +18,11 @@
   <macro name="RIGHTSUPERDASH">SUPERDASH</macro>
   <macro name="LEFTFIREBALL">FIREBALL</macro>
   <macro name="RIGHTFIREBALL">FIREBALL</macro>
+
+  <macro name="ANYSUPERDASH">LEFTSUPERDASH | RIGHTSUPERDASH</macro>
+  <macro name="FULLSUPERDASH">LEFTSUPERDASH + RIGHTSUPERDASH</macro>
+  <macro name="ANYFIREBALL">LEFTFIREBALL | RIGHTFIREBALL</macro>
+  <macro name="FULLFIREBALL">LEFTFIREBALL + RIGHTFIREBALL</macro>
   
   <!--Macros associated with split cloak-->
   <macro name="ANYSHADOWDASH">(Mothwing_Cloak + Shade_Cloak) | (Left_Mothwing_Cloak + Left_Shade_Cloak) | (Right_Mothwing_Cloak + Right_Shade_Cloak)</macro>
@@ -161,7 +166,7 @@
   <macro name="Deepnest_East_02">(Deepnest_East_02[bot1] + (LEFTCLAW | WINGS | (RIGHTCLAW + SPICYSKIPS))) | Deepnest_East_02[top1] | Deepnest_East_02[right1]</macro>
   <macro name="Deepnest_East_03">Deepnest_East_03[left1] | Deepnest_East_03[left2] | Deepnest_East_03[top1] | Deepnest_East_03[right1] | Deepnest_East_03[right2] | Deepnest_East_03[top2]</macro>
   <macro name="Deepnest_East_04">(Deepnest_East_04[left1] + ACID) | Deepnest_East_04[left2] | Deepnest_East_04[right2] | (Deepnest_East_04[right1] + (ACID | LEFTDASH | WINGS | AIRSTALL | 2MASKS))</macro>
-  <macro name="Deepnest_East_06">Deepnest_East_06[left1] | Deepnest_East_06[top1] | Deepnest_East_06[bot1] | Deepnest_East_06[door1] | Deepnest_East_06[right1]</macro>
+  <macro name="Deepnest_East_06">(Deepnest_East_06[left1] + (RIGHTCLAW | WINGS)) | Deepnest_East_06[top1] | Deepnest_East_06[bot1] | Deepnest_East_06[door1] | Deepnest_East_06[right1]</macro>
   <macro name="Deepnest_East_07">Deepnest_East_07[right1] | Deepnest_East_07[left1] | Deepnest_East_07[left2]</macro>
   <macro name="Deepnest_East_11">Deepnest_East_11[left1] | Deepnest_East_11[bot1] | Deepnest_East_11[top1] | Deepnest_East_11[right1]</macro>
   <macro name="Deepnest_East_18">Deepnest_East_18[top1] | Deepnest_East_18[bot1] | (Deepnest_East_18[right2] + LEFTSHADOWDASH)</macro>
@@ -173,7 +178,7 @@
   <macro name="Abyss_03_c">Abyss_03_c[top1] | Abyss_03_c[right1]</macro>
   <macro name="Abyss_04">Abyss_04[top1] | Abyss_04[right1] | Abyss_04[bot1] | Abyss_04[left1]</macro>
   <macro name="Abyss_06_Core">(Abyss_06_Core[top1] + BRAND) | Abyss_06_Core[left1] | Abyss_06_Core[left3] | Abyss_06_Core[bot1] | Abyss_06_Core[right2]</macro>
-  <macro name="Abyss_09">(Abyss_09[left1] + ((RIGHTCLAW + RIGHTDASH) | WINGS)) | (Abyss_09[right1] + (Abyss_Lighthouse_room[left1] | VOIDHEART)) | Abyss_09[right2]</macro>
+  <macro name="Abyss_09">(Abyss_09[left1] + ((RIGHTCLAW + (RIGHTDASH | RIGHTSUPERDASH | (SWIM + VOIDHEART))) | WINGS)) | (Abyss_09[right1] + (Abyss_Lighthouse_room[left1] | VOIDHEART) + (LEFTSUPERDASH | SWIM)) | Abyss_09[right2]</macro>
   <macro name="Abyss_19">(Abyss_19[bot1] + (ANYCLAW | WINGS)) | Abyss_19[right1]</macro>
 
   <macro name="Abyss_01">Abyss_01[left1] | Abyss_01[right1] | (Abyss_01[left3] + (RIGHTCLAW | (LEFTCLAW + WINGS))) | (Abyss_01[left2] + (RIGHTTUNNEL | SUPERDASH)) | (Abyss_01[right2] + (LEFTTUNNEL | SUPERDASH))</macro>
@@ -182,7 +187,7 @@
   <macro name="Waterways_04">Waterways_04[right1] | (Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS)) | Waterways_04[left2]</macro>
   <macro name="Waterways_04b">Waterways_04b[right1] | Waterways_04b[right2] | Waterways_04b[left1]</macro>
   <macro name="Waterways_05">(Waterways_05[bot1] + (ANYCLAW | WINGS) + BOSS) | Waterways_05[bot2] | Waterways_05[right1]</macro>
-  <macro name="Waterways_07">(Waterways_07[left1] + ((ACID + (RIGHTCLAW | WINGS)) | (FULLCLAW + SUPERDASH))) | (Waterways_07[right1] + (ANYCLAW | WINGS)) | (Waterways_07[right2] + ACID) | Waterways_07[door1] | Waterways_07[top1]</macro>
+  <macro name="Waterways_07">(Waterways_07[left1] + ((ACID + (RIGHTCLAW | WINGS)) | (FULLCLAW + SUPERDASH) | (WINGS + RIGHTDASH + ANYCLAW))) | (Waterways_07[right1] + (ANYCLAW | WINGS)) | (Waterways_07[right2] + ACID) | Waterways_07[door1] | Waterways_07[top1]</macro>
   
   <macro name="Ruins1_03">Ruins1_03[top1] | Ruins1_03[left1] | Ruins1_03[right1] | Ruins1_03[right2]</macro>
   <macro name="Ruins1_04">Ruins1_04[right1] | Ruins1_04[door1] | (Ruins1_04[bot1] + (ANYCLAW | WINGS))</macro>
@@ -210,13 +215,13 @@
   <macro name="Mines_04">Mines_04[left1] | Mines_04[left2] | (Mines_04[left3] + (FULLCLAW | (WINGS + (ANYCLAW | SPICYSKIPS)))) | Mines_04[right1] | Mines_04[top1]</macro>
   <macro name="Mines_05">Mines_05[right1] | Mines_05[top1] | Mines_05[bot1] | Mines_05[left1] | Mines_05[left2]</macro>
   <macro name="Mines_10">(Mines_10[left1] + ((RIGHTDASH + WINGS) | SUPERDASH)) | (Mines_10[bot1] + (FULLDASH | WINGS | SUPERDASH)) | (Mines_10[right1] + FULLCLAW + SUPERDASH)</macro>
-  <macro name="Mines_11">(Mines_11[bot1] + (RIGHTCLAW | WINGS)) | Mines_11[right1] | Mines_11[top1]</macro>
+  <macro name="Mines_11">(Mines_11[bot1] + (ANYCLAW | WINGS)) | Mines_11[right1] | Mines_11[top1]</macro>
   <macro name="Mines_18">Mines_18[left1] | Mines_18[right1] | Mines_18[top1]</macro>
   <macro name="Mines_20">Mines_20[left1] | Mines_20[right1] | (Mines_20[right2] + (FULLCLAW | (WINGS + ANYCLAW)))</macro>
   <macro name="Mines_23">(FULLDASH | WINGS | (FULLCLAW + SUPERDASH) | Mines_23[right1]) + (Mines_23[left1] | Mines_23[top1] | Mines_23[right1] | Mines_23[right2])</macro>
   
   <macro name="Fungus3_04">Fungus3_04[left1] | Fungus3_04[left2] | Fungus3_04[right1] | Fungus3_04[right2]</macro>
-  <macro name="Fungus3_11">Fungus3_11[left1] | (Fungus3_11[left2] + LEFTCLAW) | (Fungus3_11[right1] + (LEFTCLAW | WINGS))</macro>
+  <macro name="Fungus3_11">Fungus3_11[left1] | (Fungus3_11[left2] + (LEFTCLAW | (RIGHTCLAW + WINGS))) | (Fungus3_11[right1] + (LEFTCLAW | WINGS))</macro>
   <macro name="Fungus3_13">Fungus3_13[left1] | Fungus3_13[left2] | Fungus3_13[left3] | Fungus3_13[bot1] | Fungus3_13[right1]</macro>
   <macro name="Fungus3_22">Fungus3_22[right1] | Fungus3_22[left1] | Fungus3_22[bot1]</macro>
   <macro name="Fungus3_34">(Fungus3_34[left1] + (RIGHTDASH | SUPERDASH | WINGS)) | Fungus3_34[right1] | Fungus3_34[top1]</macro>
