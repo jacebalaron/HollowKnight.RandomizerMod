@@ -271,14 +271,16 @@
       | Waterways_Shaft + (RIGHTTUNNEL | (LEFTTUNNEL + SUPERDASH)) + ((FULLCLAW + SUPERDASH) | (ANYCLAW + WINGS + RIGHTDASH) | ((RIGHTCLAW | WINGS) + ACID))
       | Lower_Kingdom's_Edge + ((RIGHTCLAW + (LEFTCLAW | SPICYSKIPS)) | (WINGS + ANYCLAW)) + (SUPERDASH | ACID)
       | Isma's_Grove + (ACID | SKIPACID)
-      | Emilitia</itemLogic>
+      | Emilitia
+    </itemLogic>
     <areaLogic>
       Central_Left_Waterways + SUPERDASH + ((WINGS + RIGHTDASH + ANYCLAW) | FULLCLAW | ((WINGS | RIGHTCLAW) + ACID))
       | Waterways_Shaft + (RIGHTTUNNEL | (LEFTTUNNEL + SUPERDASH)) + ((FULLCLAW + SUPERDASH) | (ANYCLAW + WINGS + RIGHTDASH) | ((RIGHTCLAW | WINGS) + ACID))
       | Waterways_14[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) + (SUPERDASH | ACID)
       | Waterways_07[right2] + (ACID | SKIPACID)
       | Waterways_07[right1] + (ANYCLAW | WINGS)
-      | Waterways_07[door1]</areaLogic>
+      | Waterways_07[door1]
+    </areaLogic>
   </item>
   <!--Godtuner-->
   <item name="Junk_Pit">
