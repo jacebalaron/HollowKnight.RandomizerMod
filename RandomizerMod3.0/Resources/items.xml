@@ -1642,8 +1642,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.2</elevation>
-    <itemLogic>Left_Elevator + (RIGHTDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)</itemLogic>
-    <areaLogic>Left_Elevator + (RIGHTDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)</areaLogic>
+    <itemLogic>Upper_Storerooms + (RIGHTDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)</itemLogic>
+    <areaLogic>Upper_Storerooms + (RIGHTDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)</areaLogic>
     <roomLogic>(Ruins1_17[top1] | Ruins1_17[right1]) + (RIGHTDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
@@ -3374,8 +3374,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Left_Elevator</itemLogic>
-    <areaLogic>Left_Elevator</areaLogic>
+    <itemLogic>Upper_Storerooms</itemLogic>
+    <areaLogic>Upper_Storerooms</areaLogic>
     <roomLogic>Ruins1_28</roomLogic>
     <type>Trinket</type>
     <action>WanderersJournal</action>
@@ -4115,8 +4115,8 @@
     <newShiny>true</newShiny>
     <x>78</x>
     <y>22</y>
-    <itemLogic>Left_Elevator + (FULLDASH | WINGS | FULLSUPERDASH | MILDSKIPS) + DREAMNAIL</itemLogic>
-    <areaLogic>Left_Elevator + (FULLDASH | WINGS | FULLSUPERDASH | MILDSKIPS) + DREAMNAIL</areaLogic>
+    <itemLogic>Upper_Storerooms + (FULLDASH | WINGS | FULLSUPERDASH | MILDSKIPS) + DREAMNAIL</itemLogic>
+    <areaLogic>Upper_Storerooms + (FULLDASH | WINGS | FULLSUPERDASH | MILDSKIPS) + DREAMNAIL</areaLogic>
     <roomLogic>(Ruins1_17[top1] | Ruins1_17[right1]) + (FULLDASH | WINGS | FULLSUPERDASH | MILDSKIPS) + DREAMNAIL</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
@@ -4914,8 +4914,8 @@
     <objectName>Grub Bottle (1)</objectName>
     <replace>true</replace>
     <elevation>0.001</elevation>
-    <itemLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Left_Elevator | Soul_Sanctum) + (LEFTCLAW | WINGS | MILDSKIPS))</itemLogic>
-    <areaLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Left_Elevator | Ruins1_05[right1] | Ruins1_31[right1]) + (LEFTCLAW | WINGS | MILDSKIPS))</areaLogic>
+    <itemLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Upper_Storerooms | Soul_Sanctum) + (LEFTCLAW | WINGS | MILDSKIPS))</itemLogic>
+    <areaLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((v | Ruins1_05[right1] | Ruins1_31[right1]) + (LEFTCLAW | WINGS | MILDSKIPS))</areaLogic>
     <roomLogic>Ruins1_05 + (LEFTCLAW | WINGS | (MILDSKIPS + (Ruins1_05[top1] | Ruins1_05[right1])))</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -5434,8 +5434,8 @@
     <newShiny>true</newShiny>
     <x>35.1</x>
     <y>15.3</y>
-    <itemLogic>Left_Elevator</itemLogic>
-    <areaLogic>Left_Elevator</areaLogic>
+    <itemLogic>Upper_Storerooms</itemLogic>
+    <areaLogic>Upper_Storerooms</areaLogic>
     <roomLogic>(Ruins1_31 | Ruins1_31[bot1] | Ruins1_31[left1])</roomLogic>
     <type>Trinket</type>
     <action>Map</action>
@@ -5645,8 +5645,8 @@
     <newShiny>true</newShiny>
     <x>28.1</x>
     <y>6.4</y>
-    <itemLogic>Left_Elevator</itemLogic>
-    <areaLogic>Left_Elevator</areaLogic>
+    <itemLogic>Upper_Storerooms</itemLogic>
+    <areaLogic>Upper_Storerooms</areaLogic>
     <roomLogic>Ruins1_29[left1] | (City_Storerooms_Stag + CANSTAG-R)</roomLogic>
     <type>Trinket</type>
     <action>Stag</action>
@@ -5906,8 +5906,8 @@
     <sceneName>Ruins1_28</sceneName>
     <objectName>Flamebearer Spawn</objectName>
     <fsmName>Spawn Control</fsmName>
-    <itemLogic>Left_Elevator + Grimmchild</itemLogic>
-    <areaLogic>Left_Elevator + Grimmchild</areaLogic>
+    <itemLogic>Upper_Storerooms + Grimmchild</itemLogic>
+    <areaLogic>Upper_Storerooms + Grimmchild</areaLogic>
     <roomLogic>Ruins1_28 + Grimmchild</roomLogic>
     <type>Flame</type>
     <action>Int</action>

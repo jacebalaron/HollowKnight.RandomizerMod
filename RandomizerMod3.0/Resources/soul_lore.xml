@@ -955,8 +955,8 @@
     <x>24.6</x>
     <y>27.7</y>
     <elevation>0.3</elevation>
-    <itemLogic>Left_Elevator | (Left_City + (ANYCLAW | WINGS)) | (Main_Fungal_Wastes + CREST + (ACID | RIGHTSUPERDASH))</itemLogic>
-    <areaLogic>Left_Elevator | (Left_City + (ANYCLAW | WINGS)) | Ruins1_01[left1]</areaLogic>
+    <itemLogic>Upper_Storerooms | (Left_City + (ANYCLAW | WINGS)) | (Main_Fungal_Wastes + CREST + (ACID | RIGHTSUPERDASH))</itemLogic>
+    <areaLogic>Upper_Storerooms | (Left_City + (ANYCLAW | WINGS)) | Ruins1_01[left1]</areaLogic>
     <roomLogic>Ruins1_02[top1] | (Ruins1_02[bot1] + (ANYCLAW | WINGS))</roomLogic>
     <type>Lore</type>
     <loreKey>RUIN_TAB_01</loreKey>
