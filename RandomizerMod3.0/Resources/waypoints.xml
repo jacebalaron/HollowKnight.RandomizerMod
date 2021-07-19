@@ -42,8 +42,8 @@
     <areaLogic>Greenpath + (LEFTCLAW | (SPICYSKIPS + 2MASKS + WINGS) | (WINGS + RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH)))</areaLogic>
   </item>
   <item name="Left_Fog_Canyon">
-    <itemLogic>Greenpath | Queen's_Station | (Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | ACID | SKIPACID)) | Right_Fog_Canyon</itemLogic>
-    <areaLogic>Fungus3_01[top1] | Fungus3_02[right2] | ((RIGHTCLAW | WINGS) + Fungus3_44[bot1]) | Fungus3_44[door1] | ((ACID | SKIPACID) + Fungus3_03[left1]) | Right_Fog_Canyon</areaLogic>
+    <itemLogic>Greenpath | Queen's_Station | (Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | ACID | RIGHTSKIPACID)) | Right_Fog_Canyon</itemLogic>
+    <areaLogic>Fungus3_01[top1] | Fungus3_02[right2] | ((RIGHTCLAW | WINGS) + Fungus3_44[bot1]) | Fungus3_44[door1] | ((ACID | RIGHTSKIPACID) + Fungus3_03[left1]) | Right_Fog_Canyon</areaLogic>
   </item>
   <item name="Overgrown_Mound">
     <itemLogic>Left_Fog_Canyon + (ANYCLAW | (WINGS + MILDSKIPS))</itemLogic>
@@ -146,16 +146,16 @@
     <itemLogic>
       Right_City + (((LEFTDASH | LEFTCLAW) + (RIGHTDASH | RIGHTCLAW)) | WINGS | RIGHTSUPERDASH | SWIM | (RIGHTCLAW + RIGHTDASH + MILDSKIPS))
       | Upper_King's_Station
-      | Tower_of_Love + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + LEFTDASH + RIGHTCLAW + WINGS + (AIRSTALL | LEFTSHARPSHADOW)))
-      | Central_Kingdom's_Edge + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + LEFTDASH + RIGHTCLAW + WINGS + (AIRSTALL | LEFTSHARPSHADOW)))
+      | Tower_of_Love + (SWIM | LEFTSKIPACID | (SPICYSKIPS + ACIDSKIPS + LEFTDASH + RIGHTCLAW + WINGS + (AIRSTALL | LEFTSHARPSHADOW)))
+      | Central_Kingdom's_Edge + (SWIM | LEFTSKIPACID | (SPICYSKIPS + ACIDSKIPS + LEFTDASH + RIGHTCLAW + WINGS + (AIRSTALL | LEFTSHARPSHADOW)))
       | (King's_Station_Stag + Can_Stag)
     </itemLogic>
     <areaLogic>
       Ruins2_06[left1]
       | Ruins2_06[left2] + (WINGS | RIGHTSUPERDASH | SWIM | (RIGHTCLAW + RIGHTDASH + MILDSKIPS))
       | Upper_King's_Station
-      | Ruins2_07[top1] + (SWIM | SKIPACID)
-      | Ruins2_07[right1] + (SWIM | SKIPACID)
+      | Ruins2_07[top1] + (SWIM | LEFTSKIPACID)
+      | Ruins2_07[right1] + (SWIM | LEFTSKIPACID)
       | (King's_Station_Stag + Can_Stag)
     </areaLogic>
   </item>
@@ -190,12 +190,12 @@
   <item name="Upper_Left_Waterways">
     <itemLogic>
       Left_City + SIMPLE1
-      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | (SWIM + ((RIGHTCLAW + (LEFTCLAW | LEFTDASH | LEFTSUPERDASH | MILDSKIPS)) | WINGS)) | SKIPACID)
+      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | (SWIM + ((RIGHTCLAW + (LEFTCLAW | LEFTDASH | LEFTSUPERDASH | MILDSKIPS)) | WINGS)) | RIGHTSKIPACID)
       | Central_Left_Waterways + (LEFTCLAW | (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | MILDSKIPS)) | (WINGS + MILDSKIPS))
     </itemLogic>
     <areaLogic>
       Waterways_01[top1]
-      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | (SWIM + ((RIGHTCLAW + (LEFTCLAW | LEFTDASH | LEFTSUPERDASH | MILDSKIPS)) | WINGS)) | SKIPACID)
+      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | (SWIM + ((RIGHTCLAW + (LEFTCLAW | LEFTDASH | LEFTSUPERDASH | MILDSKIPS)) | WINGS)) | RIGHTSKIPACID)
       | Central_Left_Waterways + (LEFTCLAW | (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | MILDSKIPS)) | (WINGS + MILDSKIPS))
     </areaLogic>
   </item>
@@ -203,7 +203,7 @@
   <item name="Central_Left_Waterways">
     <itemLogic>
       Upper_Left_Waterways 
-      | Far_Left_Waterways + RIGHTCLAW + (SWIM | SKIPACID | WINGS)
+      | Far_Left_Waterways + RIGHTCLAW + (SWIM | RIGHTSKIPACID | WINGS)
       | Lower_Left_Waterways + (ANYCLAW | WINGS)
       | Waterways_Shaft + ((LEFTTUNNEL | (RIGHTTUNNEL + LEFTSUPERDASH)) | (RIGHTCLAW + LEFTDASH + SPIKETUNNELS)) + (LEFTSUPERDASH | ACID) + ((LEFTCLAW + (LEFTDASH | MILDSKIPS | RIGHTCLAW)) | WINGS | SPICYSKIPS)
       | Right_Waterways + (FULLCLAW | (LEFTCLAW + ((ACID + (WINGS | MILDSKIPS)) | (LEFTDASH + WINGS))) | (RIGHTCLAW + WINGS)) + LEFTSUPERDASH
@@ -222,12 +222,12 @@
   <item name="Far_Left_Waterways">
     <itemLogic>
       Upper_Left_Waterways + (LEFTCLAW | (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | WINGS)) | (WINGS + MILDSKIPS)) + (WINGS | LEFTDASH | SWIM | (RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH))
-      | Upper_Left_Waterways + (SWIM | SKIPACID) + (WINGS | (LEFTCLAW + MILDSKIPS)) + (LEFTCLAW | MILDSKIPS) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW))
+      | Upper_Left_Waterways + (SWIM | LEFTSKIPACID) + (WINGS | (LEFTCLAW + MILDSKIPS)) + (LEFTCLAW | MILDSKIPS) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW))
       | Far_Upper_Left_Waterways
     </itemLogic>
     <areaLogic>
       Upper_Left_Waterways + (LEFTCLAW |(RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | WINGS)) | (WINGS + MILDSKIPS)) + (WINGS | LEFTDASH | SWIM | (RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH))
-      | Upper_Left_Waterways + (SWIM | SKIPACID) + (WINGS | (LEFTCLAW + MILDSKIPS)) + (LEFTCLAW | MILDSKIPS) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW))
+      | Upper_Left_Waterways + (SWIM | LEFTSKIPACID) + (WINGS | (LEFTCLAW + MILDSKIPS)) + (LEFTCLAW | MILDSKIPS) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW))
       | Far_Upper_Left_Waterways
     </areaLogic>
   </item>
@@ -270,14 +270,14 @@
       Central_Left_Waterways + RIGHTSUPERDASH + ((WINGS + RIGHTDASH + ANYCLAW) | FULLCLAW | ((WINGS | RIGHTCLAW) + ACID))
       | Waterways_Shaft + (RIGHTTUNNEL | (LEFTTUNNEL + RIGHTSUPERDASH)) + ((FULLCLAW + RIGHTSUPERDASH) | (ANYCLAW + WINGS + RIGHTDASH) | ((RIGHTCLAW | WINGS) + ACID))
       | Lower_Kingdom's_Edge + ((RIGHTCLAW + (LEFTCLAW | SPICYSKIPS)) | (WINGS + ANYCLAW)) + (LEFTSUPERDASH | ACID)
-      | Isma's_Grove + (ACID | SKIPACID)
+      | Isma's_Grove + (ACID | LEFTSKIPACID)
       | Emilitia
     </itemLogic>
     <areaLogic>
       Central_Left_Waterways + RIGHTSUPERDASH + ((WINGS + RIGHTDASH + ANYCLAW) | FULLCLAW | ((WINGS | RIGHTCLAW) + ACID))
       | Waterways_Shaft + (RIGHTTUNNEL | (LEFTTUNNEL + RIGHTSUPERDASH)) + ((FULLCLAW + RIGHTSUPERDASH) | (ANYCLAW + WINGS + RIGHTDASH) | ((RIGHTCLAW | WINGS) + ACID))
       | Waterways_14[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) + (LEFTSUPERDASH | ACID)
-      | Waterways_07[right2] + (ACID | SKIPACID)
+      | Waterways_07[right2] + (ACID | LEFTSKIPACID)
       | Waterways_07[right1] + (ANYCLAW | WINGS)
       | Waterways_07[door1]
     </areaLogic>
@@ -304,7 +304,7 @@
     </areaLogic>
   </item>
   <item name="Isma's_Grove">
-    <itemLogic>Right_Waterways + (((FULLCLAW | (ANYCLAW + WINGS) | (RIGHTCLAW + MILDSKIPS)) + Central_Left_Waterways + BOSS) | (ACID + (RIGHTCLAW | WINGS | MILDSKIPS)) | SKIPACID)</itemLogic>
+    <itemLogic>Right_Waterways + (((FULLCLAW | (ANYCLAW + WINGS) | (RIGHTCLAW + MILDSKIPS)) + Central_Left_Waterways + BOSS) | (ACID + (RIGHTCLAW | WINGS | MILDSKIPS)) | RIGHTSKIPACID)</itemLogic>
     <areaLogic>(Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH)))) | (Waterways_13[left2] + ((ACID + (RIGHTCLAW | WINGS | MILDSKIPS)) | (ACIDSKIPS + LEFTCLAW + RIGHTSUPERDASH + (WINGS | RIGHTCLAW))))</areaLogic>
   </item>
   <item name="Emilitia">
@@ -330,8 +330,14 @@
     <areaLogic>(Deepnest + (FULLCLAW | WINGS | (RIGHTCLAW + SPICYSKIPS) | (LEFTCLAW + (SHADESKIPS + 4MASKS)))) | Deepnest_33[top1] | Deepnest_33[top2] | (Dark_Deepnest + RIGHTCLAW)</areaLogic>
   </item>
   <item name="Failed_Tramway">
-    <itemLogic>(Mid_Deepnest + (ANYCLAW | WINGS) + (((RIGHTDASH | RIGHTCLAW | (RIGHTSUPERDASH + LEFTCLAW)) + (LEFTDASH | LEFTCLAW | (LEFTSUPERDASH + RIGHTCLAW))) | WINGS)) | (Dark_Deepnest + (FULLCLAW | (WINGS + (LEFTCLAW | (RIGHTCLAW + LEFTDASH)))))</itemLogic>
-    <areaLogic>((Deepnest_14[bot1] | Deepnest_14[bot2]) + ((((RIGHTDASH | RIGHTCLAW | (RIGHTSUPERDASH + LEFTCLAW)) + (LEFTDASH | LEFTCLAW | (LEFTSUPERDASH + RIGHTCLAW))) | WINGS)) | Deepnest_26[bot1]</areaLogic>
+    <itemLogic>
+      Mid_Deepnest + (ANYCLAW | WINGS) + (RIGHTDASH | RIGHTCLAW | (RIGHTSUPERDASH + LEFTCLAW) | WINGS) + (LEFTDASH | LEFTCLAW | (LEFTSUPERDASH + RIGHTCLAW) | WINGS)
+      | Dark_Deepnest + (FULLCLAW | (WINGS + (LEFTCLAW | (RIGHTCLAW + LEFTDASH))))
+    </itemLogic>
+    <areaLogic>
+      (Deepnest_14[bot1] | Deepnest_14[bot2]) + (RIGHTDASH | RIGHTCLAW | (RIGHTSUPERDASH + LEFTCLAW) | WINGS) + (LEFTDASH | LEFTCLAW | (LEFTSUPERDASH + RIGHTCLAW) | WINGS)
+      | Deepnest_26[bot1]
+    </areaLogic>
   </item>
   <!--Dark_Deepnest AKA the bottom of Deepnest_39-->
   <item name="Dark_Deepnest">
@@ -393,7 +399,7 @@
   <!--Central_Kingdom's_Edge AKA Deepnest_East_03[left1]-->
   <item name="Central_Kingdom's_Edge">
     <itemLogic>
-      Lower_King's_Station + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW)))
+      Lower_King's_Station + (SWIM | RIGHTSKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW)))
       | Lower_Kingdom's_Edge + (FULLCLAW | (ANYCLAW + SPICYSKIPS) | WINGS) 
       | Upper_Kingdom's_Edge 
       | Center_Right_Kingdom's_Edge
@@ -493,7 +499,7 @@
   </item>
   <!--Top_Right_Queen's_Gardens AKA Fungus3_34 below the top transition-->
   <item name="Top_Right_Queen's_Gardens">
-    <itemLogic>(Left_Fog_Canyon + (ACID | SKIPACID | LEFTSHADOWDASH)) | (Top_Left_Queen's_Gardens + (RIGHTSUPERDASH | RIGHTDASH | WINGS))</itemLogic>
+    <itemLogic>(Left_Fog_Canyon + (ACID | LEFTSKIPACID | LEFTSHADOWDASH)) | (Top_Left_Queen's_Gardens + (RIGHTSUPERDASH | RIGHTDASH | WINGS))</itemLogic>
     <areaLogic>Fungus3_34[right1] | Fungus3_34[top1] | (Top_Left_Queen's_Gardens + (RIGHTSUPERDASH | RIGHTDASH | WINGS))</areaLogic>
   </item>
   <!--Bottom_Right_Queen's_Gardens AKA the top of Fungus3_11-->

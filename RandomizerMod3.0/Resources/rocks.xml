@@ -1303,8 +1303,8 @@
     <replace>true</replace>
     <elevation>-0.6</elevation>
     <itemLogic>Lower_Kingdom's_Edge + QUAKE + (FULLCLAW | (ANYCLAW + SPICYSKIPS) | WINGS)</itemLogic>
-    <areaLogic>(((Lower_Kingdom's_Edge + (FULLCLAW | (LEFTCLAW + (SPICYSKIPS | Deepnest_East_01[right1])) | (RIGHTCLAW + SPICYSKIPS) | WINGS)) | Deepnest_East_02[top1]) + QUAKE) | (Deepnest_East_02[bot2] + (ACID | SKIPACID))</areaLogic>
-    <roomLogic>(Deepnest_East_02 + QUAKE) | (Deepnest_East_02[bot2] + (ACID | SKIPACID))</roomLogic>
+    <areaLogic>(((Lower_Kingdom's_Edge + (FULLCLAW | (LEFTCLAW + (SPICYSKIPS | Deepnest_East_01[right1])) | (RIGHTCLAW + SPICYSKIPS) | WINGS)) | Deepnest_East_02[top1]) + QUAKE) | (Deepnest_East_02[bot2] + (ACID | RIGHTSKIPACID))</areaLogic>
+    <roomLogic>(Deepnest_East_02 + QUAKE) | (Deepnest_East_02[bot2] + (ACID | RIGHTSKIPACID))</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Rock</pool>

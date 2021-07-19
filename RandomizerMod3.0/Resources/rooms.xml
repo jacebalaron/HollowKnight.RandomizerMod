@@ -1459,13 +1459,13 @@
     <sceneName>Fungus3_03</sceneName>
     <doorName>right1</doorName>
     <areaName>Fog_Canyon</areaName>
-    <logic>Fungus3_03[left1] + (ACID | SKIPACID)</logic>
+    <logic>Fungus3_03[left1] + (ACID | RIGHTSKIPACID)</logic>
   </transition>
   <transition name="Fungus3_03[left1]">
     <sceneName>Fungus3_03</sceneName>
     <doorName>left1</doorName>
     <areaName>Fog_Canyon</areaName>
-    <logic>Fungus3_03[right1] + (ACID | SKIPACID)</logic>
+    <logic>Fungus3_03[right1] + (ACID | LEFTSKIPACID)</logic>
   </transition>
   <!--Fungus3_24-->
   <transition name="Fungus3_24[right1]">
@@ -2676,7 +2676,7 @@
     <sceneName>Deepnest_East_02</sceneName>
     <doorName>bot2</doorName>
     <areaName>Kingdoms_Edge</areaName>
-    <logic>Deepnest_East_02 + QUAKE + (ACID | SKIPACID | (LEFTDASH + WINGS + ACIDSKIPS))</logic>
+    <logic>Deepnest_East_02 + QUAKE + (ACID | LEFTSKIPACID | (LEFTDASH + WINGS + ACIDSKIPS))</logic>
     <deadEnd>true</deadEnd>
   </transition>
   <transition name="Deepnest_East_02[top1]">
@@ -3571,7 +3571,7 @@
     <logic>
       Waterways_04[right1] + QUAKE
       | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + QUAKE
-      | Waterways_04[left2] + (RIGHTCLAW | WINGS) + (SWIM | SKIPACID) + QUAKE
+      | Waterways_04[left2] + (RIGHTCLAW | WINGS) + (SWIM | RIGHTSKIPACID) + QUAKE
     </logic>
     <deadEnd>true</deadEnd>
   </transition>
@@ -3582,7 +3582,7 @@
     <logic>
       Waterways_04[right1]
       | Waterways_04[left1] + (RIGHTCLAW | WINGS)
-      | Waterways_04[left2] + (RIGHTCLAW | WINGS) + (SWIM | SKIPACID)
+      | Waterways_04[left2] + (RIGHTCLAW | WINGS) + (SWIM | RIGHTSKIPACID)
     </logic>
   </transition>
   <transition name="Waterways_04[left1]">
@@ -3592,7 +3592,7 @@
     <logic>
       Waterways_04[right1] + (LEFTCLAW | (RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH | WINGS)) | (WINGS + MILDSKIPS))
       | Waterways_04[left1]
-      | Waterways_04[left2] + (SWIM | SKIPACID) + (FULLCLAW | (WINGS + MILDSKIPS))
+      | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) + (FULLCLAW | (WINGS + MILDSKIPS))
     </logic>
   </transition>
   <transition name="Waterways_04[left2]">
@@ -3600,8 +3600,8 @@
     <doorName>left2</doorName>
     <areaName>Royal_Waterways</areaName>
     <logic>
-      Waterways_04[right1] + (SWIM | SKIPACID)
-      | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + (SWIM | SKIPACID)
+      Waterways_04[right1] + (SWIM | LEFTSKIPACID)
+      | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + (SWIM | LEFTSKIPACID)
       | Waterways_04[left2]
     </logic>
   </transition>
@@ -3679,7 +3679,7 @@
     <sceneName>Waterways_07</sceneName>
     <doorName>right2</doorName>
     <areaName>Royal_Waterways</areaName>
-    <logic>Waterways_07 + (ACID | SKIPACID)</logic>
+    <logic>Waterways_07 + (ACID | RIGHTSKIPACID)</logic>
   </transition>
   <transition name="Waterways_07[left1]">
     <sceneName>Waterways_07</sceneName>
@@ -3746,13 +3746,13 @@
     <sceneName>Waterways_13</sceneName>
     <doorName>left1</doorName>
     <areaName>Ismas_Grove</areaName>
-    <logic>Waterways_13[left2] + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (ACID | SKIPACID)</logic>
+    <logic>Waterways_13[left2] + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (ACID | FULLSKIPACID)</logic>
   </transition>
   <transition name="Waterways_13[left2]">
     <sceneName>Waterways_13</sceneName>
     <doorName>left2</doorName>
     <areaName>Ismas_Grove</areaName>
-    <logic>Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH))) + (ACID | SKIPACID)</logic>
+    <logic>Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH))) + (ACID | LEFTSKIPACID)</logic>
   </transition>
   <!--Waterways_14-->
   <transition name="Waterways_14[bot1]">
@@ -4479,7 +4479,7 @@
     <doorName>right1</doorName>
     <areaName>Kings_Station</areaName>
     <logic>
-      Ruins2_07[left1] + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW)))
+      Ruins2_07[left1] + (SWIM | RIGHTSKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW)))
       | Ruins2_07[right1]
       | Ruins2_07[top1]
     </logic>
@@ -4490,8 +4490,8 @@
     <areaName>Kings_Station</areaName>
     <logic>
       Ruins2_07[left1]
-      | Ruins2_07[right1] + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + LEFTDASH + RIGHTCLAW + WINGS + (AIRSTALL | LEFTSHARPSHADOW)))
-      | Ruins2_07[top1] + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + LEFTDASH + RIGHTCLAW + WINGS + (AIRSTALL | LEFTSHARPSHADOW)))
+      | Ruins2_07[right1] + (SWIM | LEFTSKIPACID | (SPICYSKIPS + ACIDSKIPS + LEFTDASH + RIGHTCLAW + WINGS + (AIRSTALL | LEFTSHARPSHADOW)))
+      | Ruins2_07[top1] + (SWIM | LEFTSKIPACID | (SPICYSKIPS + ACIDSKIPS + LEFTDASH + RIGHTCLAW + WINGS + (AIRSTALL | LEFTSHARPSHADOW)))
     </logic>
   </transition>
   <transition name="Ruins2_07[top1]">
@@ -4499,7 +4499,7 @@
     <doorName>top1</doorName>
     <areaName>Kings_Station</areaName>
     <logic>
-      Ruins2_07[left1] + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW))) + (ANYCLAW | WINGS)
+      Ruins2_07[left1] + (SWIM | RIGHTSKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW))) + (ANYCLAW | WINGS)
       | Ruins2_07[right1] + (LEFTCLAW | WINGS | (RIGHTCLAW + (SWIM | LEFTDASH)))
       | Ruins2_07[top1] + (ANYCLAW | WINGS)
     </logic>

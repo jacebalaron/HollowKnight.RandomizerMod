@@ -185,7 +185,7 @@
     <sceneName>Fungus3_03</sceneName>
     <doorName>left1</doorName>
     <areaName>Fog_Canyon</areaName>
-    <logic>Left_Fog_Canyon + (SKIPACID | ACID)</logic>
+    <logic>Left_Fog_Canyon + (LEFTSKIPACID | ACID)</logic>
   </transition>
   <transition name="Fungus3_02[right2]">
     <sceneName>Fungus3_02</sceneName>
@@ -498,7 +498,7 @@
     <sceneName>Deepnest_East_02</sceneName>
     <doorName>bot2</doorName>
     <areaName>Kingdoms_Edge</areaName>
-    <logic>Lower_Kingdom's_Edge + (FULLCLAW | (ANYCLAW + SPICYSKIPS) | WINGS | Deepnest_East_02[top1]) + QUAKE + (ACID | SKIPACID | (LEFTDASH + WINGS + ACIDSKIPS))</logic>
+    <logic>Lower_Kingdom's_Edge + (FULLCLAW | (ANYCLAW + SPICYSKIPS) | WINGS | Deepnest_East_02[top1]) + QUAKE + (ACID | LEFTSKIPACID | (LEFTDASH + WINGS + ACIDSKIPS))</logic>
     <deadEnd>true</deadEnd>
   </transition>
   <transition name="Deepnest_East_07[left2]">
@@ -662,20 +662,20 @@
     <sceneName>Waterways_07</sceneName>
     <doorName>right2</doorName>
     <areaName>Royal_Waterways</areaName>
-    <logic>Right_Waterways + (SKIPACID | ACID)</logic>
+    <logic>Right_Waterways + (RIGHTSKIPACID | ACID)</logic>
   </transition>
   <!--Isma's Grove-->
   <transition name="Waterways_13[left1]">
     <sceneName>Waterways_13</sceneName>
     <doorName>left1</doorName>
     <areaName>Ismas_Grove</areaName>
-    <logic>Isma's_Grove + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (ACID | SKIPACID)</logic>
+    <logic>Isma's_Grove + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (ACID | FULLSKIPACID)</logic>
   </transition>
   <transition name="Waterways_13[left2]">
     <sceneName>Waterways_13</sceneName>
     <doorName>left2</doorName>
     <areaName>Ismas_Grove</areaName>
-    <logic>Isma's_Grove + LEFTCLAW + (ACID | SKIPACID)</logic>
+    <logic>Isma's_Grove + LEFTCLAW + (ACID | LEFTSKIPACID)</logic>
   </transition>
   <!--Junk Pit-->
   <transition name="GG_Waterways[right1]">
@@ -797,7 +797,7 @@
     <doorName>right1</doorName>
     <areaName>Kings_Station</areaName>
     <logic>
-      Lower_King's_Station + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW)))
+      Lower_King's_Station + (SWIM | RIGHTSKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW)))
       | Ruins2_07[top1]
     </logic>
   </transition>
@@ -806,7 +806,7 @@
     <doorName>top1</doorName>
     <areaName>Kings_Station</areaName>
     <logic>
-      Lower_King's_Station + (SWIM | SKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW))) + (ANYCLAW | WINGS)
+      Lower_King's_Station + (SWIM | RIGHTSKIPACID | (SPICYSKIPS + ACIDSKIPS + RIGHTDASH + RIGHTCLAW + WINGS + (AIRSTALL | RIGHTSHARPSHADOW))) + (ANYCLAW | WINGS)
       | Ruins2_07[right1] + (LEFTCLAW | WINGS | (RIGHTCLAW + (SWIM | LEFTDASH)))
     </logic>
   </transition>

@@ -56,15 +56,20 @@
   <macro name="AIRSTALL">FIREBALLSKIPS + (FIREBALL | SCREAM)</macro>
   <macro name="LEFTTUNNEL">SPIKETUNNELS + LEFTDASH + (Dashmaster | AIRSTALL)</macro>
   <macro name="RIGHTTUNNEL">SPIKETUNNELS + RIGHTDASH + (Dashmaster | AIRSTALL)</macro>
+  <macro name="LEFTSKIPACID">FULLCLAW + FULLDASH + LEFTSUPERDASH + ACIDSKIPS</macro>
+  <macro name="RIGHTSKIPACID">FULLCLAW + FULLDASH + RIGHTSUPERDASH + ACIDSKIPS</macro>
+  <macro name="FULLSKIPACID">LEFTSKIPACID + RIGHTSKIPACID</macro>
 
   <!--Legacy Macros - use these to indicate that directed logic hasn't been implemented for the relevant formulae-->
   <macro name="DASH">FULLDASH</macro>
   <macro name="CLAW">FULLCLAW</macro>
+  <!--<macro name="SUPERDASH>FULLSUPERDASH</macro>-->
   <macro name="SHADOWDASH">FULLSHADOWDASH</macro>
   <macro name="SHARPSHADOW">LEFTSHARPSHADOW + RIGHTSHARPSHADOW</macro>
   <macro name="DASHMASTER">LEFTDASHMASTER + RIGHTDASHMASTER</macro>
   <macro name="BALDURS">LEFTBALDURS + RIGHTBALDURS</macro>
   <macro name="TUNNEL">LEFTTUNNEL + RIGHTTUNNEL</macro>
+  <macro name="SKIPACID">LEFTSKIPACID + RIGHTSKIPACID</macro>
 
   <!--Miscellaneous Macros-->
   <macro name="CREST">City_Crest</macro>
@@ -82,7 +87,6 @@
   <macro name="INFECTED">(Lurien | Monomon | Herrah | Dreamer) + SPICYSKIPS</macro>
   <macro name="DREAMER3">(Lurien + Monomon + Herrah) | (Dreamer + Monomon + Herrah) | (Lurien + Dreamer + Herrah) | (Lurien + Monomon + Dreamer)</macro>
   <macro name="AWOKEN">Dream_Nail + Dream_Gate + Awoken_Dream_Nail</macro>
-  <macro name="SKIPACID">FULLCLAW + FULLDASH + SUPERDASH + ACIDSKIPS</macro>
   <macro name="ALLSTAGS">Crossroads_Stag + Greenpath_Stag + Queen's_Station_Stag + Queen's_Gardens_Stag + City_Storerooms_Stag + King's_Station_Stag + Resting_Grounds_Stag + Distant_Village_Stag + Hidden_Station_Stag</macro>
   <macro name="LIFEBLOOD">Lifeblood_Heart | Lifeblood_Core | Joni's_Blessing</macro>
   <macro name="UPWALLBREAK">SIDESLASH | UPSLASH | FIREBALL | SCREAM | QUAKE | Cyclone_Slash | Great_Slash | (Dash_Slash + FULLDASH)</macro>

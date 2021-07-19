@@ -1208,9 +1208,9 @@
     <altObjectName>Shiny Item Return</altObjectName>
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
-    <itemLogic>Lake_of_Unn + ((ACID + (ANYCLAW | WINGS)) | (SKIPACID + WINGS + ((FIREBALL + FIREBALLSKIPS) | LEFTSHARPSHADOW) + SPICYSKIPS) | (SPICYSKIPS + ACIDSKIPS + WINGS + FULLSUPERDASH + FULLSHARPSHADOW))</itemLogic>
-    <areaLogic>Lake_of_Unn + ((ACID + (ANYCLAW | WINGS)) | (SKIPACID + WINGS + ((FIREBALL + FIREBALLSKIPS) | LEFTSHARPSHADOW) + SPICYSKIPS) | (SPICYSKIPS + ACIDSKIPS + WINGS + FULLSUPERDASH + FULLSHARPSHADOW))</areaLogic>
-    <roomLogic>Fungus1_Slug[right1] + (ACID | SKIPACID)</roomLogic>
+    <itemLogic>Lake_of_Unn + ((ACID + (ANYCLAW | WINGS)) | (FULLSKIPACID + WINGS + ((FIREBALL + FIREBALLSKIPS) | LEFTSHARPSHADOW) + SPICYSKIPS) | (SPICYSKIPS + ACIDSKIPS + WINGS + FULLSUPERDASH + FULLSHARPSHADOW))</itemLogic>
+    <areaLogic>Lake_of_Unn + ((ACID + (ANYCLAW | WINGS)) | (FULLSKIPACID + WINGS + ((FIREBALL + FIREBALLSKIPS) | LEFTSHARPSHADOW) + SPICYSKIPS) | (SPICYSKIPS + ACIDSKIPS + WINGS + FULLSUPERDASH + FULLSHARPSHADOW))</areaLogic>
+    <roomLogic>Fungus1_Slug[right1] + (ACID | FULLSKIPACID)</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
     <pool>Charm</pool>
@@ -1720,9 +1720,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Bottom_Right_Queen's_Gardens + (ACID | SKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</itemLogic>
-    <areaLogic>Bottom_Right_Queen's_Gardens + (ACID | SKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</areaLogic>
-    <roomLogic>Fungus3_39[left1] + (ACID | SKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</roomLogic>
+    <itemLogic>Bottom_Right_Queen's_Gardens + (ACID | RIGHTSKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</itemLogic>
+    <areaLogic>Bottom_Right_Queen's_Gardens + (ACID | RIGHTSKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</areaLogic>
+    <roomLogic>Fungus3_39[left1] + (ACID | RIGHTSKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</roomLogic>
     <type>Trinket</type>
     <pool>Key</pool>
     <nameKey>INV_NAME_LOVEKEY</nameKey>
@@ -1994,19 +1994,19 @@
     <replace>true</replace>
     <elevation>1.9</elevation>
     <itemLogic>
-      Upper_Left_Waterways + (SWIM | SKIPACID)
+      Upper_Left_Waterways + (SWIM | LEFTSKIPACID)
       | Far_Left_Waterways + (SWIM | (LEFTCLAW + LEFTDASH))
-      | (Central_Left_Waterways + RIGHTCLAW) + (SWIM | SKIPACID)
+      | (Central_Left_Waterways + RIGHTCLAW) + (SWIM | LEFTSKIPACID)
     </itemLogic>
     <areaLogic>
-      Upper_Left_Waterways + (SWIM | SKIPACID)
+      Upper_Left_Waterways + (SWIM | LEFTSKIPACID)
       | Far_Left_Waterways + (SWIM | (LEFTCLAW + LEFTDASH))
-      | (Central_Left_Waterways + RIGHTCLAW) + (SWIM | SKIPACID)
+      | (Central_Left_Waterways + RIGHTCLAW) + (SWIM | LEFTSKIPACID)
     </areaLogic>
     <roomLogic>
       Waterways_04b[left1] + (SWIM | (LEFTCLAW + LEFTDASH))
       | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | (RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH)) + (SWIM | (LEFTCLAW + LEFTDASH))
-      | Waterways_04b[right2] + (SWIM | SKIPACID)
+      | Waterways_04b[right2] + (SWIM | LEFTSKIPACID)
     </roomLogic>
     <type>Trinket</type>
     <action>MaskShard</action>
@@ -2513,9 +2513,9 @@
     <objectName>Shiny Item</objectName>
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
-    <itemLogic>Right_Fog_Canyon + ((ACID | SKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</itemLogic>
-    <areaLogic>Right_Fog_Canyon + ((ACID | SKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</areaLogic>
-    <roomLogic>Fungus3_28[right1] + ((ACID | SKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</roomLogic>
+    <itemLogic>Right_Fog_Canyon + ((ACID | LEFTSKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</itemLogic>
+    <areaLogic>Right_Fog_Canyon + ((ACID | LEFTSKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</areaLogic>
+    <roomLogic>Fungus3_28[right1] + ((ACID | LEFTSKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
     <pool>Notch</pool>
@@ -3174,19 +3174,19 @@
     <replace>true</replace>
     <elevation>0.001</elevation>
     <itemLogic>
-      Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
-      | Far_Left_Waterways  + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS))
-      | (Central_Left_Waterways + RIGHTCLAW) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      | Far_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS))
+      | (Central_Left_Waterways + RIGHTCLAW) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (RIGHTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
     </itemLogic>
     <areaLogic>
-      Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
-      | Far_Left_Waterways  + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS))
-      | (Central_Left_Waterways + RIGHTCLAW) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      | Far_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS))
+      | (Central_Left_Waterways + RIGHTCLAW) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (RIGHTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
     </areaLogic>
     <roomLogic>
-      Waterways_04[right1] + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
-      | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
-      | Waterways_04[left2] + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS))
+      Waterways_04[right1] + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      | Waterways_04[left2] + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (RIGHTSKIPACID + WINGS))
     </roomLogic>
     <type>Trinket</type>
     <action>Int</action>
@@ -3857,9 +3857,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.2</elevation>
-    <itemLogic>Pale_Lurker_Area + (SWIM | SKIPACID)</itemLogic>
-    <areaLogic>Pale_Lurker_Area + (SWIM | SKIPACID)</areaLogic>
-    <roomLogic>GG_Lurker[left1] + (SWIM | SKIPACID)</roomLogic>
+    <itemLogic>Pale_Lurker_Area + (SWIM | RIGHTSKIPACID)</itemLogic>
+    <areaLogic>Pale_Lurker_Area + (SWIM | RIGHTSKIPACID)</areaLogic>
+    <roomLogic>GG_Lurker[left1] + (SWIM | RIGHTSKIPACID)</roomLogic>
     <type>Trinket</type>
     <action>KingsIdol</action>
     <pool>Relic</pool>
@@ -4780,7 +4780,7 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Lower_Kingdom's_Edge + (FULLCLAW | (ANYCLAW + SPICYSKIPS) | WINGS) + QUAKE + (ACID | SKIPACID | (LEFTDASH + WINGS + ACIDSKIPS))</itemLogic>
+    <itemLogic>Lower_Kingdom's_Edge + (FULLCLAW | (ANYCLAW + SPICYSKIPS) | WINGS) + QUAKE + (ACID | LEFTSKIPACID | (LEFTDASH + WINGS + ACIDSKIPS))</itemLogic>
     <areaLogic>Hive_03[top1]</areaLogic>
     <roomLogic>Hive_03[top1]</roomLogic>
     <type>Trinket</type>
@@ -4850,18 +4850,18 @@
     <elevation>0.1</elevation>
     <itemLogic>
       Upper_Left_Waterways + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
-      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | SWIM | SKIPACID) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
+      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | SWIM | RIGHTSKIPACID) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
       | (Central_Left_Waterways + RIGHTCLAW) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
     </itemLogic>
     <areaLogic>
       Upper_Left_Waterways + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
-      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | SWIM | SKIPACID) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
+      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | SWIM | RIGHTSKIPACID) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
       | (Central_Left_Waterways + RIGHTCLAW) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
     </areaLogic>
     <roomLogic>
       Waterways_04[right1] + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
       | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
-      | Waterways_04[left2] + (SWIM | SKIPACID)
+      | Waterways_04[left2] + (SWIM | RIGHTSKIPACID)
     </roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -4877,9 +4877,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Isma's_Grove + ANYCLAW + (ACID | SKIPACID)</itemLogic>
-    <areaLogic>Isma's_Grove + ANYCLAW + (ACID | SKIPACID)</areaLogic>
-    <roomLogic>((Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH)))) | (Waterways_13[left2] + (RIGHTCLAW | ((WINGS | MILDSKIPS) + LEFTCLAW)))) + (ACID | SKIPACID)</roomLogic>
+    <itemLogic>Isma's_Grove + ANYCLAW + (ACID | RIGHTSKIPACID)</itemLogic>
+    <areaLogic>Isma's_Grove + ANYCLAW + (ACID | RIGHTSKIPACID)</areaLogic>
+    <roomLogic>((Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH)))) | (Waterways_13[left2] + (RIGHTCLAW | ((WINGS | MILDSKIPS) + LEFTCLAW)))) + (ACID | RIGHTSKIPACID)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -4983,17 +4983,17 @@
     <replace>true</replace>
     <elevation>0.001</elevation>
     <itemLogic>
-      Lower_King's_Station + (SWIM | SKIPACID)
+      Lower_King's_Station + (SWIM | RIGHTSKIPACID)
       | Tower_of_Love + (LEFTDASH | (RIGHTCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
       | Central_Kingdom's_Edge + (LEFTDASH | SWIM | ((RIGHTCLAW + (LEFTCLAW | WINGS)) + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
     </itemLogic>
     <areaLogic>
-      Lower_King's_Station + (SWIM | SKIPACID)
+      Lower_King's_Station + (SWIM | RIGHTSKIPACID)
       | Ruins2_07[top1] + (LEFTDASH | (RIGHTCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
       | Ruins2_07[right1] + (LEFTDASH | SWIM | ((RIGHTCLAW + (LEFTCLAW | WINGS)) + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
     </areaLogic>
     <roomLogic>
-      Ruins2_07[left1] + (SWIM | SKIPACID)
+      Ruins2_07[left1] + (SWIM | RIGHTSKIPACID)
       | Ruins2_07[top1] + (LEFTDASH | (RIGHTCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
       | Ruins2_07[right1] + (LEFTDASH | SWIM | ((RIGHTCLAW + (LEFTCLAW | WINGS)) + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
     </roomLogic>
