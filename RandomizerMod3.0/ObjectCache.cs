@@ -32,6 +32,8 @@ namespace RandomizerMod
 
         private static Dictionary<GeoRockSubtype, GameObject> _geoRocks;
 
+        private static Dictionary<SoulTotemSubtype, GameObject> _soulTotems;
+
         public static GameObject ShinyItem => Object.Instantiate(_shinyItem);
 
         public static GameObject SmallGeo => Object.Instantiate(_smallGeo);
@@ -58,6 +60,14 @@ namespace RandomizerMod
 
         public static GameObject GeoRock(GeoRockSubtype t) {
             return Object.Instantiate(_geoRocks[t]);
+        }
+
+        public static SoulTotemSubtype GetPreloadedTotemType(SoulTotemSubtype t) {
+            return _soulTotems.ContainsKey(t) ? t : SoulTotemSubtype.A;
+        }
+
+        public static GameObject SoulTotem(SoulTotemSubtype t) {
+            return Object.Instantiate(_soulTotems[t]);
         }
 
         public static GameObject Grub;
@@ -116,6 +126,9 @@ namespace RandomizerMod
                 _geoRocks = new Dictionary<GeoRockSubtype, GameObject>() {
                     [GeoRockSubtype.Default] = objectsByScene[SceneNames.Tutorial_01]["_Props/Geo Rock 1"],
                 };
+                _soulTotems = new Dictionary<SoulTotemSubtype, GameObject>() {
+                    [SoulTotemSubtype.A] = objectsByScene[SceneNames.Cliffs_02]["Soul Totem 5"]
+                };
             }
             else
             {
@@ -134,6 +147,17 @@ namespace RandomizerMod
                     [GeoRockSubtype.Mine] = objectsByScene[SceneNames.Mines_20]["Geo Rock Mine (4)"],
                     [GeoRockSubtype.Outskirts] = objectsByScene[SceneNames.Deepnest_East_17]["Geo Rock Outskirts"],
                     [GeoRockSubtype.Outskirts420] = objectsByScene[SceneNames.Deepnest_East_17]["Giant Geo Egg"]
+                };
+                _soulTotems = new Dictionary<SoulTotemSubtype, GameObject>() {
+                    [SoulTotemSubtype.A] = objectsByScene[SceneNames.Cliffs_02]["Soul Totem 5"],
+                    [SoulTotemSubtype.B] = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"],
+                    [SoulTotemSubtype.C] = objectsByScene[SceneNames.Abyss_04]["Soul Totem mini_horned"],
+                    [SoulTotemSubtype.D] = objectsByScene[SceneNames.Deepnest_10]["Soul Totem 1"],
+                    [SoulTotemSubtype.E] = objectsByScene[SceneNames.RestingGrounds_05]["Soul Totem 4"],
+                    [SoulTotemSubtype.F] = objectsByScene[SceneNames.Crossroads_ShamanTemple]["Soul Totem 2"],
+                    [SoulTotemSubtype.G] = objectsByScene[SceneNames.Ruins1_32]["Soul Totem 3"],
+                    [SoulTotemSubtype.Palace] = objectsByScene[SceneNames.White_Palace_02]["Soul Totem white"],
+                    [SoulTotemSubtype.PathOfPain] = objectsByScene[SceneNames.White_Palace_18]["Soul Totem white_Infinte"]
                 };
             }
             
