@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
 using SereCore;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using RandomizerMod.FsmStateActions;
-using static RandomizerMod.GiveItemActions;
 
 namespace RandomizerMod.Actions
 {
@@ -71,27 +67,10 @@ namespace RandomizerMod.Actions
             }
             totem.transform.position = obj.transform.position;
             totem.transform.localPosition = obj.transform.localPosition;
-            totem.transform.position += Vector3.up * (Elevation[_subtype] - _elevation);
+            totem.transform.position += Vector3.up * (CreateNewSoulTotem.Elevation[_subtype] - _elevation);
             totem.SetActive(obj.activeSelf);
-            SetSoul(totem, _item, _location);
+            CreateNewSoulTotem.SetSoul(totem, _item, _location);
             Object.Destroy(obj);
-        }
-
-        public static void SetSoul(GameObject totem, string item, string location)
-        {
-            var fsm = FSMUtility.LocateFSM(totem, "soul_totem");
-            var init = fsm.GetState("Init");
-            init.RemoveActionsOfType<BoolTest>();
-            init.RemoveActionsOfType<IntCompare>();
-            init.AddAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "DEPLETED" : null)));
-            var hit = fsm.GetState("Hit");
-            hit.ClearTransitions();
-            hit.AddTransition("FINISHED", "Depleted");
-            hit.RemoveActionsOfType<IntCompare>();
-            var giveSoul = hit.GetActionOfType<FlingObjectsFromGlobalPool>();
-            giveSoul.spawnMin.Value = 100;
-            giveSoul.spawnMax.Value = 101;
-            hit.AddAction(new RandomizerExecuteLambda(() =>  GiveItem(GiveAction.None, item, location)));
         }
     }
 }
