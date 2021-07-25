@@ -121,13 +121,10 @@ namespace RandomizerMod
             _grubJar = objectsByScene[SceneNames.Abyss_19]["Grub Bottle"];
             Object.DontDestroyOnLoad(_grubJar);
 
-            if (RandomizerMod.Instance.globalSettings.ReducePreloads)
+            if (RandomizerMod.Instance.globalSettings.ReduceRockPreloads)
             {
                 _geoRocks = new Dictionary<GeoRockSubtype, GameObject>() {
                     [GeoRockSubtype.Default] = objectsByScene[SceneNames.Tutorial_01]["_Props/Geo Rock 1"],
-                };
-                _soulTotems = new Dictionary<SoulTotemSubtype, GameObject>() {
-                    [SoulTotemSubtype.B] = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"]
                 };
             }
             else
@@ -148,6 +145,17 @@ namespace RandomizerMod
                     [GeoRockSubtype.Outskirts] = objectsByScene[SceneNames.Deepnest_East_17]["Geo Rock Outskirts"],
                     [GeoRockSubtype.Outskirts420] = objectsByScene[SceneNames.Deepnest_East_17]["Giant Geo Egg"]
                 };
+                
+            }
+
+            if (RandomizerMod.Instance.globalSettings.ReduceTotemPreloads)
+            {
+                _soulTotems = new Dictionary<SoulTotemSubtype, GameObject>() {
+                    [SoulTotemSubtype.B] = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"]
+                };
+            }
+            else
+            {
                 _soulTotems = new Dictionary<SoulTotemSubtype, GameObject>() {
                     [SoulTotemSubtype.A] = objectsByScene[SceneNames.Cliffs_02]["Soul Totem 5"],
                     [SoulTotemSubtype.B] = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"],

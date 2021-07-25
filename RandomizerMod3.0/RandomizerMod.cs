@@ -119,7 +119,7 @@ namespace RandomizerMod
                 (SceneNames.Abyss_19, "Grub Bottle/Grub"),
                 (SceneNames.Abyss_19, "Grub Bottle")
             };
-            if (!globalSettings.ReducePreloads)
+            if (!globalSettings.ReduceRockPreloads)
             {
                 preloads.AddRange(new List<(string, string)>
                 {
@@ -136,8 +136,13 @@ namespace RandomizerMod
                     (SceneNames.Mines_20, "Geo Rock Mine (4)"),
                     (SceneNames.Deepnest_East_17, "Geo Rock Outskirts"),
                     (SceneNames.Deepnest_East_17, "Giant Geo Egg"),
+                });
+            }
 
-                    
+            if (!globalSettings.ReduceTotemPreloads)
+            {
+                preloads.AddRange(new List<(string, string)>
+                {   
                     (SceneNames.Cliffs_02, "Soul Totem 5"),
                     (SceneNames.Abyss_04, "Soul Totem mini_horned"),
                     (SceneNames.Deepnest_10, "Soul Totem 1"),
