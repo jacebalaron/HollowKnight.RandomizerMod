@@ -114,7 +114,7 @@ namespace RandomizerMod
                 (SceneNames.Tutorial_01, "_Scenery/plat_float_17"),
                 (SceneNames.Tutorial_01, "_Props/Tut_tablet_top"),
                 (SceneNames.Tutorial_01, "_Props/Geo Rock 1"),
-                (SceneNames.Cliffs_02, "Soul Totem 5"),
+                (SceneNames.Deepnest_East_17, "Soul Totem mini_two_horned"),
                 //(SceneNames.Room_Jinn, "Jinn NPC"),
                 (SceneNames.Abyss_19, "Grub Bottle/Grub"),
                 (SceneNames.Abyss_19, "Grub Bottle")
@@ -137,7 +137,8 @@ namespace RandomizerMod
                     (SceneNames.Deepnest_East_17, "Geo Rock Outskirts"),
                     (SceneNames.Deepnest_East_17, "Giant Geo Egg"),
 
-                    (SceneNames.Deepnest_East_17, "Soul Totem mini_two_horned"),
+                    
+                    (SceneNames.Cliffs_02, "Soul Totem 5"),
                     (SceneNames.Abyss_04, "Soul Totem mini_horned"),
                     (SceneNames.Deepnest_10, "Soul Totem 1"),
                     (SceneNames.RestingGrounds_05, "Soul Totem 4"),

@@ -63,7 +63,7 @@ namespace RandomizerMod
         }
 
         public static SoulTotemSubtype GetPreloadedTotemType(SoulTotemSubtype t) {
-            return _soulTotems.ContainsKey(t) ? t : SoulTotemSubtype.A;
+            return _soulTotems.ContainsKey(t) ? t : SoulTotemSubtype.B;
         }
 
         public static GameObject SoulTotem(SoulTotemSubtype t) {
@@ -100,7 +100,7 @@ namespace RandomizerMod
             Object.DontDestroyOnLoad(_mediumGeo);
             Object.DontDestroyOnLoad(_largeGeo);
 
-            PlayMakerFSM fsm  = objectsByScene[SceneNames.Cliffs_02]["Soul Totem 5"].LocateMyFSM("soul_totem");
+            PlayMakerFSM fsm  = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"].LocateMyFSM("soul_totem");
             _soul = Object.Instantiate(fsm.GetState("Hit").GetActionOfType<FlingObjectsFromGlobalPool>().gameObject.Value);
             _soul.SetActive(false);
             Object.DontDestroyOnLoad(_soul);
@@ -127,7 +127,7 @@ namespace RandomizerMod
                     [GeoRockSubtype.Default] = objectsByScene[SceneNames.Tutorial_01]["_Props/Geo Rock 1"],
                 };
                 _soulTotems = new Dictionary<SoulTotemSubtype, GameObject>() {
-                    [SoulTotemSubtype.A] = objectsByScene[SceneNames.Cliffs_02]["Soul Totem 5"]
+                    [SoulTotemSubtype.B] = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"]
                 };
             }
             else
