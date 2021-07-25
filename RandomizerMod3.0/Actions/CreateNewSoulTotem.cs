@@ -23,12 +23,20 @@ namespace RandomizerMod.Actions
             [SoulTotemSubtype.A] = 0.5f,
             [SoulTotemSubtype.B] = -0.1f,
             [SoulTotemSubtype.C] = -0.1f,
-            [SoulTotemSubtype.D] = 1.3f,
-            [SoulTotemSubtype.E] = 1.2f,
+            // Some elevation values adjusted from the originals to account for the shrinkage.
+            [SoulTotemSubtype.D] = 1.3f - 0.3f,
+            [SoulTotemSubtype.E] = 1.2f - 0.3f,
             [SoulTotemSubtype.F] = 0.8f,
             [SoulTotemSubtype.G] = 0.2f,
-            [SoulTotemSubtype.Palace] = 1.3f,
-            [SoulTotemSubtype.PathOfPain] = 1.5f,
+            [SoulTotemSubtype.Palace] = 1.3f - 0.3f,
+            [SoulTotemSubtype.PathOfPain] = 1.5f - 0.9f,
+        };
+
+        public static Dictionary<SoulTotemSubtype, float> ShrinkageFactor = new Dictionary<SoulTotemSubtype, float>() {
+            [SoulTotemSubtype.D] = 0.7f,
+            [SoulTotemSubtype.E] = 0.7f,
+            [SoulTotemSubtype.Palace] = 0.8f,
+            [SoulTotemSubtype.PathOfPain] = 0.7f,
         };
 
         public CreateNewSoulTotem(string sceneName, float x, float y, string totemName, string item, string location, SoulTotemSubtype   subtype)
@@ -54,6 +62,11 @@ namespace RandomizerMod.Actions
             GameObject totem = ObjectCache.SoulTotem(_subtype);
             totem.name = _totemName;
             totem.transform.position = new Vector3(_x, _y, totem.transform.position.z);
+            if (ShrinkageFactor.TryGetValue(_subtype, out var k))
+            {
+                var t = totem.transform;
+                t.localScale = new Vector3(t.localScale.x * k, t.localScale.y * k, t.localScale.z);
+            }
             totem.SetActive(true);
             SetSoul(totem, _item, _location);
         }
@@ -66,7 +79,6 @@ namespace RandomizerMod.Actions
             init.RemoveActionsOfType<IntCompare>();
             init.AddAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "DEPLETED" : null)));
             var hit = fsm.GetState("Hit");
-            if (fsm.GetState("Depleted"))
             hit.ClearTransitions();
             hit.AddTransition("FINISHED", "Depleted");
             hit.RemoveActionsOfType<IntCompare>();

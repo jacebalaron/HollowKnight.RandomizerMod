@@ -15,18 +15,6 @@ namespace RandomizerMod.Actions
         private readonly string _item;
         private readonly string _location;
 
-        public static Dictionary<SoulTotemSubtype, float> Elevation = new Dictionary<SoulTotemSubtype, float>() {
-            [SoulTotemSubtype.A] = 0.5f,
-            [SoulTotemSubtype.B] = -0.1f,
-            [SoulTotemSubtype.C] = -0.1f,
-            [SoulTotemSubtype.D] = 1.3f,
-            [SoulTotemSubtype.E] = 1.2f,
-            [SoulTotemSubtype.F] = 0.8f,
-            [SoulTotemSubtype.G] = 0.2f,
-            [SoulTotemSubtype.Palace] = 1.3f,
-            [SoulTotemSubtype.PathOfPain] = 1.5f,
-        };
-
         public ReplaceObjectWithSoulTotem(string sceneName, string objectName, float elevation, string newTotemName, string item, string location, SoulTotemSubtype subtype)
         {
             _newTotemName = newTotemName;
@@ -68,6 +56,11 @@ namespace RandomizerMod.Actions
             totem.transform.position = obj.transform.position;
             totem.transform.localPosition = obj.transform.localPosition;
             totem.transform.position += Vector3.up * (CreateNewSoulTotem.Elevation[_subtype] - _elevation);
+            if (CreateNewSoulTotem.ShrinkageFactor.TryGetValue(_subtype, out var k))
+            {
+                var t = totem.transform;
+                t.localScale = new Vector3(t.localScale.x * k, t.localScale.y * k, t.localScale.z);
+            }
             totem.SetActive(obj.activeSelf);
             CreateNewSoulTotem.SetSoul(totem, _item, _location);
             Object.Destroy(obj);
