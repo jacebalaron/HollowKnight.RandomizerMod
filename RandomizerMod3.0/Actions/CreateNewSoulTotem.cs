@@ -79,8 +79,12 @@ namespace RandomizerMod.Actions
             init.RemoveActionsOfType<IntCompare>();
             init.AddAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "DEPLETED" : null)));
             var hit = fsm.GetState("Hit");
-            hit.ClearTransitions();
-            hit.AddTransition("FINISHED", "Depleted");
+            // Path of Pain totems do not have a depleted state.
+            if (fsm.GetState("Depleted") != null)
+            {
+                hit.ClearTransitions();
+                hit.AddTransition("FINISHED", "Depleted");
+            }
             hit.RemoveActionsOfType<IntCompare>();
             var giveSoul = hit.GetActionOfType<FlingObjectsFromGlobalPool>();
             giveSoul.spawnMin.Value = 100;
