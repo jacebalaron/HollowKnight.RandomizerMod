@@ -31,6 +31,7 @@ namespace RandomizerMod.SceneChanges
             On.PlayMakerFSM.OnEnable += FsmSceneEdits;
             ModHooks.Instance.OnEnableEnemyHook += BossRewardReplacement.ReplaceBossRewards;
             On.PlayMakerFSM.OnEnable += ModifyFSM;
+            On.GameManager.SaveLevelState += SavePersistentBoolItems;
         }
 
         public static void UnHook()
@@ -40,6 +41,7 @@ namespace RandomizerMod.SceneChanges
             On.PlayMakerFSM.OnEnable -= FsmSceneEdits;
             ModHooks.Instance.OnEnableEnemyHook -= BossRewardReplacement.ReplaceBossRewards;
             On.PlayMakerFSM.OnEnable -= ModifyFSM;
+            On.GameManager.SaveLevelState -= SavePersistentBoolItems;
         }
 
         public static void SceneChanged(Scene newScene)

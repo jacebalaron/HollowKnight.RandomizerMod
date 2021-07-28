@@ -116,6 +116,7 @@
     <Compile Include="CustomSkills.cs" />
     <Compile Include="GiveItemActions.cs" />
     <Compile Include="SceneChanges\BossRewardReplacement.cs" />
+    <Compile Include="SceneChanges\PersistentBoolSaver.cs" />
     <Compile Include="StartSaveChanges.cs" />
     <Compile Include="RandoLogger.cs" />
     <Compile Include="Components\RandomizerTinkEffect.cs" />
