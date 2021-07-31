@@ -205,12 +205,6 @@ namespace RandomizerMod
                 PlayerData.instance.maxHealthBase = 1;
             }
 
-            LanguageStringManager.SetString("UI", "CHARM_NAME_23_G", "Unbreakable_Heart");
-            LanguageStringManager.SetString("UI", "CHARM_NAME_24_G", "Unbreakable_Greed");
-            LanguageStringManager.SetString("UI", "CHARM_NAME_25_G", "Unbreakable_Strength");
-            LanguageStringManager.SetString("UI", "CHARM_NAME_36", "Kingsoul");
-            LanguageStringManager.SetString("UI", "CHARM_NAME_40", "Grimmchild");
-
             if (RandomizerMod.Instance.Settings.RandomizeNotchCosts)
             {
                 Random rng = new Random(RandomizerMod.Instance.Settings.Seed + 1111);
