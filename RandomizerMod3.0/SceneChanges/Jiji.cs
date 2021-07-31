@@ -182,5 +182,20 @@ namespace RandomizerMod.SceneChanges
                 }
             }
         }
+
+        public static void KillTuk(PlayMakerFSM fsm)
+        {
+            if (!RandomizerMod.Instance.Settings.EggShop) return;
+
+            if (fsm.gameObject.scene.name == SceneNames.Waterways_03 && fsm.FsmName == "Steel Soul")
+            {
+                fsm.GetState("Pause").RemoveTransitionsTo("Check");
+
+                if (fsm.gameObject.name.StartsWith("Alive"))
+                {
+                    fsm.GetState("Pause").AddTransition("FINISHED", "Inactive");
+                }
+            }
+        }
     }
 }

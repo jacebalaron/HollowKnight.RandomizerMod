@@ -95,6 +95,7 @@ namespace RandomizerMod.SceneChanges
             EditStagStations(self);
             DisableInfectedCrossroads(self);
             // BossRewardReplacement.DestroyGruzmomGeo(self);
+            Jiji.KillTuk(self);
 
             orig(self);
         }
