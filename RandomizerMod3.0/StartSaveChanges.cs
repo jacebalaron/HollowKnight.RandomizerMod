@@ -205,6 +205,12 @@ namespace RandomizerMod
                 PlayerData.instance.maxHealthBase = 1;
             }
 
+            LanguageStringManager.SetString("UI", "CHARM_NAME_23_G", "Unbreakable_Heart");
+            LanguageStringManager.SetString("UI", "CHARM_NAME_24_G", "Unbreakable_Greed");
+            LanguageStringManager.SetString("UI", "CHARM_NAME_25_G", "Unbreakable_Strength");
+            LanguageStringManager.SetString("UI", "CHARM_NAME_36", "Kingsoul");
+            LanguageStringManager.SetString("UI", "CHARM_NAME_40", "Grimmchild");
+
             if (RandomizerMod.Instance.Settings.RandomizeNotchCosts)
             {
                 Random rng = new Random(RandomizerMod.Instance.Settings.Seed + 1111);
@@ -244,11 +250,6 @@ namespace RandomizerMod
                 Dictionary<int, string> charmNums = LogicManager.ItemNames.Select(i => (i, LogicManager.GetItemDef(i)))
                     .Where(p => p.Item2.pool == "Charm" && IsValidCharmNum(p.Item2.charmNum))
                     .ToDictionary(p => p.Item2.charmNum, p => p.i);
-                charmNums[23] = "Unbreakable_Heart";
-                charmNums[24] = "Unbreakable_Greed";
-                charmNums[25] = "Unbreakable_Strength";
-                charmNums[36] = "Kingsoul";
-                charmNums[40] = "Grimmchild";
 
                 int count = 0;
                 for (int i = 0; i < 40; i++)

@@ -377,6 +377,10 @@ namespace RandomizerMod
                 Log("Rando notch costs");
                 string i = key.Substring(11);
                 if (i.IndexOf("_") != -1) i = i.Substring(0, i.IndexOf("_"));
+
+                if (LanguageStrings.ContainsKey(sheetTitle) && LanguageStrings[sheetTitle].ContainsKey(key))
+                    return LanguageStrings[sheetTitle][key] + $" [{PlayerData.instance.GetInt($"charmCost_{i}")}]";
+
                 return Language.Language.GetInternal(key, "UI") + $" [{PlayerData.instance.GetInt($"charmCost_{i}")}]";
             }
 

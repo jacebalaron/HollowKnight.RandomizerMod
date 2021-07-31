@@ -34,10 +34,8 @@ namespace RandomizerMod.Randomization
             // do not match we should log them. In particular, the split cloak pieces in the vanilla manager should be logged.
             (int, string, string)[] orderedILPairs = getOrderedILPairs();
 
-            // TODO For MW: LogAllToSpoiler - Provide a pre-generated ItemsSpoiler section from server which emits the itemspoiler generation call
             RandoLogger.LogAllToSpoiler(orderedILPairs, RandomizerMod.Instance.Settings._transitionPlacements.Select(kvp => (kvp.Key, kvp.Value)).ToArray());
 
-            // TODO For MW: LogItemsToCondensedSpoiler - Provide allIlPairs.Where(Either Key is player's);
             RandoLogger.LogItemsToCondensedSpoiler(orderedILPairs);
         }
 
