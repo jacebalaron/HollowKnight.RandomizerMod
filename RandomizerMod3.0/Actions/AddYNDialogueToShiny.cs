@@ -148,7 +148,7 @@ namespace RandomizerMod.Actions
             {
                 case CostType.Essence:
                     // prevent beginners from being confused by dn-locked dn
-                    UIName = LanguageStringManager.GetLanguageString(itemName, "UI");
+                    UIName = Language.Language.Get(itemName, "UI");
                     if (UIName == "Dream Nail") UIName = "Dream Gate";
 
                     LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE",
@@ -164,7 +164,7 @@ namespace RandomizerMod.Actions
                     break;
 
                 case CostType.Simple:
-                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", cost + " Simple Key: " + LanguageStringManager.GetLanguageString(itemName, "UI"));
+                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", cost + " Simple Key: " + Language.Language.Get(itemName, "UI"));
 
                     if (PlayerData.instance.simpleKeys < 1 || (PlayerData.instance.simpleKeys < 2 && !PlayerData.instance.openedWaterwaysManhole))
                     {
@@ -175,7 +175,7 @@ namespace RandomizerMod.Actions
                     break;
 
                 case CostType.Grub:
-                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", cost + " Grubs: " + LanguageStringManager.GetLanguageString(itemName, "UI"));
+                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", cost + " Grubs: " + Language.Language.Get(itemName, "UI"));
 
                     if (PlayerData.instance.grubsCollected < cost)
                     {
@@ -186,7 +186,7 @@ namespace RandomizerMod.Actions
                     break;
 
                 case CostType.Wraiths:
-                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", "Have Howling Wraiths: " + LanguageStringManager.GetLanguageString(itemName, "UI"));
+                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", "Have Howling Wraiths: " + Language.Language.Get(itemName, "UI"));
 
                     if (PlayerData.instance.screamLevel < 1)
                     {
@@ -196,7 +196,7 @@ namespace RandomizerMod.Actions
                     cost = 0;
                     break;
                 case CostType.Spore:
-                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", "Equipped Spore Shroom: " + LanguageStringManager.GetLanguageString(itemName, "UI"));
+                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", "Equipped Spore Shroom: " + Language.Language.Get(itemName, "UI"));
 
                     if (!PlayerData.instance.GetBool("equippedCharm_17"))
                     {
@@ -207,10 +207,10 @@ namespace RandomizerMod.Actions
                     break;
                 case CostType.Dreamnail:
                     // prevent beginners from being confused by dn-locked dn
-                    UIName = LanguageStringManager.GetLanguageString(itemName, "UI");
+                    UIName = Language.Language.Get(itemName, "UI");
                     if (UIName == "Dream Nail") UIName = "Dream Gate";
 
-                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", "Have Dream Nail: " + LanguageStringManager.GetLanguageString(itemName, "UI"));
+                    LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", "Have Dream Nail: " + Language.Language.Get(itemName, "UI"));
 
                     if (!PlayerData.instance.hasDreamNail)
                     {
@@ -221,7 +221,7 @@ namespace RandomizerMod.Actions
                     break;
                 case CostType.whisperingRoot:
                     // prevent beginners from being confused by dn-locked dn
-                    UIName = LanguageStringManager.GetLanguageString(itemName, "UI");
+                    UIName = Language.Language.Get(itemName, "UI");
                     if (UIName == "Dream Nail") UIName = "Dream Gate";
 
                     LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE", "Complete the trial: " + UIName);
@@ -250,7 +250,7 @@ namespace RandomizerMod.Actions
                     break;
                 default:
                     LanguageStringManager.SetString("UI", "RANDOMIZER_YN_DIALOGUE",
-                        LanguageStringManager.GetLanguageString(itemName, "UI"));
+                        Language.Language.Get(itemName, "UI"));
                     break;
             }
             FSMUtility.LocateFSM(GameObject.Find("Text YN"), "Dialogue Page Control").FsmVariables

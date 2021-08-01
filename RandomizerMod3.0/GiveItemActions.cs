@@ -57,7 +57,7 @@ namespace RandomizerMod
         private static void ShowItemPopup(string nameKey, string spriteName)
         {
             GameObject popup = ObjectCache.RelicGetMsg;
-            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = LanguageStringManager.GetLanguageString(nameKey, "UI");
+            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = Language.Language.Get(nameKey, "UI");
             popup.transform.Find("Icon").GetComponent<SpriteRenderer>().sprite = RandomizerMod.GetSprite(spriteName);
             popup.SetActive(true);
         }

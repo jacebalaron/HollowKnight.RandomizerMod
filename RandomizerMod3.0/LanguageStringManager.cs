@@ -79,7 +79,7 @@ namespace RandomizerMod
         private static string NameOfItemPlacedAt(string location)
         {
             ReqDef item = LogicManager.GetItemDef(RandomizerMod.Instance.Settings.GetItemPlacedAt(location));
-            return GetLanguageString(item.nameKey, "UI");
+            return Language.Language.Get(item.nameKey, "UI");
         }
 
         public static string GetLanguageString(string key, string sheetTitle)
@@ -781,7 +781,7 @@ namespace RandomizerMod
                 int order = rand.Next(RandomizerMod.Instance.Settings.MaxOrder);
                 string[] itemList = RandomizerMod.Instance.Settings.GetNthLocationItems(order);
                 string item = itemList[rand.Next(itemList.Length)];
-                item = GetLanguageString(LogicManager.GetItemDef(item).nameKey, "UI");
+                item = Language.Language.Get(LogicManager.GetItemDef(item).nameKey, "UI");
                 if (item.StartsWith("A grub")) item = "grub";
                 int difficulty = Math.Min((itemHintSecondPart.Count * order) / RandomizerMod.Instance.Settings.MaxOrder, itemHintSecondPart.Count);
 
