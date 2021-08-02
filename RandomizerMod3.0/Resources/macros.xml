@@ -95,7 +95,7 @@
   
   <!--Elevator pass-->
   <macro name="LEFTELEVATOR">(Upper_Storerooms + NONRANDOMELEVATORS) | Elevator_Pass</macro>
-  <macro name="LEFTELEVATOR-R">Crossroads_49b[right1] + (NONRANDOMELEVATORS | Elevator_Pass)</macro>
+  <macro name="LEFTELEVATOR-R">(Crossroads_49b[right1] + NONRANDOMELEVATORS) | Elevator_Pass</macro>
   <macro name="RIGHTELEVATOR">(NONRANDOMELEVATORS | Elevator_Pass)</macro>
 
   <!--Leaving these as separate macros for now for easier modification in the future-->
