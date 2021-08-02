@@ -443,7 +443,8 @@ namespace RandomizerMod
             AddToLog($"Randomized notch costs: {RandomizerMod.Instance.Settings.RandomizeNotchCosts}");
             AddToLog("QUALITY OF LIFE");
             AddToLog($"Salubra: {RandomizerMod.Instance.Settings.CharmNotch}");
-            AddToLog($"Reduced Preloads: {RandomizerMod.Instance.globalSettings.ReducePreloads}");
+            AddToLog($"Reduced Rock Preloads: {RandomizerMod.Instance.globalSettings.ReduceRockPreloads}");
+            AddToLog($"Reduced Totem Preloads: {RandomizerMod.Instance.globalSettings.ReduceTotemPreloads}");
             AddToLog($"Recent Items: {RandomizerMod.Instance.globalSettings.RecentItems}");
             AddToLog($"Early geo: {RandomizerMod.Instance.Settings.EarlyGeo}");
             AddToLog($"Extra platforms: {RandomizerMod.Instance.Settings.ExtraPlatforms}");

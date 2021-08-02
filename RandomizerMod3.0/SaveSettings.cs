@@ -753,7 +753,13 @@ namespace RandomizerMod
             set => SetBool(value);
         }
 
-        public bool ReducePreloads
+        public bool ReduceRockPreloads
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+
+        public bool ReduceTotemPreloads
         {
             get => GetBool(true);
             set => SetBool(value);

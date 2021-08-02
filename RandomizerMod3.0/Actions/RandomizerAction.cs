@@ -40,6 +40,7 @@ namespace RandomizerMod.Actions
             int newShinies = 0;
             int newGrubs = 0;
             int newRocks = 0;
+            int newTotems = 0;
             string[] shopNames = LogicManager.ShopNames;
 
             // Loop non-shop items
@@ -136,6 +137,18 @@ namespace RandomizerMod.Actions
                 bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && !hasCost;
                 bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
                 bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
+                bool replacedWithSoulTotem = newItem.type == ItemType.Soul && canReplaceWithObj;
+
+                void preventSelfDestruct()
+                {
+                    // Add a PreventSelfDestruct for shiny items not typically replaced.
+                    // Add the action only for items which set a bool, because only those will use a
+                    // PlayerData rather than a SceneData check for their original Self Destruction.
+                    if (!oldItem.replace && oldItem.fsmName == "Shiny Control" && !string.IsNullOrEmpty(oldItem.boolName))
+                    {
+                        Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
+                    }
+                }
 
                 if (replacedWithGrub)
                 {
@@ -147,14 +160,7 @@ namespace RandomizerMod.Actions
                     else
                     {
                         Actions.Add(new ReplaceObjectWithGrubJar(oldItem.sceneName, oldItem.objectName, oldItem.elevation, jarName, newItemName, location));
-                        // Add a PreventSelfDestruct for shiny items not typically replaced.
-                        // Add the action only for items which set a bool, because only those will use a
-                        // PlayerData rather than a SceneData check for their original Self Destruction.
-                        if (!oldItem.replace && oldItem.fsmName == "Shiny Control" && !string.IsNullOrEmpty(oldItem.boolName))
-                        {
-                            Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
-                        }
-
+                        preventSelfDestruct();
                     }
                 }
                 else if (replacedWithGeoRock)
@@ -174,13 +180,21 @@ namespace RandomizerMod.Actions
                     else
                     {
                         Actions.Add(new ReplaceObjectWithGeoRock(oldItem.sceneName, oldItem.objectName, oldItem.elevation, rockName, newItemName, location, geo, subtype));
-                        // Add a PreventSelfDestruct for shiny items not typically replaced 
-                        // Add the action only for items which set a bool, because only those will use a
-                        // PlayerData rather than a SceneData check for their original Self Destruction.
-                        if (!oldItem.replace && oldItem.fsmName == "Shiny Control" && !string.IsNullOrEmpty(oldItem.boolName))
-                        {
-                            Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
-                        }
+                        preventSelfDestruct();
+                    }
+                }
+                else if (replacedWithSoulTotem)
+                {
+                    string totemName = "Randomizer Soul Totem " + newTotems++;
+                    SoulTotemSubtype subtype = GetTotemSubtype(newItem.objectName);
+                    if (oldItem.newShiny)
+                    {
+                        Actions.Add(new CreateNewSoulTotem(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewSoulTotem.Elevation[subtype] - oldItem.elevation, totemName, newItemName, location, subtype));
+                    }
+                    else
+                    {
+                        Actions.Add(new ReplaceObjectWithSoulTotem(oldItem.sceneName, oldItem.objectName, oldItem.elevation, totemName, newItemName, location, subtype));
+                        preventSelfDestruct();
                     }
                 }
                 else if (location.StartsWith("450_Geo-Egg_Shop"))
@@ -326,7 +340,7 @@ namespace RandomizerMod.Actions
                         altTest: () => RandomizerMod.Instance.Settings.CheckLocationFound(location)));
                 }
 
-                if (replacedWithGrub || replacedWithGeoRock)
+                if (replacedWithGrub || replacedWithGeoRock || replacedWithSoulTotem)
                 {
                     continue;
                 }
@@ -545,6 +559,40 @@ namespace RandomizerMod.Actions
             }
 
             return ObjectCache.GetPreloadedRockType(subtype);
+        }
+
+        private static SoulTotemSubtype GetTotemSubtype(string objName)
+        {
+            var subtype = SoulTotemSubtype.A;
+            if (objName == "Soul Totem 5") {
+                subtype = SoulTotemSubtype.A;
+            }
+            else if (objName == "Soul Totem mini_two_horned") {
+                subtype = SoulTotemSubtype.B;
+            }
+            else if (objName == "Soul Totem mini_horned") {
+                subtype = SoulTotemSubtype.C;
+            }
+            else if (objName == "Soul Totem 1") {
+                subtype = SoulTotemSubtype.D;
+            }
+            else if (objName == "Soul Totem 4") {
+                subtype = SoulTotemSubtype.E;
+            }
+            else if (objName == "Soul Totem 2") {
+                subtype = SoulTotemSubtype.F;
+            }
+            else if (objName == "Soul Totem 3") {
+                subtype = SoulTotemSubtype.G;
+            }
+            else if (objName == "Soul Totem white") {
+                subtype = SoulTotemSubtype.Palace;
+            }
+            else if (objName.StartsWith("Soul Totem white_Infinte")) {
+                subtype = SoulTotemSubtype.PathOfPain;
+            }
+
+            return ObjectCache.GetPreloadedTotemType(subtype);
         }
 
         public static string GetAdditivePrefix(string itemName)

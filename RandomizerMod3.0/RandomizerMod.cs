@@ -114,12 +114,12 @@ namespace RandomizerMod
                 (SceneNames.Tutorial_01, "_Scenery/plat_float_17"),
                 (SceneNames.Tutorial_01, "_Props/Tut_tablet_top"),
                 (SceneNames.Tutorial_01, "_Props/Geo Rock 1"),
-                (SceneNames.Cliffs_02, "Soul Totem 5"),
+                (SceneNames.Deepnest_East_17, "Soul Totem mini_two_horned"),
                 //(SceneNames.Room_Jinn, "Jinn NPC"),
                 (SceneNames.Abyss_19, "Grub Bottle/Grub"),
                 (SceneNames.Abyss_19, "Grub Bottle")
             };
-            if (!globalSettings.ReducePreloads)
+            if (!globalSettings.ReduceRockPreloads)
             {
                 preloads.AddRange(new List<(string, string)>
                 {
@@ -135,7 +135,22 @@ namespace RandomizerMod
                     (SceneNames.Hive_01, "Geo Rock Hive"),
                     (SceneNames.Mines_20, "Geo Rock Mine (4)"),
                     (SceneNames.Deepnest_East_17, "Geo Rock Outskirts"),
-                    (SceneNames.Deepnest_East_17, "Giant Geo Egg")
+                    (SceneNames.Deepnest_East_17, "Giant Geo Egg"),
+                });
+            }
+
+            if (!globalSettings.ReduceTotemPreloads)
+            {
+                preloads.AddRange(new List<(string, string)>
+                {   
+                    (SceneNames.Cliffs_02, "Soul Totem 5"),
+                    (SceneNames.Abyss_04, "Soul Totem mini_horned"),
+                    (SceneNames.Deepnest_10, "Soul Totem 1"),
+                    (SceneNames.RestingGrounds_05, "Soul Totem 4"),
+                    (SceneNames.Crossroads_ShamanTemple, "Soul Totem 2"),
+                    (SceneNames.Ruins1_32, "Soul Totem 3"),
+                    (SceneNames.White_Palace_02, "Soul Totem white"),
+                    (SceneNames.White_Palace_18, "Soul Totem white_Infinte")
                 });
             }
             return preloads;
