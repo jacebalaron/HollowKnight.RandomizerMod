@@ -85,7 +85,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\ActivateEnemyShiny.cs" />
     <Compile Include="Actions\AddYNDialogueToShiny.cs" />
+    <Compile Include="Actions\ChangeGruzMomReward.cs" />
     <Compile Include="Actions\ChangeShinyIntoGeo.cs" />
     <Compile Include="Actions\AddShinyToChest.cs" />
     <Compile Include="Actions\ChangeBoolTest.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Actions\ChangeShopContents.cs" />
     <Compile Include="Actions\ChangeChestGeo.cs" />
     <Compile Include="Actions\ChangeShinyIntoItem.cs" />
+    <Compile Include="Actions\CreateInactiveShiny.cs" />
     <Compile Include="Actions\CreateNewShiny.cs" />
     <Compile Include="Actions\CreateNewGrubJar.cs" />
     <Compile Include="Actions\CreateNewGeoRock.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="GiveItemActions.cs" />
     <Compile Include="SceneChanges\BossRewardReplacement.cs" />
     <Compile Include="SceneChanges\PersistentBoolSaver.cs" />
+    <Compile Include="SceneChanges\Jiji.cs" />
     <Compile Include="StartSaveChanges.cs" />
     <Compile Include="RandoLogger.cs" />
     <Compile Include="Components\RandomizerTinkEffect.cs" />

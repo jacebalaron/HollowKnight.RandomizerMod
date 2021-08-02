@@ -15,7 +15,8 @@ namespace RandomizerMod.Actions
         public enum ActionType
         {
             GameObject,
-            PlayMakerFSM
+            PlayMakerFSM,
+            EnemyDeath
         }
 
         private static readonly List<RandomizerAction> Actions = new List<RandomizerAction>();
@@ -129,7 +130,9 @@ namespace RandomizerMod.Actions
                     }
                 }
 
-                bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue);
+                bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) 
+                    && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue)
+                    && oldItem.costType != AddYNDialogueToShiny.CostType.RancidEggs;
                 bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && !hasCost;
                 bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
                 bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
@@ -180,6 +183,55 @@ namespace RandomizerMod.Actions
                         }
                     }
                 }
+                else if (location.StartsWith("450_Geo-Egg_Shop"))
+                {
+                    string newShinyName = "Randomizer Shiny " + location;     // lazy way to let the Jiji FSM edit determine what to do about the shiny
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, oldItem.objectName, newShinyName, oldItem.x, oldItem.y,
+                        () => Ref.PD.jinnEggsSold >= oldItem.cost));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
+                else if (location == "Boss_Geo-Gruz_Mother")
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y,
+                        oldItem.boolDataScene, oldItem.boolDataId));
+                    Actions.Add(new ChangeGruzMomReward(parentName));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
+                else if (!string.IsNullOrEmpty(oldItem.pdBool))
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y, oldItem.pdBool));
+                    Actions.Add(new ActivateEnemyShiny(oldItem.sceneName, oldItem.enemyName, parentName));
+                    
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
+                else if (!string.IsNullOrEmpty(oldItem.boolDataId))
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y, 
+                        oldItem.boolDataScene, oldItem.boolDataId));
+                    Actions.Add(new ActivateEnemyShiny(oldItem.sceneName, oldItem.enemyName, parentName));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
                 else if (oldItem.replace)
                 {
                     string replaceShinyName = "Randomizer Shiny " + newShinies++;
@@ -222,13 +274,9 @@ namespace RandomizerMod.Actions
                     {
                         newShinyName = "New Shiny"; // legacy name for scene edits
                     }
-                    else if (location.StartsWith("Boss_Geo"))
+                    else if (location.StartsWith("Boss_Geo-Gruz_Mother"))
                     {
                         newShinyName = "New Shiny Boss Geo";
-                    }
-                    else if (location == "Split_Mothwing_Cloak")
-                    {
-                        newShinyName = "New Shiny Split Cloak";
                     }
                     Actions.Add(new CreateNewShiny(oldItem.sceneName, oldItem.x, oldItem.y, newShinyName));
                     oldItem.objectName = newShinyName;
@@ -372,7 +420,7 @@ namespace RandomizerMod.Actions
                     int cost = oldItem.cost;
                     if (oldItem.costType == AddYNDialogueToShiny.CostType.Essence || oldItem.costType == AddYNDialogueToShiny.CostType.Grub)
                     {
-                        cost = settings.VariableCosts.First(pair => pair.Item1 == location).Item2;
+                        cost = settings.GetVariableCost(location);
                     }
 
                     Actions.Add(new AddYNDialogueToShiny(
@@ -566,11 +614,13 @@ namespace RandomizerMod.Actions
             UnHook();
 
             On.PlayMakerFSM.OnEnable += ProcessFSM;
+            On.HealthManager.Die += OnEnemyDeath;
         }
 
         public static void UnHook()
         {
             On.PlayMakerFSM.OnEnable -= ProcessFSM;
+            On.HealthManager.Die -= OnEnemyDeath;
         }
 
         public static void ProcessFSM(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM fsm)
@@ -620,6 +670,34 @@ namespace RandomizerMod.Actions
                 }
             }
         }
+
+        private static void OnEnemyDeath(On.HealthManager.orig_Die orig, HealthManager hm, 
+            float? attackDirection, AttackTypes attackType, bool ignoreEvasion)
+        {
+            string scene = Ref.GM.GetSceneNameString();
+
+            foreach (RandomizerAction action in Actions)
+            {
+                if (action.Type != ActionType.EnemyDeath)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    action.Process(scene, hm);
+                }
+                catch (Exception e)
+                {
+                    LogError(
+                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                }
+            }
+
+            orig(hm, attackDirection, attackType, ignoreEvasion);   // Call the original after we set the geo
+        }
+
+
 
         public abstract void Process(string scene, Object changeObj);
     }

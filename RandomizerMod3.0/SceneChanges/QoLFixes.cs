@@ -189,61 +189,6 @@ namespace RandomizerMod.SceneChanges
                     
                     break;
 
-                // Enable Jiji hints when the player does not have a shade
-                case SceneNames.Room_Ouiji:
-                    if (PlayerData.instance.shadeScene != "None")
-                    {
-                        PlayMakerFSM jijiFsm = GameObject.Find("Jiji NPC").LocateMyFSM("Conversation Control");
-                        FsmState HasShade = jijiFsm.GetState("Has Shade?");
-                        HasShade.RemoveTransitionsTo("Check Location");
-                        HasShade.AddTransition("YES", "Offer");
-                    }
-                    else if (RandomizerMod.Instance.Settings.Jiji)
-                    {
-                        PlayerData.instance.SetString("shadeMapZone", "HIVE");
-                        PlayMakerFSM jijiFsm = GameObject.Find("Jiji NPC").LocateMyFSM("Conversation Control");
-                        FsmState BoxUp = jijiFsm.GetState("Box Up");
-                        BoxUp.ClearTransitions();
-                        BoxUp.AddFirstAction(jijiFsm.GetState("Convo Choice").GetActionsOfType<GetPlayerDataInt>()[0]);
-                        BoxUp.AddTransition("FINISHED", "Offer");
-                        FsmState SendText = jijiFsm.GetState("Send Text");
-                        SendText.RemoveTransitionsTo("Yes");
-                        SendText.AddTransition("YES", "Check Location");
-                        FsmState CheckLocation = jijiFsm.GetState("Check Location");
-                        CheckLocation.AddFirstAction(BoxUp.GetActionsOfType<SendEventByName>()[0]);
-                        CheckLocation.AddFirstAction(jijiFsm.GetState("Convo Choice").GetActionsOfType<GetPlayerDataInt>()[0]);
-                        CheckLocation.AddFirstAction(jijiFsm.GetState("Yes").GetActionsOfType<PlayerDataIntAdd>()[0]);
-                        CheckLocation.AddFirstAction(jijiFsm.GetState("Yes").GetActionsOfType<SendEventByName>()[0]);
-                    }
-                    break;
-
-                case SceneNames.Room_Jinn:
-                    // I don't think Jinn necessarily belongs in the ApplyHintChanges function, but w/e
-                    {
-                        GameObject Jinn = GameObject.Find("Jinn NPC");
-                        FsmState transaction = Jinn.LocateMyFSM("Conversation Control").GetState("Transaction");
-                        transaction.RemoveActionsOfType<RandomInt>();
-                        transaction.RemoveActionsOfType<CallMethodProper>();
-                        transaction.AddFirstAction(new RandomizerExecuteLambda(() => HeroController.instance.AddGeo(450)));
-
-                        // Jinn Sell All
-                        if (RandomizerMod.Instance.Settings.JinnSellAll)
-                        {
-                            PlayMakerFSM fsm = Jinn.FindGameObjectInChildren("Talk NPC").LocateMyFSM("Conversation Control");
-                            fsm.GetState("Talk Finish").AddFirstAction(new RandomizerExecuteLambda(() =>
-                            {
-                                int n = Ref.PD.GetInt(nameof(Ref.PD.rancidEggs));
-                                if (n > 0)
-                                {
-                                    Ref.Hero.AddGeo(450 * n);
-                                    Ref.PD.SetInt(nameof(Ref.PD.rancidEggs), Ref.PD.GetInt(nameof(Ref.PD.rancidEggs)) - n);
-                                    Ref.PD.SetInt(nameof(Ref.PD.jinnEggsSold), Ref.PD.GetInt(nameof(Ref.PD.jinnEggsSold)) + n);
-                                }
-                            }));
-                        }
-                    }
-                    break;
-
                 // Tuk only sells eggs when you have no eggs in your inventory, to balance around hints and/or eggs
                 case SceneNames.Waterways_03:
                     GameObject.Find("Tuk NPC").LocateMyFSM("Conversation Control").GetState("Convo Choice").GetActionOfType<IntCompare>().integer2 = 1;

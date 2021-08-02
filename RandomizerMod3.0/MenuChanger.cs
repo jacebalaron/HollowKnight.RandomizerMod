@@ -110,7 +110,9 @@ namespace RandomizerMod
             y -= vspace;
             RandoMenuItem<bool> splitCloakBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Split Cloak", false, true);
             RandoMenuItem<bool> splitClawBtn = new RandoMenuItem<bool>(back, new Vector2(rightColumn, y), "Split Claw", false, true);
-            y -= 90;
+            y -= vspace;
+            RandoMenuItem<bool> RandoEggShopBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Egg Shop", false, true);
+            y -= vspace;
             RandoMenuItem<bool> RandoNotchCostBtn = new RandoMenuItem<bool>(back, new Vector2(centerColumn, y), "Randomize Notch Costs", true, false);
 
             RandoMenuItem<bool> RandoStartItemsBtn = new RandoMenuItem<bool>(back, new Vector2(900, 80), "Randomize Start Items", false, true);
@@ -755,6 +757,8 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.CursedNail = cursedNailBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CursedNotches = cursedNotchesBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CursedMasks = cursedMasksBtn.CurrentSelection;
+
+					RandomizerMod.Instance.Settings.EggShop = RandoEggShopBtn.CurrentSelection;
 
                     RandomizerMod.Instance.Settings.Randomizer = rando;
                     RandomizerMod.Instance.Settings.RandomizeAreas = modeBtn.CurrentSelection.EndsWith("Area Randomizer");

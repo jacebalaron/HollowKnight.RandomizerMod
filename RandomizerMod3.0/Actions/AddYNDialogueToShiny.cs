@@ -23,7 +23,8 @@ namespace RandomizerMod.Actions
             Wraiths,
             Dreamnail,
             whisperingRoot,
-            Spore
+            Spore,
+            RancidEggs
         }
 
         private readonly int _cost;
@@ -59,6 +60,11 @@ namespace RandomizerMod.Actions
                 fsm.gameObject.name != _objectName)
             {
                 return;
+            }
+
+            if (_type == CostType.RancidEggs)
+            {
+                throw new System.NotImplementedException();
             }
 
             FsmState noState = new FsmState(fsm.GetState("Idle"))

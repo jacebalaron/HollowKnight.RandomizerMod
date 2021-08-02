@@ -130,6 +130,8 @@ namespace RandomizerMod
                 if (RandomizerMod.Instance.Settings.RandomizeBossEssence) randomizationSettingsSeed += 1;
                 randomizationSettingsSeed = randomizationSettingsSeed << 1;
                 if (RandomizerMod.Instance.Settings.RandomizeBossGeo) randomizationSettingsSeed += 1;
+                randomizationSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.EggShop) randomizationSettingsSeed += 1;
 
                 int miscSettingsSeed = 0;
                 if (RandomizerMod.Instance.Settings.DuplicateMajorItems) miscSettingsSeed += 1;
@@ -183,6 +185,11 @@ namespace RandomizerMod
             Ref.PD.mageLordEncountered = true;
             Ref.PD.mageLordEncountered_2 = true;
             Ref.PD.godseekerUnlocked = true;
+
+            if (RandomizerMod.Instance.Settings.EggShop)
+            {
+                Ref.PD.jijiMet = true;
+            }
 
             List<string> startItems = RandomizerMod.Instance.Settings.ItemPlacements.Where(pair => pair.Item2.StartsWith("Equip")).Select(pair => pair.Item1).ToList();
             foreach (string item in startItems)
