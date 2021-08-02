@@ -775,21 +775,28 @@
     <sceneName>Crossroads_49</sceneName>
     <doorName>right1</doorName>
     <areaName>Forgotten_Crossroads</areaName>
-    <logic>Crossroads_49b[right1]</logic>
-    <deadEnd>true</deadEnd>
+    <logic>
+      Crossroads_49b[right1] + LEFTELEVATOR-R
+      | Crossroads_49[left1] + LEFTELEVATOR-R
+    </logic>
   </transition>
   <transition name="Crossroads_49[left1]">
     <sceneName>Crossroads_49</sceneName>
     <doorName>left1</doorName>
     <areaName>Forgotten_Crossroads</areaName>
-    <logic>Crossroads_49b[right1]</logic>
-    <deadEnd>true</deadEnd>
+    <logic>
+      Crossroads_49b[right1] + LEFTELEVATOR-R
+      | Crossroads_49[right1] + LEFTELEVATOR-R
+    </logic>
   </transition>
   <transition name="Crossroads_49b[right1]">
     <sceneName>Crossroads_49b</sceneName>
     <doorName>right1</doorName>
     <areaName>City_of_Tears</areaName>
-    <isolated>true</isolated>
+    <logic>
+      Crossroads_49[right1] + LEFTELEVATOR-R
+      | Crossroads_49[left1] + LEFTELEVATOR-R
+    </logic>
   </transition>
   <!--Crossroads_50-->
   <transition name="Crossroads_50[right1]">
@@ -4536,7 +4543,10 @@
     <sceneName>Ruins2_10b</sceneName>
     <doorName>right1</doorName>
     <areaName>Kings_Station</areaName>
-    <logic>(Ruins2_10 + ((LEFTCLAW + WINGS) | (RIGHTCLAW + WINGS + LEFTDASH) | FULLCLAW)) | (Ruins2_10b[left1] + (LEFTCLAW | (RIGHTCLAW + WINGS + LEFTDASH)))</logic>
+    <logic>
+      (Ruins2_10 | Ruins2_10b[right2]) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + WINGS + LEFTDASH) | FULLCLAW)
+      | (Ruins2_10b[left1] + (LEFTCLAW | (RIGHTCLAW + WINGS + LEFTDASH)))
+    </logic>
   </transition>
   <transition name="Ruins2_10b[right2]">
     <sceneName>Ruins2_10b</sceneName>
@@ -4548,7 +4558,7 @@
     <sceneName>Ruins2_10b</sceneName>
     <doorName>left1</doorName>
     <areaName>Kings_Station</areaName>
-    <logic>Ruins2_10 + (Ruins_Bathhouse[door1] | Ruins_Bathhouse[right1]) + ((ANYCLAW + WINGS) | FULLCLAW | Ruins2_10b[right1])</logic>
+    <logic>(Ruins2_10 | Ruins2_10b[right1] | Ruins2_10b[right2]) + (Ruins_Bathhouse[door1] | Ruins_Bathhouse[right1]) + ((ANYCLAW + WINGS) | FULLCLAW | Ruins2_10b[right1])</logic>
   </transition>
   <!--Ruins2_11_b-->
   <transition name="Ruins2_11_b[right1]">

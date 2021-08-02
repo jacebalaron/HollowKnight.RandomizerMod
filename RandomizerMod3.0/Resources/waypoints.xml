@@ -115,8 +115,8 @@
   </item>
   <!--Left_Elevator AKA the inside of the elevator in Crossroads_49b-->
   <item name="Left_Elevator">
-    <itemLogic>Upper_Storerooms</itemLogic>
-    <areaLogic>Upper_Storerooms</areaLogic>
+    <itemLogic>(Upper_Storerooms | Crossroads) + LEFTELEVATOR</itemLogic>
+    <areaLogic>(Upper_Storerooms | Crossroads) + LEFTELEVATOR</areaLogic>
   </item>
   <item name="Soul_Sanctum">
     <itemLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + (MILDSKIPS | ANYCLAW)))) | (Upper_Storerooms + (ANYCLAW | WINGS)) | (Watcher's_Spire + (LEFTCLAW | WINGS))</itemLogic>
@@ -186,8 +186,8 @@
   </item>
   <!--The inside of the elevator in Ruins2_10b-->
   <item name="Right_Elevator">
-    <itemLogic>Lower_Resting_Grounds | Upper_Resting_Grounds + QUAKE | Upper_King's_Station</itemLogic>
-    <areaLogic>Lower_Resting_Grounds | Upper_Resting_Grounds + QUAKE | Upper_King's_Station</areaLogic>
+    <itemLogic>(Lower_Resting_Grounds | Upper_Resting_Grounds + QUAKE | Upper_King's_Station) + RIGHTELEVATOR</itemLogic>
+    <areaLogic>(Lower_Resting_Grounds | Upper_Resting_Grounds + QUAKE | Upper_King's_Station) + RIGHTELEVATOR</areaLogic>
   </item>
   <item name="Pleasure_House">
     <itemLogic>Right_City + (Upper_King's_Station | WINGS | ((LEFTDASH | LEFTCLAW) + (RIGHTDASH | RIGHTCLAW)) | (Lower_King's_Station + RIGHTCLAW)) + SIMPLE4</itemLogic>

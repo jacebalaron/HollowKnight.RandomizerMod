@@ -339,6 +339,11 @@ namespace RandomizerMod
             get => GetBool(true);
             set => SetBool(value);
         }
+        public bool ElevatorPass
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
 
         public bool CursedNail
         {
