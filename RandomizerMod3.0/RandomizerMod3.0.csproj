@@ -119,7 +119,6 @@
     <Compile Include="RecentItems.cs" />
     <Compile Include="CustomSkills.cs" />
     <Compile Include="GiveItemActions.cs" />
-    <Compile Include="SceneChanges\BossRewardReplacement.cs" />
     <Compile Include="SceneChanges\PersistentBoolSaver.cs" />
     <Compile Include="SceneChanges\Jiji.cs" />
     <Compile Include="StartSaveChanges.cs" />
