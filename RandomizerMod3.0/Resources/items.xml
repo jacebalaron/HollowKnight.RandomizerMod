@@ -948,9 +948,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>0.001</elevation>
-    <itemLogic>Deepnest + RIGHTSHADOWDASH</itemLogic>
-    <areaLogic>Deepnest + RIGHTSHADOWDASH</areaLogic>
-    <roomLogic>Deepnest_44[top1] + RIGHTSHADOWDASH</roomLogic>
+    <itemLogic>Deepnest + RIGHTSHADOWDASH + (LEFTSHADOWDASH | 4MASKS)</itemLogic>
+    <areaLogic>Deepnest + RIGHTSHADOWDASH + (LEFTSHADOWDASH | 4MASKS)</areaLogic>
+    <roomLogic>Deepnest_44[top1] + RIGHTSHADOWDASH + (LEFTSHADOWDASH | 4MASKS)</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
     <pool>Charm</pool>
