@@ -53,7 +53,7 @@ namespace RandomizerMod.SceneChanges
 
                 // Wings-only pogo to Soul Sanctum
                 case SceneNames.Ruins1_05:
-                    GameObject chandelier = GameObject.Find("ruind_dressing_light_02 (10)");
+                    GameObject chandelier = newScene.FindGameObject("ruind_dressing_light_02 (10)");
                     chandelier.transform.SetPositionX(chandelier.transform.position.x - 2);
                     chandelier.GetComponent<NonBouncer>().active = false;
                     break;
@@ -69,63 +69,63 @@ namespace RandomizerMod.SceneChanges
 
                 // Respawn jars in Collector's room to allow wings only access
                 case SceneNames.Ruins2_11:
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar",
                         activated = false,
                         semiPersistent = false
                     });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar (1)",
                         activated = false,
                         semiPersistent = false
                     });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar (2)",
                         activated = false,
                         semiPersistent = false
                     });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar (3)",
                         activated = false,
                         semiPersistent = false
                     });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar (4)",
                         activated = false,
                         semiPersistent = false
                     });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar (5)",
                         activated = false,
                         semiPersistent = false
                     });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar (6)",
                         activated = false,
                         semiPersistent = false
                     });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar (7)",
                         activated = false,
                         semiPersistent = false
                     });
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Ruins2_11",
                         id = "Break Jar (8)",

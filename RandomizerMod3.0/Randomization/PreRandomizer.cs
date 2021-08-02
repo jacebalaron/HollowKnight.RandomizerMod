@@ -39,6 +39,16 @@ namespace RandomizerMod.Randomization
                     RandomizerMod.Instance.Settings.AddNewCost(item, cost);
                     continue;
                 }
+
+                if (def.costType == Actions.AddYNDialogueToShiny.CostType.RancidEggs) //eggu cost
+                {
+                    int cost = MIN_EGG_COST + rand.Next(MAX_EGG_COST - MIN_EGG_COST + 1);
+
+                    def.cost = cost;
+                    LogicManager.EditItemDef(item, def); // blah blah blah would be nicer to have a random number of items in the eggu shop
+                    RandomizerMod.Instance.Settings.AddNewCost(item, cost);
+                    continue;
+                }
             }
         }
 

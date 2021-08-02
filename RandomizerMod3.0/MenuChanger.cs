@@ -110,7 +110,9 @@ namespace RandomizerMod
             y -= vspace;
             RandoMenuItem<bool> splitCloakBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Split Cloak", false, true);
             RandoMenuItem<bool> splitClawBtn = new RandoMenuItem<bool>(back, new Vector2(rightColumn, y), "Split Claw", false, true);
-            y -= 90;
+            y -= vspace;
+            RandoMenuItem<bool> RandoEggShopBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Egg Shop", false, true);
+            y -= vspace;
             RandoMenuItem<bool> RandoNotchCostBtn = new RandoMenuItem<bool>(back, new Vector2(centerColumn, y), "Randomize Notch Costs", true, false);
 
             RandoMenuItem<bool> RandoStartItemsBtn = new RandoMenuItem<bool>(back, new Vector2(900, 80), "Randomize Start Items", false, true);
@@ -142,8 +144,11 @@ namespace RandomizerMod
             RandoMenuItem<bool> charmNotchBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Salubra Notches", true, false);
             y -= vspace;
             */
-            RandoMenuItem<bool> preloadsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Reduce Preloads", true, false);
-            preloadsBtn.SetSelection(RandomizerMod.Instance.globalSettings.ReducePreloads);
+            RandoMenuItem<bool> rockPreloadsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Reduce Rock Preloads", true, false);
+            rockPreloadsBtn.SetSelection(RandomizerMod.Instance.globalSettings.ReduceRockPreloads);
+            y -= vspace;
+            RandoMenuItem<bool> totemPreloadsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Reduce Totem Preloads", true, false);
+            totemPreloadsBtn.SetSelection(RandomizerMod.Instance.globalSettings.ReduceTotemPreloads);
             y -= vspace;
             RandoMenuItem<bool> EarlyGeoBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Early Geo", true, false);
             y -= vspace;
@@ -243,11 +248,12 @@ namespace RandomizerMod
             acidSkipsBtn.Button.SetNavigation(fireballSkipsBtn.Button, startRandoBtn, spikeTunnelsBtn.Button, acidSkipsBtn.Button);
             spikeTunnelsBtn.Button.SetNavigation(acidSkipsBtn.Button, startRandoBtn, darkRoomsBtn.Button, spikeTunnelsBtn.Button);
             darkRoomsBtn.Button.SetNavigation(spikeTunnelsBtn.Button, startRandoBtn, spicySkipsBtn.Button, darkRoomsBtn.Button);
-            spicySkipsBtn.Button.SetNavigation(darkRoomsBtn.Button, startRandoBtn, preloadsBtn.Button, spicySkipsBtn.Button);
+            spicySkipsBtn.Button.SetNavigation(darkRoomsBtn.Button, startRandoBtn, rockPreloadsBtn.Button, spicySkipsBtn.Button);
 
             //charmNotchBtn.Button.SetNavigation(spicySkipsBtn.Button, startRandoBtn, preloadsBtn.Button, charmNotchBtn.Button);
-            preloadsBtn.Button.SetNavigation(spicySkipsBtn.Button, startRandoBtn, EarlyGeoBtn.Button, preloadsBtn.Button);
-            EarlyGeoBtn.Button.SetNavigation(preloadsBtn.Button, startRandoBtn, softlockBtn.Button, EarlyGeoBtn.Button);
+            rockPreloadsBtn.Button.SetNavigation(spicySkipsBtn.Button, startRandoBtn, totemPreloadsBtn.Button, rockPreloadsBtn.Button);
+            totemPreloadsBtn.Button.SetNavigation(rockPreloadsBtn.Button, startRandoBtn, EarlyGeoBtn.Button, totemPreloadsBtn.Button);
+            EarlyGeoBtn.Button.SetNavigation(totemPreloadsBtn.Button, startRandoBtn, softlockBtn.Button, EarlyGeoBtn.Button);
             softlockBtn.Button.SetNavigation(EarlyGeoBtn.Button, startRandoBtn, npcBtn.Button, softlockBtn.Button);
             npcBtn.Button.SetNavigation(softlockBtn.Button, startRandoBtn, RandoFocusBtn.Button, npcBtn.Button);
             //jijiBtn.Button.SetNavigation(npcBtn.Button, startRandoBtn, presetSkipsBtn.Button, jijiBtn.Button);
@@ -541,9 +547,14 @@ namespace RandomizerMod
                 RandomizerMod.Instance.globalSettings.NPCItemDialogue = npcBtn.CurrentSelection;
             }
 
-            void PreloadsSettingChanged(RandoMenuItem<bool> item)
+            void RockPreloadsSettingChanged(RandoMenuItem<bool> item)
             {
-                RandomizerMod.Instance.globalSettings.ReducePreloads = preloadsBtn.CurrentSelection;
+                RandomizerMod.Instance.globalSettings.ReduceRockPreloads = rockPreloadsBtn.CurrentSelection;
+            }
+
+            void TotemPreloadsSettingChanged(RandoMenuItem<bool> item)
+            {
+                RandomizerMod.Instance.globalSettings.ReduceTotemPreloads = totemPreloadsBtn.CurrentSelection;
             }
             modeBtn.Changed += s => HandleProgressionLock();
 
@@ -656,7 +667,8 @@ namespace RandomizerMod
             modeBtn.Changed += (RandoMenuItem<string> Item) => UpdateStartLocationColor();
             recentItemsBtn.Changed += RecentItemsSettingChanged;
             npcBtn.Changed += NPCSettingChanged;
-            preloadsBtn.Changed += PreloadsSettingChanged;
+            rockPreloadsBtn.Changed += RockPreloadsSettingChanged;
+            totemPreloadsBtn.Changed += TotemPreloadsSettingChanged;
 
             // Setup game type button changes
             void SaveShadeVal(RandoMenuItem<bool> item)
@@ -755,6 +767,8 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.CursedNail = cursedNailBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CursedNotches = cursedNotchesBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CursedMasks = cursedMasksBtn.CurrentSelection;
+
+					RandomizerMod.Instance.Settings.EggShop = RandoEggShopBtn.CurrentSelection;
 
                     RandomizerMod.Instance.Settings.Randomizer = rando;
                     RandomizerMod.Instance.Settings.RandomizeAreas = modeBtn.CurrentSelection.EndsWith("Area Randomizer");

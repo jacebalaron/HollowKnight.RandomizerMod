@@ -82,6 +82,10 @@ namespace RandomizerMod
                     {
                         altLocation = "Grubfather";
                     }
+                    else if (LogicManager.GetItemDef(location).costType == Actions.AddYNDialogueToShiny.CostType.RancidEggs)
+                    {
+                        altLocation = "Jiji";
+                    }
                 }
 
                 if (pm.CanGet(altLocation))
@@ -427,6 +431,7 @@ namespace RandomizerMod
             AddToLog($"Grimmkin flames: {RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames}");
             AddToLog($"Boss essence: {RandomizerMod.Instance.Settings.RandomizeBossEssence}");
             AddToLog($"Boss geo: {RandomizerMod.Instance.Settings.RandomizeBossGeo}");
+            AddToLog($"Egg shop: {RandomizerMod.Instance.Settings.EggShop}");
             AddToLog($"Split cloak: {RandomizerMod.Instance.Settings.RandomizeCloakPieces}");
             AddToLog($"Split claw: {RandomizerMod.Instance.Settings.RandomizeClawPieces}");
             AddToLog($"Focus: {RandomizerMod.Instance.Settings.RandomizeFocus}");
@@ -438,7 +443,8 @@ namespace RandomizerMod
             AddToLog($"Randomized notch costs: {RandomizerMod.Instance.Settings.RandomizeNotchCosts}");
             AddToLog("QUALITY OF LIFE");
             AddToLog($"Salubra: {RandomizerMod.Instance.Settings.CharmNotch}");
-            AddToLog($"Reduced Preloads: {RandomizerMod.Instance.globalSettings.ReducePreloads}");
+            AddToLog($"Reduced Rock Preloads: {RandomizerMod.Instance.globalSettings.ReduceRockPreloads}");
+            AddToLog($"Reduced Totem Preloads: {RandomizerMod.Instance.globalSettings.ReduceTotemPreloads}");
             AddToLog($"Recent Items: {RandomizerMod.Instance.globalSettings.RecentItems}");
             AddToLog($"Early geo: {RandomizerMod.Instance.Settings.EarlyGeo}");
             AddToLog($"Extra platforms: {RandomizerMod.Instance.Settings.ExtraPlatforms}");

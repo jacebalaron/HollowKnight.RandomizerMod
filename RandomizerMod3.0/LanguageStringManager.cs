@@ -79,7 +79,7 @@ namespace RandomizerMod
         private static string NameOfItemPlacedAt(string location)
         {
             ReqDef item = LogicManager.GetItemDef(RandomizerMod.Instance.Settings.GetItemPlacedAt(location));
-            return GetLanguageString(item.nameKey, "UI");
+            return Language.Language.Get(item.nameKey, "UI");
         }
 
         public static string GetLanguageString(string key, string sheetTitle)
@@ -181,6 +181,57 @@ namespace RandomizerMod
             {
                 return Language.Language.GetInternal(key, sheetTitle).Replace("?", $" for a {NameOfItemPlacedAt("Vessel_Fragment-Basin")}?");
             }
+
+            #region Egg Shop
+
+            if (RandomizerMod.Instance.Settings.EggShop)
+            {
+                if (key == "JIJI_OFFER" && sheetTitle == "Prompts")
+                {
+                    Log(Language.Language.GetInternal("MEET2", "Jiji"));
+                    return "Give Jiji all your rancid eggs?";
+                }
+                else if (key == "DECLINE" && sheetTitle == "Jiji")
+                {
+                    return "Oh? Well, if you have no desire to get my items, I can not help you.";
+                }
+                else if (key == "RITUAL_BEGIN" && sheetTitle == "Jiji")
+                {
+                    // return "Mmmm... I will enjoy this morsel tremendously. Now, as promised, we will begin the ritual."
+                }
+                else if (key == "GREET" && sheetTitle == "Jiji")
+                {
+                    return "Ah, hello. How have you been faring? Have you come to me because of your eggs? Let me see...";
+                }
+
+                else if (key == "SHADE_OFFER" && sheetTitle == "Jiji")
+                {
+                    List<(string, int)> eggShopItems = LogicManager.GetItemsByPool("EggShopLocation")
+                        .Select(loc => (loc, RandomizerMod.Instance.Settings.GetVariableCost(loc)))
+                        .ToList();
+
+                    eggShopItems.Sort((pair1, pair2) => pair1.Item2.CompareTo(pair2.Item2));
+
+                    StringBuilder convo = new StringBuilder();
+                    int ctr = 0;
+                    foreach ((string location, int cost) in eggShopItems)
+                    {
+                        int topay = cost - Ref.PD.jinnEggsSold;
+                        if (topay <= 0) continue;
+
+                        convo.Append(ctr == 0 ? "" : "<br>");
+
+                        string item = NameOfItemPlacedAt(location);
+                        convo.Append($"{topay} more eggs: {item}");
+
+                        ctr++;
+                    }
+                    return convo.ToString();
+                }
+
+            }
+            #endregion
+
 
             // Used to show which mantis claw piece we have in inventory. Changed the Mantis Claw shop name/description to
             // use a different entry, for the unlikely event that Mantis Claw and claw pieces can appear in the same seed in the future.
@@ -369,6 +420,13 @@ namespace RandomizerMod
                 }
 
                 return sb.ToString();
+            }
+
+            if (RandomizerMod.Instance.Settings.RandomizeNotchCosts && sheetTitle == "UI" && key.StartsWith("CHARM_NAME_")) {
+                Log("Rando notch costs");
+                string i = key.Substring(11);
+                if (i.IndexOf("_") != -1) i = i.Substring(0, i.IndexOf("_"));
+                return Language.Language.GetInternal(key, "UI") + $" [{PlayerData.instance.GetInt($"charmCost_{i}")}]";
             }
 
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(sheetTitle))
@@ -774,7 +832,7 @@ namespace RandomizerMod
                 int order = rand.Next(RandomizerMod.Instance.Settings.MaxOrder);
                 string[] itemList = RandomizerMod.Instance.Settings.GetNthLocationItems(order);
                 string item = itemList[rand.Next(itemList.Length)];
-                item = GetLanguageString(LogicManager.GetItemDef(item).nameKey, "UI");
+                item = Language.Language.Get(LogicManager.GetItemDef(item).nameKey, "UI");
                 if (item.StartsWith("A grub")) item = "grub";
                 int difficulty = Math.Min((itemHintSecondPart.Count * order) / RandomizerMod.Instance.Settings.MaxOrder, itemHintSecondPart.Count);
 
