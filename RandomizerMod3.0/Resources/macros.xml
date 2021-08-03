@@ -92,6 +92,11 @@
   <macro name="UPWALLBREAK">SIDESLASH | UPSLASH | FIREBALL | SCREAM | QUAKE | Cyclone_Slash | Great_Slash | (Dash_Slash + FULLDASH)</macro>
   <macro name="CYCLONE">Cyclone_Slash</macro>
   <macro name="SWIM">Swim</macro>
+  
+  <!--Elevator pass-->
+  <macro name="LEFTELEVATOR">(Upper_Storerooms + NONRANDOMELEVATORS) | Elevator_Pass</macro>
+  <macro name="LEFTELEVATOR-R">(Crossroads_49b[right1] + NONRANDOMELEVATORS) | Elevator_Pass</macro>
+  <macro name="RIGHTELEVATOR">(NONRANDOMELEVATORS | Elevator_Pass)</macro>
 
   <!--Leaving these as separate macros for now for easier modification in the future-->
   <macro name="MILDCOMBATSKIPS">MILDSKIPS</macro>
@@ -208,7 +213,7 @@
   <macro name="Ruins2_01_b">Ruins2_01_b[top1] | Ruins2_01_b[left1] | Ruins2_01_b[right1]</macro>
   <macro name="Ruins2_03b">Ruins2_03b[top1] | Ruins2_03b[top2] | Ruins2_03b[left1] | Ruins2_03b[bot1]</macro>
   <macro name="Ruins2_04">Ruins2_04[left1] | Ruins2_04[left2] | Ruins2_04[right1] | Ruins2_04[right2] | Ruins2_04[door_Ruin_House_01] | Ruins2_04[door_Ruin_House_02] | Ruins2_04[door_Ruin_House_03] | Ruins2_04[door_Ruin_Elevator]</macro>
-  <macro name="Ruins2_10">Ruins2_10[right1] | Ruins2_10[left1] | Ruins2_10b[right1] | Ruins2_10b[right2] | Ruins2_10b[left1]</macro>
+  <macro name="Ruins2_10">(Ruins2_10[right1] | Ruins2_10[left1] | Ruins2_10b[right1] | Ruins2_10b[right2] | Ruins2_10b[left1]) + RIGHTELEVATOR</macro>
   
   <macro name="RestingGrounds_02">RestingGrounds_02[top1] | RestingGrounds_02[left1] | RestingGrounds_02[bot1] | RestingGrounds_02[right1]</macro>
   <macro name="RestingGrounds_05">RestingGrounds_05[left1] | RestingGrounds_05[left2] | RestingGrounds_05[left3] | RestingGrounds_05[right1] | RestingGrounds_05[right2] | RestingGrounds_05[bot1]</macro>

@@ -867,6 +867,7 @@ namespace RandomizerMod.Randomization
             progressionBitMask.Add("NONRANDOMNAIL", (512, 0));
             progressionBitMask.Add("NONCURSEDMASKS", (1024, 0));
             progressionBitMask.Add("NONCURSEDNOTCHES", (2048, 0));
+            progressionBitMask.Add("NONRANDOMELEVATORS", (4096, 0));
 
             int i = progressionBitMask.Count;
 

@@ -45,7 +45,8 @@ namespace RandomizerMod
             AddSoul,
             Lore,
 
-            Lifeblood
+            Lifeblood,
+            ElevatorPass
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -401,6 +402,11 @@ namespace RandomizerMod
                     {
                         EventRegister.SendEvent("ADD BLUE HEALTH");
                     }
+                    break;
+
+                case GiveAction.ElevatorPass:
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift1), true);
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift2), true);
                     break;
             }
 

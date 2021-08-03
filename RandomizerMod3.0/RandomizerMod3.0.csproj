@@ -445,5 +445,8 @@
     <EmbeddedResource Include="Resources\Prompts\Swim.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Swim.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ShopIcons\ElevatorPass.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

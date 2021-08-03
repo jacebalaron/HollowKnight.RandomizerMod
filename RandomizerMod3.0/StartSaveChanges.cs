@@ -167,6 +167,8 @@ namespace RandomizerMod
                 if (RandomizerMod.Instance.Settings.RandomizeSwim) miscSettingsSeed += 1;
                 miscSettingsSeed <<= 1;
                 if (RandomizerMod.Instance.Settings.RandomizeNotchCosts) miscSettingsSeed += 1;
+                miscSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.ElevatorPass) miscSettingsSeed += 1;
 
                 int settingsSeed = 0;
                 unchecked
@@ -189,6 +191,10 @@ namespace RandomizerMod
             if (RandomizerMod.Instance.Settings.EggShop)
             {
                 Ref.PD.jijiMet = true;
+            }
+            if (RandomizerMod.Instance.Settings.ElevatorPass)
+            {
+                Ref.PD.SetBool(nameof(PlayerData.cityLift2), false);
             }
 
             List<string> startItems = RandomizerMod.Instance.Settings.ItemPlacements.Where(pair => pair.Item2.StartsWith("Equip")).Select(pair => pair.Item1).ToList();

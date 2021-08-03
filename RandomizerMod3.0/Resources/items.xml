@@ -4915,7 +4915,7 @@
     <replace>true</replace>
     <elevation>0.001</elevation>
     <itemLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Upper_Storerooms | Soul_Sanctum) + (LEFTCLAW | WINGS | MILDSKIPS))</itemLogic>
-    <areaLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((v | Ruins1_05[right1] | Ruins1_31[right1]) + (LEFTCLAW | WINGS | MILDSKIPS))</areaLogic>
+    <areaLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Upper_Storerooms | Ruins1_05[right1] | Ruins1_31[right1]) + (LEFTCLAW | WINGS | MILDSKIPS))</areaLogic>
     <roomLogic>Ruins1_05 + (LEFTCLAW | WINGS | (MILDSKIPS + (Ruins1_05[top1] | Ruins1_05[right1])))</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -6070,6 +6070,24 @@
     <shopSpriteKey>ShopIcons.Flame</shopSpriteKey>
     <areaName>Distant_Village</areaName>
     <progression>true</progression>
+  </item>
+  <!--Elevator Pass-->
+  <item name="Elevator_Pass">
+    <sceneName>Crossroads_49b</sceneName>
+    <objectName>Toll Machine Lift</objectName>
+    <replace>true</replace>
+    <itemLogic>Upper_Storerooms</itemLogic>
+    <areaLogic>Upper_Storerooms</areaLogic>
+    <roomLogic>Crossroads_49b[right1]</roomLogic>
+    <type>Trinket</type>
+    <action>ElevatorPass</action>
+    <pool>ElevatorPass</pool>
+    <nameKey>RANDOMIZER_NAME_ELEVATOR_PASS</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_ELEVATOR_PASS</shopDescKey>
+    <shopSpriteKey>ShopIcons.ElevatorPass</shopSpriteKey>
+    <areaName>City_of_Tears</areaName>
+    <progression>true</progression>
+    <cost>150</cost>
   </item>
   <!--Split Cloak-->
     <item name="Left_Mothwing_Cloak">

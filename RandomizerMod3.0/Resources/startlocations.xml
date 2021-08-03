@@ -127,7 +127,7 @@
     <waypoint>Right_Blue_Lake</waypoint>
     <areaTransition>Crossroads_50[right1]</areaTransition>
     <roomTransition>Crossroads_50[right1]</roomTransition>
-    <logic>ANY</logic>
+    <logic>NONRANDOMELEVATORS | MILDSKIPS | AREARANDO | ROOMRANDO | VERTICAL</logic>
   </start>
   <start name="City Storerooms">
     <sceneName>Ruins1_17</sceneName>

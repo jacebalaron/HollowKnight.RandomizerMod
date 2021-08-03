@@ -137,9 +137,9 @@ namespace RandomizerMod
             RandoMenuItem<bool> darkRoomsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Dark Rooms", false, true);
             y -= vspace;
             RandoMenuItem<bool> spicySkipsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Spicy Skips", false, true);
-            y -= 90f;
+            y -= 75f;
             CreateLabel(back, new Vector2(-900, y), "Quality of Life");
-            y -= 90f;
+            y -= 75f;
             /*
             RandoMenuItem<bool> charmNotchBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Salubra Notches", true, false);
             y -= vspace;
@@ -163,12 +163,14 @@ namespace RandomizerMod
             y -= vspace;
             RandoMenuItem<bool> jijiBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Jiji Hints", false, true);
             */
-            y -= 90f;
+            y -= 75f;
             CreateLabel(back, new Vector2(-900, y), "Restrictions");
-            y -= 90f;
+            y -= 75f;
             RandoMenuItem<bool> RandoFocusBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Randomize Focus", false, true);
             y -= vspace;
             RandoMenuItem<bool> RandoSwimBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Randomize Swim", true, false);
+            y -= vspace;
+            RandoMenuItem<bool> RandoElevatorBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Elevator Pass", true, false);
             y -= vspace;
             RandoMenuItem<bool> cursedNailBtn = new RandoMenuItem<bool>(back, new Vector2(-900, y), "Cursed Nail", false, true);
             y -= vspace;
@@ -259,8 +261,9 @@ namespace RandomizerMod
             //jijiBtn.Button.SetNavigation(npcBtn.Button, startRandoBtn, presetSkipsBtn.Button, jijiBtn.Button);
 
             RandoFocusBtn.Button.SetNavigation(npcBtn.Button, startRandoBtn, RandoSwimBtn.Button, RandoFocusBtn.Button);
-            RandoSwimBtn.Button.SetNavigation(RandoFocusBtn.Button, startRandoBtn, cursedNailBtn.Button, RandoSwimBtn.Button);
-            cursedNailBtn.Button.SetNavigation(RandoSwimBtn.Button, startRandoBtn, cursedNotchesBtn.Button, cursedNailBtn.Button);
+            RandoSwimBtn.Button.SetNavigation(RandoFocusBtn.Button, startRandoBtn, RandoElevatorBtn.Button, RandoSwimBtn.Button);
+            RandoElevatorBtn.Button.SetNavigation(RandoSwimBtn.Button, startRandoBtn, cursedNailBtn.Button, RandoElevatorBtn.Button);
+            cursedNailBtn.Button.SetNavigation(RandoElevatorBtn.Button, startRandoBtn, cursedNotchesBtn.Button, cursedNailBtn.Button);
             cursedNotchesBtn.Button.SetNavigation(cursedNailBtn.Button, startRandoBtn, cursedMasksBtn.Button, cursedNotchesBtn.Button);
             cursedMasksBtn.Button.SetNavigation(cursedNotchesBtn.Button, startRandoBtn, presetSkipsBtn.Button, cursedMasksBtn.Button);
 
@@ -614,6 +617,7 @@ namespace RandomizerMod
                 pm.logicFlags["VERTICAL"] = RandoStartItemsBtn.CurrentSelection;
                 pm.logicFlags["SWIM"] = !RandoSwimBtn.CurrentSelection; // represents starting with SWIM
                 pm.logicFlags["2MASKS"] = !cursedMasksBtn.CurrentSelection;
+                pm.logicFlags["NONRANDOMELEVATORS"] = !RandoElevatorBtn.CurrentSelection;
 
                 UpdateStartLocationColor();
             }
@@ -632,6 +636,7 @@ namespace RandomizerMod
 
             RandoStartItemsBtn.Changed += _ => UpdatePM();
             RandoSwimBtn.Changed += _ => UpdatePM();
+            RandoElevatorBtn.Changed += _ => UpdatePM();
             cursedMasksBtn.Changed += _ => UpdatePM();
 
 
@@ -764,6 +769,7 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.RandomizeClawPieces = splitClawBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeFocus = RandoFocusBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeSwim = RandoSwimBtn.CurrentSelection;
+                    RandomizerMod.Instance.Settings.ElevatorPass = RandoElevatorBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CursedNail = cursedNailBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CursedNotches = cursedNotchesBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CursedMasks = cursedMasksBtn.CurrentSelection;

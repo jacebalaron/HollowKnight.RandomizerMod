@@ -237,6 +237,7 @@ namespace RandomizerMod.Randomization
             if (!RandomizerMod.Instance.Settings.CursedMasks) Add("NONCURSEDMASKS");
             if (!RandomizerMod.Instance.Settings.CursedNotches) Add("NONCURSEDNOTCHES");
             if (!RandomizerMod.Instance.Settings.RandomizeSwim) Add("Swim");
+            if (!RandomizerMod.Instance.Settings.ElevatorPass) Add("NONRANDOMELEVATORS");
 
             share = tempshare;
         }

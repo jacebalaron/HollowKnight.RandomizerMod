@@ -436,6 +436,7 @@ namespace RandomizerMod
             AddToLog($"Split claw: {RandomizerMod.Instance.Settings.RandomizeClawPieces}");
             AddToLog($"Focus: {RandomizerMod.Instance.Settings.RandomizeFocus}");
             AddToLog($"Swim: {RandomizerMod.Instance.Settings.RandomizeSwim}");
+            AddToLog($"ElevatorPass: {RandomizerMod.Instance.Settings.ElevatorPass}");
             AddToLog($"Cursed nail: {RandomizerMod.Instance.Settings.CursedNail}");
             AddToLog($"Cursed notches: {RandomizerMod.Instance.Settings.CursedNotches}");
             AddToLog($"Cursed masks: {RandomizerMod.Instance.Settings.CursedMasks}");
@@ -675,6 +676,7 @@ namespace RandomizerMod
                 string ekey = "Elegant Key <---at---> ";
                 string love = "Love Key <---at---> ";
                 string tram = "Tram Pass <---at---> ";
+                string elev = "Elevator Pass <---at---> ";
                 string lantern = "Lumafly Lantern <---at---> ";
                 string brand = "King's Brand <---at---> ";
                 string crest = "City Crest <---at---> ";
@@ -855,6 +857,9 @@ namespace RandomizerMod
                         case "Tram_Pass":
                             tram += itemLocation + cost + Environment.NewLine;
                             break;
+                        case "Elevator_Pass":
+                            elev += itemLocation + cost + Environment.NewLine;
+                            break;
                         case "Lumafly_Lantern":
                             lantern += itemLocation + cost + Environment.NewLine;
                             break;
@@ -971,7 +976,10 @@ namespace RandomizerMod
 
                 if (RandomizerMod.Instance.Settings.RandomizeKeys) {
                     AddToLog("----------Keys:----------");
-                    AddToLog(skeys + shopkey + ekey + love + tram + lantern + brand + crest);
+                    string keys = skeys + shopkey + ekey + love + tram 
+                        + (RandomizerMod.Instance.Settings.ElevatorPass ? elev : string.Empty) 
+                        + lantern + brand + crest;
+                    AddToLog(keys);
                 }
 
                 if (RandomizerMod.Instance.Settings.CursedNail) {
