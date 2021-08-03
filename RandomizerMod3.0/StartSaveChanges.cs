@@ -130,6 +130,8 @@ namespace RandomizerMod
                 if (RandomizerMod.Instance.Settings.RandomizeBossEssence) randomizationSettingsSeed += 1;
                 randomizationSettingsSeed = randomizationSettingsSeed << 1;
                 if (RandomizerMod.Instance.Settings.RandomizeBossGeo) randomizationSettingsSeed += 1;
+                randomizationSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.EggShop) randomizationSettingsSeed += 1;
 
                 int miscSettingsSeed = 0;
                 if (RandomizerMod.Instance.Settings.DuplicateMajorItems) miscSettingsSeed += 1;
@@ -165,6 +167,8 @@ namespace RandomizerMod
                 if (RandomizerMod.Instance.Settings.RandomizeSwim) miscSettingsSeed += 1;
                 miscSettingsSeed <<= 1;
                 if (RandomizerMod.Instance.Settings.RandomizeNotchCosts) miscSettingsSeed += 1;
+                miscSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.ElevatorPass) miscSettingsSeed += 1;
 
                 int settingsSeed = 0;
                 unchecked
@@ -183,6 +187,15 @@ namespace RandomizerMod
             Ref.PD.mageLordEncountered = true;
             Ref.PD.mageLordEncountered_2 = true;
             Ref.PD.godseekerUnlocked = true;
+
+            if (RandomizerMod.Instance.Settings.EggShop)
+            {
+                Ref.PD.jijiMet = true;
+            }
+            if (RandomizerMod.Instance.Settings.ElevatorPass)
+            {
+                Ref.PD.SetBool(nameof(PlayerData.cityLift2), false);
+            }
 
             List<string> startItems = RandomizerMod.Instance.Settings.ItemPlacements.Where(pair => pair.Item2.StartsWith("Equip")).Select(pair => pair.Item1).ToList();
             foreach (string item in startItems)
@@ -252,7 +265,7 @@ namespace RandomizerMod
                     PlayerData.instance.SetInt($"charmCost_{i + 1}", costs[i]);
                     if (charmNums.TryGetValue(i + 1, out string name))
                     {
-                        sb.AppendLine($"{name}: {costs[i]}");
+                        sb.AppendLine($"{name}: {costs[i]}".Replace('_', ' '));
                     }
                     else
                     {

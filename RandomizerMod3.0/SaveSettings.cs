@@ -37,6 +37,7 @@ namespace RandomizerMod
         public int MaxOrder => _orderedLocations.Count;
 
         public (string, int)[] VariableCosts => _variableCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
+        public int GetVariableCost(string item) => _variableCosts[item]; 
         public (string, int)[] ShopCosts => _shopCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
 
         public bool RandomizeTransitions => RandomizeAreas || RandomizeRooms;
@@ -215,6 +216,17 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool EggShop
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+        public int MaxEggCost => !EggShop ? 0 : VariableCosts
+            .Where(pair => LogicManager.GetItemDef(pair.Item1).costType == AddYNDialogueToShiny.CostType.RancidEggs)
+            .Select(pair => pair.Item2)
+            .Max();
+
+
         public bool RandomizeRelics
         {
             get => GetBool(false);
@@ -336,6 +348,11 @@ namespace RandomizerMod
             get => GetBool(true);
             set => SetBool(value);
         }
+        public bool ElevatorPass
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
 
         public bool CursedNail
         {
@@ -385,6 +402,9 @@ namespace RandomizerMod
                     return RandomizeGeoChests;
                 case "Egg":
                     return RandomizeRancidEggs;
+                case "EggShopItem":
+                case "EggShopLocation":
+                    return EggShop;
                 case "Relic":
                     return RandomizeRelics;
                 case "Map":
@@ -763,7 +783,13 @@ namespace RandomizerMod
             set => SetBool(value);
         }
 
-        public bool ReducePreloads
+        public bool ReduceRockPreloads
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+
+        public bool ReduceTotemPreloads
         {
             get => GetBool(true);
             set => SetBool(value);

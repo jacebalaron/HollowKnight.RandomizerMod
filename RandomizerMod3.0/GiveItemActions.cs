@@ -48,7 +48,8 @@ namespace RandomizerMod
             AddSoul,
             Lore,
 
-            Lifeblood
+            Lifeblood,
+            ElevatorPass
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -60,7 +61,7 @@ namespace RandomizerMod
         private static void ShowItemPopup(string nameKey, string spriteName)
         {
             GameObject popup = ObjectCache.RelicGetMsg;
-            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = LanguageStringManager.GetLanguageString(nameKey, "UI");
+            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = Language.Language.Get(nameKey, "UI");
             popup.transform.Find("Icon").GetComponent<SpriteRenderer>().sprite = RandomizerMod.GetSprite(spriteName);
             popup.SetActive(true);
         }
@@ -416,6 +417,11 @@ namespace RandomizerMod
                     {
                         EventRegister.SendEvent("ADD BLUE HEALTH");
                     }
+                    break;
+
+                case GiveAction.ElevatorPass:
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift1), true);
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift2), true);
                     break;
             }
 
