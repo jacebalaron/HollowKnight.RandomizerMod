@@ -257,6 +257,8 @@ namespace RandomizerMod
                 Dictionary<int, string> charmNums = LogicManager.ItemNames.Select(i => (i, LogicManager.GetItemDef(i)))
                     .Where(p => p.Item2.pool == "Charm" && IsValidCharmNum(p.Item2.charmNum))
                     .ToDictionary(p => p.Item2.charmNum, p => p.i);
+                charmNums[36] = "Kingsoul";
+                charmNums[40] = "Grimmchild";
 
                 int count = 0;
                 for (int i = 0; i < 40; i++)

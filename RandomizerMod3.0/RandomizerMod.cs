@@ -282,7 +282,7 @@ namespace RandomizerMod
             try
             {
                 Randomizer.Randomize();
-        
+
                 RandoLogger.UpdateHelperLog();
             }
             catch (Exception e)
@@ -314,7 +314,7 @@ namespace RandomizerMod
 
         public override string GetVersion()
         {
-            string ver = "3.12.6MW";
+            string ver = "3.13";
 
             ver += $"({Math.Abs(MakeAssemblyHash() % 997)})";
 
@@ -809,7 +809,6 @@ namespace RandomizerMod
             orig(self, info);
         }
 
-
         private void OnMainMenu(Scene from, Scene to)
         {
             if (Ref.GM.GetSceneNameString() != SceneNames.Menu_Title) return;
@@ -828,7 +827,6 @@ namespace RandomizerMod
             }
         }
 
-        
         private void HandleSceneChanges(Scene from, Scene to)
         {
             if (Ref.GM.IsGameplayScene())

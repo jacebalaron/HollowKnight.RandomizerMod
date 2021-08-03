@@ -221,7 +221,7 @@ namespace RandomizerMod
             CreateLabel(back, new Vector2(900, 160), "Start Settings");
             CreateLabel(back, new Vector2(0, 200), "Use of Benchwarp mod may be required");
             CreateLabel(back, new Vector2(0, 1300), "Seed:");
-            
+
             // We don't need these old buttons anymore
             Object.Destroy(classic.gameObject);
             Object.Destroy(steel.gameObject);
