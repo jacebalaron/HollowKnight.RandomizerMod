@@ -29,8 +29,9 @@ namespace RandomizerMod.SceneChanges
             ModHooks.Instance.ObjectPoolSpawnHook += FixExplosionPogo;
             On.EnemyHitEffectsArmoured.RecieveHitEffect += FalseKnightNoises;
             On.PlayMakerFSM.OnEnable += FsmSceneEdits;
-            ModHooks.Instance.OnEnableEnemyHook += BossRewardReplacement.ReplaceBossRewards;
+            // ModHooks.Instance.OnEnableEnemyHook += BossRewardReplacement.ReplaceBossRewards;
             On.PlayMakerFSM.OnEnable += ModifyFSM;
+            On.GameManager.SaveLevelState += SavePersistentBoolItems;
         }
 
         public static void UnHook()
@@ -38,8 +39,9 @@ namespace RandomizerMod.SceneChanges
             ModHooks.Instance.ObjectPoolSpawnHook -= FixExplosionPogo;
             On.EnemyHitEffectsArmoured.RecieveHitEffect -= FalseKnightNoises;
             On.PlayMakerFSM.OnEnable -= FsmSceneEdits;
-            ModHooks.Instance.OnEnableEnemyHook -= BossRewardReplacement.ReplaceBossRewards;
+            // ModHooks.Instance.OnEnableEnemyHook -= BossRewardReplacement.ReplaceBossRewards;
             On.PlayMakerFSM.OnEnable -= ModifyFSM;
+            On.GameManager.SaveLevelState -= SavePersistentBoolItems;
         }
 
         public static void SceneChanged(Scene newScene)
@@ -68,6 +70,7 @@ namespace RandomizerMod.SceneChanges
             {
                 MiscQoLChanges(newScene);
                 ApplyHintChanges(newScene);
+                Jiji.JijiSceneEdits(newScene);
             }
 
             // Mainly restores pogos, etc., that were removed by TC
@@ -93,7 +96,8 @@ namespace RandomizerMod.SceneChanges
         {
             EditStagStations(self);
             DisableInfectedCrossroads(self);
-            BossRewardReplacement.DestroyGruzmomGeo(self);
+            // BossRewardReplacement.DestroyGruzmomGeo(self);
+            Jiji.KillTuk(self);
 
             orig(self);
         }

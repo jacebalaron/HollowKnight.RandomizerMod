@@ -13,6 +13,9 @@ namespace RandomizerMod
     // WORK IN PROGRESS
     public static class GiveItemActions
     {
+        public static List<Func<GiveAction, string, string, int, bool>> ExternItemHandlers { get; set; } =
+            new List<Func<GiveAction, string, string, int, bool>>();
+
         public enum GiveAction
         {
             Bool = 0,
@@ -45,7 +48,8 @@ namespace RandomizerMod
             AddSoul,
             Lore,
 
-            Lifeblood
+            Lifeblood,
+            ElevatorPass
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -57,13 +61,25 @@ namespace RandomizerMod
         private static void ShowItemPopup(string nameKey, string spriteName)
         {
             GameObject popup = ObjectCache.RelicGetMsg;
-            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = LanguageStringManager.GetLanguageString(nameKey, "UI");
+            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = Language.Language.Get(nameKey, "UI");
             popup.transform.Find("Icon").GetComponent<SpriteRenderer>().sprite = RandomizerMod.GetSprite(spriteName);
             popup.SetActive(true);
         }
 
+        private static bool TryExternHandleItem(GiveAction action, string item, string location, int geo)
+        {
+            foreach (var externItemHandler in ExternItemHandlers)
+                if (externItemHandler(action, item, location, geo))
+                    return true;
+            
+            return false;
+        }
+
         public static void GiveItem(GiveAction action, string item, string location, int geo = 0)
         {
+            if (TryExternHandleItem(action, item, location, geo))
+                return;
+
             LogItemToTracker(item, location);
             RandomizerMod.Instance.Settings.MarkItemFound(item);
             RandomizerMod.Instance.Settings.MarkLocationFound(location);
@@ -73,7 +89,7 @@ namespace RandomizerMod
 
             if (RandomizerMod.Instance.globalSettings.RecentItems)
             {
-                RecentItems.AddItem(item, location, showArea: true);
+                RecentItems.AddItem(item, location);
             }
 
             switch (action)
@@ -401,6 +417,11 @@ namespace RandomizerMod
                     {
                         EventRegister.SendEvent("ADD BLUE HEALTH");
                     }
+                    break;
+
+                case GiveAction.ElevatorPass:
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift1), true);
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift2), true);
                     break;
             }
 

@@ -130,6 +130,8 @@ namespace RandomizerMod
                 if (RandomizerMod.Instance.Settings.RandomizeBossEssence) randomizationSettingsSeed += 1;
                 randomizationSettingsSeed = randomizationSettingsSeed << 1;
                 if (RandomizerMod.Instance.Settings.RandomizeBossGeo) randomizationSettingsSeed += 1;
+                randomizationSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.EggShop) randomizationSettingsSeed += 1;
 
                 int miscSettingsSeed = 0;
                 if (RandomizerMod.Instance.Settings.DuplicateMajorItems) miscSettingsSeed += 1;
@@ -165,6 +167,8 @@ namespace RandomizerMod
                 if (RandomizerMod.Instance.Settings.RandomizeSwim) miscSettingsSeed += 1;
                 miscSettingsSeed <<= 1;
                 if (RandomizerMod.Instance.Settings.RandomizeNotchCosts) miscSettingsSeed += 1;
+                miscSettingsSeed <<= 1;
+                if (RandomizerMod.Instance.Settings.ElevatorPass) miscSettingsSeed += 1;
 
                 int settingsSeed = 0;
                 unchecked
@@ -183,6 +187,15 @@ namespace RandomizerMod
             Ref.PD.mageLordEncountered = true;
             Ref.PD.mageLordEncountered_2 = true;
             Ref.PD.godseekerUnlocked = true;
+
+            if (RandomizerMod.Instance.Settings.EggShop)
+            {
+                Ref.PD.jijiMet = true;
+            }
+            if (RandomizerMod.Instance.Settings.ElevatorPass)
+            {
+                Ref.PD.SetBool(nameof(PlayerData.cityLift2), false);
+            }
 
             List<string> startItems = RandomizerMod.Instance.Settings.ItemPlacements.Where(pair => pair.Item2.StartsWith("Equip")).Select(pair => pair.Item1).ToList();
             foreach (string item in startItems)
@@ -228,7 +241,7 @@ namespace RandomizerMod
                     int d;
                     if (rng.Next(2) == 0) d = 30;
                     else d = 36;
-                    
+
                     while (costs[d] > 2)
                     {
                         int e = rng.Next(40);
@@ -242,7 +255,7 @@ namespace RandomizerMod
                 sb.AppendLine();
                 sb.AppendLine("Randomized Notch Costs");
                 Dictionary<int, string> charmNums = LogicManager.ItemNames.Select(i => (i, LogicManager.GetItemDef(i)))
-                    .Where(p => p.Item2.pool == "Charm" && p.Item2.action == GiveAction.Charm)
+                    .Where(p => p.Item2.pool == "Charm" && IsValidCharmNum(p.Item2.charmNum))
                     .ToDictionary(p => p.Item2.charmNum, p => p.i);
                 charmNums[36] = "Kingsoul";
                 charmNums[40] = "Grimmchild";
@@ -284,6 +297,11 @@ namespace RandomizerMod
             PlayerData.instance.respawnMarkerName = RESPAWN_MARKER_NAME;
             PlayerData.instance.respawnType = 0;
             PlayerData.instance.mapZone = start.zone;
+        }
+
+        private static bool IsValidCharmNum(int charmNum)
+        {
+            return 1 <= charmNum && charmNum <= 40;
         }
     }
 }

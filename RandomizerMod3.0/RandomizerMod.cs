@@ -19,10 +19,11 @@ using RandomizerMod.SceneChanges;
 using System.Security.Cryptography;
 
 using Object = UnityEngine.Object;
+using RandomizerMod.MultiWorld;
 
 namespace RandomizerMod
 {
-    public class RandomizerMod : Mod
+    public class RandomizerMod : Mod, IMultiWorldCompatibleRandomizer
     {
         private static Dictionary<string, Sprite> _sprites;
         private static Dictionary<string, string> _secondaryBools;
@@ -256,6 +257,11 @@ namespace RandomizerMod
             return _logicParseThread == null || !_logicParseThread.IsAlive;
         }
 
+        public MultiWorldMenu CreateMultiWorldMenu()
+        {
+            return MenuChanger.CreateMultiWorldMenu();
+        }
+
         public void StartNewGame()
         {
             if (!Settings.Randomizer)
@@ -332,7 +338,7 @@ namespace RandomizerMod
             }
 
             float placedItems = (float)RandomizerMod.Instance.Settings.GetNumLocations();
-            float foundItems = (float)RandomizerMod.Instance.Settings.GetItemsFound().Length;
+            float foundItems = (float)RandomizerMod.Instance.Settings.NumItemsFound;
 
             // Count a pair (in, out) as a single transition check
             float randomizedTransitions = RandomizerMod.Instance.Settings.RandomizeRooms ? 445f :
@@ -803,7 +809,6 @@ namespace RandomizerMod
             orig(self, info);
         }
 
-
         private void OnMainMenu(Scene from, Scene to)
         {
             if (Ref.GM.GetSceneNameString() != SceneNames.Menu_Title) return;
@@ -821,7 +826,6 @@ namespace RandomizerMod
                 LogError("Error editing menu:\n" + e);
             }
         }
-        
 
         private void HandleSceneChanges(Scene from, Scene to)
         {

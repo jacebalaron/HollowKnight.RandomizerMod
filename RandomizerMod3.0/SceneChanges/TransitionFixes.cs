@@ -193,7 +193,7 @@ namespace RandomizerMod.SceneChanges
             switch (sceneName)
             {
                 case SceneNames.Tutorial_01:
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Tutorial_01",
                         id = "Initial Fall Impact",
@@ -202,63 +202,63 @@ namespace RandomizerMod.SceneChanges
                     });
                     if (entryGateName.StartsWith("right"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Door",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Collapser Tute 01",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Tute Door 1",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Tute Door 2",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Tute Door 3",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Tute Door 4",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Tute Door 5",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Tute Door 7",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Tutorial_01",
                             id = "Break Floor 1",
@@ -272,7 +272,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("left1"))
                     {
                         PlayerData.instance.SetBool("dungDefenderWallBroken", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_05",
                             id = "One Way Wall",
@@ -284,21 +284,21 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Abyss_03_c:
                     if (entryGateName.StartsWith("r"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Abyss_03_c",
                             id = "Breakable Wall",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Abyss_03_c",
                             id = "Mask 1",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Abyss_03_c",
                             id = "Mask 1 (1)",
@@ -310,7 +310,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Abyss_05:
                     if (entryGateName == "right1")
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Abyss_05",
                             id = "Breakable Wall",
@@ -322,14 +322,14 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Cliffs_01:
                     if (entryGateName.StartsWith("right4"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Cliffs_01",
                             id = "Breakable Wall",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Cliffs_01",
                             id = "Breakable Wall grimm",
@@ -345,14 +345,14 @@ namespace RandomizerMod.SceneChanges
                     Ref.PD.menderSignBroken = true;
                     if (entryGateName.StartsWith("d"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_04",
                             id = "Secret Mask",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_04",
                             id = "Secret Mask (1)",
@@ -371,7 +371,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Crossroads_07:
                     if (entryGateName.StartsWith("left3"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_07",
                             id = "Tute Door 1",
@@ -383,7 +383,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Crossroads_08:
                     if (entryGateName == "left2")
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_08",
                             id = "Battle Scene",
@@ -395,7 +395,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Crossroads_09:
                     if (entryGateName.StartsWith("r"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_09",
                             id = "Break Floor 1",
@@ -409,21 +409,21 @@ namespace RandomizerMod.SceneChanges
                     // Makes room visible entering from gwomb entrance
                     if (entryGateName.StartsWith("t"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_21",
                             id = "Breakable Wall",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_21",
                             id = "Collapser Small",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_21",
                             id = "Secret Mask (1)",
@@ -435,7 +435,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Crossroads_33:
                     if (entryGateName.StartsWith("left1"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_09",
                             id = "Break Floor 1",
@@ -453,14 +453,14 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_01:
                     if (entryGateName.StartsWith("r"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_01",
                             id = "Breakable Wall",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Fungus2_20",
                             id = "Breakable Wall Waterways",
@@ -472,7 +472,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_02:
                     if (entryGateName.StartsWith("r"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_02",
                             id = "Breakable Wall",
@@ -484,7 +484,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_03:
                     if (entryGateName.StartsWith("left2"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_03",
                             id = "Breakable Wall",
@@ -496,14 +496,14 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_26:
                     if (entryGateName.StartsWith("left2"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_26",
                             id = "Inverse Remasker",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_26",
                             id = "Secret Mask (1)",
@@ -515,35 +515,35 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_31:
                     if (entryGateName.StartsWith("right2"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_31",
                             id = "Secret Mask",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_31",
                             id = "Secret Mask (1)",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_31",
                             id = "Secret Mask (2)",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_31",
                             id = "Breakable Wall",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_31",
                             id = "Breakable Wall (1)",
@@ -556,7 +556,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("r"))
                     {
                         PlayerData.instance.SetBool("outskirtsWall", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_East_02",
                             id = "One Way Wall",
@@ -569,7 +569,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("left2"))
                     {
                         PlayerData.instance.SetBool("outskirtsWall", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_East_02",
                             id = "One Way Wall",
@@ -581,7 +581,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_East_16:
                     if (entryGateName.StartsWith("b"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_East_16",
                             id = "Quake Floor",
@@ -593,14 +593,14 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Fungus2_20:
                     if (entryGateName.StartsWith("l"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_01",
                             id = "Breakable Wall",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Fungus2_20",
                             id = "Breakable Wall Waterways",
@@ -613,7 +613,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("right1"))
                     {
                         PlayerData.instance.SetBool("oneWayArchive", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Fungus3_47",
                             id = "One Way Wall",
@@ -626,7 +626,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("left2"))
                     {
                         PlayerData.instance.SetBool("openedGardensStagStation", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Fungus3_40",
                             id = "Gate Switch",
@@ -639,7 +639,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("r"))
                     {
                         PlayerData.instance.SetBool("openedGardensStagStation", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Fungus3_40",
                             id = "Gate Switch",
@@ -649,7 +649,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
                 case SceneNames.Fungus3_44:
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Fungus3_44",
                         id = "Secret Mask",
@@ -661,7 +661,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("l"))
                     {
                         PlayerData.instance.SetBool("oneWayArchive", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Fungus3_47",
                             id = "One Way Wall",
@@ -675,7 +675,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("left2"))
                     {
                         PlayerData.instance.SetBool("brokeMinersWall", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Mines_05",
                             id = "Breakable Wall",
@@ -688,14 +688,14 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("b"))
                     {
                         PlayerData.instance.SetBool("openedRestingGrounds02", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_06",
                             id = "Resting Grounds Slide Floor",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_06",
                             id = "Gate Switch",
@@ -712,7 +712,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     if (entryGateName.StartsWith("b"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_05",
                             id = "Quake Floor",
@@ -725,14 +725,14 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("t"))
                     {
                         PlayerData.instance.SetBool("openedRestingGrounds02", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_06",
                             id = "Resting Grounds Slide Floor",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_06",
                             id = "Gate Switch",
@@ -745,7 +745,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("l"))
                     {
                         PlayerData.instance.SetBool("restingGroundsCryptWall", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_10",
                             id = "One Way Wall",
@@ -755,14 +755,14 @@ namespace RandomizerMod.SceneChanges
                     }
                     if (entryGateName.StartsWith("top2"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_10",
                             id = "Breakable Wall (5)",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_10",
                             id = "Breakable Wall (7)",
@@ -789,7 +789,7 @@ namespace RandomizerMod.SceneChanges
                     {
                         PlayerData.instance.SetBool("brokenMageWindow", true);
                         PlayerData.instance.SetBool("brokenMageWindowGlass", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins1_30",
                             id = "Quake Floor Glass (2)",
@@ -801,7 +801,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Ruins1_24:
                     if (entryGateName.StartsWith("right2"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins1_24",
                             id = "Secret Mask (1)",
@@ -815,7 +815,7 @@ namespace RandomizerMod.SceneChanges
                     {
                         PlayerData.instance.SetBool("brokenMageWindow", true);
                         PlayerData.instance.SetBool("brokenMageWindowGlass", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins1_30",
                             id = "Quake Floor Glass (2)",
@@ -831,7 +831,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     if (entryGateName.StartsWith("left2"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins1_31",
                             id = "Ruins Lever",
@@ -843,7 +843,7 @@ namespace RandomizerMod.SceneChanges
                 case "Ruins1_31b":
                     if (entryGateName.StartsWith("right1"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins1_31",
                             id = "Ruins Lever",
@@ -855,7 +855,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Ruins2_01:
                     if (entryGateName.StartsWith("t"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins2_01",
                             id = "Secret Mask",
@@ -868,7 +868,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("door_Ruin_House_03"))
                     {
                         PlayerData.instance.SetBool("city2_sewerDoor", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins_House_03",
                             id = "Ruins Lever",
@@ -885,7 +885,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("r"))
                     {
                         PlayerData.instance.SetBool("restingGroundsCryptWall", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_10",
                             id = "One Way Wall",
@@ -898,7 +898,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("l"))
                     {
                         PlayerData.instance.SetBool("bathHouseWall", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins_Bathhouse",
                             id = "Breakable Wall",
@@ -917,7 +917,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("left1"))
                     {
                         PlayerData.instance.SetBool("city2_sewerDoor", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins_House_03",
                             id = "Ruins Lever",
@@ -930,7 +930,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("r"))
                     {
                         PlayerData.instance.SetBool("bathHouseWall", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Ruins_Bathhouse",
                             id = "Breakable Wall",
@@ -962,7 +962,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     if (entryGateName != "left1")
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Town",
                             id = "Door Destroyer",
@@ -978,7 +978,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     if (entryGateName.StartsWith("r"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_01",
                             id = "Breakable Wall Waterways",
@@ -990,7 +990,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Waterways_02:
                     if (entryGateName.StartsWith("bot1"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_02",
                             id = "Quake Floor",
@@ -1002,7 +1002,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Waterways_04:
                     if (entryGateName.StartsWith("b"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_04",
                             id = "Quake Floor (1)",
@@ -1015,7 +1015,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("r"))
                     {
                         PlayerData.instance.SetBool("dungDefenderWallBroken", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_05",
                             id = "One Way Wall",
@@ -1025,7 +1025,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     if (entryGateName.StartsWith("bot2"))
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_05",
                             id = "Quake Floor",
@@ -1038,7 +1038,7 @@ namespace RandomizerMod.SceneChanges
                     if (entryGateName.StartsWith("right1"))
                     {
                         PlayerData.instance.SetBool("waterwaysAcidDrained", true);
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_05",
                             id = "Waterways_Crank_Lever",
@@ -1050,7 +1050,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Waterways_08:
                     if (entryGateName == "left2")
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_08",
                             id = "Breakable Wall Waterways",
