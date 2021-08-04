@@ -691,7 +691,7 @@ namespace RandomizerMod.Actions
                 catch (Exception e)
                 {
                     LogError(
-                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                        $"Error processing PlayMakerFSM action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
                 }
             }
         }
@@ -714,7 +714,7 @@ namespace RandomizerMod.Actions
                 catch (Exception e)
                 {
                     LogError(
-                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                        $"Error processing GameObject action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
                 }
             }
         }
@@ -738,7 +738,7 @@ namespace RandomizerMod.Actions
                 catch (Exception e)
                 {
                     LogError(
-                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                        $"Error processing EnemyDeath action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
                 }
             }
 

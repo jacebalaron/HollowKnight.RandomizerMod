@@ -167,7 +167,7 @@ namespace RandomizerMod.SceneChanges
                 // traverse first room of PoP backwards. Doesn't really belong here, but w/e
                 case SceneNames.White_Palace_18:
                     const float SAW = 1.362954f;
-                    GameObject saw = newScene.FindGameObject("saw_collection/wp_saw (4)");
+                    GameObject saw = newScene.FindGameObject("wp_saw (4)");
 
                     GameObject topSaw = Object.Instantiate(saw);
                     topSaw.transform.SetPositionX(165f);
