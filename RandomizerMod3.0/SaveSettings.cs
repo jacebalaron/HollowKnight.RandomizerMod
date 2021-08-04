@@ -52,7 +52,7 @@ namespace RandomizerMod
             {
                 if (Randomizer)
                 {
-                    PreAfterDeserialize.Invoke(this);
+                    PreAfterDeserialize?.Invoke(this);
                     // Wiped to prevent old callbacks to be called on next save slots loading
                     PreAfterDeserialize = null;
 
