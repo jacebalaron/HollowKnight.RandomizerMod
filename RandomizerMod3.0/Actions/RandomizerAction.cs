@@ -187,14 +187,17 @@ namespace RandomizerMod.Actions
                 {
                     bool infinite = newItem.objectName.Contains("nfinte");              // Not a typo
                     string totemName = "Randomizer Soul Totem " + newTotems++;
-                    SoulTotemSubtype subtype = GetTotemSubtype(newItem.objectName);
+                    SoulTotemSubtype intendedSubtype = GetTotemSubtype(newItem.objectName);
+                    SoulTotemSubtype subtype = ObjectCache.GetPreloadedTotemType(intendedSubtype);
+
+
                     if (oldItem.newShiny)
                     {
-                        Actions.Add(new CreateNewSoulTotem(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewSoulTotem.Elevation[subtype] - oldItem.elevation, totemName, newItemName, location, subtype, infinite));
+                        Actions.Add(new CreateNewSoulTotem(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewSoulTotem.Elevation[subtype] - oldItem.elevation, totemName, newItemName, location, subtype, intendedSubtype));
                     }
                     else
                     {
-                        Actions.Add(new ReplaceObjectWithSoulTotem(oldItem.sceneName, oldItem.objectName, oldItem.elevation, totemName, newItemName, location, subtype, infinite));
+                        Actions.Add(new ReplaceObjectWithSoulTotem(oldItem.sceneName, oldItem.objectName, oldItem.elevation, totemName, newItemName, location, subtype, intendedSubtype));
                         preventSelfDestruct();
                     }
                 }
@@ -593,7 +596,7 @@ namespace RandomizerMod.Actions
                 subtype = SoulTotemSubtype.PathOfPain;
             }
 
-            return ObjectCache.GetPreloadedTotemType(subtype);
+            return subtype;
         }
 
         public static string GetAdditivePrefix(string itemName)
