@@ -427,6 +427,7 @@ namespace RandomizerMod
             AddToLog($"Grimmkin flames: {RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames}");
             AddToLog($"Boss essence: {RandomizerMod.Instance.Settings.RandomizeBossEssence}");
             AddToLog($"Boss geo: {RandomizerMod.Instance.Settings.RandomizeBossGeo}");
+            AddToLog($"Journal entries: {RandomizerMod.Instance.Settings.RandomizeJournalEntries}");
             AddToLog($"Split cloak: {RandomizerMod.Instance.Settings.RandomizeCloakPieces}");
             AddToLog($"Split claw: {RandomizerMod.Instance.Settings.RandomizeClawPieces}");
             AddToLog($"Focus: {RandomizerMod.Instance.Settings.RandomizeFocus}");

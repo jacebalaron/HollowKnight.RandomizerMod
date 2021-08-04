@@ -6068,6 +6068,29 @@
     <areaName>Distant_Village</areaName>
     <progression>true</progression>
   </item>
+  <!--Journal Entries-->
+  <item name="Hunter's_Journal">
+    <boolName>hasJournal</boolName>
+    <sceneName>Fungus1_08</sceneName>
+    <objectName>Shiny Item</objectName>
+    <!-- The Hunter's original shiny's FSM does not have the states that ChangeShinyInto* look for. -->
+    <replace>true</replace>
+    <itemLogic>Greenpath</itemLogic>
+    <areaLogic>Greenpath</areaLogic>
+    <roomLogic>Fungus1_08[left1]</roomLogic>
+    <type>Big</type>
+    <action>Bool</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_HUNTER_JOURNAL</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_HUNTER_JOURNAL</shopDescKey>
+    <shopSpriteKey>ShopIcons.WanderersJournal</shopSpriteKey>
+    <bigSpriteKey>ShopIcons.WanderersJournal</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_MEME</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <areaName>Greenpath</areaName>
+  </item>
   <!--Split Cloak-->
     <item name="Left_Mothwing_Cloak">
     <boolName>canDashLeft</boolName>

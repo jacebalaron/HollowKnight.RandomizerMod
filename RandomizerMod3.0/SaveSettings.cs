@@ -293,6 +293,12 @@ namespace RandomizerMod
             set => SetBool(value);
         }
 
+        public bool RandomizeJournalEntries
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+
         public bool DuplicateMajorItems
         {
             get => GetBool(false);

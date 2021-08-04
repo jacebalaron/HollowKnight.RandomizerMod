@@ -109,6 +109,7 @@
     <Compile Include="Actions\PreventSelfDestruct.cs" />
     <Compile Include="Actions\ReplaceVengefulSpiritWithShiny.cs" />
     <Compile Include="Actions\ReplaceBasinVesselWithShiny.cs" />
+    <Compile Include="Actions\ReplaceJournalWithShiny.cs" />
     <Compile Include="Actions\ChangeCrystalShamanReward.cs" />
     <Compile Include="Actions\ChangeSanctumShamanReward.cs" />
     <Compile Include="Actions\ShowLoreTextInShop.cs" />

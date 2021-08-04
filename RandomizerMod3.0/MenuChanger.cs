@@ -108,6 +108,8 @@ namespace RandomizerMod
             RandoMenuItem<bool> RandoBossEssenceBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Boss Essence", false, true);
             RandoMenuItem<bool> RandoBossGeoBtn = new RandoMenuItem<bool>(back, new Vector2(rightColumn, y), "Boss Geo", false, true);
             y -= vspace;
+            RandoMenuItem<bool> RandoJournalEntriesBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Journal Entries", false, true);
+            y -= vspace;
             RandoMenuItem<bool> splitCloakBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Split Cloak", false, true);
             RandoMenuItem<bool> splitClawBtn = new RandoMenuItem<bool>(back, new Vector2(rightColumn, y), "Split Claw", false, true);
             y -= 90;
@@ -285,10 +287,15 @@ namespace RandomizerMod
             RandoLoreTabletsBtn.Button.SetNavigation(RandoCocoonsBtn.Button, RandoLoreTabletsBtn.Button, RandoGeoRocksBtn.Button, RandoSoulTotemsBtn.Button);
             RandoFlamesBtn.Button.SetNavigation(RandoSoulTotemsBtn.Button, RandoGeoRocksBtn.Button, RandoBossEssenceBtn.Button, startRandoBtn);
             RandoGeoRocksBtn.Button.SetNavigation(RandoLoreTabletsBtn.Button, RandoGeoRocksBtn.Button, RandoBossGeoBtn.Button, RandoFlamesBtn.Button);
-            RandoBossEssenceBtn.Button.SetNavigation(RandoFlamesBtn.Button, RandoBossGeoBtn.Button, RandoStartItemsBtn.Button, RandoBossEssenceBtn.Button);
-            RandoBossGeoBtn.Button.SetNavigation(RandoGeoRocksBtn.Button, RandoBossGeoBtn.Button, RandoStartItemsBtn.Button, RandoBossEssenceBtn.Button);
+            RandoBossEssenceBtn.Button.SetNavigation(RandoFlamesBtn.Button, RandoBossGeoBtn.Button, RandoJournalEntriesBtn.Button, RandoBossEssenceBtn.Button);
+            RandoBossGeoBtn.Button.SetNavigation(RandoGeoRocksBtn.Button, RandoBossGeoBtn.Button, RandoJournalEntriesBtn.Button, RandoBossEssenceBtn.Button);
+
+            RandoJournalEntriesBtn.Button.SetNavigation(RandoBossEssenceBtn.Button, RandoJournalEntriesBtn.Button, splitCloakBtn.Button, startRandoBtn);
+
+            splitCloakBtn.Button.SetNavigation(RandoJournalEntriesBtn.Button, splitClawBtn.Button, RandoStartItemsBtn.Button, startRandoBtn);
+            splitClawBtn.Button.SetNavigation(RandoJournalEntriesBtn.Button, splitClawBtn.Button, RandoStartItemsBtn.Button, splitCloakBtn.Button);
             
-            RandoStartItemsBtn.Button.SetNavigation(RandoBossEssenceBtn.Button, RandoStartItemsBtn.Button, RandoStartLocationsModeBtn.Button, startRandoBtn);
+            RandoStartItemsBtn.Button.SetNavigation(splitCloakBtn.Button, RandoStartItemsBtn.Button, RandoStartLocationsModeBtn.Button, startRandoBtn);
             RandoStartLocationsModeBtn.Button.SetNavigation(RandoStartItemsBtn.Button, RandoStartLocationsModeBtn.Button, StartLocationsListBtn.Button, startRandoBtn);
             StartLocationsListBtn.Button.SetNavigation(RandoStartLocationsModeBtn.Button, RandoStartLocationsModeBtn.Button, StartLocationsListBtn.Button, startRandoBtn);
 
@@ -360,6 +367,7 @@ namespace RandomizerMod
                         RandoFlamesBtn.SetSelection(false);
                         RandoBossEssenceBtn.SetSelection(false);
                         RandoBossGeoBtn.SetSelection(false);
+                        RandoJournalEntriesBtn.SetSelection(false);
                         break;
                     case "Super":
                         RandoDreamersBtn.SetSelection(true);
@@ -385,6 +393,7 @@ namespace RandomizerMod
                         RandoFlamesBtn.SetSelection(false);
                         RandoBossEssenceBtn.SetSelection(false);
                         RandoBossGeoBtn.SetSelection(false);
+                        RandoJournalEntriesBtn.SetSelection(false);
                         break;
                     case "LifeTotems":
                         RandoDreamersBtn.SetSelection(true);
@@ -410,6 +419,7 @@ namespace RandomizerMod
                         RandoFlamesBtn.SetSelection(false);
                         RandoBossEssenceBtn.SetSelection(false);
                         RandoBossGeoBtn.SetSelection(true);
+                        RandoJournalEntriesBtn.SetSelection(false);
                         break;
                     case "Spoiler DAB":
                         RandoDreamersBtn.SetSelection(true);
@@ -435,6 +445,7 @@ namespace RandomizerMod
                         RandoFlamesBtn.SetSelection(false);
                         RandoBossEssenceBtn.SetSelection(false);
                         RandoBossGeoBtn.SetSelection(false);
+                        RandoJournalEntriesBtn.SetSelection(false);
                         break;
                     case "EVERYTHING":
                         RandoDreamersBtn.SetSelection(true);
@@ -460,6 +471,7 @@ namespace RandomizerMod
                         RandoFlamesBtn.SetSelection(true);
                         RandoBossEssenceBtn.SetSelection(true);
                         RandoBossGeoBtn.SetSelection(true);
+                        RandoJournalEntriesBtn.SetSelection(true);
                         break;
                     case "Vanilla":
                         RandoDreamersBtn.SetSelection(false);
@@ -485,6 +497,7 @@ namespace RandomizerMod
                         RandoFlamesBtn.SetSelection(false);
                         RandoBossEssenceBtn.SetSelection(false);
                         RandoBossGeoBtn.SetSelection(false);
+                        RandoJournalEntriesBtn.SetSelection(false);
                         break;
                     case "Custom":
                         item.SetSelection("Standard");
@@ -591,6 +604,7 @@ namespace RandomizerMod
             RandoRootsBtn.Changed += PoolSettingChanged;
             RandoCocoonsBtn.Changed += PoolSettingChanged;
             RandoFlamesBtn.Changed += PoolSettingChanged;
+            RandoJournalEntriesBtn.Changed += PoolSettingChanged;
             DuplicateBtn.Changed += s => HandleProgressionLock();
 
             MiniPM pm = new MiniPM();
@@ -747,6 +761,7 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames = RandoFlamesBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeBossEssence = RandoBossEssenceBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeBossGeo = RandoBossGeoBtn.CurrentSelection;
+                    RandomizerMod.Instance.Settings.RandomizeJournalEntries = RandoJournalEntriesBtn.CurrentSelection;
 
                     RandomizerMod.Instance.Settings.RandomizePalaceTotems = RandoPalaceBtn.CurrentSelection && 
                         (RandoSoulTotemsBtn.CurrentSelection || !RandoLoreTabletsBtn.CurrentSelection);
