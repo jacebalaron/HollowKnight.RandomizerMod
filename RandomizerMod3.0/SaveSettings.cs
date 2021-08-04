@@ -45,16 +45,21 @@ namespace RandomizerMod
         public bool FreeLantern => !(DarkRooms || RandomizeKeys);
 
         // Used by mods who are loaded before and have a dependency relation with RandomizerMod
-        public static Action<SaveSettings> PreAfterDeserialize = null;
+        public delegate void PreAfterDeserializeFunc(SaveSettings settings);
+        public static event PreAfterDeserializeFunc PreAfterDeserialize
+        {
+            add => PreAfterDeserializeInternal += value;
+            remove => PreAfterDeserializeInternal -= value;
+        }
+        private static event PreAfterDeserializeFunc PreAfterDeserializeInternal;
+
         public SaveSettings()
         {
             AfterDeserialize += () =>
             {
                 if (Randomizer)
                 {
-                    PreAfterDeserialize?.Invoke(this);
-                    // Wiped to prevent old callbacks to be called on next save slots loading
-                    PreAfterDeserialize = null;
+                    PreAfterDeserializeInternal?.Invoke(this);
 
                     RandomizerMod.Instance.HookRandomizer();
                     RandomizerAction.CreateActions(ItemPlacements, this);
