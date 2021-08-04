@@ -18,7 +18,7 @@ namespace RandomizerMod.Actions
         private readonly string _item;
         private readonly string _location;
         private readonly SoulTotemSubtype _subtype;
-        private readonly bool _infinite;
+        private readonly SoulTotemSubtype _intendedSubtype;
 
         public static Dictionary<SoulTotemSubtype, float> Elevation = new Dictionary<SoulTotemSubtype, float>() {
             [SoulTotemSubtype.A] = 0.5f,
@@ -40,7 +40,20 @@ namespace RandomizerMod.Actions
             [SoulTotemSubtype.PathOfPain] = 0.7f,
         };
 
-        public CreateNewSoulTotem(string sceneName, float x, float y, string totemName, string item, string location, SoulTotemSubtype subtype, bool infinite)
+        public static Dictionary<SoulTotemSubtype, int> HitCount = new Dictionary<SoulTotemSubtype, int>()
+        {
+            [SoulTotemSubtype.A] = 5,
+            [SoulTotemSubtype.B] = 3,
+            [SoulTotemSubtype.C] = 3,
+            [SoulTotemSubtype.D] = 5,
+            [SoulTotemSubtype.E] = 5,
+            [SoulTotemSubtype.F] = 5,
+            [SoulTotemSubtype.G] = 5,
+            [SoulTotemSubtype.Palace] = 5,
+            [SoulTotemSubtype.PathOfPain] = -1,
+        };
+
+        public CreateNewSoulTotem(string sceneName, float x, float y, string totemName, string item, string location, SoulTotemSubtype subtype, SoulTotemSubtype intendedSubtype)
         {
             _sceneName = sceneName;
             _x = x;
@@ -49,7 +62,7 @@ namespace RandomizerMod.Actions
             _item = item;
             _location = location;
             _subtype = subtype;
-            _infinite = infinite;
+            _intendedSubtype = intendedSubtype;
         }
 
         public override ActionType Type => ActionType.GameObject;
@@ -70,35 +83,36 @@ namespace RandomizerMod.Actions
                 t.localScale = new Vector3(t.localScale.x * k, t.localScale.y * k, t.localScale.z);
             }
             totem.SetActive(true);
-            SetSoul(totem, _item, _location, _infinite);
+            SetSoul(totem, _item, _location, _intendedSubtype);
         }
 
-        public static void SetSoul(GameObject totem, string item, string location, bool infinite)
+        public static void SetSoul(GameObject totem, string item, string location, SoulTotemSubtype intendedSubtype)
         {
+            int hitCount = HitCount[intendedSubtype];
+
             var fsm = FSMUtility.LocateFSM(totem, "soul_totem");
             var init = fsm.GetState("Init");
             var hit = fsm.GetState("Hit");
 
-            if (infinite)
+            if (hitCount == -1)
             {
+                // PoP totems, or fake PoP totems, should be infinite
                 init.RemoveTransitionsTo("Mesh Renderer Off");
                 hit.RemoveTransitionsTo("Depleted");
+                hit.RemoveActionsOfType<IntCompare>();
             }
-
-            init.RemoveActionsOfType<BoolTest>();
-            init.RemoveActionsOfType<IntCompare>();
-            init.AddAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "DEPLETED" : null)));
-
-            // Path of Pain totems do not have a depleted state.
-            if (!infinite)
+            else
             {
-                hit.ClearTransitions();
-                hit.AddTransition("FINISHED", "Depleted");
+                // Normal totems can use the PersistentIntItem component to store hits remaining etc
+                PersistentIntData pid = totem.GetComponent<PersistentIntItem>().persistentIntData;
+                pid.id = totem.name;
+                pid.sceneName = totem.scene.name;
+
+                fsm.FsmVariables.GetFsmInt("Value").Value = hitCount;
+                fsm.GetState("Reset?").GetActionOfType<SetIntValue>().intValue.Value = hitCount;
+                fsm.GetState("Reset").GetActionOfType<SetIntValue>().intValue.Value = hitCount;
             }
-            hit.RemoveActionsOfType<IntCompare>();
-            var giveSoul = hit.GetActionOfType<FlingObjectsFromGlobalPool>();
-            giveSoul.spawnMin.Value = 100;
-            giveSoul.spawnMax.Value = 101;
+
             hit.AddAction(new RandomizerExecuteLambda(() =>
             {
                 if (!RandomizerMod.Instance.Settings.CheckLocationFound(location)) GiveItem(GiveAction.None, item, location);
