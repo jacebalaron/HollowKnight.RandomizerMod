@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using SereCore;
@@ -18,6 +18,7 @@ namespace RandomizerMod.Actions
         private readonly string _item;
         private readonly string _location;
         private readonly SoulTotemSubtype _subtype;
+        private readonly bool _infinite;
 
         public static Dictionary<SoulTotemSubtype, float> Elevation = new Dictionary<SoulTotemSubtype, float>() {
             [SoulTotemSubtype.A] = 0.5f,
@@ -39,7 +40,7 @@ namespace RandomizerMod.Actions
             [SoulTotemSubtype.PathOfPain] = 0.7f,
         };
 
-        public CreateNewSoulTotem(string sceneName, float x, float y, string totemName, string item, string location, SoulTotemSubtype   subtype)
+        public CreateNewSoulTotem(string sceneName, float x, float y, string totemName, string item, string location, SoulTotemSubtype subtype, bool infinite)
         {
             _sceneName = sceneName;
             _x = x;
@@ -48,6 +49,7 @@ namespace RandomizerMod.Actions
             _item = item;
             _location = location;
             _subtype = subtype;
+            _infinite = infinite;
         }
 
         public override ActionType Type => ActionType.GameObject;
@@ -68,19 +70,27 @@ namespace RandomizerMod.Actions
                 t.localScale = new Vector3(t.localScale.x * k, t.localScale.y * k, t.localScale.z);
             }
             totem.SetActive(true);
-            SetSoul(totem, _item, _location);
+            SetSoul(totem, _item, _location, _infinite);
         }
 
-        public static void SetSoul(GameObject totem, string item, string location)
+        public static void SetSoul(GameObject totem, string item, string location, bool infinite)
         {
             var fsm = FSMUtility.LocateFSM(totem, "soul_totem");
             var init = fsm.GetState("Init");
+            var hit = fsm.GetState("Hit");
+
+            if (infinite)
+            {
+                init.RemoveTransitionsTo("Mesh Renderer Off");
+                hit.RemoveTransitionsTo("Depleted");
+            }
+
             init.RemoveActionsOfType<BoolTest>();
             init.RemoveActionsOfType<IntCompare>();
             init.AddAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "DEPLETED" : null)));
-            var hit = fsm.GetState("Hit");
+
             // Path of Pain totems do not have a depleted state.
-            if (fsm.GetState("Depleted") != null)
+            if (!infinite)
             {
                 hit.ClearTransitions();
                 hit.AddTransition("FINISHED", "Depleted");
@@ -89,7 +99,10 @@ namespace RandomizerMod.Actions
             var giveSoul = hit.GetActionOfType<FlingObjectsFromGlobalPool>();
             giveSoul.spawnMin.Value = 100;
             giveSoul.spawnMax.Value = 101;
-            hit.AddAction(new RandomizerExecuteLambda(() =>  GiveItem(GiveAction.None, item, location)));
+            hit.AddAction(new RandomizerExecuteLambda(() =>
+            {
+                if (!RandomizerMod.Instance.Settings.CheckLocationFound(location)) GiveItem(GiveAction.None, item, location);
+            }));
         }
     }
 }

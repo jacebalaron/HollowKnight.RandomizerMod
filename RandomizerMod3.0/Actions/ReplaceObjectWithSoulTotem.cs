@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SereCore;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,8 +14,9 @@ namespace RandomizerMod.Actions
         private readonly SoulTotemSubtype _subtype;
         private readonly string _item;
         private readonly string _location;
+        private readonly bool _infinite;
 
-        public ReplaceObjectWithSoulTotem(string sceneName, string objectName, float elevation, string newTotemName, string item, string location, SoulTotemSubtype subtype)
+        public ReplaceObjectWithSoulTotem(string sceneName, string objectName, float elevation, string newTotemName, string item, string location, SoulTotemSubtype subtype, bool infinite)
         {
             _newTotemName = newTotemName;
             _objectName = objectName;
@@ -24,6 +25,7 @@ namespace RandomizerMod.Actions
             _subtype = subtype;
             _item = item;
             _location = location;
+            _infinite = infinite;
         }
 
         public override ActionType Type => ActionType.GameObject;
@@ -62,7 +64,7 @@ namespace RandomizerMod.Actions
                 t.localScale = new Vector3(t.localScale.x * k, t.localScale.y * k, t.localScale.z);
             }
             totem.SetActive(obj.activeSelf);
-            CreateNewSoulTotem.SetSoul(totem, _item, _location);
+            CreateNewSoulTotem.SetSoul(totem, _item, _location, _infinite);
             Object.Destroy(obj);
         }
     }
