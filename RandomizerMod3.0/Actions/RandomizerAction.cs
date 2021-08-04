@@ -185,15 +185,16 @@ namespace RandomizerMod.Actions
                 }
                 else if (replacedWithSoulTotem)
                 {
+                    bool infinite = newItem.objectName.Contains("nfinte");              // Not a typo
                     string totemName = "Randomizer Soul Totem " + newTotems++;
                     SoulTotemSubtype subtype = GetTotemSubtype(newItem.objectName);
                     if (oldItem.newShiny)
                     {
-                        Actions.Add(new CreateNewSoulTotem(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewSoulTotem.Elevation[subtype] - oldItem.elevation, totemName, newItemName, location, subtype));
+                        Actions.Add(new CreateNewSoulTotem(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewSoulTotem.Elevation[subtype] - oldItem.elevation, totemName, newItemName, location, subtype, infinite));
                     }
                     else
                     {
-                        Actions.Add(new ReplaceObjectWithSoulTotem(oldItem.sceneName, oldItem.objectName, oldItem.elevation, totemName, newItemName, location, subtype));
+                        Actions.Add(new ReplaceObjectWithSoulTotem(oldItem.sceneName, oldItem.objectName, oldItem.elevation, totemName, newItemName, location, subtype, infinite));
                         preventSelfDestruct();
                     }
                 }
