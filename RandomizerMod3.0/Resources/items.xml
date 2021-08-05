@@ -6099,6 +6099,7 @@
     <sceneName>Abyss_09</sceneName>
     <objectName>AbyssTendril Inspect</objectName>
     <replace>true</replace>
+    <elevation>0.4</elevation>
     <itemLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS)) + LEFTSHADOWDASH</itemLogic>
     <areaLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS)) + LEFTSHADOWDASH</areaLogic>
     <roomLogic>Abyss_09[right3]</roomLogic>
@@ -6115,6 +6116,7 @@
     <sceneName>Fungus3_archive_02</sceneName>
     <objectName>Zap Bug Inspect</objectName>
     <replace>true</replace>
+    <elevation>0.2</elevation>
     <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</itemLogic>
     <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</areaLogic>
     <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</roomLogic>
@@ -6131,6 +6133,7 @@
     <sceneName>Crossroads_52</sceneName>
     <objectName>Goam Inspect</objectName>
     <replace>true</replace>
+    <elevation>0.2</elevation>
     <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Main_Fungal_Wastes + (ACID | RIGHTCLAW | RIGHTDASH | RIGHTSUPERDASH | AIRSTALL)))</itemLogic>
     <areaLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | Crossroads_18[bot1])</areaLogic>
     <roomLogic>Crossroads_52[left1] + QUAKE</roomLogic>
@@ -6147,6 +6150,7 @@
     <sceneName>Deepnest_44</sceneName>
     <objectName>Centipede Inspect</objectName>
     <replace>true</replace>
+    <elevation>0.3</elevation>
     <itemLogic>Deepnest</itemLogic>
     <areaLogic>Deepnest</areaLogic>
     <roomLogic>Deepnest_44[top1]</roomLogic>
@@ -6164,6 +6168,7 @@
     <newShiny>true</newShiny>
     <x>275.1</x>
     <y>122.4</y>
+    <elevation>0.001</elevation>
     <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</itemLogic>
     <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</areaLogic>
     <roomLogic>White_Palace_20[bot1] + FULLCLAW + RIGHTDASH + WINGS + BOSS</roomLogic>
