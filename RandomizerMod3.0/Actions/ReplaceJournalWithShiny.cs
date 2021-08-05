@@ -40,7 +40,11 @@ namespace RandomizerMod.Actions
         private void ActivateShiny()
         {
             var obj = _parent.transform.Find(_shinyName).gameObject;
-            //obj.LocateMyFSM("Shiny Control").GetState("Fling?").RemoveActionsOfType<BoolTest>();
+            // Make the Hunter listenable again after picking up the item, just like
+            // in vanilla.
+            obj.LocateMyFSM("Shiny Control").GetState("Hero Up").AddFirstAction(
+                new RandomizerExecuteLambda(() => PlayMakerFSM.BroadcastEvent("SHINY ITEM GET"))
+            );
             obj.SetActive(true);
         }
     }
