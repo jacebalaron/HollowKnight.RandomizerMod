@@ -2895,7 +2895,7 @@
     <pool>JunkPitChest</pool>
     <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
     <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
-    <shopSpriteKey>ShopIcons.Essence</shopSpriteKey>
+    <shopSpriteKey>ShopIcons.LampBug</shopSpriteKey>
     <areaName>Junk_Pit</areaName>
   </item>
   <item name="10_Geo-Junk_Pit_Chest_5">
@@ -2942,7 +2942,7 @@
     <pool>Fake</pool>
     <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
     <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
-    <shopSpriteKey>ShopIcons.Essence</shopSpriteKey>
+    <shopSpriteKey>ShopIcons.LampBug</shopSpriteKey>
     <areaName></areaName>
   </item>
   <item name="Rancid_Egg-Sly">
