@@ -2834,6 +2834,86 @@
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Weavers_Den</areaName>
   </item>
+  <!--Junk Pit Chests-->
+  <item name="8_Geo-Junk_Pit_Chest_1">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>8</geo>
+    <nameKey>RANDOMIZER_NAME_8GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="8_Geo-Junk_Pit_Chest_2">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (1)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>8</geo>
+    <nameKey>RANDOMIZER_NAME_8GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="25_Geo-Junk_Pit_Chest_3">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (2)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>25</geo>
+    <nameKey>RANDOMIZER_NAME_25GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="Lumafly_Escape-Junk_Pit_Chest_4">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (3)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Trinket</type>
+    <action>SpawnLumaflies</action>
+    <pool>JunkPitChest</pool>
+    <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
+    <shopSpriteKey>ShopIcons.Essence</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="10_Geo-Junk_Pit_Chest_5">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (4)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>10</geo>
+    <nameKey>RANDOMIZER_NAME_10GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
   <item name="1_Geo">
     <sceneName></sceneName>
     <objectName></objectName>
@@ -2848,6 +2928,21 @@
     <nameKey>RANDOMIZER_NAME_1GEO</nameKey>
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName></areaName>
+  </item>
+  <item name="Lumafly_Escape">
+    <sceneName></sceneName>
+    <objectName></objectName>
+    <fsmName></fsmName>
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>SpawnLumaflies</action>
+    <pool>Fake</pool>
+    <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
+    <shopSpriteKey>ShopIcons.Essence</shopSpriteKey>
     <areaName></areaName>
   </item>
   <item name="Rancid_Egg-Sly">

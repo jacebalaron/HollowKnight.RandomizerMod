@@ -133,6 +133,7 @@ namespace RandomizerMod.Randomization
                 if (def.geo > 0) priceFactor = 0;
                 if (item.StartsWith("Soul_Totem")) priceFactor = 0;
                 if (item.StartsWith("Lore_Tablet")) priceFactor = 0;
+                if (item.StartsWith("Lumafly_Escape")) priceFactor = 0;
                 if (item.StartsWith("Rancid") || item.StartsWith("Mask")) priceFactor = 2;
                 if (item.StartsWith("Pale_Ore") || item.StartsWith("Charm_Notch")) priceFactor = 3;
                 if (item == "Focus") priceFactor = 10;

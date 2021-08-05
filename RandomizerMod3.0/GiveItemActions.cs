@@ -46,7 +46,8 @@ namespace RandomizerMod
             Lore,
 
             Lifeblood,
-            ElevatorPass
+            ElevatorPass,
+            SpawnLumaflies
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -127,7 +128,7 @@ namespace RandomizerMod
                     {
                         HeroController.instance.AddGeo(LogicManager.GetItemDef(item).geo);
                     }
-                    
+
                     break;
 
                 // Disabled because it's more convenient to do this from the fsm. Use GiveAction.None for geo spawns.
@@ -386,7 +387,7 @@ namespace RandomizerMod
                             semiPersistent = false
                         });
                     }
-                    
+
                     break;
 
                 case GiveAction.SettingsBool:
@@ -395,7 +396,7 @@ namespace RandomizerMod
 
                 case GiveAction.None:
                     break;
-                
+
                 case GiveAction.Lifeblood:
                     int n = LogicManager.GetItemDef(item).lifeblood;
                     for (int i = 0; i < n; i++)
@@ -407,6 +408,20 @@ namespace RandomizerMod
                 case GiveAction.ElevatorPass:
                     PlayerData.instance.SetBool(nameof(PlayerData.cityLift1), true);
                     PlayerData.instance.SetBool(nameof(PlayerData.cityLift2), true);
+                    break;
+
+                case GiveAction.SpawnLumaflies:
+                    if (HeroController.instance == null) break;
+
+                    Transform hero = HeroController.instance.transform;
+                    GameObject lumafly = ObjectCache.LumaflyEscape;
+
+                    Vector3 pos = hero.position;
+                    pos.z = lumafly.transform.position.z - 5f;
+                    lumafly.transform.position = pos;
+
+                    lumafly.SetActive(true);
+
                     break;
             }
 
