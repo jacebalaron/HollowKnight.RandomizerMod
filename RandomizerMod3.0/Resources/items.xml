@@ -6097,9 +6097,8 @@
   <item name="Journal_Entry-Void_Tendrils">
     <boolName>killedAbyssTendril</boolName>
     <sceneName>Abyss_09</sceneName>
-    <newShiny>true</newShiny>
-    <x>215.3</x>
-    <y>50.4</y>
+    <objectName>AbyssTendril Inspect</objectName>
+    <replace>true</replace>
     <itemLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS)) + LEFTSHADOWDASH</itemLogic>
     <areaLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS)) + LEFTSHADOWDASH</areaLogic>
     <roomLogic>Abyss_09[right3]</roomLogic>
@@ -6114,9 +6113,8 @@
   <item name="Journal_Entry-Charged_Lumafly">
     <boolName>killedZapBug</boolName>
     <sceneName>Fungus3_archive_02</sceneName>
-    <newShiny>true</newShiny>
-    <x>24.2</x>
-    <y>74.4</y>
+    <objectName>Zap Bug Inspect</objectName>
+    <replace>true</replace>
     <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</itemLogic>
     <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</areaLogic>
     <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</roomLogic>
@@ -6131,9 +6129,8 @@
   <item name="Journal_Entry-Goam">
     <boolName>killedWorm</boolName>
     <sceneName>Crossroads_52</sceneName>
-    <newShiny>true</newShiny>
-    <x>21.6</x>
-    <y>33.4</y>
+    <objectName>Goam Inspect</objectName>
+    <replace>true</replace>
     <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Main_Fungal_Wastes + (ACID | RIGHTCLAW | RIGHTDASH | RIGHTSUPERDASH | AIRSTALL)))</itemLogic>
     <areaLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | Crossroads_18[bot1])</areaLogic>
     <roomLogic>Crossroads_52[left1] + QUAKE</roomLogic>
@@ -6148,9 +6145,8 @@
   <item name="Journal_Entry-Garpede">
     <boolName>killedBigCentipede</boolName>
     <sceneName>Deepnest_44</sceneName>
-    <newShiny>true</newShiny>
-    <x>8.2</x>
-    <y>52.4</y>
+    <objectName>Centipede Inspect</objectName>
+    <replace>true</replace>
     <itemLogic>Deepnest</itemLogic>
     <areaLogic>Deepnest</areaLogic>
     <roomLogic>Deepnest_44[top1]</roomLogic>
