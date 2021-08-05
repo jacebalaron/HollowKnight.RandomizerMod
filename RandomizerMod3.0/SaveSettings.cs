@@ -29,6 +29,8 @@ namespace RandomizerMod
         private SerializableBoolDictionary _obtainedLocations = new SerializableBoolDictionary();
         private SerializableBoolDictionary _obtainedTransitions = new SerializableBoolDictionary();
 
+        public SerializableBoolDictionary _mimicPlacements = new SerializableBoolDictionary(); // Only for Mimic-but-not-Grub rando
+
         /// <remarks>item, location</remarks>
         public (string, string)[] ItemPlacements => _itemPlacements.Select(pair => (pair.Key, pair.Value)).ToArray();
 
@@ -242,6 +244,11 @@ namespace RandomizerMod
         }
 
         public bool RandomizeGrubs
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+        public bool RandomizeMimics
         {
             get => GetBool(false);
             set => SetBool(value);

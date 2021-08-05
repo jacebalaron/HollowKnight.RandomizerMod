@@ -118,9 +118,9 @@ namespace RandomizerMod
                 //(SceneNames.Room_Jinn, "Jinn NPC"),
                 (SceneNames.Deepnest_36, "Grub Bottle/Grub"),
                 (SceneNames.Deepnest_36, "Grub Bottle"),
-                // (SceneNames.Deepnest_36, "Grub Mimic Bottle"),
-                // (SceneNames.Deepnest_36, "Grub Mimic Top"),
-                // (SceneNames.Deepnest_36, "Dream Dialogue"),
+                (SceneNames.Deepnest_36, "Grub Mimic Bottle"),
+                (SceneNames.Deepnest_36, "Grub Mimic Top"),
+                (SceneNames.Deepnest_36, "Dream Dialogue"),
                 (SceneNames.Deepnest_36, "d_break_0047_deep_lamp2/lamp_bug_escape (7)")
             };
             if (!globalSettings.ReduceRockPreloads)
@@ -718,6 +718,7 @@ namespace RandomizerMod
         {
             if (PlayerData.instance.bossRushMode && info.SceneName == "GG_Entrance_Cutscene")
             {
+                RandoLogger.LogMimicsToSpoiler();    // No ideal time to do this
                 StartSaveChanges.StartDataChanges();
                 info.SceneName = PlayerData.instance.respawnScene;
                 SceneEditor.ApplySaveDataChanges(info.SceneName, info.EntryGateName ?? string.Empty);

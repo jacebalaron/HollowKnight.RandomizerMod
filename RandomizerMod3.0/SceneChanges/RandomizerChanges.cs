@@ -1101,7 +1101,7 @@ namespace RandomizerMod.SceneChanges
 
         public static void DeleteCollectorGrubs(Scene newScene)
         {
-            if (!RandomizerMod.Instance.Settings.RandomizeGrubs) return;
+            if (!RandomizerMod.Instance.Settings.RandomizeGrubs && !RandomizerMod.Instance.Settings.RandomizeMimics) return;
 
             switch (newScene.name)
             {
@@ -1111,6 +1111,27 @@ namespace RandomizerMod.SceneChanges
                     {
                         if (g.name.Contains("Grub Bottle")) Object.Destroy(g);
                     }
+                    break;
+            }
+        }
+        public static void DestroyMimicObjects(Scene newScene)
+        {
+            if (!RandomizerMod.Instance.Settings.RandomizeMimics) return;
+
+            switch (newScene.name)
+            {
+                case SceneNames.Deepnest_36:
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top (1)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top (2)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle (1)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle (2)"));
+                    break;
+
+                case SceneNames.Mines_16:
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle"));
                     break;
             }
         }

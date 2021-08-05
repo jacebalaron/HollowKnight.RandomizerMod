@@ -162,7 +162,21 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.RandomizeRelics) items.UnionWith(LogicManager.GetItemsByPool("Relic"));
             if (RandomizerMod.Instance.Settings.RandomizeMaps) items.UnionWith(LogicManager.GetItemsByPool("Map"));
             if (RandomizerMod.Instance.Settings.RandomizeStags) items.UnionWith(LogicManager.GetItemsByPool("Stag"));
-            if (RandomizerMod.Instance.Settings.RandomizeGrubs) items.UnionWith(LogicManager.GetItemsByPool("Grub"));
+
+            if (RandomizerMod.Instance.Settings.RandomizeGrubs)
+            {
+                if (RandomizerMod.Instance.Settings.RandomizeMimics)
+                {
+                    int numMimics = new Random(RandomizerMod.Instance.Settings.Seed + 101).Next(Randomizer.MIN_MIMIC_COUNT, 1 + Randomizer.MAX_MIMIC_COUNT);
+                    for (int i = 0; i < 50; i++)
+                    {
+                        if (i < numMimics) items.Add($"Mimic_Grub_({i})");
+                        else items.Add($"Grub_({i - numMimics})");
+                    }
+                }
+                else items.UnionWith(LogicManager.GetItemsByPool("Grub"));
+            }
+
             if (RandomizerMod.Instance.Settings.RandomizeWhisperingRoots) items.UnionWith(LogicManager.GetItemsByPool("Root"));
             if (RandomizerMod.Instance.Settings.RandomizeRocks) items.UnionWith(LogicManager.GetItemsByPool("Rock"));
             if (RandomizerMod.Instance.Settings.RandomizeSoulTotems) items.UnionWith(LogicManager.GetItemsByPool("Soul"));
@@ -322,6 +336,10 @@ namespace RandomizerMod.Randomization
             // the other restriction options do not have locations, so they are omitted.
 
             if (RandomizerMod.Instance.Settings.EggShop) locations.UnionWith(LogicManager.GetItemsByPool("EggShopLocation"));
+            if (RandomizerMod.Instance.Settings.RandomizeMimics && RandomizerMod.Instance.Settings.RandomizeGrubs)
+            {
+                locations.UnionWith(LogicManager.GetItemsByPool("Mimic"));
+            }
 
             // With Lore tablets randomized, we need to remove the World Sense and Focus locations from the pool
             if (RandomizerMod.Instance.Settings.RandomizeLoreTablets)
@@ -544,7 +562,7 @@ namespace RandomizerMod.Randomization
             }
             else unplacedItems.Remove(item);
 
-            if (LogicManager.GetItemDef(item).pool == "Grub")
+            if (LogicManager.GetItemDef(item).pool.StartsWith("Grub"))
             {
                 pm.AddGrubLocation(location);
             }

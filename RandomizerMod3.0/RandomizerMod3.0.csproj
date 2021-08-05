@@ -97,6 +97,7 @@
     <Compile Include="Actions\ChangeChestGeo.cs" />
     <Compile Include="Actions\ChangeShinyIntoItem.cs" />
     <Compile Include="Actions\CreateInactiveShiny.cs" />
+    <Compile Include="Actions\CreateNewMimicBottle.cs" />
     <Compile Include="Actions\CreateNewShiny.cs" />
     <Compile Include="Actions\CreateNewGrubJar.cs" />
     <Compile Include="Actions\CreateNewGeoRock.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Actions\DisableLoreTablet.cs" />
     <Compile Include="Actions\PreventSelfDestruct.cs" />
     <Compile Include="Actions\ReplaceBluggsacReward.cs" />
+    <Compile Include="Actions\ReplaceObjectWithMimicBottle.cs" />
     <Compile Include="Actions\ReplaceVengefulSpiritWithShiny.cs" />
     <Compile Include="Actions\ReplaceBasinVesselWithShiny.cs" />
     <Compile Include="Actions\ChangeCrystalShamanReward.cs" />
