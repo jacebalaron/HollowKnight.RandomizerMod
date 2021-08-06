@@ -205,8 +205,9 @@ namespace RandomizerMod.Actions
                 {
                     string newShinyName = "Randomizer Shiny " + location;     // lazy way to let the Jiji FSM edit determine what to do about the shiny
 
+                    int cost = settings.GetVariableCost(location);
                     Actions.Add(new CreateInactiveShiny(oldItem.sceneName, oldItem.objectName, newShinyName, oldItem.x, oldItem.y,
-                        () => Ref.PD.jinnEggsSold >= oldItem.cost));
+                        () => Ref.PD.jinnEggsSold >= cost));
 
                     oldItem.objectName = newShinyName;
                     oldItem.fsmName = "Shiny Control";

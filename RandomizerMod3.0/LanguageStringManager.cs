@@ -188,7 +188,6 @@ namespace RandomizerMod
             {
                 if (key == "JIJI_OFFER" && sheetTitle == "Prompts")
                 {
-                    Log(Language.Language.GetInternal("MEET2", "Jiji"));
                     return "Give Jiji all your rancid eggs?";
                 }
                 else if (key == "DECLINE" && sheetTitle == "Jiji")
@@ -423,7 +422,6 @@ namespace RandomizerMod
             }
 
             if (RandomizerMod.Instance.Settings.RandomizeNotchCosts && sheetTitle == "UI" && key.StartsWith("CHARM_NAME_")) {
-                Log("Rando notch costs");
                 string i = key.Substring(11);
                 if (i.IndexOf("_") != -1) i = i.Substring(0, i.IndexOf("_"));
                 return Language.Language.GetInternal(key, "UI") + $" [{PlayerData.instance.GetInt($"charmCost_{i}")}]";
