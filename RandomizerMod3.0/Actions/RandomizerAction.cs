@@ -181,15 +181,19 @@ namespace RandomizerMod.Actions
                 }
                 else if (replacedWithSoulTotem)
                 {
+                    bool infinite = newItem.objectName.Contains("nfinte");              // Not a typo
                     string totemName = "Randomizer Soul Totem " + newTotems++;
-                    SoulTotemSubtype subtype = GetTotemSubtype(newItem.objectName);
+                    SoulTotemSubtype intendedSubtype = GetTotemSubtype(newItem.objectName);
+                    SoulTotemSubtype subtype = ObjectCache.GetPreloadedTotemType(intendedSubtype);
+
+
                     if (oldItem.newShiny)
                     {
-                        Actions.Add(new CreateNewSoulTotem(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewSoulTotem.Elevation[subtype] - oldItem.elevation, totemName, newItemName, location, subtype));
+                        Actions.Add(new CreateNewSoulTotem(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewSoulTotem.Elevation[subtype] - oldItem.elevation, totemName, newItemName, location, subtype, intendedSubtype));
                     }
                     else
                     {
-                        Actions.Add(new ReplaceObjectWithSoulTotem(oldItem.sceneName, oldItem.objectName, oldItem.elevation, totemName, newItemName, location, subtype));
+                        Actions.Add(new ReplaceObjectWithSoulTotem(oldItem.sceneName, oldItem.objectName, oldItem.elevation, totemName, newItemName, location, subtype, intendedSubtype));
                         preventSelfDestruct();
                     }
                 }
@@ -592,7 +596,7 @@ namespace RandomizerMod.Actions
                 subtype = SoulTotemSubtype.PathOfPain;
             }
 
-            return ObjectCache.GetPreloadedTotemType(subtype);
+            return subtype;
         }
 
         public static string GetAdditivePrefix(string itemName)
@@ -691,7 +695,7 @@ namespace RandomizerMod.Actions
                 catch (Exception e)
                 {
                     LogError(
-                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                        $"Error processing PlayMakerFSM action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
                 }
             }
         }
@@ -714,7 +718,7 @@ namespace RandomizerMod.Actions
                 catch (Exception e)
                 {
                     LogError(
-                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                        $"Error processing GameObject action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
                 }
             }
         }
@@ -738,7 +742,7 @@ namespace RandomizerMod.Actions
                 catch (Exception e)
                 {
                     LogError(
-                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                        $"Error processing EnemyDeath action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
                 }
             }
 
