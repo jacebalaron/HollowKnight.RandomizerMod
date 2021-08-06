@@ -6086,8 +6086,8 @@
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_HUNTER_JOURNAL</nameKey>
     <shopDescKey>RANDOMIZER_DESC_HUNTER_JOURNAL</shopDescKey>
-    <shopSpriteKey>ShopIcons.WanderersJournal</shopSpriteKey>
-    <bigSpriteKey>ShopIcons.WanderersJournal</bigSpriteKey>
+    <shopSpriteKey>Prompts.Journal</shopSpriteKey>
+    <bigSpriteKey>Prompts.Journal</bigSpriteKey>
     <takeKey>GET_ITEM_INTRO1</takeKey>
     <buttonKey>RANDOMIZER_EMPTY</buttonKey>
     <descOneKey>RANDOMIZER_MEME</descOneKey>
@@ -6108,7 +6108,7 @@
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_VOID_TENDRILS</nameKey>
     <shopDescKey>RANDOMIZER_DESC_VOID_TENDRILS</shopDescKey>
-    <shopSpriteKey>ShopIcons.WanderersJournal</shopSpriteKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
     <areaName>Abyss</areaName>
   </item>
   <item name="Journal_Entry-Charged_Lumafly">
@@ -6125,7 +6125,7 @@
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_CHARGED_LUMAFLY</nameKey>
     <shopDescKey>RANDOMIZER_DESC_CHARGED_LUMAFLY</shopDescKey>
-    <shopSpriteKey>ShopIcons.WanderersJournal</shopSpriteKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
     <areaName>Teachers_Archives</areaName>
   </item>
   <item name="Journal_Entry-Goam">
@@ -6142,7 +6142,7 @@
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_GOAM</nameKey>
     <shopDescKey>RANDOMIZER_DESC_GOAM</shopDescKey>
-    <shopSpriteKey>ShopIcons.WanderersJournal</shopSpriteKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
     <areaName>Forgotten_Crossroads</areaName>
   </item>
   <item name="Journal_Entry-Garpede">
@@ -6159,7 +6159,7 @@
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_GARPEDE</nameKey>
     <shopDescKey>RANDOMIZER_DESC_GARPEDE</shopDescKey>
-    <shopSpriteKey>ShopIcons.WanderersJournal</shopSpriteKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
     <areaName>Deepnest</areaName>
   </item>
   <item name="Journal_Entry-Seal_of_Binding">
@@ -6177,7 +6177,7 @@
     <pool>PalaceJournal</pool>
     <nameKey>RANDOMIZER_NAME_BINDING_SEAL</nameKey>
     <shopDescKey>RANDOMIZER_DESC_BINDING_SEAL</shopDescKey>
-    <shopSpriteKey>ShopIcons.WanderersJournal</shopSpriteKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
     <areaName>Palace_Grounds</areaName>
   </item>
   <!--Elevator Pass-->

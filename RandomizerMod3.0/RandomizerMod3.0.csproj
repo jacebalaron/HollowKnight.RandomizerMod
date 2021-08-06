@@ -184,6 +184,7 @@
     <EmbeddedResource Include="Resources\Prompts\Fireball1.png" />
     <EmbeddedResource Include="Resources\Prompts\Fireball2.png" />
     <EmbeddedResource Include="Resources\Prompts\Isma.png" />
+    <EmbeddedResource Include="Resources\Prompts\Journal.png" />
     <EmbeddedResource Include="Resources\Prompts\Kingsbrand.png" />
     <EmbeddedResource Include="Resources\Prompts\Quake1.png" />
     <EmbeddedResource Include="Resources\Prompts\Quake2.png" />
@@ -256,6 +257,7 @@
     <EmbeddedResource Include="Resources\ShopIcons\Fireball1.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Fireball2.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Isma.png" />
+    <EmbeddedResource Include="Resources\ShopIcons\JournalEntry.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Quake1.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Quake2.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Scream1.png" />
