@@ -98,7 +98,7 @@ namespace RandomizerMod
             RandoMenuItem<bool> RandoSoulTotemsBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Soul Totems", false, true);
             RandoMenuItem<bool> RandoLoreTabletsBtn = new RandoMenuItem<bool>(back, new Vector2(rightColumn, y), "Lore Tablets", false, true);
             y -= vspace;
-            RandoMenuItem<bool> RandoPalaceBtn = new RandoMenuItem<bool>(back, new Vector2(centerColumn, y), "Palace Totems/Tablets", false, true);
+            RandoMenuItem<bool> RandoPalaceBtn = new RandoMenuItem<bool>(back, new Vector2(centerColumn, y), "Palace Totems/Tablets/Entries", false, true);
             y -= vspace;
             RandoMenuItem<bool> RandoFlamesBtn = new RandoMenuItem<bool>(back, new Vector2(leftColumn, y), "Grimmkin Flames", false, true);
             RandoMenuItem<bool> RandoGeoRocksBtn = new RandoMenuItem<bool>(back, new Vector2(rightColumn, y), "Geo Rocks", false, true);
@@ -772,9 +772,11 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.RandomizeJournalEntries = RandoJournalEntriesBtn.CurrentSelection;
 
                     RandomizerMod.Instance.Settings.RandomizePalaceTotems = RandoPalaceBtn.CurrentSelection && 
-                        (RandoSoulTotemsBtn.CurrentSelection || !RandoLoreTabletsBtn.CurrentSelection);
+                        (RandoSoulTotemsBtn.CurrentSelection || !(RandoLoreTabletsBtn.CurrentSelection || RandoJournalEntriesBtn.CurrentSelection));
                     RandomizerMod.Instance.Settings.RandomizePalaceTablets = RandoPalaceBtn.CurrentSelection &&
-                        (!RandoSoulTotemsBtn.CurrentSelection || RandoLoreTabletsBtn.CurrentSelection);
+                        (!(RandoSoulTotemsBtn.CurrentSelection || RandoJournalEntriesBtn.CurrentSelection) || RandoLoreTabletsBtn.CurrentSelection);
+                    RandomizerMod.Instance.Settings.RandomizePalaceEntries = RandoPalaceBtn.CurrentSelection &&
+                        (RandoJournalEntriesBtn.CurrentSelection || !(RandoSoulTotemsBtn.CurrentSelection || RandoLoreTabletsBtn.CurrentSelection));
 
                     RandomizerMod.Instance.Settings.DuplicateMajorItems = DuplicateBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.CreateSpoilerLog = RandoSpoilerBtn.CurrentSelection;

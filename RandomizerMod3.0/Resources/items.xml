@@ -6174,7 +6174,7 @@
     <roomLogic>White_Palace_20[bot1] + FULLCLAW + RIGHTDASH + WINGS + BOSS</roomLogic>
     <type>Trinket</type>
     <action>Bool</action>
-    <pool>Journal</pool>
+    <pool>PalaceJournal</pool>
     <nameKey>RANDOMIZER_NAME_BINDING_SEAL</nameKey>
     <shopDescKey>RANDOMIZER_DESC_BINDING_SEAL</shopDescKey>
     <shopSpriteKey>ShopIcons.WanderersJournal</shopSpriteKey>

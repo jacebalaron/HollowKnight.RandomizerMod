@@ -295,6 +295,11 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool RandomizePalaceEntries
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
 
         public bool RandomizeLifebloodCocoons
         {
@@ -436,6 +441,10 @@ namespace RandomizerMod
                     return RandomizePalaceTablets;
                 case "Lore":
                     return RandomizeLoreTablets;
+                case "Journal":
+                    return RandomizeJournalEntries;
+                case "PalaceJournal":
+                    return RandomizePalaceEntries;
                 case "Lifeblood":
                     return RandomizeLifebloodCocoons;
                 case "Flame":
