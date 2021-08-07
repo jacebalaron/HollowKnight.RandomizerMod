@@ -6086,7 +6086,7 @@
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_HUNTER_JOURNAL</nameKey>
     <shopDescKey>RANDOMIZER_DESC_HUNTER_JOURNAL</shopDescKey>
-    <shopSpriteKey>Prompts.Journal</shopSpriteKey>
+    <shopSpriteKey>ShopIcons.Journal</shopSpriteKey>
     <bigSpriteKey>Prompts.Journal</bigSpriteKey>
     <takeKey>GET_ITEM_INTRO1</takeKey>
     <buttonKey>RANDOMIZER_EMPTY</buttonKey>
