@@ -71,6 +71,7 @@ namespace RandomizerMod.SceneChanges
                 MiscQoLChanges(newScene);
                 ApplyHintChanges(newScene);
                 Jiji.JijiSceneEdits(newScene);
+                AddWaterSpawns(newScene);
             }
 
             // Mainly restores pogos, etc., that were removed by TC

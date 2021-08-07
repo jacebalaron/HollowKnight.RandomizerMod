@@ -207,7 +207,7 @@
     <waypoint>Top_Left_Queen's_Gardens</waypoint>
     <areaTransition>Fungus3_34[right1]</areaTransition>
     <roomTransition>Fungus3_13[left1]</roomTransition>
-    <logic>(ITEMRANDO + SPICYSKIPS) | AREARANDO | ROOMRANDO</logic>
+    <logic>(ITEMRANDO + SPICYSKIPS) | (AREARANDO + SHADESKIPS) | ROOMRANDO</logic>
   </start>
   <start name="Distant Village">
     <sceneName>Room_spider_small</sceneName>
