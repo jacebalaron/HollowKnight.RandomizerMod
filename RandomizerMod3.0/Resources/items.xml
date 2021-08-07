@@ -6100,8 +6100,8 @@
     <objectName>AbyssTendril Inspect</objectName>
     <replace>true</replace>
     <elevation>0.4</elevation>
-    <itemLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS)) + LEFTSHADOWDASH</itemLogic>
-    <areaLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS)) + LEFTSHADOWDASH</areaLogic>
+    <itemLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS) | ((RIGHTSHADOWDASH | VOIDHEART) + (LEFTCLAW | WINGS))) + LEFTSHADOWDASH</itemLogic>
+    <areaLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS) | ((RIGHTSHADOWDASH | VOIDHEART) + (LEFTCLAW | WINGS))) + LEFTSHADOWDASH</areaLogic>
     <roomLogic>Abyss_09[right3]</roomLogic>
     <type>Trinket</type>
     <action>Journal</action>
