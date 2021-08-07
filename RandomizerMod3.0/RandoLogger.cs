@@ -432,6 +432,7 @@ namespace RandomizerMod
             AddToLog($"Boss essence: {RandomizerMod.Instance.Settings.RandomizeBossEssence}");
             AddToLog($"Boss geo: {RandomizerMod.Instance.Settings.RandomizeBossGeo}");
             AddToLog($"Journal entries: {RandomizerMod.Instance.Settings.RandomizeJournalEntries}");
+            AddToLog($"Palace entries: {RandomizerMod.Instance.Settings.RandomizePalaceEntries}");
             AddToLog($"Egg shop: {RandomizerMod.Instance.Settings.EggShop}");
             AddToLog($"Split cloak: {RandomizerMod.Instance.Settings.RandomizeCloakPieces}");
             AddToLog($"Split claw: {RandomizerMod.Instance.Settings.RandomizeClawPieces}");
