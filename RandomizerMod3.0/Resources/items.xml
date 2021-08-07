@@ -6104,7 +6104,7 @@
     <areaLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS)) + LEFTSHADOWDASH</areaLogic>
     <roomLogic>Abyss_09[right3]</roomLogic>
     <type>Trinket</type>
-    <action>Bool</action>
+    <action>Journal</action>
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_VOID_TENDRILS</nameKey>
     <shopDescKey>RANDOMIZER_DESC_VOID_TENDRILS</shopDescKey>
@@ -6121,7 +6121,7 @@
     <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</areaLogic>
     <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</roomLogic>
     <type>Trinket</type>
-    <action>Bool</action>
+    <action>Journal</action>
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_CHARGED_LUMAFLY</nameKey>
     <shopDescKey>RANDOMIZER_DESC_CHARGED_LUMAFLY</shopDescKey>
@@ -6138,7 +6138,7 @@
     <areaLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | Crossroads_18[bot1])</areaLogic>
     <roomLogic>Crossroads_52[left1] + QUAKE</roomLogic>
     <type>Trinket</type>
-    <action>Bool</action>
+    <action>Journal</action>
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_GOAM</nameKey>
     <shopDescKey>RANDOMIZER_DESC_GOAM</shopDescKey>
@@ -6155,7 +6155,7 @@
     <areaLogic>Deepnest</areaLogic>
     <roomLogic>Deepnest_44[top1]</roomLogic>
     <type>Trinket</type>
-    <action>Bool</action>
+    <action>Journal</action>
     <pool>Journal</pool>
     <nameKey>RANDOMIZER_NAME_GARPEDE</nameKey>
     <shopDescKey>RANDOMIZER_DESC_GARPEDE</shopDescKey>
@@ -6173,7 +6173,7 @@
     <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</areaLogic>
     <roomLogic>White_Palace_20[bot1] + FULLCLAW + RIGHTDASH + WINGS + BOSS</roomLogic>
     <type>Trinket</type>
-    <action>Bool</action>
+    <action>Journal</action>
     <pool>PalaceJournal</pool>
     <nameKey>RANDOMIZER_NAME_BINDING_SEAL</nameKey>
     <shopDescKey>RANDOMIZER_DESC_BINDING_SEAL</shopDescKey>
