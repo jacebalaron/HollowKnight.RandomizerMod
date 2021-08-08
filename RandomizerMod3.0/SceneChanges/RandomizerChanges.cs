@@ -170,6 +170,15 @@ namespace RandomizerMod.SceneChanges
                     coloTransition1.transform.SetPositionY(coloTransition1.transform.position.y - 9f);
                     break;
 
+                // Platform to escape from the geo rock above Lemm
+                case SceneNames.Ruins1_05 + "c":
+                    {
+                        GameObject platform = ObjectCache.SmallPlatform;
+                        platform.transform.SetPosition2D(26.6f, 73.2f);
+                        platform.SetActive(true);
+                    }
+                    break;
+
                 // Platforms to climb back up to King's Pass with no items
                 case SceneNames.Town when !RandomizerMod.Instance.Settings.RandomizeTransitions && RandomizerMod.Instance.Settings.StartName == "King's Pass":
                     {
@@ -598,12 +607,6 @@ namespace RandomizerMod.SceneChanges
                     {
                         if (go.name.StartsWith("Gate Switch")) Object.Destroy(go);
                     }
-                    break;
-
-                case SceneNames.Ruins1_05 + "c":
-                    GameObject platform = ObjectCache.SmallPlatform;
-                    platform.transform.SetPosition2D(26.6f, 73.2f);
-                    platform.SetActive(true);
                     break;
 
                 // Many changes to make the desolate dive pickup work properly
