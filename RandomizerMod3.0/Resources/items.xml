@@ -3982,9 +3982,9 @@
     <newShiny>true</newShiny>
     <x>28.7</x>
     <y>23.3</y>
-    <itemLogic>Far_Queen's_Gardens + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</itemLogic>
-    <areaLogic>Fungus1_13[left1] + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</areaLogic>
-    <roomLogic>Fungus1_13[left1] + Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</roomLogic>
+    <itemLogic>Far_Queen's_Gardens + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</itemLogic>
+    <areaLogic>Fungus1_13[left1] + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</areaLogic>
+    <roomLogic>Fungus1_13[left1] + Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Root</pool>
