@@ -422,6 +422,12 @@ namespace RandomizerMod
                 }
             }
 
+            // If the location is a grub, it seems polite to mark it as obtained for the purpose of the Collector's Map
+            if (LogicManager.GetItemDef(location).pool == "Grub")
+            {
+                GameManager.instance.AddToGrubList();
+            }
+
             // additive, kingsoul, bool type items can all have additive counts
             if (LogicManager.AdditiveItemSets.Any(set => set.Contains(item)))
             {
