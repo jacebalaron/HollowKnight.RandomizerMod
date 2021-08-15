@@ -2929,6 +2929,8 @@
     <sceneName>Fungus3_34</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>48.6</x>
+    <y>18.4</y>
     <elevation>0.001</elevation>
     <itemLogic>(Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | FULLDASH)) | (Top_Left_Queen's_Gardens + RIGHTDASH)</itemLogic>
     <areaLogic>(Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | FULLDASH)) | (Top_Left_Queen's_Gardens + RIGHTDASH)</areaLogic>
@@ -2946,6 +2948,8 @@
     <sceneName>Crossroads_50</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>117.7</x>
+    <y>43.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>Left_Blue_Lake + ((SWIM + WINGS) | RIGHTSUPERDASH)</itemLogic>
     <areaLogic>Left_Blue_Lake + ((SWIM + WINGS) | RIGHTSUPERDASH)</areaLogic>
@@ -2963,6 +2967,8 @@
     <sceneName>Mines_01</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>28.2</x>
+    <y>35.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>(Crossroads + QUAKE + (WINGS | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</itemLogic>
     <areaLogic>(Mines_01[left1] + QUAKE + (RIGHTDASH | WINGS | (LEFTCLAW + RIGHTSUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</areaLogic>
@@ -2998,6 +3004,8 @@
     <sceneName>Mines_20</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>30.9</x>
+    <y>149.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>Upper_Crystal_Peak + QUAKE</itemLogic>
     <areaLogic>Upper_Crystal_Peak + QUAKE</areaLogic>
@@ -3051,6 +3059,8 @@
     <sceneName>Deepnest_Spider_Town</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>112.3</x>
+    <y>80.5</y>
     <elevation>0.1</elevation>
     <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
@@ -3068,6 +3078,8 @@
     <sceneName>Deepnest_39</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>41.9</x>
+    <y>5.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + (MILDSKIPS | Bottom_Left_Queen's_Gardens)) | (Distant_Village_Stag + RIGHTCLAW))</itemLogic>
     <areaLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + MILDSKIPS) | Deepnest_39[door1] | Deepnest_42[top1] | (Deepnest_41[left1] + RIGHTCLAW))</areaLogic>
@@ -3103,6 +3115,8 @@
     <sceneName>Deepnest_East_14</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>75.5</x>
+    <y>24.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Oro_Bench + QUAKE + (RIGHTCLAW | WINGS)</itemLogic>
     <areaLogic>Oro_Bench + QUAKE + (RIGHTCLAW | WINGS)</areaLogic>
@@ -3138,6 +3152,8 @@
     <sceneName>Waterways_07</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>61.8</x>
+    <y>30.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Right_Waterways</itemLogic>
     <areaLogic>Right_Waterways</areaLogic>
@@ -3155,6 +3171,8 @@
     <sceneName>Waterways_02</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>65.3</x>
+    <y>18.2</y>
     <elevation>-0.2</elevation>
     <itemLogic>Upper_Left_Waterways | (Far_Left_Waterways + RIGHTCLAW) | (Central_Left_Waterways + (ANYCLAW | WINGS | SPICYSKIPS))</itemLogic>
     <areaLogic>Upper_Left_Waterways | (Far_Left_Waterways + RIGHTCLAW) | (Central_Left_Waterways + (ANYCLAW | WINGS | SPICYSKIPS))</areaLogic>
@@ -3172,6 +3190,8 @@
     <sceneName>Waterways_04</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>31.6</x>
+    <y>16.4</y>
     <elevation>0.001</elevation>
     <itemLogic>
       Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))

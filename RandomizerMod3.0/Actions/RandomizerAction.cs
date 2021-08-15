@@ -279,6 +279,12 @@ namespace RandomizerMod.Actions
                             oldItem.fsmName = "Shiny Control";
                         }
                     }
+                    else if (settings.NPCItemDialogue && oldItem.objectName == "Egg Sac")
+                    {
+                        Actions.Add(new CreateInactiveShiny(oldItem.sceneName, replaceShinyName + " Parent", replaceShinyName, oldItem.x, oldItem.y, 
+                            oldItem.sceneName, oldItem.objectName));
+                        Actions.Add(new ReplaceBluggsacReward(oldItem.sceneName, replaceShinyName));
+                    }
                     else
                     {
                         Actions.Add(new ReplaceObjectWithShiny(oldItem.sceneName, oldItem.objectName, replaceShinyName));
