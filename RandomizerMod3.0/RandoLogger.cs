@@ -116,6 +116,7 @@ namespace RandomizerMod
         public static void LogHelper(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt"), message + Environment.NewLine);
+            Events.LogHelper(message);
         }
 
         public static void UpdateHelperLog()
@@ -281,6 +282,7 @@ namespace RandomizerMod
 
                 helperWatch.Stop();
                 File.Create(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt")).Dispose();
+                Events.InitHelper();
                 LogHelper("Generating helper log:");
                 LogHelper(log.ToString());
                 LogHelper("Generated helper log in " + helperWatch.Elapsed.TotalSeconds + " seconds.");
@@ -290,17 +292,20 @@ namespace RandomizerMod
         public static void LogTracker(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerTrackerLog.txt"), message + Environment.NewLine);
+            Events.LogTracker(message);
         }
+
         public static void InitializeTracker()
         {
             File.Create(Path.Combine(Application.persistentDataPath, "RandomizerTrackerLog.txt")).Dispose();
-
+            Events.InitTracker();
             StringBuilder log = new StringBuilder();
             log.AppendLine("Starting tracker log for new randomizer file.");
             void AddToLog(string s) => log.AppendLine(s);
             AddSettingsToLog(AddToLog);
             LogTracker(log.ToString());
         }
+
         public static void LogTransitionToTracker(string entrance, string exit)
         {
             string message = string.Empty;
@@ -340,11 +345,13 @@ namespace RandomizerMod
         public static void LogSpoiler(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerSpoilerLog.txt"), message + Environment.NewLine);
+            Events.LogSpoiler(message);
         }
 
         public static void InitializeSpoiler()
         {
             File.Create(Path.Combine(Application.persistentDataPath, "RandomizerSpoilerLog.txt")).Dispose();
+            Events.InitSpoiler();
             LogSpoiler("Randomization completed with seed: " + RandomizerMod.Instance.Settings.Seed);
         }
 
@@ -594,11 +601,13 @@ namespace RandomizerMod
         public static void LogCondensedSpoiler(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerCondensedSpoilerLog.txt"), message + Environment.NewLine);
+            Events.LogCondensedSpoiler(message);
         }
 
         public static void InitializeCondensedSpoiler()
         {
             File.Create(Path.Combine(Application.persistentDataPath, "RandomizerCondensedSpoilerLog.txt")).Dispose();
+            Events.InitCondensedSpoiler();
             LogCondensedSpoiler("Randomization completed with seed: " + RandomizerMod.Instance.Settings.Seed + Environment.NewLine);
         }
 
