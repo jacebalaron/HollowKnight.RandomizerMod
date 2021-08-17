@@ -299,9 +299,6 @@ namespace RandomizerMod
         {
             File.Create(Path.Combine(Application.persistentDataPath, "RandomizerTrackerLog.txt")).Dispose();
             Events.InitTracker();
-            string log = "Starting tracker log for new randomizer file.";
-            void AddToLog(string s) => log += "\n" + s;
-            Events.InitTracker();
             StringBuilder log = new StringBuilder();
             log.AppendLine("Starting tracker log for new randomizer file.");
             void AddToLog(string s) => log.AppendLine(s);
