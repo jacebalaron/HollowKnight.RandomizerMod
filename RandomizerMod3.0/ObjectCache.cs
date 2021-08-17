@@ -24,8 +24,6 @@ namespace RandomizerMod
 
         private static GameObject _smallPlatform;
 
-        private static GameObject _jinn;
-
         private static GameObject _relicGetMsg;
 
         private static GameObject _grubJar;
@@ -33,6 +31,8 @@ namespace RandomizerMod
         private static GameObject _loreTablet;
 
         private static Dictionary<GeoRockSubtype, GameObject> _geoRocks;
+
+        private static Dictionary<SoulTotemSubtype, GameObject> _soulTotems;
 
         public static GameObject ShinyItem => Object.Instantiate(_shinyItem);
 
@@ -50,8 +50,6 @@ namespace RandomizerMod
 
         public static GameObject SmallPlatform => Object.Instantiate(_smallPlatform);
 
-        public static GameObject Jinn => Object.Instantiate(_jinn);
-
         public static GameObject RelicGetMsg => Object.Instantiate(_relicGetMsg);
 
         public static GameObject GrubJar => Object.Instantiate(_grubJar);
@@ -62,6 +60,14 @@ namespace RandomizerMod
 
         public static GameObject GeoRock(GeoRockSubtype t) {
             return Object.Instantiate(_geoRocks[t]);
+        }
+
+        public static SoulTotemSubtype GetPreloadedTotemType(SoulTotemSubtype t) {
+            return _soulTotems.ContainsKey(t) ? t : SoulTotemSubtype.B;
+        }
+
+        public static GameObject SoulTotem(SoulTotemSubtype t) {
+            return Object.Instantiate(_soulTotems[t]);
         }
 
         public static GameObject Grub;
@@ -94,7 +100,7 @@ namespace RandomizerMod
             Object.DontDestroyOnLoad(_mediumGeo);
             Object.DontDestroyOnLoad(_largeGeo);
 
-            PlayMakerFSM fsm  = objectsByScene[SceneNames.Cliffs_02]["Soul Totem 5"].LocateMyFSM("soul_totem");
+            PlayMakerFSM fsm  = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"].LocateMyFSM("soul_totem");
             _soul = Object.Instantiate(fsm.GetState("Hit").GetActionOfType<FlingObjectsFromGlobalPool>().gameObject.Value);
             _soul.SetActive(false);
             Object.DontDestroyOnLoad(_soul);
@@ -115,7 +121,7 @@ namespace RandomizerMod
             _grubJar = objectsByScene[SceneNames.Abyss_19]["Grub Bottle"];
             Object.DontDestroyOnLoad(_grubJar);
 
-            if (RandomizerMod.Instance.globalSettings.ReducePreloads)
+            if (RandomizerMod.Instance.globalSettings.ReduceRockPreloads)
             {
                 _geoRocks = new Dictionary<GeoRockSubtype, GameObject>() {
                     [GeoRockSubtype.Default] = objectsByScene[SceneNames.Tutorial_01]["_Props/Geo Rock 1"],
@@ -139,6 +145,28 @@ namespace RandomizerMod
                     [GeoRockSubtype.Outskirts] = objectsByScene[SceneNames.Deepnest_East_17]["Geo Rock Outskirts"],
                     [GeoRockSubtype.Outskirts420] = objectsByScene[SceneNames.Deepnest_East_17]["Giant Geo Egg"]
                 };
+                
+            }
+
+            if (RandomizerMod.Instance.globalSettings.ReduceTotemPreloads)
+            {
+                _soulTotems = new Dictionary<SoulTotemSubtype, GameObject>() {
+                    [SoulTotemSubtype.B] = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"]
+                };
+            }
+            else
+            {
+                _soulTotems = new Dictionary<SoulTotemSubtype, GameObject>() {
+                    [SoulTotemSubtype.A] = objectsByScene[SceneNames.Cliffs_02]["Soul Totem 5"],
+                    [SoulTotemSubtype.B] = objectsByScene[SceneNames.Deepnest_East_17]["Soul Totem mini_two_horned"],
+                    [SoulTotemSubtype.C] = objectsByScene[SceneNames.Abyss_04]["Soul Totem mini_horned"],
+                    [SoulTotemSubtype.D] = objectsByScene[SceneNames.Deepnest_10]["Soul Totem 1"],
+                    [SoulTotemSubtype.E] = objectsByScene[SceneNames.RestingGrounds_05]["Soul Totem 4"],
+                    [SoulTotemSubtype.F] = objectsByScene[SceneNames.Crossroads_ShamanTemple]["Soul Totem 2"],
+                    [SoulTotemSubtype.G] = objectsByScene[SceneNames.Ruins1_32]["Soul Totem 3"],
+                    [SoulTotemSubtype.Palace] = objectsByScene[SceneNames.White_Palace_02]["Soul Totem white"],
+                    [SoulTotemSubtype.PathOfPain] = objectsByScene[SceneNames.White_Palace_18]["Soul Totem white_Infinte"]
+                };
             }
             
             foreach (var entry in _geoRocks) {
@@ -156,9 +184,6 @@ namespace RandomizerMod
             _loreTablet = objectsByScene[SceneNames.Tutorial_01]["_Props/Tut_tablet_top"];
             LoreSound = (AudioClip)_loreTablet.LocateMyFSM("Inspection").GetState("Prompt Up").GetActionOfType<AudioPlayerOneShotSingle>().audioClip.Value;
             Object.DontDestroyOnLoad(LoreSound);
-
-            _jinn = objectsByScene[SceneNames.Room_Jinn]["Jinn NPC"];
-            Object.DontDestroyOnLoad(_jinn);
 
             if (_shinyItem == null || _smallGeo == null || _mediumGeo == null || _largeGeo == null ||
                 _tinkEffect == null || _respawnMarker == null || _smallPlatform == null)

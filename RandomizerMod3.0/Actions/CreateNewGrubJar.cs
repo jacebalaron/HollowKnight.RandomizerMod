@@ -40,10 +40,11 @@ namespace RandomizerMod.Actions
             GameObject GrubJar = ObjectCache.GrubJar;
             GrubJar.name = _newGrubJarName;
 
+            var z = GrubJar.transform.position.z;
             // Move the jar forward so it appears in front of any background objects
-            GrubJar.transform.position = new Vector3(_x, _y, GrubJar.transform.position.z - 0.1f);
+            GrubJar.transform.position = new Vector3(_x, _y, z - 0.1f);
             var grub = GrubJar.transform.Find("Grub");
-            grub.position = new Vector3(grub.position.x, grub.position.y, GrubJar.transform.position.z);
+            grub.position = new Vector3(grub.position.x, grub.position.y, z);
 
             FixBottleFSM(GrubJar, _item, _location);
             
@@ -52,14 +53,24 @@ namespace RandomizerMod.Actions
 
         public static void FixBottleFSM(GameObject jar, string item, string location)
         {
-            var fsm = FSMUtility.LocateFSM(jar, "Bottle Control");
-            var init = fsm.GetState("Init");
-            init.RemoveActionsOfType<BoolTest>();
-            init.AddFirstAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "ACTIVATE" : null)));
+            PersistentBoolData pbd = jar.GetComponent<PersistentBoolItem>().persistentBoolData;
+            pbd.id = location;
+            pbd.sceneName = jar.scene.name;
+
+            PlayMakerFSM fsm = FSMUtility.LocateFSM(jar, "Bottle Control");
+            FsmState init = fsm.GetState("Init");
+
+            // It's easiest to simply use the sceneData check to decide whether to destroy the bottle
+            // init.RemoveActionsOfType<BoolTest>();
+            // init.AddFirstAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "ACTIVATE" : null)));
+
             // The bottle FSM already takes care of granting the grub and playing happy grub noises
             // We have to add the GiveItem action before incrementing the grub count so the RecentItems
             // correctly notes the grub index
             fsm.GetState("Shatter").AddFirstAction(new RandomizerExecuteLambda(() => GiveItem(GiveAction.None, item, location)));
+
+            // It seems pointless to mark this scene as having been cleared of grub jars
+            fsm.GetState("Set Map?").ClearTransitions();
         }
     }
 }

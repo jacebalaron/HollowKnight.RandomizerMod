@@ -68,7 +68,7 @@
     <objectName>Soul Totem mini_horned</objectName>
     <replace>true</replace>
     <elevation>0.001</elevation>
-    <itemLogic>Crossroads + (LEFTDASH | WINGS | (LEFTCLAW + (AIRSTALL | INFECTED | Fungal_Wastes)))</itemLogic>
+    <itemLogic>Crossroads + (LEFTDASH | WINGS | (LEFTCLAW + (AIRSTALL | INFECTED | (Main_Fungal_Wastes + (ACID | RIGHTSUPERDASH | RIGHTDASH | RIGHTCLAW)))))</itemLogic>
     <areaLogic>Crossroads + (LEFTDASH | WINGS | (LEFTCLAW + (AIRSTALL | INFECTED | Crossroads_18[bot1])))</areaLogic>
     <roomLogic>(Crossroads_18[right1] + (LEFTDASH | WINGS | (LEFTCLAW + (AIRSTALL | INFECTED)))) | ((Crossroads_18[bot1] | Crossroads_18[right2]) + (LEFTDASH | WINGS | LEFTCLAW))</roomLogic>
     <type>Soul</type>
@@ -116,9 +116,9 @@
     <objectName>Soul Totem mini_horned</objectName>
     <replace>true</replace>
     <elevation>0.2</elevation>
-    <itemLogic>(Crossroads + ((ACIDSKIPS + ((LEFTCLAW + SUPERDASH + (WINGS | RIGHTCLAW)) | (WINGS + RIGHTDASH))) | ACID)) | (Right_Fog_Canyon + (ANYCLAW | WINGS | (FULLDASH + MILDSKIPS)))</itemLogic>
-    <areaLogic>(Crossroads + ((ACIDSKIPS + ((LEFTCLAW + SUPERDASH + (WINGS | RIGHTCLAW)) | (WINGS + RIGHTDASH))) | ACID)) | Crossroads_35[bot1]</areaLogic>
-    <roomLogic>(Crossroads_35[right1] + ((ACIDSKIPS + ((LEFTCLAW + SUPERDASH + (WINGS | RIGHTCLAW)) | (WINGS + RIGHTDASH))) | ACID)) | Crossroads_35[bot1]</roomLogic>
+    <itemLogic>(Crossroads + ((ACIDSKIPS + ((LEFTCLAW + RIGHTSUPERDASH + (WINGS | RIGHTCLAW)) | (WINGS + RIGHTDASH))) | ACID)) | (Right_Fog_Canyon + (ANYCLAW | WINGS | (FULLDASH + MILDSKIPS)))</itemLogic>
+    <areaLogic>(Crossroads + ((ACIDSKIPS + ((LEFTCLAW + RIGHTSUPERDASH + (WINGS | RIGHTCLAW)) | (WINGS + RIGHTDASH))) | ACID)) | Crossroads_35[bot1]</areaLogic>
+    <roomLogic>(Crossroads_35[right1] + ((ACIDSKIPS + ((LEFTCLAW + RIGHTSUPERDASH + (WINGS | RIGHTCLAW)) | (WINGS + RIGHTDASH))) | ACID)) | Crossroads_35[bot1]</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -164,9 +164,9 @@
     <objectName>Soul Totem 2</objectName>
     <replace>true</replace>
     <elevation>0.8</elevation>
-    <itemLogic>Ancestral_Mound + (UPWALLBREAK | (SUPERDASH + ANYCLAW + MILDSKIPS))</itemLogic>
-    <areaLogic>Ancestral_Mound + (UPWALLBREAK | (SUPERDASH + ANYCLAW + MILDSKIPS))</areaLogic>
-    <roomLogic>Crossroads_ShamanTemple[left1] + (UPWALLBREAK | (SUPERDASH + ANYCLAW + MILDSKIPS))</roomLogic>
+    <itemLogic>Ancestral_Mound + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</itemLogic>
+    <areaLogic>Ancestral_Mound + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</areaLogic>
+    <roomLogic>Crossroads_ShamanTemple[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -244,9 +244,9 @@
     <objectName>Soul Totem mini_horned</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Lower_Kingdom's_Edge + ((RIGHTCLAW + (RIGHTDASH | LEFTCLAW | MILDSKIPS)) | WINGS) + (RIGHTDASH | WINGS | SUPERDASH | ACID | AIRSTALL | MILDSKIPS)</itemLogic>
-    <areaLogic>Lower_Kingdom's_Edge + ((RIGHTCLAW + (RIGHTDASH | LEFTCLAW | MILDSKIPS)) | WINGS | (Deepnest_East_01[right1] + RIGHTDASH) | Deepnest_East_02[top1]) + (RIGHTDASH | WINGS | SUPERDASH | ACID | AIRSTALL | MILDSKIPS)</areaLogic>
-    <roomLogic>(Deepnest_East_02[top1] | Deepnest_East_02[bot1] | Deepnest_East_02[right1]) + (RIGHTDASH | WINGS | SUPERDASH | ACID | AIRSTALL | MILDSKIPS)</roomLogic>
+    <itemLogic>Lower_Kingdom's_Edge + ((RIGHTCLAW + (RIGHTDASH | LEFTCLAW | MILDSKIPS)) | WINGS) + (RIGHTDASH | WINGS | RIGHTSUPERDASH | ACID | AIRSTALL | MILDSKIPS)</itemLogic>
+    <areaLogic>Lower_Kingdom's_Edge + ((RIGHTCLAW + (RIGHTDASH | LEFTCLAW | MILDSKIPS)) | WINGS | (Deepnest_East_01[right1] + RIGHTDASH) | Deepnest_East_02[top1]) + (RIGHTDASH | WINGS | RIGHTSUPERDASH | ACID | AIRSTALL | MILDSKIPS)</areaLogic>
+    <roomLogic>(Deepnest_East_02[top1] | Deepnest_East_02[bot1] | Deepnest_East_02[right1]) + (RIGHTDASH | WINGS | RIGHTSUPERDASH | ACID | AIRSTALL | MILDSKIPS)</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -388,8 +388,8 @@
     <objectName>Soul Totem mini_horned</objectName>
     <replace>true</replace>
     <elevation>0.001</elevation>
-    <itemLogic>Greenpath + (LEFTDASH | LEFTCLAW | WINGS | SUPERDASH | AIRSTALL | SHADESKIPS)</itemLogic>
-    <areaLogic>Greenpath + (LEFTDASH | LEFTCLAW | WINGS | SUPERDASH | AIRSTALL | SHADESKIPS)</areaLogic>
+    <itemLogic>Greenpath + (LEFTDASH | LEFTCLAW | WINGS | LEFTSUPERDASH | AIRSTALL | SHADESKIPS)</itemLogic>
+    <areaLogic>Greenpath + (LEFTDASH | LEFTCLAW | WINGS | LEFTSUPERDASH | AIRSTALL | SHADESKIPS)</areaLogic>
     <roomLogic>Fungus1_29[left1] | Fungus1_29[right1]</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -420,8 +420,8 @@
     <objectName>Soul Totem mini_horned</objectName>
     <replace>true</replace>
     <elevation>-0.1</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
+    <areaLogic>Main_Fungal_Wastes</areaLogic>
     <roomLogic>Fungus2_10[right1] | Fungus2_10[right2] | Fungus2_10[bot1]</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -436,9 +436,9 @@
     <objectName>Soul Totem 5</objectName>
     <replace>true</replace>
     <elevation>0.8</elevation>
-    <itemLogic>(Fungal_Wastes + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (RIGHTDASH | SUPERDASH | ACID)) | (Left_City + ((FULLCLAW + (LEFTDASH | SUPERDASH)) | (ANYCLAW + WINGS)) + QUAKE)</itemLogic>
-    <areaLogic>(Fungal_Wastes + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (RIGHTDASH | SUPERDASH | ACID)) | (Fungus2_21[right1] + ((FULLCLAW + (LEFTDASH | SUPERDASH)) | (ANYCLAW + WINGS)) + QUAKE)</areaLogic>
-    <roomLogic>(Fungus2_21[left1] + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (RIGHTDASH | SUPERDASH | ACID)) | (Fungus2_21[right1] + ((FULLCLAW + (LEFTDASH | SUPERDASH)) | (ANYCLAW + WINGS)) + QUAKE)</roomLogic>
+    <itemLogic>(Main_Fungal_Wastes + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (RIGHTDASH | RIGHTSUPERDASH | ACID)) | (Left_City + ((FULLCLAW + (LEFTDASH | LEFTSUPERDASH)) | (ANYCLAW + WINGS)) + QUAKE)</itemLogic>
+    <areaLogic>(Main_Fungal_Wastes + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (RIGHTDASH | RIGHTSUPERDASH | ACID)) | (Fungus2_21[right1] + ((FULLCLAW + (LEFTDASH | LEFTSUPERDASH)) | (ANYCLAW + WINGS)) + QUAKE)</areaLogic>
+    <roomLogic>(Fungus2_21[left1] + (RIGHTCLAW | (LEFTCLAW + WINGS)) + (RIGHTDASH | RIGHTSUPERDASH | ACID)) | (Fungus2_21[right1] + ((FULLCLAW + (LEFTDASH | LEFTSUPERDASH)) | (ANYCLAW + WINGS)) + QUAKE)</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -484,9 +484,9 @@
     <objectName>Soul Totem mini_two_horned</objectName>
     <replace>true</replace>
     <elevation>0.001</elevation>
-    <itemLogic>(Top_Left_Queen's_Gardens | (Queen's_Gardens_Stag + Can_Stag + (LEFTDASH | LEFTCLAW | (RIGHTCLAW + SUPERDASH) | WINGS)))</itemLogic>
-    <areaLogic>(Top_Left_Queen's_Gardens | (Queen's_Gardens_Stag + Can_Stag + (LEFTDASH | LEFTCLAW | (RIGHTCLAW + SUPERDASH) | WINGS)))</areaLogic>
-    <roomLogic>(Fungus3_40[top1] | (Fungus3_40[right1] + (LEFTCLAW | (RIGHTCLAW + SUPERDASH) | WINGS | LEFTDASH)))</roomLogic>
+    <itemLogic>(Top_Left_Queen's_Gardens | (Queen's_Gardens_Stag + Can_Stag + (LEFTDASH | LEFTCLAW | (RIGHTCLAW + LEFTSUPERDASH) | WINGS)))</itemLogic>
+    <areaLogic>(Top_Left_Queen's_Gardens | (Queen's_Gardens_Stag + Can_Stag + (LEFTDASH | LEFTCLAW | (RIGHTCLAW + LEFTSUPERDASH) | WINGS)))</areaLogic>
+    <roomLogic>(Fungus3_40[top1] | (Fungus3_40[right1] + (LEFTCLAW | (RIGHTCLAW + LEFTSUPERDASH) | WINGS | LEFTDASH)))</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -516,7 +516,7 @@
     <objectName>Soul Totem mini_two_horned</objectName>
     <replace>true</replace>
     <elevation>0.3</elevation>
-    <itemLogic>Upper_Crystal_Peak + (FULLCLAW | (WINGS + ANYCLAW)) + (RIGHTDASH | WINGS | SUPERDASH) + QUAKE</itemLogic>
+    <itemLogic>Upper_Crystal_Peak + (FULLCLAW | (WINGS + ANYCLAW)) + (RIGHTDASH | WINGS | RIGHTSUPERDASH) + QUAKE</itemLogic>
     <areaLogic>((Mines_25[left1] + (FULLCLAW | (WINGS + ANYCLAW))) | Hallownest's_Crown) + QUAKE</areaLogic>
     <roomLogic>((Mines_25[left1] + (FULLCLAW | (WINGS + ANYCLAW))) | (Mines_25[top1])) + QUAKE</roomLogic>
     <type>Soul</type>
@@ -533,8 +533,8 @@
     <replace>true</replace>
     <elevation>0.9</elevation>
     <itemLogic>Crystallized_Mound</itemLogic>
-    <areaLogic>(Crystal_Peak + (LANTERN | DARKROOMS) + ((WINGS + RIGHTDASH) | SUPERDASH | (AIRSTALL + (WINGS | RIGHTDASH)))) | Mines_28[door1]</areaLogic>
-    <roomLogic>Mines_28[door1] | (Mines_28[left1] + ((WINGS + RIGHTDASH) | SUPERDASH | (AIRSTALL + (WINGS | RIGHTDASH))))</roomLogic>
+    <areaLogic>(Crystal_Peak + (LANTERN | DARKROOMS) + ((WINGS + RIGHTDASH) | RIGHTSUPERDASH | (AIRSTALL + (WINGS | RIGHTDASH)))) | Mines_28[door1]</areaLogic>
+    <roomLogic>Mines_28[door1] | (Mines_28[left1] + ((WINGS + RIGHTDASH) | RIGHTSUPERDASH | (AIRSTALL + (WINGS | RIGHTDASH))))</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -548,9 +548,9 @@
     <objectName>Soul Totem mini_two_horned</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Upper_Crystal_Peak + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL | (SUPERDASH + MILDSKIPS))) | (WINGS + SHADESKIPS) | (RIGHTCLAW + SUPERDASH + RIGHTDASH + WINGS))</itemLogic>
-    <areaLogic>Upper_Crystal_Peak + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL | (SUPERDASH + MILDSKIPS))) | (WINGS + SHADESKIPS) | (RIGHTCLAW + SUPERDASH + RIGHTDASH + WINGS))</areaLogic>
-    <roomLogic>Mines_31[left1] + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL | (SUPERDASH + MILDSKIPS))) | (RIGHTCLAW + SUPERDASH + RIGHTDASH + WINGS))</roomLogic>
+    <itemLogic>Upper_Crystal_Peak + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL | (RIGHTSUPERDASH + MILDSKIPS))) | (WINGS + SHADESKIPS + 4MASKS) | (RIGHTCLAW + RIGHTSUPERDASH + RIGHTDASH + WINGS))</itemLogic>
+    <areaLogic>Upper_Crystal_Peak + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL | (RIGHTSUPERDASH + MILDSKIPS))) | (WINGS + SHADESKIPS + 4MASKS) | (RIGHTCLAW + RIGHTSUPERDASH + RIGHTDASH + WINGS))</areaLogic>
+    <roomLogic>Mines_31[left1] + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL | (RIGHTSUPERDASH + MILDSKIPS))) | (RIGHTCLAW + RIGHTSUPERDASH + RIGHTDASH + WINGS))</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -564,9 +564,9 @@
     <objectName>Soul Totem mini_horned</objectName>
     <replace>true</replace>
     <elevation>-0.1</elevation>
-    <itemLogic>Upper_Crystal_Peak + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)) | (WINGS + SHADESKIPS) | (RIGHTCLAW + SUPERDASH + FULLDASH + WINGS))</itemLogic>
-    <areaLogic>Upper_Crystal_Peak + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)) | (WINGS + SHADESKIPS) | (RIGHTCLAW + SUPERDASH + FULLDASH + WINGS))</areaLogic>
-    <roomLogic>Mines_31[left1] + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL))  | (RIGHTCLAW + SUPERDASH + FULLDASH + WINGS))</roomLogic>
+    <itemLogic>Upper_Crystal_Peak + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)) | (WINGS + SHADESKIPS + 4MASKS) | (RIGHTCLAW + RIGHTSUPERDASH + FULLDASH + WINGS))</itemLogic>
+    <areaLogic>Upper_Crystal_Peak + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)) | (WINGS + SHADESKIPS + 4MASKS) | (RIGHTCLAW + RIGHTSUPERDASH + FULLDASH + WINGS))</areaLogic>
+    <roomLogic>Mines_31[left1] + ((LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL))  | (RIGHTCLAW + RIGHTSUPERDASH + FULLDASH + WINGS))</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -580,9 +580,9 @@
     <objectName>Soul Totem mini_horned</objectName>
     <replace>true</replace>
     <elevation>-0.2</elevation>
-    <itemLogic>Crystallized_Mound + QUAKE + (ANYCLAW | WINGS)</itemLogic>
-    <areaLogic>Crystallized_Mound + QUAKE + (ANYCLAW | WINGS)</areaLogic>
-    <roomLogic>Mines_35[left1] + QUAKE + (ANYCLAW | WINGS)</roomLogic>
+    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</itemLogic>
+    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</areaLogic>
+    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -628,8 +628,8 @@
     <objectName>Soul Totem 1</objectName>
     <replace>true</replace>
     <elevation>1.6</elevation>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_24[left2] | Ruins1_24[right2]</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -644,8 +644,8 @@
     <objectName>Soul Totem 5</objectName>
     <replace>true</replace>
     <elevation>0.9</elevation>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS))</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS))</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_32[right1] + ANYCLAW</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -660,8 +660,8 @@
     <objectName>Soul Totem 3</objectName>
     <replace>true</replace>
     <elevation>0.2</elevation>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_32[right1] + ANYCLAW + QUAKE</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -694,7 +694,11 @@
     <elevation>0.1</elevation>
     <itemLogic>Far_Left_Waterways + (ANYCLAW | (WINGS + SPICYSKIPS))</itemLogic>
     <areaLogic>Far_Left_Waterways + (ANYCLAW | (WINGS + SPICYSKIPS))</areaLogic>
-    <roomLogic>Waterways_04b + (ANYCLAW | (WINGS + SPICYSKIPS))</roomLogic>
+    <roomLogic>
+      Waterways_04b[left1] + (ANYCLAW | (WINGS + SPICYSKIPS))
+      | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | (RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH)) + (ANYCLAW | (WINGS + SPICYSKIPS))
+      | Waterways_04b[right2] + (WINGS | (LEFTCLAW + MILDSKIPS)) + (LEFTCLAW | MILDSKIPS) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW)) + (ANYCLAW | (WINGS + SPICYSKIPS))
+    </roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -708,9 +712,9 @@
     <objectName>Soul Totem mini_horned</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Right_Waterways + ((LEFTCLAW + (LEFTDASH | WINGS | SUPERDASH | (AIRSTALL + RIGHTCLAW) | MILDSKIPS)) | (RIGHTCLAW + WINGS))</itemLogic>
-    <areaLogic>Right_Waterways + ((LEFTCLAW + (LEFTDASH | WINGS | SUPERDASH | (AIRSTALL + RIGHTCLAW) | MILDSKIPS)) | (RIGHTCLAW + WINGS))</areaLogic>
-    <roomLogic>Waterways_07 + ((LEFTCLAW + (LEFTDASH | WINGS | SUPERDASH | (AIRSTALL + RIGHTCLAW) | MILDSKIPS)) | (RIGHTCLAW + WINGS))</roomLogic>
+    <itemLogic>Right_Waterways + ((LEFTCLAW + (LEFTDASH | WINGS | LEFTSUPERDASH | (AIRSTALL + RIGHTCLAW) | MILDSKIPS)) | (RIGHTCLAW + WINGS))</itemLogic>
+    <areaLogic>Right_Waterways + ((LEFTCLAW + (LEFTDASH | WINGS | LEFTSUPERDASH | (AIRSTALL + RIGHTCLAW) | MILDSKIPS)) | (RIGHTCLAW + WINGS))</areaLogic>
+    <roomLogic>Waterways_07 + ((LEFTCLAW + (LEFTDASH | WINGS | LEFTSUPERDASH | (AIRSTALL + RIGHTCLAW) | MILDSKIPS)) | (RIGHTCLAW + WINGS))</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>Soul</pool>
@@ -740,9 +744,9 @@
     <objectName>Soul Totem white</objectName>
     <replace>true</replace>
     <elevation>1.2</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + (WINGS | (FULLDASH + RIGHTCLAW)) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + FULLDASH + SUPERDASH))</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + (WINGS | (FULLDASH + RIGHTCLAW)) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + FULLDASH + SUPERDASH))</areaLogic>
-    <roomLogic>White_Palace_02[left1] + ((LEFTCLAW + WINGS) | (RIGHTCLAW + FULLDASH + SUPERDASH))</roomLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + (WINGS | (FULLDASH + RIGHTCLAW)) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + FULLDASH + LEFTSUPERDASH))</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + (WINGS | (FULLDASH + RIGHTCLAW)) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + FULLDASH + LEFTSUPERDASH))</areaLogic>
+    <roomLogic>White_Palace_02[left1] + ((LEFTCLAW + WINGS) | (RIGHTCLAW + FULLDASH + LEFTSUPERDASH))</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>PalaceSoul</pool>
@@ -756,8 +760,8 @@
     <objectName>Soul Totem white</objectName>
     <replace>true</replace>
     <elevation>1.3</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + LEFTCLAW + WINGS + FULLDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + LEFTCLAW + WINGS + FULLDASH</areaLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + LEFTCLAW + WINGS</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + LEFTCLAW + WINGS</areaLogic>
     <roomLogic>White_Palace_03_hub + (LEFTDASH | FULLCLAW | WINGS | White_Palace_03_hub[left1])</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -788,9 +792,9 @@
     <objectName>Soul Totem white</objectName>
     <replace>true</replace>
     <elevation>1.5</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</areaLogic>
-    <roomLogic>White_Palace_09[right1] + (FULLCLAW | WINGS) + SUPERDASH</roomLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</areaLogic>
+    <roomLogic>White_Palace_09[right1] + (FULLCLAW | WINGS) + LEFTSUPERDASH</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>PalaceSoul</pool>
@@ -820,8 +824,8 @@
     <objectName>Soul Totem white_Infinte</objectName>
     <replace>true</replace>
     <elevation>1.5</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</areaLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</areaLogic>
     <roomLogic>White_Palace_17[bot1] + FULLCLAW + WINGS</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -836,8 +840,8 @@
     <objectName>Soul Totem white_Infinte (3)</objectName>
     <replace>true</replace>
     <elevation>1.4</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</areaLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</areaLogic>
     <roomLogic>White_Palace_17[bot1] + FULLDASH + FULLCLAW + WINGS</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -854,7 +858,7 @@
     <elevation>1.5</elevation>
     <itemLogic>Palace_Grounds + AWOKEN + LEFTCLAW + WINGS + FULLDASH</itemLogic>
     <areaLogic>Palace_Grounds + AWOKEN + LEFTCLAW + WINGS + FULLDASH</areaLogic>
-    <roomLogic>(White_Palace_18[right1] + ((FULLDASH + WINGS) | SUPERDASH)) | (White_Palace_18[top1] + FULLDASH + FULLCLAW + WINGS + SUPERDASH)</roomLogic>
+    <roomLogic>(White_Palace_18[right1] + ((FULLDASH + WINGS) | LEFTSUPERDASH)) | (White_Palace_18[top1] + FULLDASH + FULLCLAW + WINGS + FULLSUPERDASH)</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>PalaceSoul</pool>
@@ -870,7 +874,7 @@
     <elevation>1.6</elevation>
     <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH</itemLogic>
     <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH</areaLogic>
-    <roomLogic>(White_Palace_18[right1] + FULLDASH + FULLCLAW + WINGS) | (White_Palace_18[top1] + FULLDASH + FULLCLAW + WINGS + SUPERDASH)</roomLogic>
+    <roomLogic>(White_Palace_18[right1] + FULLDASH + FULLCLAW + WINGS) | (White_Palace_18[top1] + FULLDASH + FULLCLAW + WINGS + FULLSUPERDASH)</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
     <pool>PalaceSoul</pool>
@@ -884,8 +888,8 @@
     <objectName>Soul Totem white_Infinte (1)</objectName>
     <replace>true</replace>
     <elevation>1.4</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</areaLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</areaLogic>
     <roomLogic>(White_Palace_19[left1] | White_Palace_19[top1]) + FULLCLAW + WINGS + FULLDASH</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -900,8 +904,8 @@
     <objectName>Soul Totem white_Infinte</objectName>
     <replace>true</replace>
     <elevation>1.5</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</areaLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</areaLogic>
     <roomLogic>White_Palace_19[left1] | (White_Palace_19[top1] + FULLCLAW + WINGS + FULLDASH)</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -916,8 +920,8 @@
     <objectName>Soul Totem white_Infinte (2)</objectName>
     <replace>true</replace>
     <elevation>1.5</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</areaLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</areaLogic>
     <roomLogic>White_Palace_20[bot1] + FULLCLAW</roomLogic>
     <type>Soul</type>
     <action>AddSoul</action>
@@ -951,8 +955,8 @@
     <x>24.6</x>
     <y>27.7</y>
     <elevation>0.3</elevation>
-    <itemLogic>Left_Elevator | (Left_City + (ANYCLAW | WINGS)) | (Fungal_Wastes + CREST + (ACID | SUPERDASH))</itemLogic>
-    <areaLogic>Left_Elevator | (Left_City + (ANYCLAW | WINGS)) | Ruins1_01[left1]</areaLogic>
+    <itemLogic>Upper_Storerooms | (Left_City + (ANYCLAW | WINGS)) | (Main_Fungal_Wastes + CREST + (ACID | RIGHTSUPERDASH))</itemLogic>
+    <areaLogic>Upper_Storerooms | (Left_City + (ANYCLAW | WINGS)) | Ruins1_01[left1]</areaLogic>
     <roomLogic>Ruins1_02[top1] | (Ruins1_02[bot1] + (ANYCLAW | WINGS))</roomLogic>
     <type>Lore</type>
     <loreKey>RUIN_TAB_01</loreKey>
@@ -1014,8 +1018,8 @@
     <x>36.0</x>
     <y>99.2</y>
     <elevation>2.8</elevation>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_32[right1] + ANYCLAW + QUAKE</roomLogic>
     <type>Lore</type>
     <loreKey>MAGE_COMP_01</loreKey>
@@ -1035,8 +1039,8 @@
     <x>46.0</x>
     <y>118.2</y>
     <elevation>0.8</elevation>
-    <itemLogic>Watcher's_Spire + (RIGHTCLAW | (WINGS + LEFTCLAW) | (LEFTCLAW + SHADESKIPS)) + BOSS</itemLogic>
-    <areaLogic>Watcher's_Spire + (RIGHTCLAW | (WINGS + LEFTCLAW) | (LEFTCLAW + SHADESKIPS)) + BOSS</areaLogic>
+    <itemLogic>Watcher's_Spire + (RIGHTCLAW | (WINGS + LEFTCLAW) | (LEFTCLAW + SHADESKIPS + 4MASKS)) + BOSS</itemLogic>
+    <areaLogic>Watcher's_Spire + (RIGHTCLAW | (WINGS + LEFTCLAW) | (LEFTCLAW + SHADESKIPS + 4MASKS)) + BOSS</areaLogic>
     <roomLogic>Ruins2_Watcher_Room[bot1]</roomLogic>
     <type>Lore</type>
     <loreKey>LURIAN_JOURNAL</loreKey>
@@ -1077,9 +1081,9 @@
     <x>20.6</x>
     <y>88.7</y>
     <elevation>1.3</elevation>
-    <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (SUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</itemLogic>
-    <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (SUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</areaLogic>
-    <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (SUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</roomLogic>
+    <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</itemLogic>
+    <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</areaLogic>
+    <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</roomLogic>
     <type>Lore</type>
     <loreKey>ARCHIVE_03</loreKey>
     <textType>Lore</textType>
@@ -1098,9 +1102,9 @@
     <x>97.8</x>
     <y>78.8</y>
     <elevation>1.4</elevation>
-    <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (SUPERDASH | ACID | (ACIDSKIPS + LEFTDASH + LEFTCLAW + WINGS))</itemLogic>
-    <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (SUPERDASH | ACID | (ACIDSKIPS + LEFTDASH + LEFTCLAW + WINGS))</areaLogic>
-    <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (SUPERDASH | ACID | (ACIDSKIPS + LEFTDASH + LEFTCLAW + WINGS))</roomLogic>
+    <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (LEFTSUPERDASH | ACID | (ACIDSKIPS + LEFTDASH + LEFTCLAW + WINGS))</itemLogic>
+    <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (LEFTSUPERDASH | ACID | (ACIDSKIPS + LEFTDASH + LEFTCLAW + WINGS))</areaLogic>
+    <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (LEFTSUPERDASH | ACID | (ACIDSKIPS + LEFTDASH + LEFTCLAW + WINGS))</roomLogic>
     <type>Lore</type>
     <loreKey>ARCHIVE_02</loreKey>
     <textType>Lore</textType>
@@ -1140,9 +1144,9 @@
     <x>21.5</x>
     <y>15.2</y>
     <elevation>2.8</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
-    <areaLogic>Fungal_Wastes</areaLogic>
-    <roomLogic>Fungus2_21[left1] | (((FULLCLAW + (LEFTDASH | SUPERDASH)) | (ANYCLAW + WINGS)) + QUAKE + Fungus2_21[right1]) </roomLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
+    <areaLogic>Main_Fungal_Wastes</areaLogic>
+    <roomLogic>Fungus2_21[left1] | (((FULLCLAW + (LEFTDASH | LEFTSUPERDASH)) | (ANYCLAW + WINGS)) + QUAKE + Fungus2_21[right1]) </roomLogic>
     <type>Lore</type>
     <loreKey>PILGRIM_TAB_02</loreKey>
     <textType>Lore</textType>
@@ -1161,7 +1165,7 @@
     <x>158.6</x>
     <y>11.7</y>
     <elevation>1.3</elevation>
-    <itemLogic>Fungal_Wastes</itemLogic>
+    <itemLogic>Main_Fungal_Wastes</itemLogic>
     <areaLogic>Fungus2_12[left1] | (Mantis_Outskirts + (ANYCLAW | WINGS | MILDSKIPS))</areaLogic>
     <roomLogic>Fungus2_12[bot1] | Fungus2_12[left1]</roomLogic>
     <type>Lore</type>
@@ -1182,9 +1186,9 @@
     <x>47.2</x>
     <y>26.9</y>
     <elevation>0.5</elevation>
-    <itemLogic>(Fungal_Wastes + (LEFTCLAW | WINGS | SHADESKIPS | SPICYSKIPS)) | (Mantis_Village + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW | (WINGS + MILDSKIPS)))</itemLogic>
-    <areaLogic>Fungus2_14[top1] | (Mantis_Village + (LEFTDASH | SUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))</areaLogic>
-    <roomLogic>Fungus2_14[top1] | (Fungus2_14 + (WINGS | LEFTDASH | SUPERDASH | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))</roomLogic>
+    <itemLogic>(Main_Fungal_Wastes + (LEFTCLAW | WINGS | (SHADESKIPS + 4MASKS) | SPICYSKIPS)) | (Mantis_Village + (LEFTDASH | LEFTSUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW | (WINGS + MILDSKIPS)))</itemLogic>
+    <areaLogic>Fungus2_14[top1] | (Mantis_Village + (LEFTDASH | LEFTSUPERDASH | WINGS | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))</areaLogic>
+    <roomLogic>Fungus2_14[top1] | (Fungus2_14 + (WINGS | LEFTDASH | LEFTSUPERDASH | FULLCLAW | MILDSKIPS) + ((RIGHTCLAW + (WINGS | MILDSKIPS)) | LEFTCLAW))</roomLogic>
     <type>Lore</type>
     <loreKey>MANTIS_PLAQUE_02</loreKey>
     <textType>Lore</textType>
@@ -1287,9 +1291,9 @@
     <x>54.5</x>
     <y>10.6</y>
     <elevation>0.2</elevation>
-    <itemLogic>(Far_Queen's_Gardens + (ANYCLAW | WINGS) + (SIDESLASH | Cyclone_Slash | Great_Slash | (RIGHTDASH + Dash_Slash))) | (Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | SUPERDASH)) | ((WINGS | SUPERDASH) + SPICYSKIPS)) + (SIDESLASH | Cyclone_Slash | Great_Slash | (LEFTDASH + Dash_Slash)))</itemLogic>
-    <areaLogic>(Fungus1_13[left1] + (SIDESLASH | Cyclone_Slash | Great_Slash | (RIGHTDASH + Dash_Slash))) | (Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | SUPERDASH)) | ((WINGS | SUPERDASH) + SPICYSKIPS)) + (SIDESLASH | Cyclone_Slash | Great_Slash | (LEFTDASH + Dash_Slash)))</areaLogic>
-    <roomLogic>(Fungus1_13[left1] + (SIDESLASH | Cyclone_Slash | Great_Slash | (RIGHTDASH + Dash_Slash))) | (Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | SUPERDASH)) | ((WINGS | SUPERDASH) + SPICYSKIPS)) + (SIDESLASH | Cyclone_Slash | Great_Slash | (LEFTDASH + Dash_Slash)))</roomLogic>
+    <itemLogic>(Far_Queen's_Gardens + (ANYCLAW | WINGS) + (SIDESLASH | Cyclone_Slash | Great_Slash | (RIGHTDASH + Dash_Slash))) | (Greenpath + (LEFTCLAW | Greenpath-MMC | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH)) | ((WINGS | LEFTSUPERDASH) + SPICYSKIPS + 2MASKS)) + (SIDESLASH | Cyclone_Slash | Great_Slash | (LEFTDASH + Dash_Slash)))</itemLogic>
+    <areaLogic>(Fungus1_13[left1] + (SIDESLASH | Cyclone_Slash | Great_Slash | (RIGHTDASH + Dash_Slash))) | (Greenpath + (LEFTCLAW | Greenpath-MMC | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH)) | ((WINGS | LEFTSUPERDASH) + SPICYSKIPS + 2MASKS)) + (SIDESLASH | Cyclone_Slash | Great_Slash | (LEFTDASH + Dash_Slash)))</areaLogic>
+    <roomLogic>(Fungus1_13[left1] + (SIDESLASH | Cyclone_Slash | Great_Slash | (RIGHTDASH + Dash_Slash))) | (Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH)) | ((WINGS | LEFTSUPERDASH) + SPICYSKIPS + 2MASKS)) + (SIDESLASH | Cyclone_Slash | Great_Slash | (LEFTDASH + Dash_Slash)))</roomLogic>
     <type>Lore</type>
     <loreKey>GREEN_TABLET_02</loreKey>
     <textType>Lore</textType>
@@ -1349,9 +1353,9 @@
     <newShiny>true</newShiny>
     <x>56.9</x>
     <y>41.5</y>
-    <itemLogic>Bottom_Left_Fungal_Wastes + (RIGHTDASH | SUPERDASH | WINGS) + Spore_Shroom</itemLogic>
-    <areaLogic>Bottom_Left_Fungal_Wastes + (RIGHTDASH | SUPERDASH | WINGS) + Spore_Shroom</areaLogic>
-    <roomLogic>(Fungus2_20[left1] | Fungus2_20[right1]) + (RIGHTDASH | SUPERDASH | WINGS) + Spore_Shroom</roomLogic>
+    <itemLogic>Bottom_Left_Fungal_Wastes + (RIGHTDASH | RIGHTSUPERDASH | WINGS) + Spore_Shroom</itemLogic>
+    <areaLogic>Bottom_Left_Fungal_Wastes + (RIGHTDASH | RIGHTSUPERDASH | WINGS) + Spore_Shroom</areaLogic>
+    <roomLogic>(Fungus2_20[left1] | Fungus2_20[right1]) + (RIGHTDASH | RIGHTSUPERDASH | WINGS) + Spore_Shroom</roomLogic>
     <type>Lore</type>
     <loreKey>FUNG_TAB_04</loreKey>
     <textType>Lore</textType>
@@ -1371,8 +1375,8 @@
     <newShiny>true</newShiny>
     <x>19.9</x>
     <y>30.2</y>
-    <itemLogic>Fungal_Wastes + (LEFTCLAW | (WINGS + RIGHTCLAW)) + Spore_Shroom</itemLogic>
-    <areaLogic>Fungal_Wastes + (LEFTCLAW | (WINGS + RIGHTCLAW)) + Spore_Shroom</areaLogic>
+    <itemLogic>Main_Fungal_Wastes + (LEFTCLAW | (WINGS + RIGHTCLAW)) + Spore_Shroom</itemLogic>
+    <areaLogic>Main_Fungal_Wastes + (LEFTCLAW | (WINGS + RIGHTCLAW)) + Spore_Shroom</areaLogic>
     <roomLogic>(Fungus2_07[left1] | Fungus2_07[right1]) + (LEFTCLAW | (WINGS + RIGHTCLAW)) + Spore_Shroom</roomLogic>
     <type>Lore</type>
     <loreKey>FUNG_TAB_03</loreKey>
@@ -1393,8 +1397,8 @@
     <newShiny>true</newShiny>
     <x>32.4</x>
     <y>11.7</y>
-    <itemLogic>Fungal_Wastes + Spore_Shroom</itemLogic>
-    <areaLogic>Fungal_Wastes + Spore_Shroom</areaLogic>
+    <itemLogic>Left_Fungal_Wastes + Spore_Shroom</itemLogic>
+    <areaLogic>Left_Fungal_Wastes + Spore_Shroom</areaLogic>
     <roomLogic>Fungus2_04 + Spore_Shroom</roomLogic>
     <type>Lore</type>
     <loreKey>FUNG_TAB_01</loreKey>
@@ -1573,8 +1577,8 @@
     <x>101.3</x>
     <y>21.6</y>
     <elevation>1.2</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</areaLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</areaLogic>
     <roomLogic>White_Palace_08[right1] | (White_Palace_08[left1] + (ANYCLAW | WINGS))</roomLogic>
     <type>Lore</type>
     <loreKey>WP_WORKSHOP_01</loreKey>
@@ -1594,9 +1598,9 @@
     <x>111.7</x>
     <y>94.4</y>
     <elevation>0.001</elevation>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + SUPERDASH</areaLogic>
-    <roomLogic>White_Palace_09[right1] + SUPERDASH + (FULLCLAW | WINGS)</roomLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH</areaLogic>
+    <roomLogic>White_Palace_09[right1] + FULLSUPERDASH + (FULLCLAW | WINGS)</roomLogic>
     <type>Lore</type>
     <loreKey>WP_THRONE_01</loreKey>
     <textType>Lore</textType>
@@ -1617,7 +1621,7 @@
     <elevation>0.1</elevation>
     <itemLogic>Palace_Grounds + AWOKEN + LEFTCLAW + WINGS + FULLDASH</itemLogic>
     <areaLogic>Palace_Grounds + AWOKEN + LEFTCLAW + WINGS + FULLDASH</areaLogic>
-    <roomLogic>White_Palace_18[right1] | (White_Palace_18[top1] + FULLDASH + FULLCLAW + WINGS + SUPERDASH)</roomLogic>
+    <roomLogic>White_Palace_18[right1] | (White_Palace_18[top1] + FULLDASH + FULLCLAW + WINGS + FULLSUPERDASH)</roomLogic>
     <type>Lore</type>
     <loreKey>PLAQUE_WARN</loreKey>
     <loreSheet>CP2</loreSheet>

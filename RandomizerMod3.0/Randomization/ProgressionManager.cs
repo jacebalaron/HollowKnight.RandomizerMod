@@ -13,6 +13,7 @@ namespace RandomizerMod.Randomization
         private Dictionary<string, int> grubLocations;
         private Dictionary<string, int> essenceLocations;
         private Dictionary<string, int> flameLocations;
+        private Dictionary<string, int> eggLocations;
         private bool temp;
         private bool share = true;
         private bool concealRandom;
@@ -30,11 +31,13 @@ namespace RandomizerMod.Randomization
             FetchEssenceLocations(state);
             FetchGrubLocations(state);
             FetchFlameLocations(state);
+            FetchEggLocations(state);
 
             if (addSettings) ApplyDifficultySettings();
             RecalculateEssence();
             RecalculateGrubs();
             RecalculateFlames();
+            RecalculateEggs();
         }
 
         public bool CanGet(string item)
@@ -95,6 +98,7 @@ namespace RandomizerMod.Randomization
             RecalculateGrubs();
             RecalculateEssence();
             RecalculateFlames();
+            RecalculateEggs();
             UpdateWaypoints();
         }
 
@@ -120,6 +124,7 @@ namespace RandomizerMod.Randomization
             RecalculateGrubs();
             RecalculateEssence();
             RecalculateFlames();
+            RecalculateEggs();
             UpdateWaypoints();
         }
 
@@ -163,6 +168,7 @@ namespace RandomizerMod.Randomization
             if (LogicManager.grubProgression.Contains(item)) RecalculateGrubs();
             if (LogicManager.essenceProgression.Contains(item)) RecalculateEssence();
             if (LogicManager.flameProgression.Contains(item)) RecalculateFlames();
+            RecalculateEggs();
         }
 
         public void RemoveTempItems()
@@ -228,6 +234,10 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.Cursed) Add("CURSED");
             if (!RandomizerMod.Instance.Settings.RandomizeFocus) Add("NONRANDOMFOCUS");
             if (!RandomizerMod.Instance.Settings.CursedNail) Add("NONRANDOMNAIL");
+            if (!RandomizerMod.Instance.Settings.CursedMasks) Add("NONCURSEDMASKS");
+            if (!RandomizerMod.Instance.Settings.CursedNotches) Add("NONCURSEDNOTCHES");
+            if (!RandomizerMod.Instance.Settings.RandomizeSwim) Add("Swim");
+            if (!RandomizerMod.Instance.Settings.ElevatorPass) Add("NONRANDOMELEVATORS");
 
             share = tempshare;
         }
@@ -240,7 +250,7 @@ namespace RandomizerMod.Randomization
                 case RandomizerState.InProgress:
                     return new Dictionary<string, int>();
                 case RandomizerState.Validating:
-                    locations = ItemManager.nonShopItems.Where(kvp => LogicManager.GetItemDef(kvp.Value).pool == pool).ToDictionary(kvp => kvp.Value, kvp => 1);
+                    locations = ItemManager.nonShopItems.Where(kvp => LogicManager.GetItemDef(kvp.Value).pool == pool).ToDictionary(kvp => kvp.Key, kvp => 1);
                     foreach (var kvp in ItemManager.shopItems)
                     {
                         if (kvp.Value.Any(item => LogicManager.GetItemDef(item).pool == pool))
@@ -277,6 +287,22 @@ namespace RandomizerMod.Randomization
             else
             {
                 grubLocations = LogicManager.GetItemsByPool("Grub").ToDictionary(grub => grub, grub => 1);
+            }
+        }
+
+        private void FetchEggLocations(RandomizerState state)
+        {
+            if (!RandomizerMod.Instance.Settings.EggShop) return;
+
+            if (RandomizerMod.Instance.Settings.RandomizeRancidEggs)
+            {
+                eggLocations = FetchLocationsByPool(state, "EggShopItem");
+            }
+            else
+            {
+                // Easiest to simply ignore the egg at sly
+                eggLocations = LogicManager.GetItemsByPool("Egg").Where(egg => LogicManager.GetItemDef(egg).type != ItemType.Shop)
+                .ToDictionary(egg => egg, egg => 1);
             }
         }
 
@@ -394,6 +420,24 @@ namespace RandomizerMod.Randomization
             obtained[LogicManager.grubIndex] = grubs;
         }
 
+        public void RecalculateEggs()
+        {
+            if (!RandomizerMod.Instance.Settings.EggShop) return;
+
+            int eggs = 0;
+
+            foreach (string location in eggLocations.Keys)
+            {
+                if (CanGet(location))
+                {
+                    eggs += eggLocations[location];
+                }
+                if (eggs >= Randomizer.MAX_EGG_COST + LogicManager.eggTolerance) break;
+            }
+
+            obtained[LogicManager.eggIndex] = eggs;
+        }
+
         public void RecalculateFlames()
         {
             int flames = randomFlames;
@@ -418,6 +462,18 @@ namespace RandomizerMod.Randomization
             else
             {
                 grubLocations[location]++;
+            }
+        }
+
+        public void AddEggLocation(string location)
+        {
+            if (!eggLocations.ContainsKey(location))
+            {
+                eggLocations.Add(location, 1);
+            }
+            else
+            {
+                eggLocations[location]++;
             }
         }
 

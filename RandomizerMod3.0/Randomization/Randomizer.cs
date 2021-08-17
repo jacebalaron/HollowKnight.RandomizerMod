@@ -24,6 +24,8 @@ namespace RandomizerMod.Randomization
     {
         public const int MAX_GRUB_COST = 23;
         public static int MAX_ESSENCE_COST => RandomizerMod.Instance.Settings.RandomizeBossEssence ? 1800 : 900;
+        public const int MAX_EGG_COST = 14;
+        public const int MIN_EGG_COST = 4;
 
         public static ItemManager im;
         public static TransitionManager tm;
@@ -269,6 +271,10 @@ namespace RandomizerMod.Randomization
         private static void CompleteTransitionGraph()
         {
             if (randomizationError) return;
+            
+            // IDK if this is the right fix but the line is correct and the algo is being rewritten so w/e
+            foreach (string item in startProgression) im.UpdateReachableLocations(item);
+
             int failsafe = 0;
             Log("Beginning full placement of transitions...");
 
@@ -494,7 +500,10 @@ namespace RandomizerMod.Randomization
             if (!validated)
             {
                 Log("Transition placements failed to validate!");
-                foreach (string t in LogicManager.TransitionNames().Except(tm.reachableTransitions)) Log(t);
+                foreach (string t in LogicManager.TransitionNames().Except(tm.reachableTransitions))
+                {
+                    Log($"{t} --> {(TransitionManager.transitionPlacements.TryGetValue(t, out string target) ? target : "???")}");
+                }
             }
             else Log("Validation successful.");
             return validated;

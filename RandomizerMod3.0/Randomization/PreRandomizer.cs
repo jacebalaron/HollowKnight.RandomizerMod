@@ -39,6 +39,16 @@ namespace RandomizerMod.Randomization
                     RandomizerMod.Instance.Settings.AddNewCost(item, cost);
                     continue;
                 }
+
+                if (def.costType == Actions.AddYNDialogueToShiny.CostType.RancidEggs) //eggu cost
+                {
+                    int cost = MIN_EGG_COST + rand.Next(MAX_EGG_COST - MIN_EGG_COST + 1);
+
+                    def.cost = cost;
+                    LogicManager.EditItemDef(item, def); // blah blah blah would be nicer to have a random number of items in the eggu shop
+                    RandomizerMod.Instance.Settings.AddNewCost(item, cost);
+                    continue;
+                }
             }
         }
 
@@ -101,7 +111,28 @@ namespace RandomizerMod.Randomization
         {
             if (RandomizerMod.Instance.Settings.RandomizeStartLocation)
             {
-                List<string> startLocations = LogicManager.StartLocations.Where(start => TestStartLocation(start)).Except(new string[] { "King's Pass" }).ToList();
+                MiniPM pm = new MiniPM();
+                pm.logicFlags["ITEMRANDO"] = !RandomizerMod.Instance.Settings.RandomizeTransitions;
+                pm.logicFlags["AREARANDO"] = RandomizerMod.Instance.Settings.RandomizeAreas;
+                pm.logicFlags["ROOMRANDO"] = RandomizerMod.Instance.Settings.RandomizeRooms;
+
+                pm.logicFlags["MILDSKIPS"] = RandomizerMod.Instance.Settings.MildSkips;
+                pm.logicFlags["SHADESKIPS"] = RandomizerMod.Instance.Settings.ShadeSkips;
+                pm.logicFlags["ACIDSKIPS"] = RandomizerMod.Instance.Settings.AcidSkips;
+                pm.logicFlags["FIREBALLSKIPS"] = RandomizerMod.Instance.Settings.FireballSkips;
+                pm.logicFlags["SPIKETUNNELS"] = RandomizerMod.Instance.Settings.SpikeTunnels;
+                pm.logicFlags["DARKROOMS"] = RandomizerMod.Instance.Settings.DarkRooms;
+                pm.logicFlags["SPICYSKIPS"] = RandomizerMod.Instance.Settings.SpicySkips;
+
+                pm.logicFlags["VERTICAL"] = RandomizerMod.Instance.Settings.RandomizeStartItems;
+                pm.logicFlags["SWIM"] = !RandomizerMod.Instance.Settings.RandomizeSwim;
+                pm.logicFlags["2MASKS"] = !RandomizerMod.Instance.Settings.CursedMasks;
+                pm.logicFlags["NONRANDOMELEVATORS"] = !RandomizerMod.Instance.Settings.ElevatorPass;
+
+                List<string> startLocations = LogicManager.StartLocations
+                    .Where(start => pm.Evaluate(LogicManager.GetStartLocation(start).logic))
+                    .Except(new string[] { "King's Pass" })
+                    .ToList();
                 StartName = startLocations[rand.Next(startLocations.Count)];
             }
             else if (!LogicManager.StartLocations.Contains(RandomizerMod.Instance.Settings.StartName))
@@ -130,33 +161,6 @@ namespace RandomizerMod.Randomization
             {
                 startProgression.Add(def.roomTransition);
             }
-        }
-        private static bool TestStartLocation(string start)
-        {
-            // could potentially add logic checks here in the future
-            StartDef startDef = LogicManager.GetStartLocation(start);
-            if (RandomizerMod.Instance.Settings.RandomizeStartItems)
-            {
-                return true;
-            }
-            if (RandomizerMod.Instance.Settings.RandomizeRooms)
-            {
-                if (startDef.roomSafe)
-                {
-                    return true;
-                }
-                else return false;
-            }
-            if (RandomizerMod.Instance.Settings.RandomizeAreas)
-            {
-                if (startDef.areaSafe)
-                {
-                    return true;
-                }
-                else return false;
-            }
-            if (startDef.itemSafe) return true;
-            return false;
         }
     }
 }

@@ -45,7 +45,8 @@ namespace RandomizerMod
             AddSoul,
             Lore,
 
-            Lifeblood
+            Lifeblood,
+            ElevatorPass
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -57,7 +58,7 @@ namespace RandomizerMod
         private static void ShowItemPopup(string nameKey, string spriteName)
         {
             GameObject popup = ObjectCache.RelicGetMsg;
-            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = LanguageStringManager.GetLanguageString(nameKey, "UI");
+            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = Language.Language.Get(nameKey, "UI");
             popup.transform.Find("Icon").GetComponent<SpriteRenderer>().sprite = RandomizerMod.GetSprite(spriteName);
             popup.SetActive(true);
         }
@@ -402,6 +403,11 @@ namespace RandomizerMod
                         EventRegister.SendEvent("ADD BLUE HEALTH");
                     }
                     break;
+
+                case GiveAction.ElevatorPass:
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift1), true);
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift2), true);
+                    break;
             }
 
             // With Cursed Nail active, drop the vine platform so they can escape from thorns without softlocking
@@ -414,6 +420,12 @@ namespace RandomizerMod
                     bool activated = ReflectionHelper.GetAttr<VinePlatformCut, bool>(vinecut, "activated");
                     if (!activated) vinecut.Cut();
                 }
+            }
+
+            // If the location is a grub, it seems polite to mark it as obtained for the purpose of the Collector's Map
+            if (LogicManager.GetItemDef(location).pool == "Grub")
+            {
+                GameManager.instance.AddToGrubList();
             }
 
             // additive, kingsoul, bool type items can all have additive counts

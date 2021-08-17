@@ -35,6 +35,7 @@ namespace RandomizerMod
         public int MaxOrder => _orderedLocations.Count;
 
         public (string, int)[] VariableCosts => _variableCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
+        public int GetVariableCost(string item) => _variableCosts[item]; 
         public (string, int)[] ShopCosts => _shopCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
 
         public bool RandomizeTransitions => RandomizeAreas || RandomizeRooms;
@@ -206,6 +207,17 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool EggShop
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+        public int MaxEggCost => !EggShop ? 0 : VariableCosts
+            .Where(pair => LogicManager.GetItemDef(pair.Item1).costType == AddYNDialogueToShiny.CostType.RancidEggs)
+            .Select(pair => pair.Item2)
+            .Max();
+
+
         public bool RandomizeRelics
         {
             get => GetBool(false);
@@ -309,7 +321,43 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+
+        public bool RandomizeNotchCosts
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+
+        public bool RandomizeFocus
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+
+        public bool RandomizeSwim
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+        public bool ElevatorPass
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+
         public bool CursedNail
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+
+        public bool CursedNotches
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+
+        public bool CursedMasks
         {
             get => GetBool(false);
             set => SetBool(value);
@@ -345,6 +393,9 @@ namespace RandomizerMod
                     return RandomizeGeoChests;
                 case "Egg":
                     return RandomizeRancidEggs;
+                case "EggShopItem":
+                case "EggShopLocation":
+                    return EggShop;
                 case "Relic":
                     return RandomizeRelics;
                 case "Map":
@@ -375,6 +426,15 @@ namespace RandomizerMod
                     return RandomizeBossGeo;
                 case "CursedNail":
                     return CursedNail;
+                case "CursedNotch":
+                    return CursedNotches;
+                case "CursedMask":
+                    return CursedMasks;
+                case "Focus":
+                    return RandomizeFocus;
+                case "Swim":
+                    return RandomizeSwim;
+                case "Fake":
                 default:
                     return false;
             }
@@ -388,12 +448,6 @@ namespace RandomizerMod
         }
 
         public bool Cursed
-        {
-            get => GetBool(false);
-            set => SetBool(value);
-        }
-
-        public bool RandomizeFocus
         {
             get => GetBool(false);
             set => SetBool(value);
@@ -704,7 +758,13 @@ namespace RandomizerMod
             set => SetBool(value);
         }
 
-        public bool ReducePreloads
+        public bool ReduceRockPreloads
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+
+        public bool ReduceTotemPreloads
         {
             get => GetBool(true);
             set => SetBool(value);

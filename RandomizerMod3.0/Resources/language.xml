@@ -97,6 +97,7 @@
   <entry sheet="UI" key="RANDOMIZER_NAME_380GEO">380 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_385GEO">385 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_420GEO">420 geo</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_450GEO">450 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_550GEO">550 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_620GEO">620 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_655GEO">655 geo</entry>
@@ -137,6 +138,9 @@
   <entry sheet="UI" key="RANDOMIZER_DESC_FOCUS">Press and hold the slow cast button to heal.</entry>
   <entry sheet="Prompts" key="RANDOMIZER_DESC_FOCUS">Press and hold the slow cast button to heal.</entry>
   <entry sheet="UI" key="RANDOMIZER_SHOP_DESC_FOCUS">Hahahahahahahahahahahaha. No.</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_SWIM">Swim</entry>
+  <entry sheet="Prompts" key="RANDOMIZER_DESC_SWIM">The power of buoyancy is yours.</entry>
+  <entry sheet="UI" key="RANDOMIZER_SHOP_DESC_SWIM">I may not look like it, but I'm actually a fully certified swimming instructor. One easy payment, I toss you in the deep end, and, yeah, you'll figure it out from there.</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_LEFTSLASH">Leftslash</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_RIGHTSLASH">Rightslash</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_UPSLASH">Upslash</entry>
@@ -172,6 +176,8 @@
   <entry sheet="UI" key="RANDOMIZER_SHOP_NAME_LEFT_SHADOWDASH">Left Shade Cloak</entry>
   <entry sheet="UI" key="RANDOMIZER_SHOP_NAME_RIGHT_SHADOWDASH">Right Shade Cloak</entry>
 
+  <entry sheet="UI" key="RANDOMIZER_NAME_ELEVATOR_PASS">Elevator Pass</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_ELEVATOR_PASS">What is a Vertical Tram, and why does this say Vertical Tram Pass?</entry>
 
     <!--
   <entry sheet="UI" key="CHARM_NAME_1">Gathering Swarm</entry>
