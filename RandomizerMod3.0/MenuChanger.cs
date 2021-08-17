@@ -62,9 +62,9 @@ namespace RandomizerMod
             float leftColumn = 700f;
             float rightColumn = 1100f;
             float centerColumn = (leftColumn + rightColumn) / 2;
-            float vspace = 60;
+            float vspace = 58;
 
-            float y = 1290;
+            float y = 1320;
             CreateLabel(back, new Vector2(900, 1290), "Item Randomization");
             y -= 90f;
             RandoMenuItem<string> presetPoolsBtn = new RandoMenuItem<string>(back, new Vector2(centerColumn, y), "Preset", "Standard", "Super", "LifeTotems", "Spoiler DAB", "EVERYTHING", "Vanilla", "Custom");
@@ -123,6 +123,7 @@ namespace RandomizerMod
             RandoMenuItem<string> StartLocationsListBtn = new RandoMenuItem<string>(back, new Vector2(900, -80), "Start Location", LogicManager.StartLocations);
 
             y = 1290f;
+            vspace = 60f;
             CreateLabel(back, new Vector2(-900, y), "Required Skips");
             y -= 90f;
             RandoMenuItem<string> presetSkipsBtn = new RandoMenuItem<string>(back, new Vector2(-900, y), "Preset", "Easy", "Medium", "Hard", "Custom");
@@ -297,13 +298,13 @@ namespace RandomizerMod
             RandoFlamesBtn.Button.SetNavigation(RandoPalaceBtn.Button, RandoGeoRocksBtn.Button, RandoBossEssenceBtn.Button, startRandoBtn);
             RandoGeoRocksBtn.Button.SetNavigation(RandoPalaceBtn.Button, RandoGeoRocksBtn.Button, RandoBossGeoBtn.Button, RandoFlamesBtn.Button);
             RandoBossEssenceBtn.Button.SetNavigation(RandoFlamesBtn.Button, RandoBossGeoBtn.Button, RandoJournalEntriesBtn.Button, RandoBossEssenceBtn.Button);
-            RandoBossGeoBtn.Button.SetNavigation(RandoGeoRocksBtn.Button, RandoBossGeoBtn.Button, RandoEggShopBtn.Button, RandoBossEssenceBtn.Button);
+            RandoBossGeoBtn.Button.SetNavigation(RandoGeoRocksBtn.Button, RandoBossGeoBtn.Button, RandoJunkPitBtn.Button, RandoBossEssenceBtn.Button);
 
-            RandoJournalEntriesBtn.Button.SetNavigation(RandoBossEssenceBtn.Button, RandoEggShopBtn.Button, splitCloakBtn.Button, startRandoBtn);
-            RandoEggShopBtn.Button.SetNavigation(RandoBossGeoBtn.Button, RandoEggShopBtn.Button, splitClawBtn.Button, RandoJournalEntriesBtn.Button);
+            RandoJournalEntriesBtn.Button.SetNavigation(RandoBossEssenceBtn.Button, RandoJunkPitBtn.Button, splitCloakBtn.Button, startRandoBtn);
+            RandoJunkPitBtn.Button.SetNavigation(RandoBossGeoBtn.Button, RandoJunkPitBtn.Button, splitClawBtn.Button, RandoJournalEntriesBtn.Button);
 
             splitCloakBtn.Button.SetNavigation(RandoJournalEntriesBtn.Button, splitClawBtn.Button, RandoStartItemsBtn.Button, startRandoBtn);
-            splitClawBtn.Button.SetNavigation(RandoEggShopBtn.Button, splitClawBtn.Button, RandoStartItemsBtn.Button, splitCloakBtn.Button);
+            splitClawBtn.Button.SetNavigation(RandoJunkPitBtn.Button, splitClawBtn.Button, RandoStartItemsBtn.Button, splitCloakBtn.Button);
             
             RandoStartItemsBtn.Button.SetNavigation(splitCloakBtn.Button, RandoStartItemsBtn.Button, RandoStartLocationsModeBtn.Button, startRandoBtn);
             RandoStartLocationsModeBtn.Button.SetNavigation(RandoStartItemsBtn.Button, RandoStartLocationsModeBtn.Button, StartLocationsListBtn.Button, startRandoBtn);
