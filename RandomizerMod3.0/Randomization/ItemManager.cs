@@ -180,6 +180,7 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.CursedMasks) items.UnionWith(LogicManager.GetItemsByPool("CursedMask"));
             if (RandomizerMod.Instance.Settings.ElevatorPass) items.UnionWith(LogicManager.GetItemsByPool("ElevatorPass"));
 
+            if (RandomizerMod.Instance.Settings.RandomizeJunkPitChests) items.UnionWith(LogicManager.GetItemsByPool("JunkPitChest"));
 
             if (RandomizerMod.Instance.Settings.RandomizeClawPieces && RandomizerMod.Instance.Settings.RandomizeSkills)
             {
@@ -202,6 +203,7 @@ namespace RandomizerMod.Randomization
                 items.Remove("Abyss_Shriek");
 
                 int i = 0;
+                Random rand = new Random(RandomizerMod.Instance.Settings.Seed + 163);
 
                 List<string> iterate = items.ToList();
                 foreach (string item in iterate)
@@ -215,6 +217,7 @@ namespace RandomizerMod.Randomization
                         case "Notch":
                         case "CursedNotch":
                         case "Geo":
+                        case "JunkPitChest":
                         case "Egg":
                         case "Relic":
                         case "Rock":
@@ -222,7 +225,10 @@ namespace RandomizerMod.Randomization
                         case "PalaceSoul":
                         case "Boss_Geo":
                             items.Remove(item);
-                            items.Add("1_Geo_(" + i + ")");
+
+                            string junk = rand.Next(4) == 0 ? "Lumafly_Escape_" : "1_Geo_";
+                            junk += "(" + i + ")";
+                            items.Add(junk);
                             i++;
                             break;
                     }
@@ -233,7 +239,7 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.DuplicateMajorItems)
             {
                 duplicatedItems = new List<string>();
-                
+
                 // Add support for duplicate major items without all four main pools randomized - only add dupes for the randomized pools.
                 foreach (string majorItem in items
                     .Where(_item => LogicManager.GetItemDef(_item).majorItem)
@@ -241,10 +247,10 @@ namespace RandomizerMod.Randomization
                 {
                     if (Randomizer.startItems.Contains(majorItem)) continue;
                     if (RandomizerMod.Instance.Settings.Cursed && (majorItem == "Vengeful_Spirit" || majorItem == "Desolate_Dive" || majorItem == "Howling_Wraiths")) continue;
-                    
+
                     // Do not duplicate claw pieces
                     if (LogicManager.GetItemDef(majorItem).pool == "SplitClaw") continue;
-                    
+
                     duplicatedItems.Add(majorItem);
                 }
 
@@ -276,7 +282,7 @@ namespace RandomizerMod.Randomization
                         if (RandomizerMod.Instance.Settings.DuplicateMajorItems) duplicatedItems.Remove("Left_Shade_Cloak");
                         break;
                 }
-            }    
+            }
 
             return items;
         }
@@ -309,6 +315,9 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.RandomizeBossEssence) locations.UnionWith(LogicManager.GetItemsByPool("Essence_Boss"));
             if (RandomizerMod.Instance.Settings.RandomizeBossGeo) locations.UnionWith(LogicManager.GetItemsByPool("Boss_Geo"));
             if (RandomizerMod.Instance.Settings.ElevatorPass) locations.UnionWith(LogicManager.GetItemsByPool("ElevatorPass"));
+
+            if (RandomizerMod.Instance.Settings.RandomizeJunkPitChests) locations.UnionWith(LogicManager.GetItemsByPool("JunkPitChest"));
+
             if (RandomizerMod.Instance.Settings.RandomizeFocus) locations.UnionWith(LogicManager.GetItemsByPool("Focus"));
             // the other restriction options do not have locations, so they are omitted.
 
@@ -381,7 +390,7 @@ namespace RandomizerMod.Randomization
                         if (vm.progressionLocations.Contains(location)) vm.UpdateVanillaLocations(location);
                     }
                 }
-                
+
                 if (RandomizerMod.Instance.Settings.RandomizeTransitions)
                 {
                     if (TransitionManager.transitionPlacements.TryGetValue(item, out string transition1) && !pm.Has(transition1))

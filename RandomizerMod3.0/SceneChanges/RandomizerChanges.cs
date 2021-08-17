@@ -470,6 +470,11 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
+                case SceneNames.GG_Waterways when RandomizerMod.Instance.Settings.RandomizeJunkPitChests:
+                    // Simply replacing the object with shiny causes the shiny not to be flung
+                    Object.Destroy(newScene.FindGameObject("lamp_bug_escape"));
+                    break;
+
                 case SceneNames.Hive_03 when RandomizerMod.Instance.Settings.StartName == "Hive":
                     GameObject hivePlatform = ObjectCache.SmallPlatform;
                     hivePlatform.transform.SetPosition2D(58.5f, 134f);

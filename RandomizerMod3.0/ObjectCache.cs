@@ -30,6 +30,8 @@ namespace RandomizerMod
 
         private static GameObject _loreTablet;
 
+        private static GameObject _lumaflyEscape;
+
         private static Dictionary<GeoRockSubtype, GameObject> _geoRocks;
 
         private static Dictionary<SoulTotemSubtype, GameObject> _soulTotems;
@@ -75,6 +77,8 @@ namespace RandomizerMod
 
         public static AudioClip LoreSound;
 
+        public static GameObject LumaflyEscape => Object.Instantiate(_lumaflyEscape);
+
         public static void GetPrefabs(Dictionary<string, Dictionary<string, GameObject>> objectsByScene)
         {
             _shinyItem = objectsByScene[SceneNames.Tutorial_01]["_Props/Chest/Item/Shiny Item (1)"];
@@ -118,7 +122,7 @@ namespace RandomizerMod
             _smallPlatform = objectsByScene[SceneNames.Tutorial_01]["_Scenery/plat_float_17"];
             Object.DontDestroyOnLoad(_smallPlatform);
 
-            _grubJar = objectsByScene[SceneNames.Abyss_19]["Grub Bottle"];
+            _grubJar = objectsByScene[SceneNames.Deepnest_36]["Grub Bottle"];
             Object.DontDestroyOnLoad(_grubJar);
 
             if (RandomizerMod.Instance.globalSettings.ReduceRockPreloads)
@@ -173,7 +177,7 @@ namespace RandomizerMod
                 Object.DontDestroyOnLoad(entry.Value);
             }
 
-            Grub = objectsByScene[SceneNames.Abyss_19]["Grub Bottle/Grub"];
+            Grub = objectsByScene[SceneNames.Deepnest_36]["Grub Bottle/Grub"];
             GrubCry = Grub.LocateMyFSM("Grub Control").GetState("Leave").GetActionOfType<AudioPlayRandom>().audioClips;
             Object.DontDestroyOnLoad(Grub);
             foreach (AudioClip clip in GrubCry)
@@ -184,6 +188,50 @@ namespace RandomizerMod
             _loreTablet = objectsByScene[SceneNames.Tutorial_01]["_Props/Tut_tablet_top"];
             LoreSound = (AudioClip)_loreTablet.LocateMyFSM("Inspection").GetState("Prompt Up").GetActionOfType<AudioPlayerOneShotSingle>().audioClip.Value;
             Object.DontDestroyOnLoad(LoreSound);
+
+            // Preloaded the lumafly object from Deepnest_36 for efficiency, but we have to change the object's properties a bit to make it
+            // resemble the Junk Pit object
+            _lumaflyEscape = objectsByScene[SceneNames.Deepnest_36]["d_break_0047_deep_lamp2/lamp_bug_escape (7)"];
+            {
+                ParticleSystem.MainModule psm = _lumaflyEscape.GetComponent<ParticleSystem>().main;
+                ParticleSystem.EmissionModule pse = _lumaflyEscape.GetComponent<ParticleSystem>().emission;
+                ParticleSystem.ShapeModule pss = _lumaflyEscape.GetComponent<ParticleSystem>().shape;
+                ParticleSystem.TextureSheetAnimationModule pst = _lumaflyEscape.GetComponent<ParticleSystem>().textureSheetAnimation;
+                ParticleSystem.ForceOverLifetimeModule psf = _lumaflyEscape.GetComponent<ParticleSystem>().forceOverLifetime;
+
+                psm.duration = 1f;
+                psm.startLifetimeMultiplier = 4f;
+                psm.startSizeMultiplier = 2f;
+                psm.startSizeXMultiplier = 2f;
+                psm.gravityModifier = -0.2f;
+                psm.maxParticles = 99;              // In practice it only spawns 9 lumaflies
+                pse.rateOverTimeMultiplier = 10f;
+                pss.radius = 0.5868902f;
+                pst.cycleCount = 15;
+                psf.xMultiplier = 3;
+                psf.yMultiplier = 8;
+
+                // I have no idea what this is supposed to be lmao
+                AnimationCurve yMax = new AnimationCurve(new Keyframe(0, 0.0810811371f), new Keyframe(0.230769232f, 0.108108163f),
+                    new Keyframe(0.416873455f, -0.135135055f), new Keyframe(0.610421836f, -0.054053992f), new Keyframe(0.799007416f, -0.29729721f));
+                AnimationCurve yMin = new AnimationCurve(new Keyframe(0, 0.486486584f), new Keyframe(0.220843673f, 0.567567647f),
+                    new Keyframe(0.411910683f, 0.270270377f), new Keyframe(0.605459034f, 0.405405462f), new Keyframe(0.801488876f, 0.108108193f));
+                psf.y = new ParticleSystem.MinMaxCurve(8, yMin, yMax);
+
+                psf.x.curveMax.keys[0].value = -0.324324369f;
+                psf.x.curveMax.keys[1].value = -0.432432413f;
+
+                psf.x.curveMin.keys[0].value = 0.162162244f;
+                psf.x.curveMin.keys[1].time = 0.159520522f;
+                psf.x.curveMin.keys[1].value = 0.35135144f;
+
+                Transform t = _lumaflyEscape.GetComponent<Transform>();
+                Vector3 loc = t.localScale;
+                loc.x = 1f;
+                t.localScale = loc;
+            }
+            Object.DontDestroyOnLoad(_lumaflyEscape);
+
 
             if (_shinyItem == null || _smallGeo == null || _mediumGeo == null || _largeGeo == null ||
                 _tinkEffect == null || _respawnMarker == null || _smallPlatform == null)

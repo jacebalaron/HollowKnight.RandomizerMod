@@ -182,6 +182,11 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool RandomizeJunkPitChests
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
         public bool RandomizeMaskShards
         {
             get => GetBool(false);
