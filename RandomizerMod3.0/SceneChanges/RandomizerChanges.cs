@@ -392,6 +392,13 @@ namespace RandomizerMod.SceneChanges
                         });
                     }
                     break;
+                
+                // Make the PoP end cutscene not give a journal entry when those are randomized
+                case SceneNames.White_Palace_20 when RandomizerMod.Instance.Settings.RandomizeJournalEntries:
+                    var popFadeout = FSMUtility.LocateFSM(GameObject.Find("End Scene"), "Conversation Control").GetState("Fade Out");
+                    popFadeout.ClearTransitions();
+                    popFadeout.AddTransition("FINISHED", "New Scene");
+                    break;
 
                 // Destroy the Mantis Claw pickup when playing with split claw
                 case SceneNames.Fungus2_14 when RandomizerMod.Instance.Settings.RandomizeClawPieces:

@@ -49,7 +49,8 @@ namespace RandomizerMod
             Lore,
 
             Lifeblood,
-            ElevatorPass
+            ElevatorPass,
+            Journal
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -179,6 +180,13 @@ namespace RandomizerMod
                 case GiveAction.Stag:
                     PlayerData.instance.SetBool(LogicManager.GetItemDef(item).boolName, true);
                     PlayerData.instance.stationsOpened++;
+                    break;
+
+                case GiveAction.Journal:
+                    var boolName = LogicManager.GetItemDef(item).boolName;
+                    PlayerData.instance.SetBool(boolName, true);
+                    PlayerData.instance.SetInt(boolName.Replace("killed", "kills"), 0);
+                    PlayerData.instance.SetBool(boolName.Replace("killed", "newData"), true);
                     break;
 
                 case GiveAction.DirtmouthStag:

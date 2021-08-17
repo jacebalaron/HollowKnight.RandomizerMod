@@ -14,7 +14,6 @@ namespace RandomizerMod.Actions
         private readonly SoulTotemSubtype _subtype;
         private readonly string _item;
         private readonly string _location;
-        private readonly bool _infinite;
         private readonly SoulTotemSubtype _intendedSubtype;
 
         public ReplaceObjectWithSoulTotem(string sceneName, string objectName, float elevation, string newTotemName, string item, string location, SoulTotemSubtype subtype, SoulTotemSubtype intendedSubtype)

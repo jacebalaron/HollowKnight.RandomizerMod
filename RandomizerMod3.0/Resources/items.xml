@@ -6071,6 +6071,115 @@
     <areaName>Distant_Village</areaName>
     <progression>true</progression>
   </item>
+  <!--Journal Entries-->
+  <item name="Hunter's_Journal">
+    <boolName>hasJournal</boolName>
+    <sceneName>Fungus1_08</sceneName>
+    <objectName>Shiny Item</objectName>
+    <!-- The Hunter's original shiny's FSM does not have the states that ChangeShinyInto* look for. -->
+    <replace>true</replace>
+    <itemLogic>Greenpath</itemLogic>
+    <areaLogic>Greenpath</areaLogic>
+    <roomLogic>Fungus1_08[left1]</roomLogic>
+    <type>Big</type>
+    <action>Bool</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_HUNTER_JOURNAL</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_HUNTER_JOURNAL</shopDescKey>
+    <shopSpriteKey>ShopIcons.Journal</shopSpriteKey>
+    <bigSpriteKey>Prompts.Journal</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_MEME</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <areaName>Greenpath</areaName>
+  </item>
+  <item name="Journal_Entry-Void_Tendrils">
+    <boolName>killedAbyssTendril</boolName>
+    <sceneName>Abyss_09</sceneName>
+    <objectName>AbyssTendril Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.4</elevation>
+    <itemLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS) | ((RIGHTSHADOWDASH | VOIDHEART) + (LEFTCLAW | WINGS))) + LEFTSHADOWDASH</itemLogic>
+    <areaLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS) | ((RIGHTSHADOWDASH | VOIDHEART) + (LEFTCLAW | WINGS))) + LEFTSHADOWDASH</areaLogic>
+    <roomLogic>Abyss_09[right3]</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_VOID_TENDRILS</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_VOID_TENDRILS</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Abyss</areaName>
+  </item>
+  <item name="Journal_Entry-Charged_Lumafly">
+    <boolName>killedZapBug</boolName>
+    <sceneName>Fungus3_archive_02</sceneName>
+    <objectName>Zap Bug Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.2</elevation>
+    <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</itemLogic>
+    <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</areaLogic>
+    <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_CHARGED_LUMAFLY</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_CHARGED_LUMAFLY</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Teachers_Archives</areaName>
+  </item>
+  <item name="Journal_Entry-Goam">
+    <boolName>killedWorm</boolName>
+    <sceneName>Crossroads_52</sceneName>
+    <objectName>Goam Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.2</elevation>
+    <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Main_Fungal_Wastes + (ACID | RIGHTCLAW | RIGHTDASH | RIGHTSUPERDASH | AIRSTALL)))</itemLogic>
+    <areaLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | Crossroads_18[bot1])</areaLogic>
+    <roomLogic>Crossroads_52[left1] + QUAKE</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_GOAM</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GOAM</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Forgotten_Crossroads</areaName>
+  </item>
+  <item name="Journal_Entry-Garpede">
+    <boolName>killedBigCentipede</boolName>
+    <sceneName>Deepnest_44</sceneName>
+    <objectName>Centipede Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.3</elevation>
+    <itemLogic>Deepnest</itemLogic>
+    <areaLogic>Deepnest</areaLogic>
+    <roomLogic>Deepnest_44[top1]</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_GARPEDE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GARPEDE</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Journal_Entry-Seal_of_Binding">
+    <boolName>killedBindingSeal</boolName>
+    <sceneName>White_Palace_20</sceneName>
+    <newShiny>true</newShiny>
+    <x>275.1</x>
+    <y>122.4</y>
+    <elevation>0.001</elevation>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</areaLogic>
+    <roomLogic>White_Palace_20[bot1] + FULLCLAW + RIGHTDASH + WINGS + BOSS</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>PalaceJournal</pool>
+    <nameKey>RANDOMIZER_NAME_BINDING_SEAL</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_BINDING_SEAL</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Palace_Grounds</areaName>
+  </item>
   <!--Elevator Pass-->
   <item name="Elevator_Pass">
     <sceneName>Crossroads_49b</sceneName>

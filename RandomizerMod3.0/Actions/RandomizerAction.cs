@@ -130,7 +130,7 @@ namespace RandomizerMod.Actions
                 bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) 
                     && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue)
                     && oldItem.costType != AddYNDialogueToShiny.CostType.RancidEggs;
-                bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && !hasCost;
+                bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && location != "Hunter's_Journal" && !hasCost;
                 bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
                 bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
                 bool replacedWithSoulTotem = newItem.type == ItemType.Soul && canReplaceWithObj;
@@ -201,8 +201,9 @@ namespace RandomizerMod.Actions
                 {
                     string newShinyName = "Randomizer Shiny " + location;     // lazy way to let the Jiji FSM edit determine what to do about the shiny
 
+                    int cost = settings.GetVariableCost(location);
                     Actions.Add(new CreateInactiveShiny(oldItem.sceneName, oldItem.objectName, newShinyName, oldItem.x, oldItem.y,
-                        () => Ref.PD.jinnEggsSold >= oldItem.cost));
+                        () => Ref.PD.jinnEggsSold >= cost));
 
                     oldItem.objectName = newShinyName;
                     oldItem.fsmName = "Shiny Control";
@@ -276,6 +277,10 @@ namespace RandomizerMod.Actions
                     }
                     else
                     {
+                        if (location == "Hunter's_Journal")
+                        {
+                            Actions.Add(new ReplaceJournalWithShiny(replaceShinyName));
+                        }
                         Actions.Add(new ReplaceObjectWithShiny(oldItem.sceneName, oldItem.objectName, replaceShinyName));
                     }
                     oldItem.objectName = replaceShinyName;

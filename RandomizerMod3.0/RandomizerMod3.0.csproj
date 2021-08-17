@@ -112,6 +112,7 @@
     <Compile Include="Actions\PreventSelfDestruct.cs" />
     <Compile Include="Actions\ReplaceVengefulSpiritWithShiny.cs" />
     <Compile Include="Actions\ReplaceBasinVesselWithShiny.cs" />
+    <Compile Include="Actions\ReplaceJournalWithShiny.cs" />
     <Compile Include="Actions\ChangeCrystalShamanReward.cs" />
     <Compile Include="Actions\ChangeSanctumShamanReward.cs" />
     <Compile Include="Actions\ShowLoreTextInShop.cs" />
@@ -183,6 +184,7 @@
     <EmbeddedResource Include="Resources\Prompts\Fireball1.png" />
     <EmbeddedResource Include="Resources\Prompts\Fireball2.png" />
     <EmbeddedResource Include="Resources\Prompts\Isma.png" />
+    <EmbeddedResource Include="Resources\Prompts\Journal.png" />
     <EmbeddedResource Include="Resources\Prompts\Kingsbrand.png" />
     <EmbeddedResource Include="Resources\Prompts\Quake1.png" />
     <EmbeddedResource Include="Resources\Prompts\Quake2.png" />
@@ -255,6 +257,8 @@
     <EmbeddedResource Include="Resources\ShopIcons\Fireball1.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Fireball2.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Isma.png" />
+    <EmbeddedResource Include="Resources\ShopIcons\Journal.png" />
+    <EmbeddedResource Include="Resources\ShopIcons\JournalEntry.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Quake1.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Quake2.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Scream1.png" />
