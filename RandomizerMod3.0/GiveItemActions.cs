@@ -50,7 +50,8 @@ namespace RandomizerMod
 
             Lifeblood,
             ElevatorPass,
-            Journal
+            Journal,
+            SpawnLumaflies
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -143,7 +144,7 @@ namespace RandomizerMod
                     {
                         HeroController.instance.AddGeo(LogicManager.GetItemDef(item).geo);
                     }
-                    
+
                     break;
 
                 // Disabled because it's more convenient to do this from the fsm. Use GiveAction.None for geo spawns.
@@ -409,7 +410,7 @@ namespace RandomizerMod
                             semiPersistent = false
                         });
                     }
-                    
+
                     break;
 
                 case GiveAction.SettingsBool:
@@ -418,7 +419,7 @@ namespace RandomizerMod
 
                 case GiveAction.None:
                     break;
-                
+
                 case GiveAction.Lifeblood:
                     int n = LogicManager.GetItemDef(item).lifeblood;
                     for (int i = 0; i < n; i++)
@@ -430,6 +431,25 @@ namespace RandomizerMod
                 case GiveAction.ElevatorPass:
                     PlayerData.instance.SetBool(nameof(PlayerData.cityLift1), true);
                     PlayerData.instance.SetBool(nameof(PlayerData.cityLift2), true);
+                    break;
+
+                case GiveAction.SpawnLumaflies:
+                    // I think, ideally, we'd pass the shiny GameObject as a parameter of GiveItem, and spawn from the shiny's 
+                    // location if not null. 
+                    if (HeroController.instance == null) break;
+
+                    Transform hero = HeroController.instance.transform;
+                    GameObject lumafly = ObjectCache.LumaflyEscape;
+
+                    Vector3 pos = hero.position;
+                    pos.z = lumafly.transform.position.z - 5f;
+                    // Slight tweaks to the lumafly's position, that I'm not sure are helpful but I think generally improve the spawn location.
+                    pos.x += (-0.2f) * hero.localScale.x;
+                    pos.y -= 0.05f;
+                    lumafly.transform.position = pos;
+
+                    lumafly.SetActive(true);
+
                     break;
             }
 
@@ -443,6 +463,12 @@ namespace RandomizerMod
                     bool activated = ReflectionHelper.GetAttr<VinePlatformCut, bool>(vinecut, "activated");
                     if (!activated) vinecut.Cut();
                 }
+            }
+
+            // If the location is a grub, it seems polite to mark it as obtained for the purpose of the Collector's Map
+            if (LogicManager.GetItemDef(location).pool == "Grub")
+            {
+                GameManager.instance.AddToGrubList();
             }
 
             // additive, kingsoul, bool type items can all have additive counts

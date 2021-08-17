@@ -275,6 +275,12 @@ namespace RandomizerMod.Actions
                             oldItem.fsmName = "Shiny Control";
                         }
                     }
+                    else if (settings.NPCItemDialogue && oldItem.objectName == "Egg Sac")
+                    {
+                        Actions.Add(new CreateInactiveShiny(oldItem.sceneName, replaceShinyName + " Parent", replaceShinyName, oldItem.x, oldItem.y, 
+                            oldItem.sceneName, oldItem.objectName));
+                        Actions.Add(new ReplaceBluggsacReward(oldItem.sceneName, replaceShinyName));
+                    }
                     else
                     {
                         if (location == "Hunter's_Journal")
@@ -303,11 +309,12 @@ namespace RandomizerMod.Actions
                     oldItem.type = ItemType.Charm;
                 }
 
-                else if (oldItem.type == ItemType.Geo && newItem.type != ItemType.Geo)
+                else if ((oldItem.type == ItemType.Geo || oldItem.pool == "JunkPitChest") && newItem.type != ItemType.Geo)
                 {
+                    string newShinyName = "Randomizer Chest Shiny " + newShinies++;
                     Actions.Add(new AddShinyToChest(oldItem.sceneName, oldItem.objectName, oldItem.fsmName,
-                        "Randomizer Chest Shiny"));
-                    oldItem.objectName = "Randomizer Chest Shiny";
+                        newShinyName));
+                    oldItem.objectName = newShinyName;
                     oldItem.fsmName = "Shiny Control";
                     oldItem.type = ItemType.Charm;
                 }

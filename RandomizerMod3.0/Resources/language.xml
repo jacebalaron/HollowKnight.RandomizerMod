@@ -75,7 +75,11 @@
     <entry sheet="UI" key="RANDOMIZER_DESC_LIFEBLOOD_COCOON">Limited edition Lifeblood masks - get them while they last!</entry>
     <!--<entry sheet="UI" key="RANDOMIZER_NAME_GRIMMKIN_FLAME">Grimmkin Flame</entry>-->
     <entry sheet="UI" key="RANDOMIZER_DESC_GRIMMKIN_FLAME">Hot new addition to your randomizer!</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_LUMAFLY_ESCAPE">Nothing</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_LUMAFLY_ESCAPE">But is it really nothing though?</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_1GEO">1 geo</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_8GEO">8 geo</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_10GEO">10 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_15GEO">15 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_17GEO">17 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_22GEO">22 geo</entry>

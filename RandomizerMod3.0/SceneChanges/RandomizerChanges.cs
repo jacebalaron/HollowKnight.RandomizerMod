@@ -52,11 +52,6 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
-                // Removes the prompt to donate to the 3000 geo fountain in Basin
-                case SceneNames.Abyss_04 when !RandomizerMod.Instance.Settings.NPCItemDialogue:
-                    Object.Destroy(GameObject.Find("Fountain Donation"));
-                    break;
-
                 // Platform to climb out of Abyss with only wings
                 case SceneNames.Abyss_06_Core:
                     {
@@ -170,6 +165,15 @@ namespace RandomizerMod.SceneChanges
                     coloTransition1.transform.SetPositionY(coloTransition1.transform.position.y - 9f);
                     break;
 
+                // Platform to escape from the geo rock above Lemm
+                case SceneNames.Ruins1_05 + "c":
+                    {
+                        GameObject platform = ObjectCache.SmallPlatform;
+                        platform.transform.SetPosition2D(26.6f, 73.2f);
+                        platform.SetActive(true);
+                    }
+                    break;
+
                 // Platforms to climb back up to King's Pass with no items
                 case SceneNames.Town when !RandomizerMod.Instance.Settings.RandomizeTransitions && RandomizerMod.Instance.Settings.StartName == "King's Pass":
                     {
@@ -239,6 +243,11 @@ namespace RandomizerMod.SceneChanges
                     GameObject.Find("Tut_tablet_top").LocateMyFSM("Inspection").GetState("Init").ClearTransitions();
                     break;
                 */
+
+                // Removes the prompt to donate to the 3000 geo fountain in Basin
+                case SceneNames.Abyss_04 when !RandomizerMod.Instance.Settings.NPCItemDialogue:
+                    Object.Destroy(GameObject.Find("Fountain Donation"));
+                    break;
 
                 // Opens lifeblood door in Abyss with any amount of blue health
                 case SceneNames.Abyss_06_Core:
@@ -468,6 +477,11 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
+                case SceneNames.GG_Waterways when RandomizerMod.Instance.Settings.RandomizeJunkPitChests:
+                    // Simply replacing the object with shiny causes the shiny not to be flung
+                    Object.Destroy(newScene.FindGameObject("lamp_bug_escape"));
+                    break;
+
                 case SceneNames.Hive_03 when RandomizerMod.Instance.Settings.StartName == "Hive":
                     GameObject hivePlatform = ObjectCache.SmallPlatform;
                     hivePlatform.transform.SetPosition2D(58.5f, 134f);
@@ -605,12 +619,6 @@ namespace RandomizerMod.SceneChanges
                     {
                         if (go.name.StartsWith("Gate Switch")) Object.Destroy(go);
                     }
-                    break;
-
-                case SceneNames.Ruins1_05 + "c":
-                    GameObject platform = ObjectCache.SmallPlatform;
-                    platform.transform.SetPosition2D(26.6f, 73.2f);
-                    platform.SetActive(true);
                     break;
 
                 // Many changes to make the desolate dive pickup work properly

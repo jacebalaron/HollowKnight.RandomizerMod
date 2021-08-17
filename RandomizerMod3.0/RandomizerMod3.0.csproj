@@ -110,6 +110,7 @@
     <Compile Include="Actions\ChangeCorniferReward.cs" />
     <Compile Include="Actions\DisableLoreTablet.cs" />
     <Compile Include="Actions\PreventSelfDestruct.cs" />
+    <Compile Include="Actions\ReplaceBluggsacReward.cs" />
     <Compile Include="Actions\ReplaceVengefulSpiritWithShiny.cs" />
     <Compile Include="Actions\ReplaceBasinVesselWithShiny.cs" />
     <Compile Include="Actions\ReplaceJournalWithShiny.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Extensions\RandoMenuItem.cs" />
     <Compile Include="MultiWorld\IMultiWorldCompatibleRandomizer.cs" />
     <Compile Include="MultiWorld\MultiWorldMenu.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Randomization\MiniPM.cs" />
     <Compile Include="RecentItems.cs" />
     <Compile Include="CustomSkills.cs" />
@@ -454,6 +456,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ShopIcons\ElevatorPass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ShopIcons\LampBug.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2834,6 +2834,86 @@
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Weavers_Den</areaName>
   </item>
+  <!--Junk Pit Chests-->
+  <item name="8_Geo-Junk_Pit_Chest_1">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>8</geo>
+    <nameKey>RANDOMIZER_NAME_8GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="8_Geo-Junk_Pit_Chest_2">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (1)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>8</geo>
+    <nameKey>RANDOMIZER_NAME_8GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="25_Geo-Junk_Pit_Chest_3">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (2)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>25</geo>
+    <nameKey>RANDOMIZER_NAME_25GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="Lumafly_Escape-Junk_Pit_Chest_4">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (3)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Trinket</type>
+    <action>SpawnLumaflies</action>
+    <pool>JunkPitChest</pool>
+    <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
+    <shopSpriteKey>ShopIcons.LampBug</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="10_Geo-Junk_Pit_Chest_5">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (4)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>10</geo>
+    <nameKey>RANDOMIZER_NAME_10GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
   <item name="1_Geo">
     <sceneName></sceneName>
     <objectName></objectName>
@@ -2848,6 +2928,21 @@
     <nameKey>RANDOMIZER_NAME_1GEO</nameKey>
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName></areaName>
+  </item>
+  <item name="Lumafly_Escape">
+    <sceneName></sceneName>
+    <objectName></objectName>
+    <fsmName></fsmName>
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>SpawnLumaflies</action>
+    <pool>Fake</pool>
+    <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
+    <shopSpriteKey>ShopIcons.LampBug</shopSpriteKey>
     <areaName></areaName>
   </item>
   <item name="Rancid_Egg-Sly">
@@ -2929,6 +3024,8 @@
     <sceneName>Fungus3_34</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>48.6</x>
+    <y>18.4</y>
     <elevation>0.001</elevation>
     <itemLogic>(Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | FULLDASH)) | (Top_Left_Queen's_Gardens + RIGHTDASH)</itemLogic>
     <areaLogic>(Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | FULLDASH)) | (Top_Left_Queen's_Gardens + RIGHTDASH)</areaLogic>
@@ -2946,6 +3043,8 @@
     <sceneName>Crossroads_50</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>117.7</x>
+    <y>43.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>Left_Blue_Lake + ((SWIM + WINGS) | RIGHTSUPERDASH)</itemLogic>
     <areaLogic>Left_Blue_Lake + ((SWIM + WINGS) | RIGHTSUPERDASH)</areaLogic>
@@ -2963,6 +3062,8 @@
     <sceneName>Mines_01</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>28.2</x>
+    <y>35.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>(Crossroads + QUAKE + (WINGS | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</itemLogic>
     <areaLogic>(Mines_01[left1] + QUAKE + (RIGHTDASH | WINGS | (LEFTCLAW + RIGHTSUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</areaLogic>
@@ -2998,6 +3099,8 @@
     <sceneName>Mines_20</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>30.9</x>
+    <y>149.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>Upper_Crystal_Peak + QUAKE</itemLogic>
     <areaLogic>Upper_Crystal_Peak + QUAKE</areaLogic>
@@ -3051,6 +3154,8 @@
     <sceneName>Deepnest_Spider_Town</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>112.3</x>
+    <y>80.5</y>
     <elevation>0.1</elevation>
     <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
@@ -3068,6 +3173,8 @@
     <sceneName>Deepnest_39</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>41.9</x>
+    <y>5.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + (MILDSKIPS | Bottom_Left_Queen's_Gardens)) | (Distant_Village_Stag + RIGHTCLAW))</itemLogic>
     <areaLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + MILDSKIPS) | Deepnest_39[door1] | Deepnest_42[top1] | (Deepnest_41[left1] + RIGHTCLAW))</areaLogic>
@@ -3103,6 +3210,8 @@
     <sceneName>Deepnest_East_14</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>75.5</x>
+    <y>24.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Oro_Bench + QUAKE + (RIGHTCLAW | WINGS)</itemLogic>
     <areaLogic>Oro_Bench + QUAKE + (RIGHTCLAW | WINGS)</areaLogic>
@@ -3138,6 +3247,8 @@
     <sceneName>Waterways_07</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>61.8</x>
+    <y>30.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Right_Waterways</itemLogic>
     <areaLogic>Right_Waterways</areaLogic>
@@ -3155,6 +3266,8 @@
     <sceneName>Waterways_02</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>65.3</x>
+    <y>18.2</y>
     <elevation>-0.2</elevation>
     <itemLogic>Upper_Left_Waterways | (Far_Left_Waterways + RIGHTCLAW) | (Central_Left_Waterways + (ANYCLAW | WINGS | SPICYSKIPS))</itemLogic>
     <areaLogic>Upper_Left_Waterways | (Far_Left_Waterways + RIGHTCLAW) | (Central_Left_Waterways + (ANYCLAW | WINGS | SPICYSKIPS))</areaLogic>
@@ -3172,6 +3285,8 @@
     <sceneName>Waterways_04</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>31.6</x>
+    <y>16.4</y>
     <elevation>0.001</elevation>
     <itemLogic>
       Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
@@ -3982,9 +4097,9 @@
     <newShiny>true</newShiny>
     <x>28.7</x>
     <y>23.3</y>
-    <itemLogic>Far_Queen's_Gardens + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</itemLogic>
-    <areaLogic>Fungus1_13[left1] + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</areaLogic>
-    <roomLogic>Fungus1_13[left1] + Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</roomLogic>
+    <itemLogic>Far_Queen's_Gardens + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</itemLogic>
+    <areaLogic>Fungus1_13[left1] + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</areaLogic>
+    <roomLogic>Fungus1_13[left1] + Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Root</pool>

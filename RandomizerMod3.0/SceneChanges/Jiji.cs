@@ -45,6 +45,14 @@ namespace RandomizerMod.SceneChanges
 
                             PlayMakerFSM jijiFsm = jiji.LocateMyFSM("Conversation Control");
                             EnableEggShop(jijiFsm);
+
+                            {
+                                // Set the "Black Wave" to white
+                                // I think it'd be nice to change the particles' color to white, but I couldn't figure out how to :/
+                                GameObject blackWave = jiji.FindGameObjectInChildren("Black Wave");
+                                blackWave.GetComponent<WaveEffectControl>().blackWave = false;
+                                blackWave.GetComponent<SpriteRenderer>().color = Color.white;
+                            }
                         }
                     }
                 }
