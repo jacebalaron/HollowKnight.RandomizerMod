@@ -411,6 +411,8 @@ namespace RandomizerMod
                     break;
 
                 case GiveAction.SpawnLumaflies:
+                    // I think, ideally, we'd pass the shiny GameObject as a parameter of GiveItem, and spawn from the shiny's 
+                    // location if not null. 
                     if (HeroController.instance == null) break;
 
                     Transform hero = HeroController.instance.transform;
@@ -418,6 +420,9 @@ namespace RandomizerMod
 
                     Vector3 pos = hero.position;
                     pos.z = lumafly.transform.position.z - 5f;
+                    // Slight tweaks to the lumafly's position, that I'm not sure are helpful but I think generally improve the spawn location.
+                    pos.x += (-0.2f) * hero.localScale.x;
+                    pos.y -= 0.05f;
                     lumafly.transform.position = pos;
 
                     lumafly.SetActive(true);

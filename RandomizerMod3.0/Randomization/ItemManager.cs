@@ -217,6 +217,7 @@ namespace RandomizerMod.Randomization
                         case "Notch":
                         case "CursedNotch":
                         case "Geo":
+                        case "JunkPitChest":
                         case "Egg":
                         case "Relic":
                         case "Rock":

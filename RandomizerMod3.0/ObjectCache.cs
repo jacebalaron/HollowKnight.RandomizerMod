@@ -204,7 +204,7 @@ namespace RandomizerMod
                 psm.startSizeMultiplier = 2f;
                 psm.startSizeXMultiplier = 2f;
                 psm.gravityModifier = -0.2f;
-                psm.maxParticles = 99;
+                psm.maxParticles = 99;              // In practice it only spawns 9 lumaflies
                 pse.rateOverTimeMultiplier = 10f;
                 pss.radius = 0.5868902f;
                 pst.cycleCount = 15;
@@ -217,6 +217,13 @@ namespace RandomizerMod
                 AnimationCurve yMin = new AnimationCurve(new Keyframe(0, 0.486486584f), new Keyframe(0.220843673f, 0.567567647f),
                     new Keyframe(0.411910683f, 0.270270377f), new Keyframe(0.605459034f, 0.405405462f), new Keyframe(0.801488876f, 0.108108193f));
                 psf.y = new ParticleSystem.MinMaxCurve(8, yMin, yMax);
+
+                psf.x.curveMax.keys[0].value = -0.324324369f;
+                psf.x.curveMax.keys[1].value = -0.432432413f;
+
+                psf.x.curveMin.keys[0].value = 0.162162244f;
+                psf.x.curveMin.keys[1].time = 0.159520522f;
+                psf.x.curveMin.keys[1].value = 0.35135144f;
 
                 Transform t = _lumaflyEscape.GetComponent<Transform>();
                 Vector3 loc = t.localScale;
