@@ -425,9 +425,9 @@
     <fsmName>Control</fsmName>
     <replace>true</replace>
     <elevation>3.1</elevation>
-    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</itemLogic>
-    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</areaLogic>
-    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</roomLogic>
+    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</itemLogic>
+    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</areaLogic>
+    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</roomLogic>
     <type>Spell</type>
     <action>Additive</action>
     <pool>Skill</pool>
@@ -5160,9 +5160,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</itemLogic>
-    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</areaLogic>
-    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</roomLogic>
+    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</itemLogic>
+    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</areaLogic>
+    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>

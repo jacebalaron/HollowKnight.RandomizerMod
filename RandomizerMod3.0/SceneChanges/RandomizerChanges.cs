@@ -136,6 +136,14 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
+                case SceneNames.Deepnest_36 when RandomizerMod.Instance.Settings.RandomizeMimics:
+                    {
+                        GameObject platform = ObjectCache.SmallPlatform;
+                        platform.transform.SetPosition2D(26f, 11f);
+                        platform.SetActive(true);
+                    }
+                    break;
+
                 // Platforms to climb back up from Mantis Lords with only wings
                 case SceneNames.Fungus2_15 when !RandomizerMod.Instance.Settings.RandomizeTransitions:
                     {
