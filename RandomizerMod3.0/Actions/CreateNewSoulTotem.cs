@@ -26,7 +26,7 @@ namespace RandomizerMod.Actions
             [SoulTotemSubtype.C] = -0.1f,
             // Some elevation values adjusted from the originals to account for the shrinkage.
             [SoulTotemSubtype.D] = 1.3f - 0.5f,
-            [SoulTotemSubtype.E] = 1.2f - 0.3f,
+            [SoulTotemSubtype.E] = 1.2f - 0.5f,
             [SoulTotemSubtype.F] = 0.8f,
             [SoulTotemSubtype.G] = 0.2f,
             [SoulTotemSubtype.Palace] = 1.3f - 0.3f,

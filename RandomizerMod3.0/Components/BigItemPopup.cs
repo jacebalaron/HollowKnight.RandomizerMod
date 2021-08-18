@@ -140,6 +140,12 @@ namespace RandomizerMod.Components
             float scaler = _imagePrompt.texture.height / 400f;
             Vector2 size = new Vector2(_imagePrompt.texture.width / scaler, _imagePrompt.texture.height / scaler);
 
+            AudioSource.PlayClipAtPoint(ObjectCache.BigItemJingle, new Vector3(
+                Camera.main.transform.position.x,
+                Camera.main.transform.position.y,
+                Camera.main.transform.position.z + 2
+            ));
+
             // Begin fading in the top bits of the popup
             GameObject topImage = CanvasUtil.CreateImagePanel(gameObject, _imagePrompt,
                 new CanvasUtil.RectData(size, Vector2.zero, new Vector2(0.5f, 0.75f), new Vector2(0.5f, 0.8f)));
