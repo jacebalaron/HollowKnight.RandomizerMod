@@ -601,6 +601,21 @@ namespace RandomizerMod
             return log.ToString();
         }
 
+        public static void LogMimicsToSpoiler()
+        {
+            if (!(RandomizerMod.Instance.Settings.RandomizeMimics && !RandomizerMod.Instance.Settings.RandomizeGrubs)) return;
+            if (!RandomizerMod.Instance.Settings.CreateSpoilerLog) return;
+
+            LogSpoiler(Environment.NewLine + "GRUB LOCATIONS");
+
+            foreach (var kvp in RandomizerMod.Instance.Settings._mimicPlacements)
+            {
+                string item = kvp.Value ? "Mimic Grub" : "Grub";
+                string location = kvp.Key.Replace("_", " ");
+                LogSpoiler($"{item}<---at--->{location}");
+            }
+        }
+
         public static void LogCondensedSpoiler(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerCondensedSpoilerLog.txt"), message + Environment.NewLine);

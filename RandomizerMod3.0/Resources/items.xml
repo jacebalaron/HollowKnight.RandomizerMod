@@ -5379,6 +5379,100 @@
     <areaName>Tower_of_Love</areaName>
     <progression>true</progression>
   </item>
+  <!--MIMIC LOCATIONS-->
+  <item name="Mimic_Grub-Deepnest_1">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>58.5</x>
+    <y>8.5</y>
+    <elevation>0.1</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Deepnest_2">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>36.3</x>
+    <y>7.5</y>
+    <elevation>0.1</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Deepnest_3">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>73.4</x>
+    <y>6.6</y>
+    <elevation>0.2</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Crystal_Peak">
+    <sceneName>Mines_16</sceneName>
+    <newShiny>true</newShiny>
+    <x>34.5</x>
+    <y>3.6</y>
+    <elevation>0.2</elevation>
+    <itemLogic>(Upper_Crystal_Peak + FULLCLAW + SUPERDASH) | (King's_Pass + WINGS + SUPERDASH)</itemLogic>
+    <areaLogic>(Upper_Crystal_Peak + FULLCLAW + SUPERDASH) | (Mines_10[left1] + ((RIGHTDASH + WINGS) | SUPERDASH))</areaLogic>
+    <roomLogic>Mines_16[top1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Crystal_Peak</areaName>
+  </item>
+  <!--ITEMS FOR MIMIC RANDO-->
+  <item name="Grub">
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>Grub</action>
+    <pool>GrubItem</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <progression>true</progression>
+  </item>
+  <item name="Mimic_Grub">
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>MimicItem</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <progression>true</progression>
+  </item>
   <!--MAPS-->
   <item name="Crossroads_Map">
     <boolName>mapCrossroads</boolName>

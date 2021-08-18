@@ -27,6 +27,9 @@ namespace RandomizerMod
         private static GameObject _relicGetMsg;
 
         private static GameObject _grubJar;
+        private static GameObject _mimicBottle;
+        private static GameObject _mimicTop;
+        private static GameObject _mimicDialogue;
 
         private static GameObject _loreTablet;
 
@@ -55,6 +58,9 @@ namespace RandomizerMod
         public static GameObject RelicGetMsg => Object.Instantiate(_relicGetMsg);
 
         public static GameObject GrubJar => Object.Instantiate(_grubJar);
+        public static GameObject MimicBottle => Object.Instantiate(_mimicBottle);
+        public static GameObject MimicTop => Object.Instantiate(_mimicTop);
+        public static GameObject MimicDreamDialogue => Object.Instantiate(_mimicDialogue);
 
         public static GeoRockSubtype GetPreloadedRockType(GeoRockSubtype t) {
             return _geoRocks.ContainsKey(t) ? t : GeoRockSubtype.Default;
@@ -74,6 +80,7 @@ namespace RandomizerMod
 
         public static GameObject Grub;
         public static AudioClip[] GrubCry;
+        public static AudioClip MimicScream;
 
         public static AudioClip LoreSound;
 
@@ -124,6 +131,12 @@ namespace RandomizerMod
 
             _grubJar = objectsByScene[SceneNames.Deepnest_36]["Grub Bottle"];
             Object.DontDestroyOnLoad(_grubJar);
+            _mimicBottle = objectsByScene[SceneNames.Deepnest_36]["Grub Mimic Bottle"];
+            Object.DontDestroyOnLoad(_mimicBottle);
+            _mimicTop = objectsByScene[SceneNames.Deepnest_36]["Grub Mimic Top"];
+            Object.DontDestroyOnLoad(_mimicTop);
+            _mimicDialogue = objectsByScene[SceneNames.Deepnest_36]["Dream Dialogue"];
+            Object.DontDestroyOnLoad(_mimicDialogue);
 
             if (RandomizerMod.Instance.globalSettings.ReduceRockPreloads)
             {
@@ -184,6 +197,9 @@ namespace RandomizerMod
             {
                 Object.DontDestroyOnLoad(clip);
             }
+            MimicScream = (AudioClip)_mimicTop.transform.Find("Grub Mimic 1").gameObject.LocateMyFSM("Grub Mimic").GetState("Scream")
+                .GetActionOfType<AudioPlaySimple>().oneShotClip.Value;
+            Object.DontDestroyOnLoad(MimicScream);
 
             _loreTablet = objectsByScene[SceneNames.Tutorial_01]["_Props/Tut_tablet_top"];
             LoreSound = (AudioClip)_loreTablet.LocateMyFSM("Inspection").GetState("Prompt Up").GetActionOfType<AudioPlayerOneShotSingle>().audioClip.Value;

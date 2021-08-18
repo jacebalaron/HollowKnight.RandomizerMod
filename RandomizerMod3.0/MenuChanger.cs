@@ -784,8 +784,11 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.RandomizeBossEssence = RandoBossEssenceBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeBossGeo = RandoBossGeoBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeJournalEntries = RandoJournalEntriesBtn.CurrentSelection;
-
                     RandomizerMod.Instance.Settings.RandomizeJunkPitChests = RandoJunkPitBtn.CurrentSelection;
+
+                    RandomizerMod.Instance.Settings.RandomizeMimics = (RandomizerMod.Instance.Settings.Seed % 2 == 0)
+                        && (new Random(RandomizerMod.Instance.Settings.Seed + 223).Next(7) == 5);
+
 
                     RandomizerMod.Instance.Settings.RandomizePalaceTotems = RandoPalaceBtn.CurrentSelection && 
                         (RandoSoulTotemsBtn.CurrentSelection || !(RandoLoreTabletsBtn.CurrentSelection || RandoJournalEntriesBtn.CurrentSelection));

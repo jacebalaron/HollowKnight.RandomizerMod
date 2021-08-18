@@ -51,7 +51,8 @@ namespace RandomizerMod
             Lifeblood,
             ElevatorPass,
             Journal,
-            SpawnLumaflies
+            SpawnLumaflies,
+            Mimic
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -205,6 +206,21 @@ namespace RandomizerMod
                             Camera.main.transform.position.z + 2
                         ));
                     AudioSource.PlayClipAtPoint(ObjectCache.GrubCry[clipIndex],
+                        new Vector3(
+                            Camera.main.transform.position.x + 2,
+                            Camera.main.transform.position.y,
+                            Camera.main.transform.position.z + 2
+                        ));
+                    break;
+
+                case GiveAction.Mimic:
+                    AudioSource.PlayClipAtPoint(ObjectCache.MimicScream,
+                        new Vector3(
+                            Camera.main.transform.position.x - 2,
+                            Camera.main.transform.position.y,
+                            Camera.main.transform.position.z + 2
+                        ));
+                    AudioSource.PlayClipAtPoint(ObjectCache.MimicScream,
                         new Vector3(
                             Camera.main.transform.position.x + 2,
                             Camera.main.transform.position.y,

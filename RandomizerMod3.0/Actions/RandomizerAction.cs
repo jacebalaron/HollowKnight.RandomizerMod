@@ -131,9 +131,11 @@ namespace RandomizerMod.Actions
                     && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue)
                     && oldItem.costType != AddYNDialogueToShiny.CostType.RancidEggs;
                 bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && location != "Hunter's_Journal" && !hasCost;
-                bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
+                bool replacedWithGrub = newItem.pool.StartsWith("Grub") && canReplaceWithObj;
                 bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
                 bool replacedWithSoulTotem = newItem.type == ItemType.Soul && canReplaceWithObj;
+                bool replacedWithMimic = newItem.pool.StartsWith("Mimic") && canReplaceWithObj;
+                bool replaced = replacedWithGrub || replacedWithGeoRock || replacedWithSoulTotem || replacedWithMimic;
 
                 void preventSelfDestruct()
                 {
@@ -156,6 +158,19 @@ namespace RandomizerMod.Actions
                     else
                     {
                         Actions.Add(new ReplaceObjectWithGrubJar(oldItem.sceneName, oldItem.objectName, oldItem.elevation, jarName, newItemName, location));
+                        preventSelfDestruct();
+                    }
+                }
+                else if (replacedWithMimic)
+                {
+                    string bottleName = "Randomizer Mimic Bottle " + newGrubs++;
+                    if (oldItem.newShiny)
+                    {
+                        Actions.Add(new CreateNewMimicBottle(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewMimicBottle.MIMIC_BOTTLE_ELEVATION - oldItem.elevation, bottleName, newItemName, location));
+                    }
+                    else
+                    {
+                        Actions.Add(new ReplaceObjectWithMimicBottle(oldItem.sceneName, oldItem.objectName, oldItem.elevation, bottleName, newItemName, location));
                         preventSelfDestruct();
                     }
                 }
@@ -352,7 +367,7 @@ namespace RandomizerMod.Actions
                         altTest: () => RandomizerMod.Instance.Settings.CheckLocationFound(location)));
                 }
 
-                if (replacedWithGrub || replacedWithGeoRock || replacedWithSoulTotem)
+                if (replaced)
                 {
                     continue;
                 }
@@ -525,6 +540,41 @@ namespace RandomizerMod.Actions
                 Actions.Add(new ShowLoreTextInShop(SceneNames.Room_mapper, "UI List", "Confirm Control"));
                 Actions.Add(new ShowLoreTextInShop(SceneNames.Room_Charm_Shop, "UI List", "Confirm Control"));
                 Actions.Add(new ShowLoreTextInShop(SceneNames.Fungus2_26, "UI List", "Confirm Control"));
+            }
+
+            // Mimics/Grubs when grubs aren't rando
+            if (settings.RandomizeMimics && !settings.RandomizeGrubs)
+            {
+                foreach (var kvp in settings._mimicPlacements)
+                {
+                    ReqDef def = LogicManager.GetItemDef(kvp.Key);
+                    if (kvp.Value)
+                    {
+                        if (def.replace)
+                        {
+                            Actions.Add(new ReplaceObjectWithMimicBottle(def.sceneName, def.objectName, def.elevation,
+                                "Randomizer Mimic " + kvp.Key, "Mimic_Grub", kvp.Key, unrandomized: true));
+                        }
+                        else
+                        {
+                            Actions.Add(new CreateNewMimicBottle(def.sceneName, def.x, def.y + CreateNewMimicBottle.MIMIC_BOTTLE_ELEVATION - def.elevation,
+                                "Randomizer Mimic " + kvp.Key, "Mimic_Grub", kvp.Key, unrandomized:true));
+                        }
+                    }
+                    else
+                    {
+                        if (def.replace)
+                        {
+                            Actions.Add(new ReplaceObjectWithGrubJar(def.sceneName, def.objectName, def.elevation,
+                                "Randomizer Grub " + kvp.Key, "Grub", kvp.Key, unrandomized:true));
+                        }
+                        else
+                        {
+                            Actions.Add(new CreateNewGrubJar(def.sceneName, def.x, def.y + CreateNewGrubJar.GRUB_JAR_ELEVATION - def.elevation,
+                                "Randomizer Grub " + kvp.Key, "Grub", kvp.Key, unrandomized:true));
+                        }
+                    }
+                }
             }
         }
 

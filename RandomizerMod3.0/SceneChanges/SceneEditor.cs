@@ -57,6 +57,7 @@ namespace RandomizerMod.SceneChanges
                 EditCorniferAndIselda(newScene);
                 DestroyLoreTablets(newScene);
                 DeleteCollectorGrubs(newScene);
+                DestroyMimicObjects(newScene);
             }
 
             // Transition fixes: critical changes for transition randomizer functionality, protected by bool checks so they can also be used for item randomizer if necessary
