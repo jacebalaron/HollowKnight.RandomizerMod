@@ -77,6 +77,8 @@ namespace RandomizerMod
 
         public static AudioClip LoreSound;
 
+        public static AudioClip BigItemJingle;
+
         public static GameObject LumaflyEscape => Object.Instantiate(_lumaflyEscape);
 
         public static void GetPrefabs(Dictionary<string, Dictionary<string, GameObject>> objectsByScene)
@@ -88,6 +90,13 @@ namespace RandomizerMod
             _relicGetMsg = Object.Instantiate(shinyFSM.GetState("Trink Flash").GetActionsOfType<SpawnObjectFromGlobalPool>()[1].gameObject.Value);
             _relicGetMsg.SetActive(false);
             Object.DontDestroyOnLoad(_relicGetMsg);
+
+            BigItemJingle = (AudioClip)(shinyFSM.GetState("Walljump")
+                .GetActionOfType<CreateUIMsgGetItem>().gameObject.Value
+                .LocateMyFSM("Msg Control")
+                .GetState("Top Up")
+                .GetActionOfType<AudioPlayerOneShotSingle>().audioClip.Value);
+            Object.DontDestroyOnLoad(BigItemJingle);
 
             HealthManager health = objectsByScene[SceneNames.Tutorial_01]["_Enemies/Crawler 1"].GetComponent<HealthManager>();
             _smallGeo = Object.Instantiate(
