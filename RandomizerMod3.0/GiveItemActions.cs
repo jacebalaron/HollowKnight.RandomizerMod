@@ -482,10 +482,18 @@ namespace RandomizerMod
             }
 
             // If the location is a grub, it seems polite to mark it as obtained for the purpose of the Collector's Map
-            if (LogicManager.GetItemDef(location).pool == "Grub")
+            try
             {
-                GameManager.instance.AddToGrubList();
+                if (!LogicManager.ShopNames.Contains(location) && LogicManager.GetItemDef(location).pool == "Grub")
+                {
+                        GameManager.instance.AddToGrubList();
+                }
             }
+            catch (Exception e)
+            {
+                LogError("Error Marking Grub Location:\n" + e);
+            }
+
 
             // additive, kingsoul, bool type items can all have additive counts
             if (LogicManager.AdditiveItemSets.Any(set => set.Contains(item)))
