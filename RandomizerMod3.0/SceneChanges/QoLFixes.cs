@@ -305,7 +305,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Ruins2_07:
                     CreateWaterSpawn(30.4f, 8.25f, 1f, 7.5f, true);
                     CreateWaterSpawn(65f, 14f, 1f, 6f, false);
-                    CreateWaterSpawn(81.5f, 19.5f, 1f, 19f, true);
+                    CreateWaterSpawn(81.5f, 15f, 1f, 8f, true);
                     break;
 
                 case SceneNames.Waterways_01:
