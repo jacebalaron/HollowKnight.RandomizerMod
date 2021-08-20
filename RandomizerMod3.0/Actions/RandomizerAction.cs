@@ -404,7 +404,7 @@ namespace RandomizerMod.Actions
                             Actions.Add(new ChangeChestGeo(oldItem.sceneName, oldItem.chestName,
                                 oldItem.chestFsmName, newItem.geo, newItemName, location));
                         }
-                        else if (oldItem.type == ItemType.Geo)
+                        else if (oldItem.type == ItemType.Geo || oldItem.pool == "JunkPitChest")
                         {
                             Actions.Add(new ChangeChestGeo(oldItem.sceneName, oldItem.objectName, oldItem.fsmName,
                                     newItem.geo, newItemName, location));
