@@ -229,7 +229,7 @@ namespace RandomizerMod.SceneChanges
                     CreateWaterSpawn(81f, 63f, 1f, 6f, false);
                     CreateWaterSpawn(91f, 63f, 1f, 6f, true);
                     CreateWaterSpawn(95f, 49.75f, 5.5f, 6f, false);
-                    CreateWaterSpawn(127f, 62f, 1f, 24f, false);
+                    CreateWaterSpawn(128f, 62f, 1f, 22f, false);
                     break;
 
                 case SceneNames.RestingGrounds_08:
