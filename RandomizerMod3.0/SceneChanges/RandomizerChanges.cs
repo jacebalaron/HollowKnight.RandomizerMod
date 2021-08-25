@@ -1071,7 +1071,7 @@ namespace RandomizerMod.SceneChanges
         {
             foreach (GameObject go in GameObject.FindObjectsOfType<GameObject>())
             {
-                if (go.name.Contains(name))
+                if (go.name.StartsWith(name))
                 {
                     Object.Destroy(go);
                 }
