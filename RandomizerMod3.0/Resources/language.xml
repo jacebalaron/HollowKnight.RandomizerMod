@@ -75,7 +75,11 @@
     <entry sheet="UI" key="RANDOMIZER_DESC_LIFEBLOOD_COCOON">Limited edition Lifeblood masks - get them while they last!</entry>
     <!--<entry sheet="UI" key="RANDOMIZER_NAME_GRIMMKIN_FLAME">Grimmkin Flame</entry>-->
     <entry sheet="UI" key="RANDOMIZER_DESC_GRIMMKIN_FLAME">Hot new addition to your randomizer!</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_LUMAFLY_ESCAPE">Nothing</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_LUMAFLY_ESCAPE">But is it really nothing though?</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_1GEO">1 geo</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_8GEO">8 geo</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_10GEO">10 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_15GEO">15 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_17GEO">17 geo</entry>
   <entry sheet="UI" key="RANDOMIZER_NAME_22GEO">22 geo</entry>
@@ -147,6 +151,19 @@
   <entry sheet="UI" key="RANDOMIZER_SHOP_DESC_LEFTSLASH">Your character seems pretty underpowered, huh. Let's fix that.</entry>
   <entry sheet="UI" key="RANDOMIZER_SHOP_DESC_RIGHTSLASH">Your character seems pretty underpowered, huh. Let's fix that.</entry>
   <entry sheet="UI" key="RANDOMIZER_SHOP_DESC_UPSLASH">Your character seems pretty underpowered, huh. Let's fix that.</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_HUNTER_JOURNAL">Hunter's Journal</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_HUNTER_JOURNAL">Records every creature you've killed, so you never forget how you murdered them in cold blood.</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_VOID_TENDRILS">Void Tendrils</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_VOID_TENDRILS">For some reason Grimmchild will shoot at those things even though they can't take damage.</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_CHARGED_LUMAFLY">Charged Lumafly</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_CHARGED_LUMAFLY">BZZZT!</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_GOAM">Goam</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_GOAM">Chiefly known for killing a certain vengefly when you most need it.</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_GARPEDE">Garpede</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_GARPEDE">Living tunneling machines.</entry>
+  <entry sheet="UI" key="RANDOMIZER_NAME_BINDING_SEAL">Seal of Binding</entry>
+  <entry sheet="UI" key="RANDOMIZER_DESC_BINDING_SEAL">Found in various hidden places throughout Hallownest. Purpose unknown.</entry>
+
     
   <!--Split Claw-->
   <entry sheet="UI" key="RANDOMIZER_NAME_LEFT_CLAW">Left Mantis Claw</entry>

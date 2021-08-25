@@ -29,6 +29,8 @@ namespace RandomizerMod
         private SerializableBoolDictionary _obtainedLocations = new SerializableBoolDictionary();
         private SerializableBoolDictionary _obtainedTransitions = new SerializableBoolDictionary();
 
+        public SerializableBoolDictionary _mimicPlacements = new SerializableBoolDictionary(); // Only for Mimic-but-not-Grub rando
+
         /// <remarks>item, location</remarks>
         public (string, string)[] ItemPlacements => _itemPlacements.Select(pair => (pair.Key, pair.Value)).ToArray();
 
@@ -196,6 +198,11 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool RandomizeJunkPitChests
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
         public bool RandomizeMaskShards
         {
             get => GetBool(false);
@@ -255,6 +262,11 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool RandomizeMimics
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
 
         public bool RandomizeWhisperingRoots
         {
@@ -295,6 +307,11 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool RandomizePalaceEntries
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
 
         public bool RandomizeLifebloodCocoons
         {
@@ -314,6 +331,12 @@ namespace RandomizerMod
         }
 
         public bool RandomizeBossEssence
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+
+        public bool RandomizeJournalEntries
         {
             get => GetBool(false);
             set => SetBool(value);
@@ -430,6 +453,10 @@ namespace RandomizerMod
                     return RandomizePalaceTablets;
                 case "Lore":
                     return RandomizeLoreTablets;
+                case "Journal":
+                    return RandomizeJournalEntries;
+                case "PalaceJournal":
+                    return RandomizePalaceEntries;
                 case "Lifeblood":
                     return RandomizeLifebloodCocoons;
                 case "Flame":

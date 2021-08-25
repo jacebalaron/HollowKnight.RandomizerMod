@@ -26,6 +26,9 @@ namespace RandomizerMod.Randomization
         public const int MAX_EGG_COST = 14;
         public const int MIN_EGG_COST = 4;
 
+        public const int MIN_MIMIC_COUNT = 4;
+        public const int MAX_MIMIC_COUNT = 14;
+
         public static ItemManager im;
         public static TransitionManager tm;
         public static VanillaManager vm { get { return VanillaManager.Instance; } }
@@ -56,6 +59,7 @@ namespace RandomizerMod.Randomization
                 StartName = null;
 
                 RandomizerMod.Instance.Settings.ResetPlacements();
+                RandomizeMimics();
                 RandomizeNonShopCosts();
                 RandomizeStartingItems();
                 RandomizeStartingLocation();

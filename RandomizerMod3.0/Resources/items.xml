@@ -425,9 +425,9 @@
     <fsmName>Control</fsmName>
     <replace>true</replace>
     <elevation>3.1</elevation>
-    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</itemLogic>
-    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</areaLogic>
-    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</roomLogic>
+    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</itemLogic>
+    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</areaLogic>
+    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</roomLogic>
     <type>Spell</type>
     <action>Additive</action>
     <pool>Skill</pool>
@@ -2834,6 +2834,86 @@
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Weavers_Den</areaName>
   </item>
+  <!--Junk Pit Chests-->
+  <item name="8_Geo-Junk_Pit_Chest_1">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>8</geo>
+    <nameKey>RANDOMIZER_NAME_8GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="8_Geo-Junk_Pit_Chest_2">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (1)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>8</geo>
+    <nameKey>RANDOMIZER_NAME_8GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="25_Geo-Junk_Pit_Chest_3">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (2)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>25</geo>
+    <nameKey>RANDOMIZER_NAME_25GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="Lumafly_Escape-Junk_Pit_Chest_4">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (3)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Trinket</type>
+    <action>SpawnLumaflies</action>
+    <pool>JunkPitChest</pool>
+    <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
+    <shopSpriteKey>ShopIcons.LampBug</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="10_Geo-Junk_Pit_Chest_5">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (4)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>10</geo>
+    <nameKey>RANDOMIZER_NAME_10GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
   <item name="1_Geo">
     <sceneName></sceneName>
     <objectName></objectName>
@@ -2848,6 +2928,21 @@
     <nameKey>RANDOMIZER_NAME_1GEO</nameKey>
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName></areaName>
+  </item>
+  <item name="Lumafly_Escape">
+    <sceneName></sceneName>
+    <objectName></objectName>
+    <fsmName></fsmName>
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>SpawnLumaflies</action>
+    <pool>Fake</pool>
+    <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
+    <shopSpriteKey>ShopIcons.LampBug</shopSpriteKey>
     <areaName></areaName>
   </item>
   <item name="Rancid_Egg-Sly">
@@ -2929,6 +3024,8 @@
     <sceneName>Fungus3_34</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>48.6</x>
+    <y>18.4</y>
     <elevation>0.001</elevation>
     <itemLogic>(Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | FULLDASH)) | (Top_Left_Queen's_Gardens + RIGHTDASH)</itemLogic>
     <areaLogic>(Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | FULLDASH)) | (Top_Left_Queen's_Gardens + RIGHTDASH)</areaLogic>
@@ -2946,6 +3043,8 @@
     <sceneName>Crossroads_50</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>117.7</x>
+    <y>43.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>Left_Blue_Lake + ((SWIM + WINGS) | RIGHTSUPERDASH)</itemLogic>
     <areaLogic>Left_Blue_Lake + ((SWIM + WINGS) | RIGHTSUPERDASH)</areaLogic>
@@ -2963,6 +3062,8 @@
     <sceneName>Mines_01</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>28.2</x>
+    <y>35.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>(Crossroads + QUAKE + (WINGS | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</itemLogic>
     <areaLogic>(Mines_01[left1] + QUAKE + (RIGHTDASH | WINGS | (LEFTCLAW + RIGHTSUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</areaLogic>
@@ -2998,6 +3099,8 @@
     <sceneName>Mines_20</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>30.9</x>
+    <y>149.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>Upper_Crystal_Peak + QUAKE</itemLogic>
     <areaLogic>Upper_Crystal_Peak + QUAKE</areaLogic>
@@ -3051,6 +3154,8 @@
     <sceneName>Deepnest_Spider_Town</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>112.3</x>
+    <y>80.5</y>
     <elevation>0.1</elevation>
     <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
@@ -3068,6 +3173,8 @@
     <sceneName>Deepnest_39</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>41.9</x>
+    <y>5.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + (MILDSKIPS | Bottom_Left_Queen's_Gardens)) | (Distant_Village_Stag + RIGHTCLAW))</itemLogic>
     <areaLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + MILDSKIPS) | Deepnest_39[door1] | Deepnest_42[top1] | (Deepnest_41[left1] + RIGHTCLAW))</areaLogic>
@@ -3103,6 +3210,8 @@
     <sceneName>Deepnest_East_14</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>75.5</x>
+    <y>24.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Oro_Bench + QUAKE + (RIGHTCLAW | WINGS)</itemLogic>
     <areaLogic>Oro_Bench + QUAKE + (RIGHTCLAW | WINGS)</areaLogic>
@@ -3138,6 +3247,8 @@
     <sceneName>Waterways_07</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>61.8</x>
+    <y>30.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Right_Waterways</itemLogic>
     <areaLogic>Right_Waterways</areaLogic>
@@ -3155,6 +3266,8 @@
     <sceneName>Waterways_02</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>65.3</x>
+    <y>18.2</y>
     <elevation>-0.2</elevation>
     <itemLogic>Upper_Left_Waterways | (Far_Left_Waterways + RIGHTCLAW) | (Central_Left_Waterways + (ANYCLAW | WINGS | SPICYSKIPS))</itemLogic>
     <areaLogic>Upper_Left_Waterways | (Far_Left_Waterways + RIGHTCLAW) | (Central_Left_Waterways + (ANYCLAW | WINGS | SPICYSKIPS))</areaLogic>
@@ -3172,6 +3285,8 @@
     <sceneName>Waterways_04</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>31.6</x>
+    <y>16.4</y>
     <elevation>0.001</elevation>
     <itemLogic>
       Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
@@ -3982,9 +4097,9 @@
     <newShiny>true</newShiny>
     <x>28.7</x>
     <y>23.3</y>
-    <itemLogic>Far_Queen's_Gardens + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</itemLogic>
-    <areaLogic>Fungus1_13[left1] + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</areaLogic>
-    <roomLogic>Fungus1_13[left1] + Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</roomLogic>
+    <itemLogic>Far_Queen's_Gardens + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</itemLogic>
+    <areaLogic>Fungus1_13[left1] + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</areaLogic>
+    <roomLogic>Fungus1_13[left1] + Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Root</pool>
@@ -5045,9 +5160,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</itemLogic>
-    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</areaLogic>
-    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</roomLogic>
+    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</itemLogic>
+    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</areaLogic>
+    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -5262,6 +5377,100 @@
     <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
     <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
     <areaName>Tower_of_Love</areaName>
+    <progression>true</progression>
+  </item>
+  <!--MIMIC LOCATIONS-->
+  <item name="Mimic_Grub-Deepnest_1">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>58.5</x>
+    <y>8.5</y>
+    <elevation>0.1</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Deepnest_2">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>36.3</x>
+    <y>7.5</y>
+    <elevation>0.1</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Deepnest_3">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>73.4</x>
+    <y>6.6</y>
+    <elevation>0.2</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Crystal_Peak">
+    <sceneName>Mines_16</sceneName>
+    <newShiny>true</newShiny>
+    <x>34.5</x>
+    <y>3.6</y>
+    <elevation>0.2</elevation>
+    <itemLogic>(Upper_Crystal_Peak + FULLCLAW + SUPERDASH) | (King's_Pass + WINGS + SUPERDASH)</itemLogic>
+    <areaLogic>(Upper_Crystal_Peak + FULLCLAW + SUPERDASH) | (Mines_10[left1] + ((RIGHTDASH + WINGS) | SUPERDASH))</areaLogic>
+    <roomLogic>Mines_16[top1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Crystal_Peak</areaName>
+  </item>
+  <!--ITEMS FOR MIMIC RANDO-->
+  <item name="Grub">
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>Grub</action>
+    <pool>GrubItem</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <progression>true</progression>
+  </item>
+  <item name="Mimic_Grub">
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>MimicItem</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
     <progression>true</progression>
   </item>
   <!--MAPS-->
@@ -6070,6 +6279,115 @@
     <shopSpriteKey>ShopIcons.Flame</shopSpriteKey>
     <areaName>Distant_Village</areaName>
     <progression>true</progression>
+  </item>
+  <!--Journal Entries-->
+  <item name="Hunter's_Journal">
+    <boolName>hasJournal</boolName>
+    <sceneName>Fungus1_08</sceneName>
+    <objectName>Shiny Item</objectName>
+    <!-- The Hunter's original shiny's FSM does not have the states that ChangeShinyInto* look for. -->
+    <replace>true</replace>
+    <itemLogic>Greenpath</itemLogic>
+    <areaLogic>Greenpath</areaLogic>
+    <roomLogic>Fungus1_08[left1]</roomLogic>
+    <type>Big</type>
+    <action>Bool</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_HUNTER_JOURNAL</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_HUNTER_JOURNAL</shopDescKey>
+    <shopSpriteKey>ShopIcons.Journal</shopSpriteKey>
+    <bigSpriteKey>Prompts.Journal</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_MEME</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <areaName>Greenpath</areaName>
+  </item>
+  <item name="Journal_Entry-Void_Tendrils">
+    <boolName>killedAbyssTendril</boolName>
+    <sceneName>Abyss_09</sceneName>
+    <objectName>AbyssTendril Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.4</elevation>
+    <itemLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS) | ((RIGHTSHADOWDASH | VOIDHEART) + (LEFTCLAW | WINGS))) + LEFTSHADOWDASH</itemLogic>
+    <areaLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS) | ((RIGHTSHADOWDASH | VOIDHEART) + (LEFTCLAW | WINGS))) + LEFTSHADOWDASH</areaLogic>
+    <roomLogic>Abyss_09[right3]</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_VOID_TENDRILS</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_VOID_TENDRILS</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Abyss</areaName>
+  </item>
+  <item name="Journal_Entry-Charged_Lumafly">
+    <boolName>killedZapBug</boolName>
+    <sceneName>Fungus3_archive_02</sceneName>
+    <objectName>Zap Bug Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.2</elevation>
+    <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</itemLogic>
+    <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</areaLogic>
+    <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_CHARGED_LUMAFLY</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_CHARGED_LUMAFLY</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Teachers_Archives</areaName>
+  </item>
+  <item name="Journal_Entry-Goam">
+    <boolName>killedWorm</boolName>
+    <sceneName>Crossroads_52</sceneName>
+    <objectName>Goam Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.2</elevation>
+    <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Main_Fungal_Wastes + (ACID | RIGHTCLAW | RIGHTDASH | RIGHTSUPERDASH | AIRSTALL)))</itemLogic>
+    <areaLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | Crossroads_18[bot1])</areaLogic>
+    <roomLogic>Crossroads_52[left1] + QUAKE</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_GOAM</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GOAM</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Forgotten_Crossroads</areaName>
+  </item>
+  <item name="Journal_Entry-Garpede">
+    <boolName>killedBigCentipede</boolName>
+    <sceneName>Deepnest_44</sceneName>
+    <objectName>Centipede Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.3</elevation>
+    <itemLogic>Deepnest</itemLogic>
+    <areaLogic>Deepnest</areaLogic>
+    <roomLogic>Deepnest_44[top1]</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_GARPEDE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GARPEDE</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Journal_Entry-Seal_of_Binding">
+    <boolName>killedBindingSeal</boolName>
+    <sceneName>White_Palace_20</sceneName>
+    <newShiny>true</newShiny>
+    <x>275.1</x>
+    <y>122.4</y>
+    <elevation>0.001</elevation>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</areaLogic>
+    <roomLogic>White_Palace_20[bot1] + FULLCLAW + RIGHTDASH + WINGS + BOSS</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>PalaceJournal</pool>
+    <nameKey>RANDOMIZER_NAME_BINDING_SEAL</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_BINDING_SEAL</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Palace_Grounds</areaName>
   </item>
   <!--Elevator Pass-->
   <item name="Elevator_Pass">

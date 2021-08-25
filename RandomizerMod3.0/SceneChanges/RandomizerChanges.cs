@@ -52,11 +52,6 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
-                // Removes the prompt to donate to the 3000 geo fountain in Basin
-                case SceneNames.Abyss_04 when !RandomizerMod.Instance.Settings.NPCItemDialogue:
-                    Object.Destroy(GameObject.Find("Fountain Donation"));
-                    break;
-
                 // Platform to climb out of Abyss with only wings
                 case SceneNames.Abyss_06_Core:
                     {
@@ -141,6 +136,14 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
+                case SceneNames.Deepnest_36 when RandomizerMod.Instance.Settings.RandomizeMimics:
+                    {
+                        GameObject platform = ObjectCache.SmallPlatform;
+                        platform.transform.SetPosition2D(26f, 11f);
+                        platform.SetActive(true);
+                    }
+                    break;
+
                 // Platforms to climb back up from Mantis Lords with only wings
                 case SceneNames.Fungus2_15 when !RandomizerMod.Instance.Settings.RandomizeTransitions:
                     {
@@ -168,6 +171,15 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Room_Colosseum_02 when !RandomizerMod.Instance.Settings.RandomizeTransitions:
                     GameObject coloTransition1 = GameObject.Find("top1");
                     coloTransition1.transform.SetPositionY(coloTransition1.transform.position.y - 9f);
+                    break;
+
+                // Platform to escape from the geo rock above Lemm
+                case SceneNames.Ruins1_05 + "c":
+                    {
+                        GameObject platform = ObjectCache.SmallPlatform;
+                        platform.transform.SetPosition2D(26.6f, 73.2f);
+                        platform.SetActive(true);
+                    }
                     break;
 
                 // Platforms to climb back up to King's Pass with no items
@@ -239,6 +251,11 @@ namespace RandomizerMod.SceneChanges
                     GameObject.Find("Tut_tablet_top").LocateMyFSM("Inspection").GetState("Init").ClearTransitions();
                     break;
                 */
+
+                // Removes the prompt to donate to the 3000 geo fountain in Basin
+                case SceneNames.Abyss_04 when !RandomizerMod.Instance.Settings.NPCItemDialogue:
+                    Object.Destroy(GameObject.Find("Fountain Donation"));
+                    break;
 
                 // Opens lifeblood door in Abyss with any amount of blue health
                 case SceneNames.Abyss_06_Core:
@@ -392,6 +409,13 @@ namespace RandomizerMod.SceneChanges
                         });
                     }
                     break;
+                
+                // Make the PoP end cutscene not give a journal entry when those are randomized
+                case SceneNames.White_Palace_20 when RandomizerMod.Instance.Settings.RandomizeJournalEntries:
+                    var popFadeout = FSMUtility.LocateFSM(GameObject.Find("End Scene"), "Conversation Control").GetState("Fade Out");
+                    popFadeout.ClearTransitions();
+                    popFadeout.AddTransition("FINISHED", "New Scene");
+                    break;
 
                 // Destroy the Mantis Claw pickup when playing with split claw
                 case SceneNames.Fungus2_14 when RandomizerMod.Instance.Settings.RandomizeClawPieces:
@@ -459,6 +483,11 @@ namespace RandomizerMod.SceneChanges
                         }
                         GameManager.instance.StartCoroutine(LurkerKilled());
                     }
+                    break;
+
+                case SceneNames.GG_Waterways when RandomizerMod.Instance.Settings.RandomizeJunkPitChests:
+                    // Simply replacing the object with shiny causes the shiny not to be flung
+                    Object.Destroy(newScene.FindGameObject("lamp_bug_escape"));
                     break;
 
                 case SceneNames.Hive_03 when RandomizerMod.Instance.Settings.StartName == "Hive":
@@ -598,12 +627,6 @@ namespace RandomizerMod.SceneChanges
                     {
                         if (go.name.StartsWith("Gate Switch")) Object.Destroy(go);
                     }
-                    break;
-
-                case SceneNames.Ruins1_05 + "c":
-                    GameObject platform = ObjectCache.SmallPlatform;
-                    platform.transform.SetPosition2D(26.6f, 73.2f);
-                    platform.SetActive(true);
                     break;
 
                 // Many changes to make the desolate dive pickup work properly
@@ -1093,7 +1116,7 @@ namespace RandomizerMod.SceneChanges
 
         public static void DeleteCollectorGrubs(Scene newScene)
         {
-            if (!RandomizerMod.Instance.Settings.RandomizeGrubs) return;
+            if (!RandomizerMod.Instance.Settings.RandomizeGrubs && !RandomizerMod.Instance.Settings.RandomizeMimics) return;
 
             switch (newScene.name)
             {
@@ -1103,6 +1126,27 @@ namespace RandomizerMod.SceneChanges
                     {
                         if (g.name.Contains("Grub Bottle")) Object.Destroy(g);
                     }
+                    break;
+            }
+        }
+        public static void DestroyMimicObjects(Scene newScene)
+        {
+            if (!RandomizerMod.Instance.Settings.RandomizeMimics) return;
+
+            switch (newScene.name)
+            {
+                case SceneNames.Deepnest_36:
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top (1)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top (2)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle (1)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle (2)"));
+                    break;
+
+                case SceneNames.Mines_16:
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle"));
                     break;
             }
         }

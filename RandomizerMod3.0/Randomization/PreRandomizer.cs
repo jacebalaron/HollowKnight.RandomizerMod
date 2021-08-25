@@ -162,5 +162,32 @@ namespace RandomizerMod.Randomization
                 startProgression.Add(def.roomTransition);
             }
         }
+
+        // Randomize Mimics in the PreRandomizer if the case that Mimics are on but Grubs are off
+        public static void RandomizeMimics()
+        {
+            int grubcount = 1;
+
+            if (!(!RandomizerMod.Instance.Settings.RandomizeGrubs && RandomizerMod.Instance.Settings.RandomizeMimics)) return;
+
+            List<string> locations = new List<string>();
+            locations.AddRange(LogicManager.GetItemsByPool("Grub"));
+            locations.AddRange(LogicManager.GetItemsByPool("Mimic"));
+
+            int num_mimics = rand.Next(MIN_MIMIC_COUNT, MAX_MIMIC_COUNT + 1);
+            for (int i = 0; i < num_mimics; i++)
+            {
+                string location = locations[rand.Next(locations.Count)];
+                RandomizerMod.Instance.Settings._mimicPlacements[location] = true;
+                locations.Remove(location);
+                grubcount++;
+            }
+            foreach (string loc in locations)
+            {
+                RandomizerMod.Instance.Settings._mimicPlacements[loc] = false;
+                grubcount++;
+            }
+        }
+
     }
 }

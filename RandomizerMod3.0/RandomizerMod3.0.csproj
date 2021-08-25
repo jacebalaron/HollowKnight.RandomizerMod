@@ -97,6 +97,7 @@
     <Compile Include="Actions\ChangeChestGeo.cs" />
     <Compile Include="Actions\ChangeShinyIntoItem.cs" />
     <Compile Include="Actions\CreateInactiveShiny.cs" />
+    <Compile Include="Actions\CreateNewMimicBottle.cs" />
     <Compile Include="Actions\CreateNewShiny.cs" />
     <Compile Include="Actions\CreateNewGrubJar.cs" />
     <Compile Include="Actions\CreateNewGeoRock.cs" />
@@ -110,14 +111,18 @@
     <Compile Include="Actions\ChangeCorniferReward.cs" />
     <Compile Include="Actions\DisableLoreTablet.cs" />
     <Compile Include="Actions\PreventSelfDestruct.cs" />
+    <Compile Include="Actions\ReplaceBluggsacReward.cs" />
+    <Compile Include="Actions\ReplaceObjectWithMimicBottle.cs" />
     <Compile Include="Actions\ReplaceVengefulSpiritWithShiny.cs" />
     <Compile Include="Actions\ReplaceBasinVesselWithShiny.cs" />
+    <Compile Include="Actions\ReplaceJournalWithShiny.cs" />
     <Compile Include="Actions\ChangeCrystalShamanReward.cs" />
     <Compile Include="Actions\ChangeSanctumShamanReward.cs" />
     <Compile Include="Actions\ShowLoreTextInShop.cs" />
     <Compile Include="Extensions\RandoMenuItem.cs" />
     <Compile Include="MultiWorld\IMultiWorldCompatibleRandomizer.cs" />
     <Compile Include="MultiWorld\MultiWorldMenu.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Randomization\MiniPM.cs" />
     <Compile Include="RecentItems.cs" />
     <Compile Include="CustomSkills.cs" />
@@ -183,6 +188,7 @@
     <EmbeddedResource Include="Resources\Prompts\Fireball1.png" />
     <EmbeddedResource Include="Resources\Prompts\Fireball2.png" />
     <EmbeddedResource Include="Resources\Prompts\Isma.png" />
+    <EmbeddedResource Include="Resources\Prompts\Journal.png" />
     <EmbeddedResource Include="Resources\Prompts\Kingsbrand.png" />
     <EmbeddedResource Include="Resources\Prompts\Quake1.png" />
     <EmbeddedResource Include="Resources\Prompts\Quake2.png" />
@@ -255,6 +261,8 @@
     <EmbeddedResource Include="Resources\ShopIcons\Fireball1.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Fireball2.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Isma.png" />
+    <EmbeddedResource Include="Resources\ShopIcons\Journal.png" />
+    <EmbeddedResource Include="Resources\ShopIcons\JournalEntry.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Quake1.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Quake2.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Scream1.png" />
@@ -450,6 +458,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ShopIcons\ElevatorPass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ShopIcons\LampBug.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

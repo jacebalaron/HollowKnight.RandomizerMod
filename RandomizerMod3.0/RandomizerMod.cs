@@ -117,8 +117,12 @@ namespace RandomizerMod
                 (SceneNames.Tutorial_01, "_Props/Geo Rock 1"),
                 (SceneNames.Deepnest_East_17, "Soul Totem mini_two_horned"),
                 //(SceneNames.Room_Jinn, "Jinn NPC"),
-                (SceneNames.Abyss_19, "Grub Bottle/Grub"),
-                (SceneNames.Abyss_19, "Grub Bottle")
+                (SceneNames.Deepnest_36, "Grub Bottle/Grub"),
+                (SceneNames.Deepnest_36, "Grub Bottle"),
+                (SceneNames.Deepnest_36, "Grub Mimic Bottle"),
+                (SceneNames.Deepnest_36, "Grub Mimic Top"),
+                (SceneNames.Deepnest_36, "Dream Dialogue"),
+                (SceneNames.Deepnest_36, "d_break_0047_deep_lamp2/lamp_bug_escape (7)")
             };
             if (!globalSettings.ReduceRockPreloads)
             {
@@ -314,7 +318,7 @@ namespace RandomizerMod
 
         public override string GetVersion()
         {
-            string ver = "3.12b";
+            string ver = "3.12c";
 
             ver += $"({Math.Abs(MakeAssemblyHash() % 997)})";
 
@@ -720,6 +724,7 @@ namespace RandomizerMod
         {
             if (PlayerData.instance.bossRushMode && info.SceneName == "GG_Entrance_Cutscene")
             {
+                RandoLogger.LogMimicsToSpoiler();    // No ideal time to do this
                 StartSaveChanges.StartDataChanges();
                 info.SceneName = PlayerData.instance.respawnScene;
                 SceneEditor.ApplySaveDataChanges(info.SceneName, info.EntryGateName ?? string.Empty);

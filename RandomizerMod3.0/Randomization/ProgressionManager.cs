@@ -280,13 +280,26 @@ namespace RandomizerMod.Randomization
 
         private void FetchGrubLocations(RandomizerState state)
         {
-            if (RandomizerMod.Instance.Settings.RandomizeGrubs)
+            if (RandomizerMod.Instance.Settings.RandomizeMimics)
             {
-                grubLocations = FetchLocationsByPool(state, "Grub");
+                if (RandomizerMod.Instance.Settings.RandomizeGrubs) grubLocations = FetchLocationsByPool(state, "GrubItem");
+                else
+                {
+                    grubLocations = RandomizerMod.Instance.Settings._mimicPlacements
+                        .Where(kvp => !kvp.Value)
+                        .ToDictionary(kvp => kvp.Key, kvp => 1);
+                }
             }
             else
             {
-                grubLocations = LogicManager.GetItemsByPool("Grub").ToDictionary(grub => grub, grub => 1);
+                if (RandomizerMod.Instance.Settings.RandomizeGrubs)
+                {
+                    grubLocations = FetchLocationsByPool(state, "Grub");
+                }
+                else
+                {
+                    grubLocations = LogicManager.GetItemsByPool("Grub").ToDictionary(grub => grub, grub => 1);
+                }
             }
         }
 
