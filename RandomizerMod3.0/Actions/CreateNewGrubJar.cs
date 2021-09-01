@@ -60,15 +60,19 @@ namespace RandomizerMod.Actions
             pbd.sceneName = jar.scene.name;
 
             PlayMakerFSM fsm = FSMUtility.LocateFSM(jar, "Bottle Control");
-            // It's easiest to simply use the sceneData check to decide whether to destroy the bottle
-			// FsmState init = fsm.GetState("Init");
-            // init.RemoveActionsOfType<BoolTest>();
-            // init.AddFirstAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "ACTIVATE" : null)));
 
-            // The bottle FSM already takes care of granting the grub and playing happy grub noises
-            // We have to add the GiveItem action before incrementing the grub count so the RecentItems
-            // correctly notes the grub index
-            if (!unrandomized) fsm.GetState("Shatter").AddFirstAction(new RandomizerExecuteLambda(() => GiveItem(GiveAction.None, item, location)));
+            if (!unrandomized)
+            {
+                // When grubs aren't randomized, simply use the scene data to decide whether to break the grub jar
+                FsmState init = fsm.GetState("Init");
+                init.RemoveActionsOfType<BoolTest>();
+                init.AddFirstAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "ACTIVATE" : null)));
+
+                // The bottle FSM already takes care of granting the grub and playing happy grub noises
+                // We have to add the GiveItem action before incrementing the grub count so the RecentItems
+                // correctly notes the grub index
+                fsm.GetState("Shatter").AddFirstAction(new RandomizerExecuteLambda(() => GiveItem(GiveAction.None, item, location)));
+            }
 
             // It seems pointless to mark this scene as having been cleared of grub jars
             fsm.GetState("Set Map?").ClearTransitions();
