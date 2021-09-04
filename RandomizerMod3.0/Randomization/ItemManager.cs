@@ -42,6 +42,16 @@ namespace RandomizerMod.Randomization
         public bool anyLocations => unplacedLocations.Any();
         public bool anyItems => unplacedItems.Any();
         public bool canGuess => unplacedProgression.Any(i => LogicManager.GetItemDef(i).itemCandidate);
+
+        // Used by mods who wish to add items to the randomized items pool
+        public delegate void AddItemsToRandomizedItemsSetFunc(HashSet<string> items);
+        public static event AddItemsToRandomizedItemsSetFunc AddItemsToRandomizedItemsSet
+        {
+            add => AddItemsToRandomizedItemsSetInternal += value;
+            remove => AddItemsToRandomizedItemsSetInternal -= value;
+        }
+        private static event AddItemsToRandomizedItemsSetFunc AddItemsToRandomizedItemsSetInternal;
+
         internal ItemManager(Random rnd)
         {
             // takes approximately .004s to construct
@@ -299,6 +309,8 @@ namespace RandomizerMod.Randomization
                         break;
                 }
             }
+
+            AddItemsToRandomizedItemsSetInternal?.Invoke(items);
 
             return items;
         }

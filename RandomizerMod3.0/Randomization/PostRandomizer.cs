@@ -39,7 +39,7 @@ namespace RandomizerMod.Randomization
             RandoLogger.LogItemsToCondensedSpoiler(orderedILPairs);
         }
 
-        private static void CreateActions()
+        public static void CreateActions()
         {
             RandomizerAction.CreateActions(RandomizerMod.Instance.Settings.ItemPlacements, RandomizerMod.Instance.Settings);
         }
