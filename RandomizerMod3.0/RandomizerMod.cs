@@ -170,6 +170,7 @@ namespace RandomizerMod
             ModHooks.Instance.SetPlayerBoolHook += BoolSetOverride;
             On.PlayMakerFSM.OnEnable += FixVoidHeart;
             On.PlayMakerFSM.OnEnable += HookFury;
+            On.HeroController.MaxHealth += EnableFuryOnBench;
             On.GameManager.BeginSceneTransition += EditTransition;
             On.PlayerData.CountGameCompletion += RandomizerCompletion;
             On.PlayerData.SetInt += FixGrimmkinUpgradeCost;
@@ -192,6 +193,7 @@ namespace RandomizerMod
             ModHooks.Instance.SetPlayerBoolHook -= BoolSetOverride;
             On.PlayMakerFSM.OnEnable -= FixVoidHeart;
             On.PlayMakerFSM.OnEnable -= HookFury;
+            On.HeroController.MaxHealth -= EnableFuryOnBench;
             On.GameManager.BeginSceneTransition -= EditTransition;
             On.PlayerData.CountGameCompletion -= RandomizerCompletion;
             On.PlayerData.SetInt -= FixGrimmkinUpgradeCost;
@@ -659,12 +661,6 @@ namespace RandomizerMod
                     EnableFury();
                 }
             }
-            // This (re-)enables Fury when sitting at a bench and also when loading in
-            // from the menu or a benchwarp.
-            else if (boolName == nameof(PlayerData.atBench) && value && pd.health == 1 && pd.GetBool(nameof(PlayerData.equippedCharm_6)) && !pd.GetBool(nameof(PlayerData.equippedCharm_27)))
-            {
-                EnableFury();
-            }
         }
 
         private static void EnableFury() { PlayMakerFSM.BroadcastEvent("ENABLE FURY"); }
@@ -735,6 +731,17 @@ namespace RandomizerMod
                 self.GetState("Idle").AddTransition("ENABLE FURY", "Activate");
                 self.GetState("Activate").AddTransition("DISABLE FURY", "Deactivate");
                 self.GetState("Stay Furied").AddTransition("DISABLE FURY", "Deactivate");
+            }
+        }
+
+        private void EnableFuryOnBench(On.HeroController.orig_MaxHealth orig, HeroController self)
+        {
+            orig(self);
+            // Enable Fury, if appropriate, when sitting on a bench, benchwarping, or
+            // loading into a hardsave from the menu.
+            if (Ref.PD.health == 1 && Ref.PD.GetBool(nameof(PlayerData.equippedCharm_6)) && !Ref.PD.GetBool(nameof(PlayerData.equippedCharm_27)))
+            {
+                EnableFury();
             }
         }
 
