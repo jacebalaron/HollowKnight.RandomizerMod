@@ -256,6 +256,22 @@ namespace RandomizerMod
             return null;
         }
 
+        public bool TrySetSprite(string name, Sprite sprite, bool overwrite = false)
+        {
+            if (_sprites != null)
+            {
+                if (_sprites.ContainsKey(name) && !overwrite)
+                {
+                    LogWarn($"Sprites already contain a sprite called `{name}`, to overwrite please call function with `overwrite: true`");
+                    return false;
+                }
+
+                _sprites[name] = sprite;
+                return true;
+            }
+            return false;
+        }
+
         public static bool LoadComplete()
         {
             return _logicParseThread == null || !_logicParseThread.IsAlive;
