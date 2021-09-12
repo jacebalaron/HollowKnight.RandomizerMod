@@ -36,6 +36,23 @@ namespace RandomizerMod.Actions
                 return;
             }
 
+            // Open the chest if the item has already been collected
+            FsmState init = fsm.GetState("Init");
+            RandomizerExecuteLambda disableChest = new RandomizerExecuteLambda(() => fsm.SendEvent(
+                    RandomizerMod.Instance.Settings.CheckLocationFound(_location) ? "ACTIVATE" : null
+                    ));
+            init.Actions = new FsmStateAction[]
+            {
+                init.Actions[0],
+                init.Actions[1],
+                init.Actions[2],
+                init.Actions[3],
+                init.Actions[4],
+                disableChest,
+                init.Actions[5],
+                init.Actions[6],
+            };
+
             // Remove actions that activate shiny item
             FsmState spawnItems = fsm.GetState("Spawn Items");
             spawnItems.RemoveActionsOfType<ActivateAllChildren>();

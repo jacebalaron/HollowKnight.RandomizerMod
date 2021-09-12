@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RandomizerMod
 {
-    static class Events
+    public static class Events
     {
         // Logging events - these trigger in RandoLogger to allow other mods to make their own logs.
         public static event Action<string> OnTrackerLog;

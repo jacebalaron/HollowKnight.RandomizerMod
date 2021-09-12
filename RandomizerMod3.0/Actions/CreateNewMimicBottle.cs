@@ -86,12 +86,16 @@ namespace RandomizerMod.Actions
             PlayMakerFSM topFSM = FSMUtility.LocateFSM(top, "Grub Control");
             topFSM.GetState("Pause").GetActionOfType<SetParent>().gameObject.GameObject.Value = dialogue;
 
-            // It's easiest to simply use the sceneData check to decide whether to destroy the bottle
-            // bottleInit.RemoveActionsOfType<BoolTest>();
-            // bottleInit.AddFirstAction(new RandomizerExecuteLambda(() => bottleFSM.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "ACTIVATE" : null)));
 
-            // Run the randomizer code when we collect the grub mimic
-            if (!unrandomized) bottleShatter.AddFirstAction(new RandomizerExecuteLambda(() => GiveItem(GiveAction.None, item, location)));
+            if (!unrandomized)
+            {
+                // When mimics aren't randomized, simply use the scene data to decide whether to break the grub jar
+                bottleInit.RemoveActionsOfType<BoolTest>();
+                bottleInit.AddFirstAction(new RandomizerExecuteLambda(() => bottleFSM.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "ACTIVATE" : null)));
+
+                // Run the randomizer code when we free the grub mimic
+                bottleShatter.AddFirstAction(new RandomizerExecuteLambda(() => GiveItem(GiveAction.None, item, location)));
+            }
         }
     }
 }
