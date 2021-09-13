@@ -196,12 +196,23 @@ namespace RandomizerMod.SceneChanges
                     break;
 
                 // Platforms to prevent itemless softlock when checking left waterways
-                case SceneNames.Waterways_04 when 
-                !RandomizerMod.Instance.Settings.RandomizeTransitions 
-                && RandomizerMod.Instance.Settings.StartName != "West Waterways"
-                && (!RandomizerMod.Instance.Settings.RandomizeSwim || RandomizerMod.Instance.Settings.GetBool(name: "canSwim")):
+                case SceneNames.Waterways_04 when
+                !RandomizerMod.Instance.Settings.RandomizeTransitions
+                && RandomizerMod.Instance.Settings.StartName != "West Waterways":
                     {
-                        GameObject[] platforms = new GameObject[4];
+                        GameObject[] platforms = new GameObject[2];
+                        platforms[0] = ObjectCache.SmallPlatform;
+                        platforms[0].transform.SetPosition2D(148f, 23.1f);
+                        platforms[0].SetActive(true);
+
+                        platforms[1] = ObjectCache.SmallPlatform;
+                        platforms[1].transform.SetPosition2D(139f, 32f);
+                        platforms[1].SetActive(true);
+                    }
+
+                    if (!RandomizerMod.Instance.Settings.RandomizeSwim || RandomizerMod.Instance.Settings.GetBool(name: "canSwim"))
+                    {
+                        GameObject[] platforms = new GameObject[2];
                         platforms[0] = ObjectCache.SmallPlatform;
                         platforms[0].transform.SetPosition2D(107f, 10f);
                         platforms[0].SetActive(true);
@@ -209,14 +220,6 @@ namespace RandomizerMod.SceneChanges
                         platforms[1] = ObjectCache.SmallPlatform;
                         platforms[1].transform.SetPosition2D(107f, 15f);
                         platforms[1].SetActive(true);
-
-                        platforms[2] = ObjectCache.SmallPlatform;
-                        platforms[2].transform.SetPosition2D(148f, 23.1f);
-                        platforms[2].SetActive(true);
-
-                        platforms[3] = ObjectCache.SmallPlatform;
-                        platforms[3].transform.SetPosition2D(139f, 32f);
-                        platforms[3].SetActive(true);
                     }
                     break;
             }
