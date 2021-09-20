@@ -284,6 +284,8 @@ namespace RandomizerMod
                 RandoLogger.LogSpoiler(sb.ToString());
             }
 
+            PlayerData.instance.CalculateNotchesUsed();
+
             for (int i = 1; i < 5; i++)
             {
                 if (PlayerData.instance.charmSlotsFilled > PlayerData.instance.charmSlots)
