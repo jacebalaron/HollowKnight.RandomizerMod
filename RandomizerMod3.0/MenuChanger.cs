@@ -380,6 +380,7 @@ namespace RandomizerMod
                         RandoBossGeoBtn.SetSelection(false);
                         RandoJournalEntriesBtn.SetSelection(false);
                         RandoJunkPitBtn.SetSelection(false);
+                        RandoEggShopBtn.SetSelection(false);
                         break;
                     case "Super":
                         RandoDreamersBtn.SetSelection(true);
@@ -407,6 +408,7 @@ namespace RandomizerMod
                         RandoBossGeoBtn.SetSelection(false);
                         RandoJournalEntriesBtn.SetSelection(false);
                         RandoJunkPitBtn.SetSelection(false);
+                        RandoEggShopBtn.SetSelection(false);
                         break;
                     case "LifeTotems":
                         RandoDreamersBtn.SetSelection(true);
@@ -434,6 +436,7 @@ namespace RandomizerMod
                         RandoBossGeoBtn.SetSelection(true);
                         RandoJournalEntriesBtn.SetSelection(false);
                         RandoJunkPitBtn.SetSelection(false);
+                        RandoEggShopBtn.SetSelection(false);
                         break;
                     case "Spoiler DAB":
                         RandoDreamersBtn.SetSelection(true);
@@ -461,6 +464,7 @@ namespace RandomizerMod
                         RandoBossGeoBtn.SetSelection(false);
                         RandoJournalEntriesBtn.SetSelection(false);
                         RandoJunkPitBtn.SetSelection(false);
+                        RandoEggShopBtn.SetSelection(false);
                         break;
                     case "EVERYTHING":
                         RandoDreamersBtn.SetSelection(true);
@@ -488,6 +492,7 @@ namespace RandomizerMod
                         RandoBossGeoBtn.SetSelection(true);
                         RandoJournalEntriesBtn.SetSelection(true);
                         RandoJunkPitBtn.SetSelection(true);
+                        RandoEggShopBtn.SetSelection(true);
                         break;
                     case "Vanilla":
                         RandoDreamersBtn.SetSelection(false);
@@ -515,6 +520,7 @@ namespace RandomizerMod
                         RandoBossGeoBtn.SetSelection(false);
                         RandoJournalEntriesBtn.SetSelection(false);
                         RandoJunkPitBtn.SetSelection(false);
+                        RandoEggShopBtn.SetSelection(false);
                         break;
                     case "Custom":
                         item.SetSelection("Standard");
@@ -584,6 +590,25 @@ namespace RandomizerMod
             {
                 RandomizerMod.Instance.globalSettings.ReduceTotemPreloads = totemPreloadsBtn.CurrentSelection;
             }
+
+            int grubsSettingsChangedCount = 0;
+            void GrubsSettingChanged(RandoMenuItem<bool> item)
+            {
+                grubsSettingsChangedCount++;
+                switch (grubsSettingsChangedCount % 7)
+                {
+                    case 0:
+                        item.SetName("Grubs");
+                        break;
+                    case 5:
+                        item.SetName("Grubs & Mimics");
+                        break;
+                    case 6:
+                        item.SetName("Mimics");
+                        item.SetSelection(true);
+                        break;
+                }
+            }
             modeBtn.Changed += s => HandleProgressionLock();
 
             presetSkipsBtn.Changed += UpdateSkipsButtons;
@@ -621,6 +646,7 @@ namespace RandomizerMod
             RandoStagBtn.Changed += PoolSettingChanged;
             RandoMapBtn.Changed += PoolSettingChanged;
             RandoGrubBtn.Changed += PoolSettingChanged;
+            RandoGrubBtn.Changed += GrubsSettingChanged;
             RandoRootsBtn.Changed += PoolSettingChanged;
             RandoCocoonsBtn.Changed += PoolSettingChanged;
             RandoFlamesBtn.Changed += PoolSettingChanged;
@@ -774,7 +800,7 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.RandomizeRelics = RandoRelicsBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeMaps = RandoMapBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeStags = RandoStagBtn.CurrentSelection;
-                    RandomizerMod.Instance.Settings.RandomizeGrubs = RandoGrubBtn.CurrentSelection;
+                    RandomizerMod.Instance.Settings.RandomizeGrubs = RandoGrubBtn.CurrentSelection && RandoGrubBtn.Name.Contains("Grubs");
                     RandomizerMod.Instance.Settings.RandomizeLifebloodCocoons = RandoCocoonsBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeWhisperingRoots = RandoRootsBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeRocks = RandoGeoRocksBtn.CurrentSelection;
@@ -786,8 +812,7 @@ namespace RandomizerMod
                     RandomizerMod.Instance.Settings.RandomizeJournalEntries = RandoJournalEntriesBtn.CurrentSelection;
                     RandomizerMod.Instance.Settings.RandomizeJunkPitChests = RandoJunkPitBtn.CurrentSelection;
 
-                    RandomizerMod.Instance.Settings.RandomizeMimics = (RandomizerMod.Instance.Settings.Seed % 2 == 0)
-                        && (new Random(RandomizerMod.Instance.Settings.Seed + 223).Next(11) == 5);
+                    RandomizerMod.Instance.Settings.RandomizeMimics = RandoGrubBtn.CurrentSelection && RandoGrubBtn.Name.Contains("Mimics");
 
 
                     RandomizerMod.Instance.Settings.RandomizePalaceTotems = RandoPalaceBtn.CurrentSelection && 
