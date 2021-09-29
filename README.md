@@ -4,8 +4,9 @@ Randomizer 3 expands on previous versions of the Hollow Knight randomizer by all
 
 - Randomizer 3 requires SereCore.dll and Modding Api version 53 or greater to run. These are both automatically downloaded by the ModInstaller.
 
-- There is a new map tracker for area and room randomizer available at https://github.com/homothetyhk/RandomizerTracker/releases
-- There is a community randomizer guide published here: https://tinyurl.com/HollowKnightRandomizerGuide
+- There is a map tracker for area and room randomizer available at https://github.com/homothetyhk/RandomizerTracker/releases
+- There is a community wiki published here: https://hollow-knight-randomizer.fandom.com/
+- There is an old community randomizer guide published here (no longer updated): https://tinyurl.com/HollowKnightRandomizerGuide
 
 Details on all of the various settings follow:
 
@@ -72,7 +73,7 @@ Note: the following items can be used to kill baldurs:
 - All difficulties: Vengeful Spirit (or upgrades), Desolate Dive (or upgrades), Grubberfly's Elegy, Glowing Womb, Dash Slash with Dash
 - With Mild skips: Weaversong, Spore Shroom
 - With Spicy skips: Cyclone Slash, Mark of Pride
-- Not in logic, but feel free to try if you have time on your hands: Longnail, Mothwing Cloak, Sprintmaster+Dashmaster
+- Not in logic, but feel free to try if you have time on your hands: Longnail, Sprintmaster+Dashmaster
 Baldur hp is reduced to 5 to make slower baldur kills less tedious, and to reduce rng.
 
 Note: the lifeblood door in Abyss opens if you enter the room with a single lifeblood mask. In logic, it requires a lifeblood charm.
