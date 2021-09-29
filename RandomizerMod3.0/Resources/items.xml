@@ -29,9 +29,9 @@
     <newShiny>true</newShiny>
     <x>54</x>
     <y>89</y>
-    <itemLogic>Teacher's_Archives + DREAMNAIL + AERIALMINIBOSS + ((ACID + (LEFTCLAW | (WINGS + RIGHTCLAW))) | (SUPERDASH + FULLCLAW))</itemLogic>
-    <areaLogic>Teacher's_Archives + DREAMNAIL + AERIALMINIBOSS + ((ACID + (LEFTCLAW | (WINGS + RIGHTCLAW))) | (SUPERDASH + FULLCLAW))</areaLogic>
-    <roomLogic>Fungus3_archive_02[top1] + DREAMNAIL + AERIALMINIBOSS + ((ACID + (LEFTCLAW | (WINGS + RIGHTCLAW))) | (SUPERDASH + FULLCLAW))</roomLogic>
+    <itemLogic>Teacher's_Archives + DREAMNAIL + AERIALMINIBOSS + ((ACID + (LEFTCLAW | (WINGS + RIGHTCLAW))) | (LEFTSUPERDASH + FULLCLAW))</itemLogic>
+    <areaLogic>Teacher's_Archives + DREAMNAIL + AERIALMINIBOSS + ((ACID + (LEFTCLAW | (WINGS + RIGHTCLAW))) | (LEFTSUPERDASH + FULLCLAW))</areaLogic>
+    <roomLogic>Fungus3_archive_02[top1] + DREAMNAIL + AERIALMINIBOSS + ((ACID + (LEFTCLAW | (WINGS + RIGHTCLAW))) | (LEFTSUPERDASH + FULLCLAW))</roomLogic>
     <type>Big</type>
     <action>Dreamer</action>
     <pool>Dreamer</pool>
@@ -149,9 +149,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-0.1</elevation>
-    <itemLogic>Mantis_Village + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</itemLogic>
-    <areaLogic>Mantis_Village + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</areaLogic>
-    <roomLogic>Fungus2_14 + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</roomLogic>
+    <itemLogic>Mantis_Village + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</itemLogic>
+    <areaLogic>Mantis_Village + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</areaLogic>
+    <roomLogic>Fungus2_14 + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</roomLogic>
     <type>Big</type>
     <pool>Skill</pool>
     <bigSpriteKey>Prompts.Walljump</bigSpriteKey>
@@ -174,9 +174,9 @@
     <replace>true</replace>
     <selfDestructFsmName>FSM</selfDestructFsmName>
     <elevation>-0.3</elevation>
-    <itemLogic>Upper_Crystal_Peak + (SUPERDASH | (LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)) | (WINGS + SHADESKIPS + 4MASKS))</itemLogic>
-    <areaLogic>Upper_Crystal_Peak + (SUPERDASH | (LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)) | (WINGS + SHADESKIPS + 4MASKS))</areaLogic>
-    <roomLogic>Mines_31[left1] + (SUPERDASH | (LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)))</roomLogic>
+    <itemLogic>Upper_Crystal_Peak + (RIGHTSUPERDASH | (LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)) | (WINGS + SHADESKIPS + 4MASKS))</itemLogic>
+    <areaLogic>Upper_Crystal_Peak + (RIGHTSUPERDASH | (LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)) | (WINGS + SHADESKIPS + 4MASKS))</areaLogic>
+    <roomLogic>Mines_31[left1] + (RIGHTSUPERDASH | (LEFTCLAW + (RIGHTDASH | WINGS | AIRSTALL)))</roomLogic>
     <type>Big</type>
     <pool>Skill</pool>
     <bigSpriteKey>Prompts.Superdash</bigSpriteKey>
@@ -254,7 +254,7 @@
     <elevation>-0.5</elevation>
     <itemLogic>Isma's_Grove</itemLogic>
     <areaLogic>Isma's_Grove</areaLogic>
-    <roomLogic>(Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | SUPERDASH)))) | (Waterways_13[left2] + ((ACID + (RIGHTCLAW | WINGS | MILDSKIPS)) | (ACIDSKIPS + LEFTCLAW + SUPERDASH + (WINGS | RIGHTCLAW))))</roomLogic>
+    <roomLogic>(Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH)))) | (Waterways_13[left2] + ((ACID + (RIGHTCLAW | WINGS | MILDSKIPS)) | (ACIDSKIPS + LEFTCLAW + RIGHTSUPERDASH + (WINGS | RIGHTCLAW))))</roomLogic>
     <type>Big</type>
     <pool>Skill</pool>
     <bigSpriteKey>Prompts.Isma</bigSpriteKey>
@@ -399,8 +399,8 @@
     <sceneName>Ruins1_24</sceneName>
     <objectName>Quake Item</objectName>
     <replace>true</replace>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + NAILCOMBAT</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + NAILCOMBAT</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_24[right1] + NAILCOMBAT</roomLogic>
     <type>Spell</type>
     <action>Additive</action>
@@ -425,9 +425,9 @@
     <fsmName>Control</fsmName>
     <replace>true</replace>
     <elevation>3.1</elevation>
-    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</itemLogic>
-    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</areaLogic>
-    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</roomLogic>
+    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</itemLogic>
+    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</areaLogic>
+    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</roomLogic>
     <type>Spell</type>
     <action>Additive</action>
     <pool>Skill</pool>
@@ -548,8 +548,8 @@
     <fsmName>Conversation Control</fsmName>
     <replace>true</replace>
     <elevation>1.5</elevation>
-    <itemLogic>Greenpath + ((LEFTCLAW + ((SUPERDASH + RIGHTCLAW + (LEFTDASH | WINGS)) | (WINGS + FULLDASH))) | (RIGHTCLAW + LEFTDASH + WINGS + SUPERDASH + SPICYSKIPS))</itemLogic>
-    <areaLogic>Greenpath + ((LEFTCLAW + ((SUPERDASH + RIGHTCLAW + (LEFTDASH | WINGS)) | (WINGS + FULLDASH))) | (RIGHTCLAW + LEFTDASH + WINGS + SUPERDASH + SPICYSKIPS))</areaLogic>
+    <itemLogic>Greenpath + ((LEFTCLAW + ((LEFTSUPERDASH + RIGHTCLAW + ((LEFTDASH + (RIGHTDASH | RIGHTSUPERDASH)) | WINGS)) | (WINGS + LEFTDASH + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW)))) | (RIGHTCLAW + LEFTDASH + WINGS + LEFTSUPERDASH + SPICYSKIPS))</itemLogic>
+    <areaLogic>Greenpath + ((LEFTCLAW + ((LEFTSUPERDASH + RIGHTCLAW + ((LEFTDASH + (RIGHTDASH | RIGHTSUPERDASH)) | WINGS)) | (WINGS + LEFTDASH + (RIGHTDASH | RIGHTSUPERDASH | RIGHTCLAW)))) | (RIGHTCLAW + LEFTDASH + WINGS + LEFTSUPERDASH + SPICYSKIPS))</areaLogic>
     <roomLogic>Room_nailmaster_02[left1]</roomLogic>
     <type>Big</type>
     <pool>Skill</pool>
@@ -707,9 +707,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.3</elevation>
-    <itemLogic>RIGHTBALDURS + (Howling_Cliffs | (Greenpath + (FULLCLAW | WINGS | RIGHTDASH | SUPERDASH | SHADESKIPS)))</itemLogic>
-    <areaLogic>RIGHTBALDURS + (Howling_Cliffs | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | SUPERDASH)))</areaLogic>
-    <roomLogic>RIGHTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | SUPERDASH)))</roomLogic>
+    <itemLogic>RIGHTBALDURS + (Howling_Cliffs | (Greenpath + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | SHADESKIPS)))</itemLogic>
+    <areaLogic>RIGHTBALDURS + (Howling_Cliffs | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH)))</areaLogic>
+    <roomLogic>RIGHTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH)))</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
     <pool>Charm</pool>
@@ -859,9 +859,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Greenpath + (RIGHTDASH | (LEFTCLAW + SUPERDASH))</itemLogic>
-    <areaLogic>Greenpath + (RIGHTDASH | (LEFTCLAW + SUPERDASH))</areaLogic>
-    <roomLogic>Fungus1_14[left1] + (RIGHTDASH | (LEFTCLAW + SUPERDASH))</roomLogic>
+    <itemLogic>Greenpath + (RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))</itemLogic>
+    <areaLogic>Greenpath + (RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))</areaLogic>
+    <roomLogic>Fungus1_14[left1] + (RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
     <pool>Charm</pool>
@@ -948,9 +948,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>0.001</elevation>
-    <itemLogic>Deepnest + RIGHTSHADOWDASH</itemLogic>
-    <areaLogic>Deepnest + RIGHTSHADOWDASH</areaLogic>
-    <roomLogic>Deepnest_44[top1] + RIGHTSHADOWDASH</roomLogic>
+    <itemLogic>Deepnest + RIGHTSHADOWDASH + (LEFTSHADOWDASH | 4MASKS)</itemLogic>
+    <areaLogic>Deepnest + RIGHTSHADOWDASH + (LEFTSHADOWDASH | 4MASKS)</areaLogic>
+    <roomLogic>Deepnest_44[top1] + RIGHTSHADOWDASH + (LEFTSHADOWDASH | 4MASKS)</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
     <pool>Charm</pool>
@@ -970,9 +970,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Bottom_Left_Fungal_Wastes + (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + SUPERDASH))</itemLogic>
-    <areaLogic>Bottom_Left_Fungal_Wastes + (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + SUPERDASH))</areaLogic>
-    <roomLogic>(Fungus2_20[left1] | Fungus2_20[right1]) + (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + SUPERDASH))</roomLogic>
+    <itemLogic>Bottom_Left_Fungal_Wastes + (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))</itemLogic>
+    <areaLogic>Bottom_Left_Fungal_Wastes + (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))</areaLogic>
+    <roomLogic>(Fungus2_20[left1] | Fungus2_20[right1]) + (RIGHTCLAW | WINGS) + (ACID | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
     <pool>Charm</pool>
@@ -1036,9 +1036,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Ancestral_Mound + (ANYCLAW | LEFTBALDURS | (WINGS + SHADESKIPS)) + (UPWALLBREAK | (LEFTBALDURS + SUPERDASH + ANYCLAW + MILDSKIPS))</itemLogic>
-    <areaLogic>Ancestral_Mound + (ANYCLAW | LEFTBALDURS | (WINGS + SHADESKIPS)) + (UPWALLBREAK | (LEFTBALDURS + SUPERDASH + ANYCLAW + MILDSKIPS))</areaLogic>
-    <roomLogic>Crossroads_ShamanTemple[left1] + (ANYCLAW | LEFTBALDURS | (WINGS + SHADESKIPS)) + (UPWALLBREAK | (LEFTBALDURS + SUPERDASH + ANYCLAW + MILDSKIPS))</roomLogic>
+    <itemLogic>Ancestral_Mound + (ANYCLAW | LEFTBALDURS | (WINGS + SHADESKIPS)) + (UPWALLBREAK | (LEFTBALDURS + ((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</itemLogic>
+    <areaLogic>Ancestral_Mound + (ANYCLAW | LEFTBALDURS | (WINGS + SHADESKIPS)) + (UPWALLBREAK | (LEFTBALDURS + ((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</areaLogic>
+    <roomLogic>Crossroads_ShamanTemple[left1] + (ANYCLAW | LEFTBALDURS | (WINGS + SHADESKIPS)) + (UPWALLBREAK | (LEFTBALDURS + ((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
     <pool>Charm</pool>
@@ -1078,8 +1078,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Crossroads + (SUPERDASH | LEFTTUNNEL) + (ANYCLAW | WINGS | INFECTED)</itemLogic>
-    <areaLogic>Crossroads + (SUPERDASH | LEFTTUNNEL) + (ANYCLAW | WINGS | INFECTED)</areaLogic>
+    <itemLogic>Crossroads + (LEFTSUPERDASH | LEFTTUNNEL) + (ANYCLAW | WINGS | INFECTED)</itemLogic>
+    <areaLogic>Crossroads + (LEFTSUPERDASH | LEFTTUNNEL) + (ANYCLAW | WINGS | INFECTED)</areaLogic>
     <roomLogic>Crossroads_22[bot1]</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
@@ -1208,9 +1208,9 @@
     <altObjectName>Shiny Item Return</altObjectName>
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
-    <itemLogic>Lake_of_Unn + ((ACID + (ANYCLAW | WINGS)) | (SKIPACID + WINGS + ((FIREBALL + FIREBALLSKIPS) | LEFTSHARPSHADOW) + SPICYSKIPS) | (SPICYSKIPS + ACIDSKIPS + WINGS + SUPERDASH + FULLSHARPSHADOW))</itemLogic>
-    <areaLogic>Lake_of_Unn + ((ACID + (ANYCLAW | WINGS)) | (SKIPACID + WINGS + ((FIREBALL + FIREBALLSKIPS) | LEFTSHARPSHADOW) + SPICYSKIPS) | (SPICYSKIPS + ACIDSKIPS + WINGS + SUPERDASH + FULLSHARPSHADOW))</areaLogic>
-    <roomLogic>Fungus1_Slug[right1] + (ACID | SKIPACID)</roomLogic>
+    <itemLogic>Lake_of_Unn + ((ACID + (ANYCLAW | WINGS)) | (FULLSKIPACID + WINGS + ((FIREBALL + FIREBALLSKIPS) | LEFTSHARPSHADOW) + SPICYSKIPS) | (SPICYSKIPS + ACIDSKIPS + WINGS + FULLSUPERDASH + FULLSHARPSHADOW))</itemLogic>
+    <areaLogic>Lake_of_Unn + ((ACID + (ANYCLAW | WINGS)) | (FULLSKIPACID + WINGS + ((FIREBALL + FIREBALLSKIPS) | LEFTSHARPSHADOW) + SPICYSKIPS) | (SPICYSKIPS + ACIDSKIPS + WINGS + FULLSUPERDASH + FULLSHARPSHADOW))</areaLogic>
+    <roomLogic>Fungus1_Slug[right1] + (ACID | FULLSKIPACID)</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
     <pool>Charm</pool>
@@ -1315,8 +1315,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-0.1</elevation>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + SUPERDASH + MILDSKIPS))</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + SUPERDASH + MILDSKIPS))</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS))</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS))</areaLogic>
     <roomLogic>Ruins1_30 + (ANYCLAW | WINGS)</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
@@ -1336,8 +1336,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-0.2</elevation>
-    <itemLogic>(Upper_Crystal_Peak | (Crystal_Peak + LEFTDASH + RIGHTCLAW + MILDSKIPS)) + (((ANYCLAW | WINGS) + SUPERDASH) | (SPICYSKIPS + WINGS + LEFTDASH))</itemLogic>
-    <areaLogic>(Upper_Crystal_Peak | (Crystal_Peak + LEFTDASH + RIGHTCLAW + MILDSKIPS)) + (((ANYCLAW | WINGS) + SUPERDASH) | (SPICYSKIPS + WINGS + LEFTDASH))</areaLogic>
+    <itemLogic>(Upper_Crystal_Peak | (Crystal_Peak + LEFTDASH + RIGHTCLAW + MILDSKIPS)) + (((ANYCLAW | WINGS) + LEFTSUPERDASH) | (SPICYSKIPS + WINGS + LEFTDASH))</itemLogic>
+    <areaLogic>(Upper_Crystal_Peak | (Crystal_Peak + LEFTDASH + RIGHTCLAW + MILDSKIPS)) + (((ANYCLAW | WINGS) + LEFTSUPERDASH) | (SPICYSKIPS + WINGS + LEFTDASH))</areaLogic>
     <roomLogic>Mines_36[right1]</roomLogic>
     <type>Charm</type>
     <action>Charm</action>
@@ -1402,9 +1402,9 @@
     <objectName>Shiny Item RoyalCharm</objectName>
     <fsmName>Shiny Control</fsmName>
     <replace>true</replace>
-    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + FULLDASH + WINGS + SUPERDASH</itemLogic>
-    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + FULLDASH + WINGS + SUPERDASH</areaLogic>
-    <roomLogic>White_Palace_09[right1] + SUPERDASH + (FULLCLAW | WINGS)</roomLogic>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + FULLDASH + WINGS + FULLSUPERDASH</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + FULLDASH + WINGS + FULLSUPERDASH</areaLogic>
+    <roomLogic>White_Palace_09[right1] + LEFTSUPERDASH + (FULLCLAW | WINGS)</roomLogic>
     <type>Big</type>
     <action>Kingsoul</action>
     <pool>Charm</pool>
@@ -1642,9 +1642,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.2</elevation>
-    <itemLogic>Left_Elevator + (RIGHTDASH | WINGS | SUPERDASH | MILDSKIPS)</itemLogic>
-    <areaLogic>Left_Elevator + (RIGHTDASH | WINGS | SUPERDASH | MILDSKIPS)</areaLogic>
-    <roomLogic>(Ruins1_17[top1] | Ruins1_17[right1]) + (RIGHTDASH | WINGS | SUPERDASH | MILDSKIPS)</roomLogic>
+    <itemLogic>Upper_Storerooms + (RIGHTDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)</itemLogic>
+    <areaLogic>Upper_Storerooms + (RIGHTDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)</areaLogic>
+    <roomLogic>(Ruins1_17[top1] | Ruins1_17[right1]) + (RIGHTDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
     <pool>Key</pool>
@@ -1720,9 +1720,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-0.5</elevation>
-    <itemLogic>Bottom_Right_Queen's_Gardens + (ACID | SKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</itemLogic>
-    <areaLogic>Bottom_Right_Queen's_Gardens + (ACID | SKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</areaLogic>
-    <roomLogic>Fungus3_39[left1] + (ACID | SKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</roomLogic>
+    <itemLogic>Bottom_Right_Queen's_Gardens + (ACID | RIGHTSKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</itemLogic>
+    <areaLogic>Bottom_Right_Queen's_Gardens + (ACID | RIGHTSKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</areaLogic>
+    <roomLogic>Fungus3_39[left1] + (ACID | RIGHTSKIPACID | (ACIDSKIPS + RIGHTCLAW + RIGHTDASH + WINGS + (Dashmaster | AIRSTALL)) | (SPICYSKIPS + ACIDSKIPS + RIGHTSHARPSHADOW + WINGS))</roomLogic>
     <type>Trinket</type>
     <pool>Key</pool>
     <nameKey>INV_NAME_LOVEKEY</nameKey>
@@ -1961,9 +1961,9 @@
     <objectName>Heart Piece</objectName>
     <replace>true</replace>
     <elevation>1.2</elevation>
-    <itemLogic>Queen's_Station + ((FULLCLAW + (LEFTDASH | SUPERDASH)) | WINGS | (RIGHTDASH + RIGHTCLAW + (LEFTDASH | SUPERDASH) + MILDSKIPS))</itemLogic>
-    <areaLogic>Queen's_Station + ((FULLCLAW + (LEFTDASH | SUPERDASH)) | WINGS | (RIGHTDASH + RIGHTCLAW + (LEFTDASH | SUPERDASH) + MILDSKIPS))</areaLogic>
-    <roomLogic>Fungus2_01 + ((FULLCLAW + (LEFTDASH | SUPERDASH)) | WINGS | (RIGHTDASH + RIGHTCLAW + (LEFTDASH | SUPERDASH) + MILDSKIPS))</roomLogic>
+    <itemLogic>Queen's_Station + ((FULLCLAW + (LEFTDASH | LEFTSUPERDASH)) | WINGS | (RIGHTDASH + RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH) + MILDSKIPS))</itemLogic>
+    <areaLogic>Queen's_Station + ((FULLCLAW + (LEFTDASH | LEFTSUPERDASH)) | WINGS | (RIGHTDASH + RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH) + MILDSKIPS))</areaLogic>
+    <roomLogic>Fungus2_01 + ((FULLCLAW + (LEFTDASH | LEFTSUPERDASH)) | WINGS | (RIGHTDASH + RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH) + MILDSKIPS))</roomLogic>
     <type>Trinket</type>
     <action>MaskShard</action>
     <pool>Mask</pool>
@@ -1994,19 +1994,19 @@
     <replace>true</replace>
     <elevation>1.9</elevation>
     <itemLogic>
-      Upper_Left_Waterways + (SWIM | SKIPACID)
+      Upper_Left_Waterways + (SWIM | LEFTSKIPACID)
       | Far_Left_Waterways + (SWIM | (LEFTCLAW + LEFTDASH))
-      | (Central_Left_Waterways + RIGHTCLAW) + (SWIM | SKIPACID)
+      | (Central_Left_Waterways + RIGHTCLAW) + (SWIM | LEFTSKIPACID)
     </itemLogic>
     <areaLogic>
-      Upper_Left_Waterways + (SWIM | SKIPACID)
+      Upper_Left_Waterways + (SWIM | LEFTSKIPACID)
       | Far_Left_Waterways + (SWIM | (LEFTCLAW + LEFTDASH))
-      | (Central_Left_Waterways + RIGHTCLAW) + (SWIM | SKIPACID)
+      | (Central_Left_Waterways + RIGHTCLAW) + (SWIM | LEFTSKIPACID)
     </areaLogic>
     <roomLogic>
       Waterways_04b[left1] + (SWIM | (LEFTCLAW + LEFTDASH))
       | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | (RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH)) + (SWIM | (LEFTCLAW + LEFTDASH))
-      | Waterways_04b[right2] + (SWIM | SKIPACID)
+      | Waterways_04b[right2] + (SWIM | LEFTSKIPACID)
     </roomLogic>
     <type>Trinket</type>
     <action>MaskShard</action>
@@ -2053,9 +2053,9 @@
     <objectName>Heart Piece</objectName>
     <replace>true</replace>
     <elevation>1.8</elevation>
-    <itemLogic>Upper_Resting_Grounds + Top_Left_Queen's_Gardens + QUAKE + FULLCLAW + WINGS + SUPERDASH + ACID + FULLSHADOWDASH + (SIDESLASH | UPSLASH)</itemLogic>
-    <areaLogic>Upper_Resting_Grounds + Top_Left_Queen's_Gardens + QUAKE + FULLCLAW + WINGS + SUPERDASH + ACID + FULLSHADOWDASH + (SIDESLASH | UPSLASH)</areaLogic>
-    <roomLogic>Room_Mansion[left1] + Fungus3_49[right1] + QUAKE + FULLCLAW + WINGS + ACID + SUPERDASH + FULLSHADOWDASH + (SIDESLASH | UPSLASH)</roomLogic>
+    <itemLogic>Upper_Resting_Grounds + Top_Left_Queen's_Gardens + QUAKE + FULLCLAW + WINGS + FULLSUPERDASH + ACID + FULLSHADOWDASH + (SIDESLASH | UPSLASH)</itemLogic>
+    <areaLogic>Upper_Resting_Grounds + Top_Left_Queen's_Gardens + QUAKE + FULLCLAW + WINGS + FULLSUPERDASH + ACID + FULLSHADOWDASH + (SIDESLASH | UPSLASH)</areaLogic>
+    <roomLogic>Room_Mansion[left1] + Fungus3_49[right1] + QUAKE + FULLCLAW + WINGS + ACID + FULLSUPERDASH + FULLSHADOWDASH + (SIDESLASH | UPSLASH)</roomLogic>
     <type>Trinket</type>
     <action>MaskShard</action>
     <pool>Mask</pool>
@@ -2069,8 +2069,8 @@
     <objectName>Heart Piece</objectName>
     <replace>true</replace>
     <elevation>1.3</elevation>
-    <itemLogic>Mantis_Outskirts + Dirtmouth + (((LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS) | (FULLCLAW + (FULLDASH | WINGS | SUPERDASH | (AIRSTALL + (SHADESKIPS + 4MASKS)))))</itemLogic>
-    <areaLogic>Mantis_Outskirts + Dirtmouth + (((LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS) | (FULLCLAW + (FULLDASH | WINGS | SUPERDASH | (AIRSTALL + (SHADESKIPS + 4MASKS)))))</areaLogic>
+    <itemLogic>Mantis_Outskirts + Dirtmouth + (((LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS) | (FULLCLAW + (FULLDASH | WINGS | FULLSUPERDASH | (AIRSTALL + (SHADESKIPS + 4MASKS)))))</itemLogic>
+    <areaLogic>Mantis_Outskirts + Dirtmouth + (((LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS) | (FULLCLAW + (FULLDASH | WINGS | FULLSUPERDASH | (AIRSTALL + (SHADESKIPS + 4MASKS)))))</areaLogic>
     <roomLogic>Room_Bretta[right1]</roomLogic>
     <type>Trinket</type>
     <action>MaskShard</action>
@@ -2398,7 +2398,7 @@
     <elevation>1.2</elevation>
     <itemLogic>Greenpath-MMC</itemLogic>
     <areaLogic>Greenpath-MMC</areaLogic>
-    <roomLogic>Fungus1_13[right1] + (LEFTCLAW | (SPICYSKIPS + 2MASKS + WINGS) | (WINGS + RIGHTCLAW + (LEFTDASH | SUPERDASH)))</roomLogic>
+    <roomLogic>Fungus1_13[right1] + (LEFTCLAW | (SPICYSKIPS + 2MASKS + WINGS) | (WINGS + RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH)))</roomLogic>
     <type>Trinket</type>
     <action>VesselFragment</action>
     <pool>Vessel</pool>
@@ -2513,9 +2513,9 @@
     <objectName>Shiny Item</objectName>
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
-    <itemLogic>Right_Fog_Canyon + ((ACID | SKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</itemLogic>
-    <areaLogic>Right_Fog_Canyon + ((ACID | SKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</areaLogic>
-    <roomLogic>Fungus3_28[right1] + ((ACID | SKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</roomLogic>
+    <itemLogic>Right_Fog_Canyon + ((ACID | LEFTSKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</itemLogic>
+    <areaLogic>Right_Fog_Canyon + ((ACID | LEFTSKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</areaLogic>
+    <roomLogic>Fungus3_28[right1] + ((ACID | LEFTSKIPACID | (WINGS + (LEFTDASH | (AIRSTALL + RIGHTCLAW)) + ACIDSKIPS)) + (RIGHTCLAW | (LEFTCLAW + (WINGS | MILDSKIPS))) | (FULLCLAW + FULLDASH + ACIDSKIPS + SPICYSKIPS))</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
     <pool>Notch</pool>
@@ -2623,7 +2623,7 @@
     <elevation>-0.4</elevation>
     <itemLogic>Hallownest's_Crown</itemLogic>
     <areaLogic>Hallownest's_Crown</areaLogic>
-    <roomLogic>Mines_34[bot1] + (LEFTCLAW | (WINGS + RIGHTCLAW)) + (WINGS | FULLDASH | SUPERDASH)</roomLogic>
+    <roomLogic>Mines_34[bot1] + (LEFTCLAW | (WINGS + RIGHTCLAW)) + (WINGS | FULLDASH | FULLSUPERDASH)</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
     <pool>Ore</pool>
@@ -2639,8 +2639,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-0.2</elevation>
-    <itemLogic>Deepnest + ANYCLAW + (WINGS | SUPERDASH | (LEFTCLAW + SHADESKIPS)) + BOSS</itemLogic>
-    <areaLogic>Deepnest + ANYCLAW + (WINGS | SUPERDASH | (LEFTCLAW + SHADESKIPS)) + BOSS</areaLogic>
+    <itemLogic>Deepnest + ANYCLAW + (WINGS | LEFTSUPERDASH | (LEFTCLAW + SHADESKIPS)) + BOSS</itemLogic>
+    <areaLogic>Deepnest + ANYCLAW + (WINGS | LEFTSUPERDASH | (LEFTCLAW + SHADESKIPS)) + BOSS</areaLogic>
     <roomLogic>Deepnest_32[left1] + BOSS</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
@@ -2726,8 +2726,8 @@
     <sceneName>Ruins1_32</sceneName>
     <objectName>Chest</objectName>
     <fsmName>Chest Control</fsmName>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + NAILCOMBAT</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + NAILCOMBAT</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_32[right1] + ANYCLAW</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2758,8 +2758,8 @@
     <sceneName>Fungus1_13</sceneName>
     <objectName>Chest</objectName>
     <fsmName>Chest Control</fsmName>
-    <itemLogic>(Greenpath + (LEFTDASH | LEFTCLAW | WINGS | SUPERDASH | AIRSTALL | SHADESKIPS)) | Greenpath-MMC</itemLogic>
-    <areaLogic>(Greenpath + (LEFTDASH | LEFTCLAW | WINGS | SUPERDASH | AIRSTALL | SHADESKIPS)) | Greenpath-MMC</areaLogic>
+    <itemLogic>(Greenpath + (LEFTDASH | LEFTCLAW | WINGS | LEFTSUPERDASH | AIRSTALL | SHADESKIPS)) | Greenpath-MMC</itemLogic>
+    <areaLogic>(Greenpath + (LEFTDASH | LEFTCLAW | WINGS | LEFTSUPERDASH | AIRSTALL | SHADESKIPS)) | Greenpath-MMC</areaLogic>
     <roomLogic>Fungus1_13[right1]</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
@@ -2806,9 +2806,9 @@
     <sceneName>Mines_37</sceneName>
     <objectName>Chest</objectName>
     <fsmName>Chest Control</fsmName>
-    <itemLogic>Upper_Crystal_Peak + (ANYCLAW | (WINGS + Grubberfly's_Elegy + LEFTSLASH + SHADESKIPS + SPICYSKIPS)) + (FULLDASH | (SUPERDASH + RIGHTCLAW + SPICYSKIPS) | (Sprintmaster + Dashmaster + 2NOTCHES))</itemLogic>
-    <areaLogic>Upper_Crystal_Peak + (ANYCLAW | (WINGS + Grubberfly's_Elegy + LEFTSLASH + SHADESKIPS + SPICYSKIPS)) + (FULLDASH | (SUPERDASH + RIGHTCLAW + SPICYSKIPS) | (Sprintmaster + Dashmaster + 2NOTCHES))</areaLogic>
-    <roomLogic>ANYCLAW + ((Mines_37[top1] + (FULLDASH | (SUPERDASH + RIGHTCLAW + SPICYSKIPS) | (Sprintmaster + Dashmaster + 2NOTCHES))) | Mines_37[bot1])</roomLogic>
+    <itemLogic>Upper_Crystal_Peak + (ANYCLAW | (WINGS + Grubberfly's_Elegy + LEFTSLASH + SHADESKIPS + SPICYSKIPS)) + (FULLDASH | (FULLSUPERDASH + RIGHTCLAW + SPICYSKIPS) | (Sprintmaster + Dashmaster + 2NOTCHES))</itemLogic>
+    <areaLogic>Upper_Crystal_Peak + (ANYCLAW | (WINGS + Grubberfly's_Elegy + LEFTSLASH + SHADESKIPS + SPICYSKIPS)) + (FULLDASH | (FULLSUPERDASH + RIGHTCLAW + SPICYSKIPS) | (Sprintmaster + Dashmaster + 2NOTCHES))</areaLogic>
+    <roomLogic>ANYCLAW + ((Mines_37[top1] + (FULLDASH | (FULLSUPERDASH + RIGHTCLAW + SPICYSKIPS) | (Sprintmaster + Dashmaster + 2NOTCHES))) | Mines_37[bot1])</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Geo</pool>
@@ -2822,9 +2822,9 @@
     <sceneName>Deepnest_45_v02</sceneName>
     <objectName>Chest</objectName>
     <fsmName>Chest Control</fsmName>
-    <itemLogic>Weaver's_Den + (RIGHTCLAW | (WINGS + (LEFTCLAW | SPICYSKIPS))) + ((LEFTDASH + WINGS) | SUPERDASH) + (LEFTDASH | SPIKETUNNELS) + (ANYCLAW | LEFTSLASH | UPSLASH | FIREBALL | SCREAM)</itemLogic>
-    <areaLogic>Weaver's_Den + (RIGHTCLAW | (WINGS + (LEFTCLAW | SPICYSKIPS))) + ((LEFTDASH + WINGS) | SUPERDASH) + (LEFTDASH | SPIKETUNNELS) + (ANYCLAW | LEFTSLASH | UPSLASH | FIREBALL | SCREAM)</areaLogic>
-    <roomLogic>Deepnest_45_v02[left1] + (RIGHTCLAW | (WINGS + (LEFTCLAW | SPICYSKIPS))) + ((LEFTDASH + WINGS) | SUPERDASH) + (LEFTDASH | SPIKETUNNELS) + (ANYCLAW | LEFTSLASH | UPSLASH | FIREBALL | SCREAM)</roomLogic>
+    <itemLogic>Weaver's_Den + (RIGHTCLAW | (WINGS + (LEFTCLAW | SPICYSKIPS))) + ((LEFTDASH + WINGS) | LEFTSUPERDASH) + (LEFTDASH | SPIKETUNNELS) + (ANYCLAW | LEFTSLASH | UPSLASH | FIREBALL | SCREAM)</itemLogic>
+    <areaLogic>Weaver's_Den + (RIGHTCLAW | (WINGS + (LEFTCLAW | SPICYSKIPS))) + ((LEFTDASH + WINGS) | LEFTSUPERDASH) + (LEFTDASH | SPIKETUNNELS) + (ANYCLAW | LEFTSLASH | UPSLASH | FIREBALL | SCREAM)</areaLogic>
+    <roomLogic>Deepnest_45_v02[left1] + (RIGHTCLAW | (WINGS + (LEFTCLAW | SPICYSKIPS))) + ((LEFTDASH + WINGS) | LEFTSUPERDASH) + (LEFTDASH | SPIKETUNNELS) + (ANYCLAW | LEFTSLASH | UPSLASH | FIREBALL | SCREAM)</roomLogic>
     <type>Geo</type>
     <action>SpawnGeo</action>
     <pool>Geo</pool>
@@ -2833,6 +2833,86 @@
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
     <areaName>Weavers_Den</areaName>
+  </item>
+  <!--Junk Pit Chests-->
+  <item name="8_Geo-Junk_Pit_Chest_1">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>8</geo>
+    <nameKey>RANDOMIZER_NAME_8GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="8_Geo-Junk_Pit_Chest_2">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (1)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>8</geo>
+    <nameKey>RANDOMIZER_NAME_8GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="25_Geo-Junk_Pit_Chest_3">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (2)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>25</geo>
+    <nameKey>RANDOMIZER_NAME_25GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="Lumafly_Escape-Junk_Pit_Chest_4">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (3)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Trinket</type>
+    <action>SpawnLumaflies</action>
+    <pool>JunkPitChest</pool>
+    <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
+    <shopSpriteKey>ShopIcons.LampBug</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
+  </item>
+  <item name="10_Geo-Junk_Pit_Chest_5">
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Chest (4)</objectName>
+    <fsmName>Chest Control</fsmName>
+    <itemLogic>Junk_Pit</itemLogic>
+    <areaLogic>Junk_Pit</areaLogic>
+    <roomLogic>(GG_Waterways[door1] | (GG_Waterways[right1] + (LEFTSUPERDASH | SWIM)))</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>JunkPitChest</pool>
+    <geo>10</geo>
+    <nameKey>RANDOMIZER_NAME_10GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Junk_Pit</areaName>
   </item>
   <item name="1_Geo">
     <sceneName></sceneName>
@@ -2848,6 +2928,21 @@
     <nameKey>RANDOMIZER_NAME_1GEO</nameKey>
     <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
     <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName></areaName>
+  </item>
+  <item name="Lumafly_Escape">
+    <sceneName></sceneName>
+    <objectName></objectName>
+    <fsmName></fsmName>
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>SpawnLumaflies</action>
+    <pool>Fake</pool>
+    <nameKey>RANDOMIZER_NAME_LUMAFLY_ESCAPE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_LUMAFLY_ESCAPE</shopDescKey>
+    <shopSpriteKey>ShopIcons.LampBug</shopSpriteKey>
     <areaName></areaName>
   </item>
   <item name="Rancid_Egg-Sly">
@@ -2895,8 +2990,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Greenpath + ((LEFTCLAW + ((SUPERDASH + RIGHTCLAW + (LEFTDASH | WINGS)) | (WINGS + LEFTDASH))) | (RIGHTCLAW + LEFTDASH + WINGS + SUPERDASH + SPICYSKIPS))</itemLogic>
-    <areaLogic>Greenpath + ((LEFTCLAW + ((SUPERDASH + RIGHTCLAW + (LEFTDASH | WINGS)) | (WINGS + LEFTDASH))) | (RIGHTCLAW + LEFTDASH + WINGS + SUPERDASH + SPICYSKIPS))</areaLogic>
+    <itemLogic>Greenpath + ((LEFTCLAW + ((LEFTSUPERDASH + RIGHTCLAW + (LEFTDASH | WINGS)) | (WINGS + LEFTDASH))) | (RIGHTCLAW + LEFTDASH + WINGS + LEFTSUPERDASH + SPICYSKIPS))</itemLogic>
+    <areaLogic>Greenpath + ((LEFTCLAW + ((LEFTSUPERDASH + RIGHTCLAW + (LEFTDASH | WINGS)) | (WINGS + LEFTDASH))) | (RIGHTCLAW + LEFTDASH + WINGS + LEFTSUPERDASH + SPICYSKIPS))</areaLogic>
     <roomLogic>Fungus1_15[right1] | Fungus1_15[door1]</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
@@ -2929,6 +3024,8 @@
     <sceneName>Fungus3_34</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>48.6</x>
+    <y>18.4</y>
     <elevation>0.001</elevation>
     <itemLogic>(Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | FULLDASH)) | (Top_Left_Queen's_Gardens + RIGHTDASH)</itemLogic>
     <areaLogic>(Top_Right_Queen's_Gardens + (RIGHTCLAW | WINGS | FULLDASH)) | (Top_Left_Queen's_Gardens + RIGHTDASH)</areaLogic>
@@ -2946,10 +3043,12 @@
     <sceneName>Crossroads_50</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>117.7</x>
+    <y>43.3</y>
     <elevation>-0.1</elevation>
-    <itemLogic>Left_Blue_Lake + ((SWIM + WINGS) | SUPERDASH)</itemLogic>
-    <areaLogic>Left_Blue_Lake + ((SWIM + WINGS) | SUPERDASH)</areaLogic>
-    <roomLogic>(Crossroads_50[left1] + SUPERDASH) | ((Crossroads_50[left1] | Crossroads_50[right1]) + SWIM + WINGS)</roomLogic>
+    <itemLogic>Left_Blue_Lake + ((SWIM + WINGS) | RIGHTSUPERDASH)</itemLogic>
+    <areaLogic>Left_Blue_Lake + ((SWIM + WINGS) | RIGHTSUPERDASH)</areaLogic>
+    <roomLogic>(Crossroads_50[left1] + RIGHTSUPERDASH) | ((Crossroads_50[left1] | Crossroads_50[right1]) + SWIM + WINGS)</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
     <pool>Egg</pool>
@@ -2963,10 +3062,12 @@
     <sceneName>Mines_01</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>28.2</x>
+    <y>35.3</y>
     <elevation>-0.1</elevation>
-    <itemLogic>(Crossroads + QUAKE + (WINGS | RIGHTDASH | (LEFTCLAW + SUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + SUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | SUPERDASH))))</itemLogic>
-    <areaLogic>(Mines_01[left1] + QUAKE + (RIGHTDASH | WINGS | (LEFTCLAW + SUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + SUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | SUPERDASH))))</areaLogic>
-    <roomLogic>(Mines_01[left1] + QUAKE + (RIGHTDASH | WINGS | (LEFTCLAW + SUPERDASH))) | (Mines_01[bot1] + ((ANYCLAW + WINGS) | (FULLCLAW + SUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | SUPERDASH))))</roomLogic>
+    <itemLogic>(Crossroads + QUAKE + (WINGS | RIGHTDASH | (LEFTCLAW + RIGHTSUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</itemLogic>
+    <areaLogic>(Mines_01[left1] + QUAKE + (RIGHTDASH | WINGS | (LEFTCLAW + RIGHTSUPERDASH))) | (Crystal_Peak + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</areaLogic>
+    <roomLogic>(Mines_01[left1] + QUAKE + (RIGHTDASH | WINGS | (LEFTCLAW + RIGHTSUPERDASH))) | (Mines_01[bot1] + ((ANYCLAW + WINGS) | (FULLCLAW + FULLSUPERDASH) | (LEFTCLAW + FULLDASH + MILDSKIPS) | (LEFTCLAW + WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
     <pool>Egg</pool>
@@ -2998,6 +3099,8 @@
     <sceneName>Mines_20</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>30.9</x>
+    <y>149.3</y>
     <elevation>-0.1</elevation>
     <itemLogic>Upper_Crystal_Peak + QUAKE</itemLogic>
     <areaLogic>Upper_Crystal_Peak + QUAKE</areaLogic>
@@ -3051,6 +3154,8 @@
     <sceneName>Deepnest_Spider_Town</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>112.3</x>
+    <y>80.5</y>
     <elevation>0.1</elevation>
     <itemLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW) | (WINGS + SPICYSKIPS + SHADESKIPS + 4MASKS))</itemLogic>
     <areaLogic>Beast's_Den + (FULLCLAW | (WINGS + ANYCLAW))</areaLogic>
@@ -3068,9 +3173,11 @@
     <sceneName>Deepnest_39</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>41.9</x>
+    <y>5.4</y>
     <elevation>0.001</elevation>
-    <itemLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + (MILDSKIPS | Bottom_Left_Queen's_Gardens)))</itemLogic>
-    <areaLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + MILDSKIPS) | Deepnest_39[door1] | Deepnest_42[top1])</areaLogic>
+    <itemLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + (MILDSKIPS | Bottom_Left_Queen's_Gardens)) | (Distant_Village_Stag + RIGHTCLAW))</itemLogic>
+    <areaLogic>Dark_Deepnest + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + MILDSKIPS) | Deepnest_39[door1] | Deepnest_42[top1] | (Deepnest_41[left1] + RIGHTCLAW))</areaLogic>
     <roomLogic>(LANTERN | DARKROOMS) + (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] | (Deepnest_39[right1] + (LEFTCLAW | (WINGS + RIGHTCLAW) | ((WINGS | RIGHTCLAW) + MILDSKIPS))))</roomLogic>
     <type>Trinket</type>
     <action>Int</action>
@@ -3103,6 +3210,8 @@
     <sceneName>Deepnest_East_14</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>75.5</x>
+    <y>24.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Oro_Bench + QUAKE + (RIGHTCLAW | WINGS)</itemLogic>
     <areaLogic>Oro_Bench + QUAKE + (RIGHTCLAW | WINGS)</areaLogic>
@@ -3138,6 +3247,8 @@
     <sceneName>Waterways_07</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>61.8</x>
+    <y>30.4</y>
     <elevation>0.001</elevation>
     <itemLogic>Right_Waterways</itemLogic>
     <areaLogic>Right_Waterways</areaLogic>
@@ -3155,6 +3266,8 @@
     <sceneName>Waterways_02</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>65.3</x>
+    <y>18.2</y>
     <elevation>-0.2</elevation>
     <itemLogic>Upper_Left_Waterways | (Far_Left_Waterways + RIGHTCLAW) | (Central_Left_Waterways + (ANYCLAW | WINGS | SPICYSKIPS))</itemLogic>
     <areaLogic>Upper_Left_Waterways | (Far_Left_Waterways + RIGHTCLAW) | (Central_Left_Waterways + (ANYCLAW | WINGS | SPICYSKIPS))</areaLogic>
@@ -3172,21 +3285,23 @@
     <sceneName>Waterways_04</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
+    <x>31.6</x>
+    <y>16.4</y>
     <elevation>0.001</elevation>
     <itemLogic>
-      Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
-      | Far_Left_Waterways  + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS))
-      | (Central_Left_Waterways + RIGHTCLAW) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      | Far_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS))
+      | (Central_Left_Waterways + RIGHTCLAW) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (RIGHTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
     </itemLogic>
     <areaLogic>
-      Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
-      | Far_Left_Waterways  + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS))
-      | (Central_Left_Waterways + RIGHTCLAW) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      Upper_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      | Far_Left_Waterways + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS))
+      | (Central_Left_Waterways + RIGHTCLAW) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (RIGHTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
     </areaLogic>
     <roomLogic>
-      Waterways_04[right1] + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
-      | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
-      | Waterways_04[left2] + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (SKIPACID + WINGS))
+      Waterways_04[right1] + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (LEFTSKIPACID + WINGS) | (SPICYSKIPS + FIREBALLSKIPS + ACIDSKIPS + FIREBALL + LEFTDASH + RIGHTCLAW + WINGS))
+      | Waterways_04[left2] + ((SWIM + (ANYCLAW | WINGS | RIGHTDASH | MILDSKIPS)) | (RIGHTSKIPACID + WINGS))
     </roomLogic>
     <type>Trinket</type>
     <action>Int</action>
@@ -3272,9 +3387,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Left_Fungal_Wastes + ((LEFTCLAW + WINGS) | (RIGHTCLAW + (WINGS | RIGHTDASH | (SUPERDASH + LEFTCLAW) | AIRSTALL)))</itemLogic>
-    <areaLogic>Left_Fungal_Wastes + ((LEFTCLAW + WINGS) | (RIGHTCLAW + (WINGS | RIGHTDASH | (SUPERDASH + LEFTCLAW) | AIRSTALL)))</areaLogic>
-    <roomLogic>Fungus2_04 + ((LEFTCLAW + WINGS) | (RIGHTCLAW + (WINGS | RIGHTDASH | (SUPERDASH + LEFTCLAW) | AIRSTALL)))</roomLogic>
+    <itemLogic>Left_Fungal_Wastes + ((LEFTCLAW + WINGS) | (RIGHTCLAW + (WINGS | RIGHTDASH | (RIGHTSUPERDASH + LEFTCLAW) | AIRSTALL)))</itemLogic>
+    <areaLogic>Left_Fungal_Wastes + ((LEFTCLAW + WINGS) | (RIGHTCLAW + (WINGS | RIGHTDASH | (RIGHTSUPERDASH + LEFTCLAW) | AIRSTALL)))</areaLogic>
+    <roomLogic>Fungus2_04 + ((LEFTCLAW + WINGS) | (RIGHTCLAW + (WINGS | RIGHTDASH | (RIGHTSUPERDASH + LEFTCLAW) | AIRSTALL)))</roomLogic>
     <type>Trinket</type>
     <action>WanderersJournal</action>
     <pool>Relic</pool>
@@ -3308,7 +3423,7 @@
     <elevation>-1.1</elevation>
     <itemLogic>Upper_Crystal_Peak + (RIGHTCLAW | WINGS | MILDSKIPS)</itemLogic>
     <areaLogic>Upper_Crystal_Peak + (RIGHTCLAW | WINGS | MILDSKIPS)</areaLogic>
-    <roomLogic>Mines_20</roomLogic>
+    <roomLogic>Mines_20 + (RIGHTCLAW | WINGS | MILDSKIPS)</roomLogic>
     <type>Trinket</type>
     <action>WanderersJournal</action>
     <pool>Relic</pool>
@@ -3374,8 +3489,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Left_Elevator</itemLogic>
-    <areaLogic>Left_Elevator</areaLogic>
+    <itemLogic>Upper_Storerooms</itemLogic>
+    <areaLogic>Upper_Storerooms</areaLogic>
     <roomLogic>Ruins1_28</roomLogic>
     <type>Trinket</type>
     <action>WanderersJournal</action>
@@ -3408,8 +3523,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Central_Kingdom's_Edge + ((LEFTCLAW + (UPWALLBREAK | (SUPERDASH + MILDSKIPS))) | ((RIGHTCLAW + WINGS + (SHADESKIPS + 4MASKS)) + (SIDESLASH | UPSLASH | FIREBALL | SCREAM)))</itemLogic>
-    <areaLogic>Central_Kingdom's_Edge + ((LEFTCLAW + (UPWALLBREAK | (SUPERDASH + MILDSKIPS))) | ((RIGHTCLAW + WINGS + (SHADESKIPS + 4MASKS)) + (SIDESLASH | UPSLASH | FIREBALL | SCREAM)))</areaLogic>
+    <itemLogic>Central_Kingdom's_Edge + ((LEFTCLAW + (UPWALLBREAK | (RIGHTSUPERDASH + MILDSKIPS))) | ((RIGHTCLAW + WINGS + (SHADESKIPS + 4MASKS)) + (SIDESLASH | UPSLASH | FIREBALL | SCREAM)))</itemLogic>
+    <areaLogic>Central_Kingdom's_Edge + ((LEFTCLAW + (UPWALLBREAK | (RIGHTSUPERDASH + MILDSKIPS))) | ((RIGHTCLAW + WINGS + (SHADESKIPS + 4MASKS)) + (SIDESLASH | UPSLASH | FIREBALL | SCREAM)))</areaLogic>
     <roomLogic>Deepnest_East_07[bot1]</roomLogic>
     <type>Trinket</type>
     <action>WanderersJournal</action>
@@ -3495,9 +3610,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Greenpath + (ACID | (WINGS + AIRSTALL) | (LEFTDASH + (AIRSTALL | Dashmaster | WINGS | LEFTCLAW)) | (LEFTDASH + SHADESKIPS + SPICYSKIPS) | SUPERDASH)</itemLogic>
-    <areaLogic>Greenpath + (ACID | (WINGS + AIRSTALL) | (LEFTDASH + (AIRSTALL | Dashmaster | WINGS | LEFTCLAW)) | (LEFTDASH + SHADESKIPS + SPICYSKIPS) | SUPERDASH)</areaLogic>
-    <roomLogic>(Fungus1_10[left1] | Fungus1_10[top1] | Fungus1_10[right1]) + (ACID | (WINGS + AIRSTALL) | (LEFTDASH + (AIRSTALL | Dashmaster | WINGS | LEFTCLAW)) | SUPERDASH)</roomLogic>
+    <itemLogic>Greenpath + (ACID | (WINGS + AIRSTALL) | (LEFTDASH + (AIRSTALL | Dashmaster | WINGS | LEFTCLAW)) | (LEFTDASH + SHADESKIPS + SPICYSKIPS) | LEFTSUPERDASH)</itemLogic>
+    <areaLogic>Greenpath + (ACID | (WINGS + AIRSTALL) | (LEFTDASH + (AIRSTALL | Dashmaster | WINGS | LEFTCLAW)) | (LEFTDASH + SHADESKIPS + SPICYSKIPS) | LEFTSUPERDASH)</areaLogic>
+    <roomLogic>(Fungus1_10[left1] | Fungus1_10[top1] | Fungus1_10[right1]) + (ACID | (WINGS + AIRSTALL) | (LEFTDASH + (AIRSTALL | Dashmaster | WINGS | LEFTCLAW)) | LEFTSUPERDASH)</roomLogic>
     <type>Trinket</type>
     <action>HallownestSeal</action>
     <pool>Relic</pool>
@@ -3529,9 +3644,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1</elevation>
-    <itemLogic>((Right_Fog_Canyon + (ANYCLAW | WINGS | (RIGHTDASH + (LEFTDASH | AIRSTALL) + MILDSKIPS))) | (Crossroads + (ACID | (ACIDSKIPS + ((LEFTCLAW + SUPERDASH + (WINGS | RIGHTCLAW)) | (WINGS + RIGHTDASH)))))) + (LEFTCLAW | WINGS | LEFTDASH | SUPERDASH | (SPICYSKIPS + 2MASKS))</itemLogic>
-    <areaLogic>(Right_Fog_Canyon + (Fungus3_26[top1] | ANYCLAW | WINGS | (RIGHTDASH + (LEFTDASH | AIRSTALL) + MILDSKIPS))) + (LEFTCLAW | WINGS | LEFTDASH | SUPERDASH | (SPICYSKIPS + 2MASKS))</areaLogic>
-    <roomLogic>(Fungus3_26 + (Fungus3_26[top1] | ANYCLAW | WINGS | (RIGHTDASH + (LEFTDASH | AIRSTALL) + MILDSKIPS))) + (LEFTCLAW | WINGS | SUPERDASH | LEFTDASH | (SPICYSKIPS + 2MASKS))</roomLogic>
+    <itemLogic>((Right_Fog_Canyon + (ANYCLAW | WINGS | (RIGHTDASH + (LEFTDASH | AIRSTALL) + MILDSKIPS))) | (Crossroads + (ACID | (ACIDSKIPS + ((LEFTCLAW + RIGHTSUPERDASH + (WINGS | RIGHTCLAW)) | (WINGS + RIGHTDASH)))))) + (LEFTCLAW | WINGS | LEFTDASH | LEFTSUPERDASH | (SPICYSKIPS + 2MASKS))</itemLogic>
+    <areaLogic>(Right_Fog_Canyon + (Fungus3_26[top1] | ANYCLAW | WINGS | (RIGHTDASH + (LEFTDASH | AIRSTALL) + MILDSKIPS))) + (LEFTCLAW | WINGS | LEFTDASH | LEFTSUPERDASH | (SPICYSKIPS + 2MASKS))</areaLogic>
+    <roomLogic>(Fungus3_26 + (Fungus3_26[top1] | ANYCLAW | WINGS | (RIGHTDASH + (LEFTDASH | AIRSTALL) + MILDSKIPS))) + (LEFTCLAW | WINGS | LEFTSUPERDASH | LEFTDASH | (SPICYSKIPS + 2MASKS))</roomLogic>
     <type>Trinket</type>
     <action>HallownestSeal</action>
     <pool>Relic</pool>
@@ -3668,8 +3783,8 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.2</elevation>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_32[right1] + ANYCLAW + QUAKE</roomLogic>
     <type>Trinket</type>
     <action>HallownestSeal</action>
@@ -3685,9 +3800,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.2</elevation>
-    <itemLogic>Watcher's_Spire + (RIGHTCLAW | (WINGS + LEFTCLAW) | (LEFTCLAW + (RIGHTDASH | SUPERDASH) + SHADESKIPS + 4MASKS)) + BOSS</itemLogic>
-    <areaLogic>Watcher's_Spire + (RIGHTCLAW | (WINGS + LEFTCLAW) | (LEFTCLAW + (RIGHTDASH | SUPERDASH) + SHADESKIPS + 4MASKS)) + BOSS</areaLogic>
-    <roomLogic>(Ruins2_03[top1] | (Ruins2_03[bot1] + ANYCLAW + BOSS)) + (RIGHTCLAW | WINGS | (LEFTCLAW + SUPERDASH) | (RIGHTDASH + MILDSKIPS))</roomLogic>
+    <itemLogic>Watcher's_Spire + (RIGHTCLAW | (WINGS + LEFTCLAW) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH) + SHADESKIPS + 4MASKS)) + BOSS</itemLogic>
+    <areaLogic>Watcher's_Spire + (RIGHTCLAW | (WINGS + LEFTCLAW) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH) + SHADESKIPS + 4MASKS)) + BOSS</areaLogic>
+    <roomLogic>(Ruins2_03[top1] | (Ruins2_03[bot1] + ANYCLAW + BOSS)) + (RIGHTCLAW | WINGS | (LEFTCLAW + RIGHTSUPERDASH) | (RIGHTDASH + MILDSKIPS))</roomLogic>
     <type>Trinket</type>
     <action>HallownestSeal</action>
     <pool>Relic</pool>
@@ -3791,7 +3906,7 @@
     <elevation>-0.6</elevation>
     <itemLogic>Upper_Crystal_Peak + ((RIGHTCLAW + RIGHTDASH) | WINGS)</itemLogic>
     <areaLogic>Upper_Crystal_Peak + ((RIGHTCLAW + RIGHTDASH) | WINGS)</areaLogic>
-    <roomLogic>(Mines_30[right1] | (SUPERDASH + Mines_30[left1])) + ((RIGHTCLAW + RIGHTDASH) | WINGS)</roomLogic>
+    <roomLogic>(Mines_30[right1] | (RIGHTSUPERDASH + Mines_30[left1])) + ((RIGHTCLAW + RIGHTDASH) | WINGS)</roomLogic>
     <type>Trinket</type>
     <action>KingsIdol</action>
     <pool>Relic</pool>
@@ -3806,9 +3921,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Spirits_Glade + ((SWIM + LEFTCLAW) | (SWIM + WINGS + ANYCLAW) | (RIGHTSUPERDASH + FULLCLAW) | (RIGHTSUPERDASH + WINGS + ANYCLAW) | (WINGS + RIGHTDASH))</itemLogic>
-    <areaLogic>Spirits_Glade + ((SWIM + LEFTCLAW) | (SWIM + WINGS + ANYCLAW) | (RIGHTSUPERDASH + FULLCLAW) | (RIGHTSUPERDASH + WINGS + ANYCLAW) | (WINGS + RIGHTDASH))</areaLogic>
-    <roomLogic>RestingGrounds_08[left1] + ((SWIM + LEFTCLAW) | (SWIM + WINGS + ANYCLAW) | (RIGHTSUPERDASH + FULLCLAW) | (RIGHTSUPERDASH + WINGS + ANYCLAW) | (WINGS + RIGHTDASH))</roomLogic>
+    <itemLogic>Spirits_Glade + ((SWIM + LEFTCLAW) | (SWIM + WINGS + ANYCLAW) | (RIGHTSUPERDASH + FULLCLAW) | (RIGHTSUPERDASH + WINGS + ANYCLAW) | (WINGS + RIGHTDASH) | (RIGHTCLAW + RIGHTDASH + SPICYSKIPS + (SWIM | RIGHTSUPERDASH)))</itemLogic>
+    <areaLogic>Spirits_Glade + ((SWIM + LEFTCLAW) | (SWIM + WINGS + ANYCLAW) | (RIGHTSUPERDASH + FULLCLAW) | (RIGHTSUPERDASH + WINGS + ANYCLAW) | (WINGS + RIGHTDASH) | (RIGHTCLAW + RIGHTDASH + SPICYSKIPS + (SWIM | RIGHTSUPERDASH)))</areaLogic>
+    <roomLogic>RestingGrounds_08[left1] + ((SWIM + LEFTCLAW) | (SWIM + WINGS + ANYCLAW) | (RIGHTSUPERDASH + FULLCLAW) | (RIGHTSUPERDASH + WINGS + ANYCLAW) | (WINGS + RIGHTDASH) | (RIGHTCLAW + RIGHTDASH + SPICYSKIPS + (SWIM | RIGHTSUPERDASH)))</roomLogic>
     <type>Trinket</type>
     <action>KingsIdol</action>
     <pool>Relic</pool>
@@ -3857,9 +3972,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.2</elevation>
-    <itemLogic>Pale_Lurker_Area + (SWIM | SKIPACID)</itemLogic>
-    <areaLogic>Pale_Lurker_Area + (SWIM | SKIPACID)</areaLogic>
-    <roomLogic>GG_Lurker[left1] + (SWIM | SKIPACID)</roomLogic>
+    <itemLogic>Pale_Lurker_Area + (SWIM | RIGHTSKIPACID)</itemLogic>
+    <areaLogic>Pale_Lurker_Area + (SWIM | RIGHTSKIPACID)</areaLogic>
+    <roomLogic>GG_Lurker[left1] + (SWIM | RIGHTSKIPACID)</roomLogic>
     <type>Trinket</type>
     <action>KingsIdol</action>
     <pool>Relic</pool>
@@ -3909,9 +4024,9 @@
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
     <elevation>-1.1</elevation>
-    <itemLogic>Abyss + LIFEBLOOD + (SUPERDASH + (RIGHTCLAW | WINGS))</itemLogic>
-    <areaLogic>Abyss + LIFEBLOOD + (SUPERDASH + (RIGHTCLAW | WINGS))</areaLogic>
-    <roomLogic>Abyss_08[right1] + (SUPERDASH + (RIGHTCLAW | WINGS))</roomLogic>
+    <itemLogic>Abyss + LIFEBLOOD + (RIGHTSUPERDASH + (RIGHTCLAW | WINGS))</itemLogic>
+    <areaLogic>Abyss + LIFEBLOOD + (RIGHTSUPERDASH + (RIGHTCLAW | WINGS))</areaLogic>
+    <roomLogic>Abyss_08[right1] + (RIGHTSUPERDASH + (RIGHTCLAW | WINGS))</roomLogic>
     <type>Trinket</type>
     <action>ArcaneEgg</action>
     <pool>Relic</pool>
@@ -3963,9 +4078,9 @@
     <newShiny>true</newShiny>
     <x>6.8</x>
     <y>103.2</y>
-    <itemLogic>Crossroads + (RIGHTCLAW | (WINGS + LEFTCLAW)) + (WINGS | SUPERDASH | ANYDASH | INFECTED) + DREAMNAIL + UPWALLBREAK</itemLogic>
-    <areaLogic>Crossroads + (RIGHTCLAW | (WINGS + LEFTCLAW)) + (WINGS | SUPERDASH | ANYDASH | INFECTED) + DREAMNAIL + UPWALLBREAK</areaLogic>
-    <roomLogic>Crossroads_07 + (RIGHTCLAW | (WINGS + LEFTCLAW)) + (WINGS | SUPERDASH | ANYDASH | INFECTED) + DREAMNAIL + UPWALLBREAK</roomLogic>
+    <itemLogic>Crossroads + (RIGHTCLAW | (WINGS + LEFTCLAW)) + (WINGS | FULLSUPERDASH | ANYDASH | INFECTED) + DREAMNAIL + UPWALLBREAK</itemLogic>
+    <areaLogic>Crossroads + (RIGHTCLAW | (WINGS + LEFTCLAW)) + (WINGS | FULLSUPERDASH | ANYDASH | INFECTED) + DREAMNAIL + UPWALLBREAK</areaLogic>
+    <roomLogic>Crossroads_07 + (RIGHTCLAW | (WINGS + LEFTCLAW)) + (WINGS | FULLSUPERDASH | ANYDASH | INFECTED) + DREAMNAIL + UPWALLBREAK</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Root</pool>
@@ -3982,9 +4097,9 @@
     <newShiny>true</newShiny>
     <x>28.7</x>
     <y>23.3</y>
-    <itemLogic>Far_Queen's_Gardens + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | SUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</itemLogic>
-    <areaLogic>Fungus1_13[left1] + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | SUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</areaLogic>
-    <roomLogic>Fungus1_13[left1] + Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | SUPERDASH | SPICYSKIPS))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</roomLogic>
+    <itemLogic>Far_Queen's_Gardens + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</itemLogic>
+    <areaLogic>Fungus1_13[left1] + Greenpath + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</areaLogic>
+    <roomLogic>Fungus1_13[left1] + Fungus1_13[right1] + (LEFTCLAW | (RIGHTCLAW + WINGS + (LEFTDASH | LEFTSUPERDASH | (2MASKS + SPICYSKIPS)))) + DREAMNAIL + (SIDESLASH | Great_Slash | Cyclone_Slash | (FULLDASH + Dash_Slash))</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Root</pool>
@@ -4096,9 +4211,9 @@
     <newShiny>true</newShiny>
     <x>37.9</x>
     <y>10.4</y>
-    <itemLogic>Waterways_Shaft + ((FULLCLAW + (FULLDASH | WINGS | SUPERDASH | MILDSKIPS)) | (WINGS + ANYCLAW)) + DREAMNAIL</itemLogic>
-    <areaLogic>Waterways_Shaft + ((FULLCLAW + (FULLDASH | WINGS | SUPERDASH | MILDSKIPS)) | (WINGS + ANYCLAW)) + DREAMNAIL</areaLogic>
-    <roomLogic>Abyss_01[left3] + ((FULLCLAW + (FULLDASH | WINGS | SUPERDASH | MILDSKIPS)) | (WINGS + ANYCLAW)) + DREAMNAIL</roomLogic>
+    <itemLogic>Waterways_Shaft + ((FULLCLAW + (FULLDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)) | (WINGS + ANYCLAW)) + DREAMNAIL</itemLogic>
+    <areaLogic>Waterways_Shaft + ((FULLCLAW + (FULLDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)) | (WINGS + ANYCLAW)) + DREAMNAIL</areaLogic>
+    <roomLogic>Abyss_01[left3] + ((FULLCLAW + (FULLDASH | WINGS | RIGHTSUPERDASH | MILDSKIPS)) | (WINGS + ANYCLAW)) + DREAMNAIL</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Root</pool>
@@ -4115,9 +4230,9 @@
     <newShiny>true</newShiny>
     <x>78</x>
     <y>22</y>
-    <itemLogic>Left_Elevator + (FULLDASH | WINGS | SUPERDASH | MILDSKIPS) + DREAMNAIL</itemLogic>
-    <areaLogic>Left_Elevator + (FULLDASH | WINGS | SUPERDASH | MILDSKIPS) + DREAMNAIL</areaLogic>
-    <roomLogic>(Ruins1_17[top1] | Ruins1_17[right1]) + (FULLDASH | WINGS | SUPERDASH | MILDSKIPS) + DREAMNAIL</roomLogic>
+    <itemLogic>Upper_Storerooms + (FULLDASH | WINGS | FULLSUPERDASH | MILDSKIPS) + DREAMNAIL</itemLogic>
+    <areaLogic>Upper_Storerooms + (FULLDASH | WINGS | FULLSUPERDASH | MILDSKIPS) + DREAMNAIL</areaLogic>
+    <roomLogic>(Ruins1_17[top1] | Ruins1_17[right1]) + (FULLDASH | WINGS | FULLSUPERDASH | MILDSKIPS) + DREAMNAIL</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Root</pool>
@@ -4174,7 +4289,7 @@
     <y>8</y>
     <itemLogic>Upper_Crystal_Peak + (RIGHTCLAW | WINGS) + (FULLDASH | WINGS) + DREAMNAIL</itemLogic>
     <areaLogic>Upper_Crystal_Peak + (RIGHTCLAW | WINGS) + (FULLDASH | WINGS) + DREAMNAIL</areaLogic>
-    <roomLogic>Mines_23 + (RIGHTCLAW | WINGS) + (FULLDASH | WINGS) + DREAMNAIL</roomLogic>
+    <roomLogic>(Mines_23[left1] | Mines_23[top1] | Mines_23[right1] | Mines_23[right2]) + (RIGHTCLAW | WINGS) + (FULLDASH | WINGS) + DREAMNAIL</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Root</pool>
@@ -4300,9 +4415,9 @@
     <sceneName>Fungus3_40_boss</sceneName>
     <objectName>Ghost Warrior NPC</objectName>
     <fsmName>Conversation Control</fsmName>
-    <itemLogic>(Top_Left_Queen's_Gardens | (Queen's_Gardens_Stag + Can_Stag + (LEFTDASH | LEFTCLAW | (RIGHTCLAW + SUPERDASH) | WINGS))) + DREAMNAIL + AERIALMINIBOSS</itemLogic>
-    <areaLogic>(Top_Left_Queen's_Gardens | (Queen's_Gardens_Stag + Can_Stag + (LEFTDASH | LEFTCLAW | (RIGHTCLAW + SUPERDASH) | WINGS))) + DREAMNAIL + AERIALMINIBOSS</areaLogic>
-    <roomLogic>(Fungus3_40[top1] | (Fungus3_40[right1] + (LEFTCLAW | (RIGHTCLAW + SUPERDASH) | WINGS | LEFTDASH))) + DREAMNAIL + AERIALMINIBOSS</roomLogic>
+    <itemLogic>(Top_Left_Queen's_Gardens | (Queen's_Gardens_Stag + Can_Stag + (LEFTDASH | LEFTCLAW | (RIGHTCLAW + LEFTSUPERDASH) | WINGS))) + DREAMNAIL + AERIALMINIBOSS</itemLogic>
+    <areaLogic>(Top_Left_Queen's_Gardens | (Queen's_Gardens_Stag + Can_Stag + (LEFTDASH | LEFTCLAW | (RIGHTCLAW + LEFTSUPERDASH) | WINGS))) + DREAMNAIL + AERIALMINIBOSS</areaLogic>
+    <roomLogic>(Fungus3_40[top1] | (Fungus3_40[right1] + (LEFTCLAW | (RIGHTCLAW + LEFTSUPERDASH) | WINGS | LEFTDASH))) + DREAMNAIL + AERIALMINIBOSS</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Essence_Boss</pool>
@@ -4368,9 +4483,9 @@
     <sceneName>Crossroads_10</sceneName>
     <objectName>Ghost False Knight NPC</objectName>
     <fsmName>Conversation Control</fsmName>
-    <itemLogic>Crossroads + ((ANYCLAW + (WINGS | LEFTDASH | SUPERDASH)) | (WINGS + INFECTED)) + DREAMNAIL + BOSS</itemLogic>
-    <areaLogic>Crossroads + ((ANYCLAW + (WINGS | LEFTDASH | SUPERDASH)) | (WINGS + INFECTED)) + DREAMNAIL + BOSS</areaLogic>
-    <roomLogic>Crossroads_10 + (ANYCLAW + (WINGS | LEFTDASH | SUPERDASH)) + DREAMNAIL + BOSS</roomLogic>
+    <itemLogic>Crossroads + ((ANYCLAW + (WINGS | LEFTDASH | LEFTSUPERDASH)) | (WINGS + INFECTED)) + DREAMNAIL + BOSS</itemLogic>
+    <areaLogic>Crossroads + ((ANYCLAW + (WINGS | LEFTDASH | LEFTSUPERDASH)) | (WINGS + INFECTED)) + DREAMNAIL + BOSS</areaLogic>
+    <roomLogic>Crossroads_10 + (ANYCLAW + (WINGS | LEFTDASH | LEFTSUPERDASH)) + DREAMNAIL + BOSS</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Essence_Boss</pool>
@@ -4385,8 +4500,8 @@
     <sceneName>Ruins1_24_boss_defeated</sceneName>
     <objectName>Ghost Mage Lord NPC</objectName>
     <fsmName>Conversation Control</fsmName>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTDASH + SUPERDASH + MILDSKIPS)) + DREAMNAIL + BOSS</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTDASH + SUPERDASH + MILDSKIPS)) + DREAMNAIL + BOSS</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTDASH + LEFTSUPERDASH + MILDSKIPS)) + DREAMNAIL + BOSS</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | WINGS | (RIGHTCLAW + LEFTDASH + LEFTSUPERDASH + MILDSKIPS)) + DREAMNAIL + BOSS</areaLogic>
     <roomLogic>Ruins1_24[right1] + (LEFTCLAW | WINGS | LEFTDASH) + DREAMNAIL + BOSS</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
@@ -4438,9 +4553,9 @@
     <sceneName>Room_Bretta_Basement</sceneName>
     <objectName>Dream Enter</objectName>
     <fsmName>Award Orbs</fsmName>
-    <itemLogic>Dirtmouth + DREAMNAIL + BOSS + Mantis_Outskirts + (LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS + Failed_Tramway + Colosseum</itemLogic>
-    <areaLogic>Dirtmouth + DREAMNAIL + BOSS + Mantis_Outskirts + (LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS + Deepnest_33[top1] + Colosseum</areaLogic>
-    <roomLogic>Room_Bretta[right1] + DREAMNAIL + BOSS + Fungus2_23 + (LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS + Deepnest_33[top1] + Room_Colosseum_01[left1]</roomLogic>
+    <itemLogic>Dirtmouth + DREAMNAIL + BOSS + Mantis_Outskirts + (LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS + Failed_Tramway + Colosseum + (SPICYCOMBATSKIPS | FOCUS)</itemLogic>
+    <areaLogic>Dirtmouth + DREAMNAIL + BOSS + Mantis_Outskirts + (LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS + Deepnest_33[top1] + Colosseum + (SPICYCOMBATSKIPS | FOCUS)</areaLogic>
+    <roomLogic>Room_Bretta[right1] + DREAMNAIL + BOSS + Fungus2_23 + (LEFTCLAW | (RIGHTCLAW + MILDSKIPS)) + WINGS + Deepnest_33[top1] + Room_Colosseum_01[left1] + (SPICYCOMBATSKIPS | FOCUS)</roomLogic>
     <type>Trinket</type>
     <action>Essence</action>
     <pool>Essence_Boss</pool>
@@ -4459,7 +4574,7 @@
     <elevation>0.1</elevation>
     <itemLogic>Crossroads</itemLogic>
     <areaLogic>Crossroads</areaLogic>
-    <roomLogic>Crossroads_35[right1] | (Crossroads_35[bot1] + RIGHTCLAW + (ACID | (((SUPERDASH + LEFTCLAW) | (WINGS + LEFTDASH)) + ACIDSKIPS)))</roomLogic>
+    <roomLogic>Crossroads_35[right1] | (Crossroads_35[bot1] + RIGHTCLAW + (ACID | (((LEFTSUPERDASH + LEFTCLAW) | (WINGS + LEFTDASH)) + ACIDSKIPS)))</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -4474,9 +4589,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.2</elevation>
-    <itemLogic>Crossroads + (MILDSKIPS | RIGHTDASH | WINGS | SUPERDASH)</itemLogic>
-    <areaLogic>Crossroads + (MILDSKIPS | RIGHTDASH | WINGS | SUPERDASH)</areaLogic>
-    <roomLogic>(Crossroads_05[left1] | Crossroads_05[right1]) + (MILDSKIPS | RIGHTDASH | WINGS | SUPERDASH)</roomLogic>
+    <itemLogic>Crossroads + (MILDSKIPS | RIGHTDASH | WINGS | RIGHTSUPERDASH)</itemLogic>
+    <areaLogic>Crossroads + (MILDSKIPS | RIGHTDASH | WINGS | RIGHTSUPERDASH)</areaLogic>
+    <roomLogic>(Crossroads_05[left1] | Crossroads_05[right1]) + (MILDSKIPS | RIGHTDASH | WINGS | RIGHTSUPERDASH)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -4542,9 +4657,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.2</elevation>
-    <itemLogic>Greenpath + (SIDESLASH | Great_Slash | Cyclone_Slash | RIGHTDASH | RIGHTCLAW | WINGS | SUPERDASH | MILDSKIPS)</itemLogic>
-    <areaLogic>Greenpath + (SIDESLASH | Great_Slash | Cyclone_Slash | RIGHTDASH | RIGHTCLAW | WINGS | SUPERDASH | MILDSKIPS)</areaLogic>
-    <roomLogic>(Fungus1_06[left1] | Fungus1_06[bot1]) + (SIDESLASH | Great_Slash | Cyclone_Slash | RIGHTDASH | RIGHTCLAW | WINGS | SUPERDASH | MILDSKIPS)</roomLogic>
+    <itemLogic>Greenpath + (SIDESLASH | Great_Slash | Cyclone_Slash | RIGHTDASH | RIGHTCLAW | WINGS | RIGHTSUPERDASH | MILDSKIPS)</itemLogic>
+    <areaLogic>Greenpath + (SIDESLASH | Great_Slash | Cyclone_Slash | RIGHTDASH | RIGHTCLAW | WINGS | RIGHTSUPERDASH | MILDSKIPS)</areaLogic>
+    <roomLogic>(Fungus1_06[left1] | Fungus1_06[bot1]) + (SIDESLASH | Great_Slash | Cyclone_Slash | RIGHTDASH | RIGHTCLAW | WINGS | RIGHTSUPERDASH | MILDSKIPS)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -4576,8 +4691,8 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.001</elevation>
-    <itemLogic>(Greenpath + (LEFTDASH | LEFTCLAW | WINGS | SUPERDASH | AIRSTALL | SHADESKIPS)) | Greenpath-MMC</itemLogic>
-    <areaLogic>(Greenpath + (LEFTDASH | LEFTCLAW | WINGS | SUPERDASH | AIRSTALL | SHADESKIPS)) | Greenpath-MMC</areaLogic>
+    <itemLogic>(Greenpath + (LEFTDASH | LEFTCLAW | WINGS | LEFTSUPERDASH | AIRSTALL | SHADESKIPS)) | Greenpath-MMC</itemLogic>
+    <areaLogic>(Greenpath + (LEFTDASH | LEFTCLAW | WINGS | LEFTSUPERDASH | AIRSTALL | SHADESKIPS)) | Greenpath-MMC</areaLogic>
     <roomLogic>Fungus1_13[right1]</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -4610,9 +4725,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>SUPERDASH + Right_Fog_Canyon</itemLogic>
-    <areaLogic>SUPERDASH + Right_Fog_Canyon</areaLogic>
-    <roomLogic>SUPERDASH + Fungus3_47</roomLogic>
+    <itemLogic>LEFTSUPERDASH + Right_Fog_Canyon</itemLogic>
+    <areaLogic>LEFTSUPERDASH + Right_Fog_Canyon</areaLogic>
+    <roomLogic>LEFTSUPERDASH + Fungus3_47</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -4661,8 +4776,8 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
-    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | RIGHTSUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | RIGHTSUPERDASH))))</areaLogic>
     <roomLogic>Deepnest_36[left1]</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -4678,8 +4793,8 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Deepnest + (SUPERDASH | WINGS | (LEFTCLAW + SHADESKIPS))</itemLogic>
-    <areaLogic>Deepnest + (SUPERDASH | WINGS | (LEFTCLAW + SHADESKIPS))</areaLogic>
+    <itemLogic>Deepnest + (LEFTSUPERDASH | WINGS | (LEFTCLAW + SHADESKIPS))</itemLogic>
+    <areaLogic>Deepnest + (LEFTSUPERDASH | WINGS | (LEFTCLAW + SHADESKIPS))</areaLogic>
     <roomLogic>Deepnest_31[right1] | (Deepnest_31[right2] + (ANYCLAW | WINGS))</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -4780,7 +4895,7 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Lower_Kingdom's_Edge + (FULLCLAW | (ANYCLAW + SPICYSKIPS) | WINGS) + QUAKE + (ACID | SKIPACID | (LEFTDASH + WINGS + ACIDSKIPS))</itemLogic>
+    <itemLogic>Lower_Kingdom's_Edge + (FULLCLAW | (ANYCLAW + SPICYSKIPS) | WINGS) + QUAKE + (ACID | LEFTSKIPACID | (LEFTDASH + WINGS + ACIDSKIPS))</itemLogic>
     <areaLogic>Hive_03[top1]</areaLogic>
     <roomLogic>Hive_03[top1]</roomLogic>
     <type>Trinket</type>
@@ -4797,9 +4912,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Hive_Top + ANYCLAW + WINGS + (SUPERDASH | SPICYSKIPS)</itemLogic>
-    <areaLogic>Hive_Top + ANYCLAW + WINGS + (SUPERDASH | SPICYSKIPS)</areaLogic>
-    <roomLogic>(Hive_04[left1] | Hive_04[right1]) + FULLCLAW + WINGS + (SUPERDASH | SPICYSKIPS)</roomLogic>
+    <itemLogic>Hive_Top + ANYCLAW + WINGS + ((LEFTCLAW + RIGHTSUPERDASH) | (RIGHTCLAW + LEFTSUPERDASH) | SPICYSKIPS)</itemLogic>
+    <areaLogic>Hive_Top + ANYCLAW + WINGS + ((LEFTCLAW + RIGHTSUPERDASH) | (RIGHTCLAW + LEFTSUPERDASH) | SPICYSKIPS)</areaLogic>
+    <roomLogic>(Hive_04[left1] | Hive_04[right1]) + ANYCLAW + WINGS + ((LEFTCLAW + RIGHTSUPERDASH) | (RIGHTCLAW + LEFTSUPERDASH) | SPICYSKIPS)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -4850,18 +4965,18 @@
     <elevation>0.1</elevation>
     <itemLogic>
       Upper_Left_Waterways + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
-      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | SWIM | SKIPACID) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
+      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | SWIM | RIGHTSKIPACID) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
       | (Central_Left_Waterways + RIGHTCLAW) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
     </itemLogic>
     <areaLogic>
       Upper_Left_Waterways + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
-      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | SWIM | SKIPACID) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
+      | Far_Left_Waterways + ((WINGS + (ANYCLAW | SPICYSKIPS)) | SWIM | RIGHTSKIPACID) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
       | (Central_Left_Waterways + RIGHTCLAW) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
     </areaLogic>
     <roomLogic>
       Waterways_04[right1] + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
       | Waterways_04[left1] + (RIGHTCLAW | WINGS | MILDSKIPS) + (RIGHTCLAW | SWIM | CYCLONE | FIREBALL | SCREAM)
-      | Waterways_04[left2] + (SWIM | SKIPACID)
+      | Waterways_04[left2] + (SWIM | RIGHTSKIPACID)
     </roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -4877,9 +4992,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Isma's_Grove + ANYCLAW + (ACID | SKIPACID)</itemLogic>
-    <areaLogic>Isma's_Grove + ANYCLAW + (ACID | SKIPACID)</areaLogic>
-    <roomLogic>((Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | SUPERDASH)))) | (Waterways_13[left2] + (RIGHTCLAW | ((WINGS | MILDSKIPS) + LEFTCLAW)))) + (ACID | SKIPACID)</roomLogic>
+    <itemLogic>Isma's_Grove + ANYCLAW + (ACID | RIGHTSKIPACID)</itemLogic>
+    <areaLogic>Isma's_Grove + ANYCLAW + (ACID | RIGHTSKIPACID)</areaLogic>
+    <roomLogic>((Waterways_13[left1] + (FULLCLAW | (ANYCLAW + (WINGS | MILDSKIPS)) | (LEFTCLAW + (RIGHTDASH | RIGHTSUPERDASH)))) | (Waterways_13[left2] + (RIGHTCLAW | ((WINGS | MILDSKIPS) + LEFTCLAW)))) + (ACID | RIGHTSKIPACID)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -4894,9 +5009,12 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Lower_Kingdom's_Edge + (FULLCLAW | (RIGHTCLAW + SPICYSKIPS) | (ANYCLAW + WINGS)) + ((SUPERDASH + WINGS + (RIGHTCLAW | (LEFTCLAW + MILDSKIPS))) | (ACID + (RIGHTCLAW | (LEFTCLAW + WINGS))))</itemLogic>
-    <areaLogic>Waterways_14[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) + ((SUPERDASH + WINGS + (RIGHTCLAW | (LEFTCLAW + MILDSKIPS))) | (ACID + (RIGHTCLAW | (LEFTCLAW + WINGS))))</areaLogic>
-    <roomLogic>((Waterways_14[bot1] + ANYCLAW) | (Waterways_14[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)))) + ((SUPERDASH + WINGS + (RIGHTCLAW | (LEFTCLAW + MILDSKIPS))) | (ACID + (RIGHTCLAW | (LEFTCLAW + WINGS))))</roomLogic>
+    <itemLogic>Lower_Kingdom's_Edge + (FULLCLAW | (RIGHTCLAW + SPICYSKIPS) | (ANYCLAW + WINGS)) + ((LEFTSUPERDASH + WINGS + (RIGHTCLAW | (LEFTCLAW + MILDSKIPS))) | (ACID + (RIGHTCLAW | (LEFTCLAW + WINGS))))</itemLogic>
+    <areaLogic>Waterways_14[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) + ((LEFTSUPERDASH + WINGS + (RIGHTCLAW | (LEFTCLAW + MILDSKIPS))) | (ACID + (RIGHTCLAW | (LEFTCLAW + WINGS))))</areaLogic>
+    <roomLogic>
+      Waterways_14[bot1] + ANYCLAW + ((RIGHTSUPERDASH + WINGS + (RIGHTCLAW | (LEFTCLAW + MILDSKIPS))) | (ACID + (RIGHTCLAW | (LEFTCLAW + WINGS))))
+      | Waterways_14[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) + ((LEFTSUPERDASH + WINGS + (RIGHTCLAW | (LEFTCLAW + MILDSKIPS))) | (ACID + (RIGHTCLAW | (LEFTCLAW + WINGS))))
+    </roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -4911,8 +5029,8 @@
     <objectName>Grub Bottle (1)</objectName>
     <replace>true</replace>
     <elevation>0.001</elevation>
-    <itemLogic>(Left_City + ((FULLCLAW + (FULLDASH | SUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Left_Elevator | Soul_Sanctum) + (LEFTCLAW | WINGS | MILDSKIPS))</itemLogic>
-    <areaLogic>(Left_City + ((FULLCLAW + (FULLDASH | SUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Left_Elevator | Ruins1_05[right1] | Ruins1_31[right1]) + (LEFTCLAW | WINGS | MILDSKIPS))</areaLogic>
+    <itemLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Upper_Storerooms | Soul_Sanctum) + (LEFTCLAW | WINGS | MILDSKIPS))</itemLogic>
+    <areaLogic>(Left_City + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | MILDSKIPS)) | (WINGS + MILDSKIPS))) | ((Upper_Storerooms | Ruins1_05[right1] | Ruins1_31[right1]) + (LEFTCLAW | WINGS | MILDSKIPS))</areaLogic>
     <roomLogic>Ruins1_05 + (LEFTCLAW | WINGS | (MILDSKIPS + (Ruins1_05[top1] | Ruins1_05[right1])))</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -4928,8 +5046,8 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</itemLogic>
-    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + SUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</areaLogic>
+    <itemLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</itemLogic>
+    <areaLogic>Soul_Sanctum + (LEFTCLAW | (WINGS + RIGHTCLAW) | (RIGHTCLAW + LEFTSUPERDASH + MILDSKIPS)) + QUAKE + NAILCOMBAT</areaLogic>
     <roomLogic>Ruins1_32[right1] + ANYCLAW + QUAKE</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -4963,7 +5081,7 @@
     <replace>true</replace>
     <elevation>0.2</elevation>
     <itemLogic>Right_City + (WINGS | ((LEFTCLAW | LEFTDASH) + (RIGHTCLAW | RIGHTDASH)) | Upper_King's_Station | (Lower_King's_Station + RIGHTCLAW))</itemLogic>
-    <areaLogic>Right_City + (WINGS | ((LEFTCLAW | LEFTDASH) + (RIGHTCLAW | RIGHTDASH)) | Ruins2_04[right1] | (Ruins2_04[door_Ruin_Elevator] + (ANYCLAW | SUPERDASH)))</areaLogic>
+    <areaLogic>Right_City + (WINGS | ((LEFTCLAW | LEFTDASH) + (RIGHTCLAW | RIGHTDASH)) | Ruins2_04[right1] | (Ruins2_04[door_Ruin_Elevator] + (ANYCLAW | RIGHTSUPERDASH)))</areaLogic>
     <roomLogic>Ruins_House_01[left1]</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -4980,19 +5098,19 @@
     <replace>true</replace>
     <elevation>0.001</elevation>
     <itemLogic>
-      Lower_King's_Station + (SWIM | SKIPACID)
+      Lower_King's_Station + (SWIM | RIGHTSKIPACID)
       | Tower_of_Love + (LEFTDASH | (RIGHTCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
-      | Central_Kingdom's_Edge + (LEFTDASH | SWIM | (FULLCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
+      | Central_Kingdom's_Edge + (LEFTDASH | SWIM | ((RIGHTCLAW + (LEFTCLAW | WINGS)) + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
     </itemLogic>
     <areaLogic>
-      Lower_King's_Station + (SWIM | SKIPACID)
+      Lower_King's_Station + (SWIM | RIGHTSKIPACID)
       | Ruins2_07[top1] + (LEFTDASH | (RIGHTCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
-      | Ruins2_07[right1] + (LEFTDASH | SWIM | (FULLCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
+      | Ruins2_07[right1] + (LEFTDASH | SWIM | ((RIGHTCLAW + (LEFTCLAW | WINGS)) + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
     </areaLogic>
     <roomLogic>
-      Ruins2_07[left1] + (SWIM | SKIPACID)
+      Ruins2_07[left1] + (SWIM | RIGHTSKIPACID)
       | Ruins2_07[top1] + (LEFTDASH | (RIGHTCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
-      | Ruins2_07[right1] + (LEFTDASH | SWIM | (FULLCLAW + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
+      | Ruins2_07[right1] + (LEFTDASH | SWIM | ((RIGHTCLAW + (LEFTCLAW | WINGS)) + LEFTSUPERDASH) | (RIGHTCLAW + WINGS + MILDSKIPS))
     </roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -5025,8 +5143,8 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.2</elevation>
-    <itemLogic>Upper_Crystal_Peak + (FULLDASH | (SPICYSKIPS + SUPERDASH) | (Dashmaster + Sprintmaster + 2NOTCHES))</itemLogic>
-    <areaLogic>Upper_Crystal_Peak + (FULLDASH | (SPICYSKIPS + SUPERDASH) | (Dashmaster + Sprintmaster + 2NOTCHES))</areaLogic>
+    <itemLogic>Upper_Crystal_Peak + (FULLDASH | (SPICYSKIPS + FULLSUPERDASH) | (Dashmaster + Sprintmaster + 2NOTCHES))</itemLogic>
+    <areaLogic>Upper_Crystal_Peak + (FULLDASH | (SPICYSKIPS + FULLSUPERDASH) | (Dashmaster + Sprintmaster + 2NOTCHES))</areaLogic>
     <roomLogic>Mines_04[top1]</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -5042,9 +5160,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</itemLogic>
-    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</areaLogic>
-    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + (RIGHTDASH | MILDSKIPS)) | WINGS)</roomLogic>
+    <itemLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</itemLogic>
+    <areaLogic>Crystallized_Mound + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</areaLogic>
+    <roomLogic>Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + ((RIGHTDASH + MILDSKIPS) | SPICYSKIPS)) | WINGS)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -5076,8 +5194,8 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.2</elevation>
-    <itemLogic>(Upper_Crystal_Peak + FULLCLAW + SUPERDASH) | (King's_Pass + WINGS + SUPERDASH)</itemLogic>
-    <areaLogic>(Upper_Crystal_Peak + FULLCLAW + SUPERDASH) | (Mines_10[left1] + ((LEFTCLAW + SUPERDASH) | (WINGS + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <itemLogic>(Upper_Crystal_Peak + FULLCLAW + LEFTSUPERDASH) | (King's_Pass + WINGS + RIGHTSUPERDASH)</itemLogic>
+    <areaLogic>(Upper_Crystal_Peak + FULLCLAW + LEFTSUPERDASH) | (Mines_10[left1] + ((LEFTCLAW + RIGHTSUPERDASH) | (WINGS + (RIGHTDASH | RIGHTSUPERDASH))))</areaLogic>
     <roomLogic>Mines_16[top1] + (LEFTCLAW | WINGS)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
@@ -5110,9 +5228,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.2</elevation>
-    <itemLogic>Upper_Crystal_Peak + ((LEFTCLAW + SUPERDASH) | WINGS | (FULLCLAW + RIGHTDASH + AIRSTALL))</itemLogic>
-    <areaLogic>Upper_Crystal_Peak + ((LEFTCLAW + SUPERDASH) | WINGS | (FULLCLAW + RIGHTDASH + AIRSTALL))</areaLogic>
-    <roomLogic>Mines_31[left1] + ((LEFTCLAW + SUPERDASH) | WINGS | (FULLCLAW + RIGHTDASH + AIRSTALL))</roomLogic>
+    <itemLogic>Upper_Crystal_Peak + ((LEFTCLAW + RIGHTSUPERDASH) | WINGS | (FULLCLAW + RIGHTDASH + AIRSTALL))</itemLogic>
+    <areaLogic>Upper_Crystal_Peak + ((LEFTCLAW + RIGHTSUPERDASH) | WINGS | (FULLCLAW + RIGHTDASH + AIRSTALL))</areaLogic>
+    <roomLogic>Mines_31[left1] + ((LEFTCLAW + RIGHTSUPERDASH) | WINGS | (FULLCLAW + RIGHTDASH + AIRSTALL))</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -5127,9 +5245,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.2</elevation>
-    <itemLogic>(Upper_Crystal_Peak + (RIGHTCLAW | WINGS) + RIGHTDASH) | (Hallownest's_Crown + (RIGHTDASH | SUPERDASH | SPIKETUNNELS))</itemLogic>
-    <areaLogic>(Upper_Crystal_Peak + (RIGHTCLAW | WINGS) + RIGHTDASH) | ((Mines_23[top1] | Mines_23[right1]) + (RIGHTDASH | SUPERDASH | SPIKETUNNELS))</areaLogic>
-    <roomLogic>Mines_24[left1] + (RIGHTDASH | SUPERDASH | SPIKETUNNELS)</roomLogic>
+    <itemLogic>(Upper_Crystal_Peak + (RIGHTCLAW | (LEFTDASH + LEFTCLAW) | WINGS) + (RIGHTDASH | (RIGHTCLAW + RIGHTSUPERDASH))) | (Hallownest's_Crown + (RIGHTDASH | RIGHTSUPERDASH | SPIKETUNNELS))</itemLogic>
+    <areaLogic>(Upper_Crystal_Peak + (RIGHTCLAW | (LEFTDASH + LEFTCLAW) | WINGS) + (RIGHTDASH | (RIGHTCLAW + RIGHTSUPERDASH))) | ((Mines_23[top1] | Mines_23[right1]) + (RIGHTDASH | RIGHTSUPERDASH | SPIKETUNNELS))</areaLogic>
+    <roomLogic>Mines_24[left1] + (RIGHTDASH | RIGHTSUPERDASH | SPIKETUNNELS)</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -5195,9 +5313,9 @@
     <objectName>Grub Bottle</objectName>
     <replace>true</replace>
     <elevation>0.1</elevation>
-    <itemLogic>Far_Queen's_Gardens + ((FULLCLAW + SUPERDASH) | (AIRSTALL + WINGS + ((LEFTCLAW + LEFTSHARPSHADOW + SPICYSKIPS) | (FULLCLAW + LEFTDASH + (SPICYSKIPS | LEFTSHARPSHADOW)))))</itemLogic>
-    <areaLogic>Far_Queen's_Gardens + ((FULLCLAW + SUPERDASH) | (AIRSTALL + WINGS + ((LEFTCLAW + LEFTSHARPSHADOW + SPICYSKIPS) | (FULLCLAW + LEFTDASH + (SPICYSKIPS | LEFTSHARPSHADOW)))))</areaLogic>
-    <roomLogic>Fungus3_22 + ((FULLCLAW + SUPERDASH) | (AIRSTALL + WINGS + ((LEFTCLAW + LEFTSHARPSHADOW + SPICYSKIPS) | (FULLCLAW + LEFTDASH + (SPICYSKIPS | LEFTSHARPSHADOW)))))</roomLogic>
+    <itemLogic>Far_Queen's_Gardens + ((FULLCLAW + LEFTSUPERDASH + (RIGHTSUPERDASH | WINGS)) | (AIRSTALL + WINGS + ((LEFTCLAW + LEFTSHARPSHADOW + SPICYSKIPS) | (FULLCLAW + LEFTDASH + (SPICYSKIPS | LEFTSHARPSHADOW)))))</itemLogic>
+    <areaLogic>Far_Queen's_Gardens + ((FULLCLAW + LEFTSUPERDASH + (RIGHTSUPERDASH | WINGS)) | (AIRSTALL + WINGS + ((LEFTCLAW + LEFTSHARPSHADOW + SPICYSKIPS) | (FULLCLAW + LEFTDASH + (SPICYSKIPS | LEFTSHARPSHADOW)))))</areaLogic>
+    <roomLogic>Fungus3_22 + ((FULLCLAW + LEFTSUPERDASH + (RIGHTSUPERDASH | WINGS)) | (AIRSTALL + WINGS + ((LEFTCLAW + LEFTSHARPSHADOW + SPICYSKIPS) | (FULLCLAW + LEFTDASH + (SPICYSKIPS | LEFTSHARPSHADOW)))))</roomLogic>
     <type>Trinket</type>
     <action>Grub</action>
     <pool>Grub</pool>
@@ -5259,6 +5377,100 @@
     <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
     <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
     <areaName>Tower_of_Love</areaName>
+    <progression>true</progression>
+  </item>
+  <!--MIMIC LOCATIONS-->
+  <item name="Mimic_Grub-Deepnest_1">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>58.5</x>
+    <y>8.5</y>
+    <elevation>0.1</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Deepnest_2">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>36.3</x>
+    <y>7.5</y>
+    <elevation>0.1</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Deepnest_3">
+    <sceneName>Deepnest_36</sceneName>
+    <newShiny>true</newShiny>
+    <x>73.4</x>
+    <y>6.6</y>
+    <elevation>0.2</elevation>
+    <itemLogic>Bottom_Left_Fungal_Wastes | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</itemLogic>
+    <areaLogic>Deepnest_01b[top1] | Deepnest_01b[top2] | (Upper_Deepnest + (WINGS | (ANYCLAW + (RIGHTDASH | SUPERDASH))))</areaLogic>
+    <roomLogic>Deepnest_36[left1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Mimic_Grub-Crystal_Peak">
+    <sceneName>Mines_16</sceneName>
+    <newShiny>true</newShiny>
+    <x>34.5</x>
+    <y>3.6</y>
+    <elevation>0.2</elevation>
+    <itemLogic>(Upper_Crystal_Peak + FULLCLAW + SUPERDASH) | (King's_Pass + WINGS + SUPERDASH)</itemLogic>
+    <areaLogic>(Upper_Crystal_Peak + FULLCLAW + SUPERDASH) | (Mines_10[left1] + ((RIGHTDASH + WINGS) | SUPERDASH))</areaLogic>
+    <roomLogic>Mines_16[top1]</roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>Mimic</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <areaName>Crystal_Peak</areaName>
+  </item>
+  <!--ITEMS FOR MIMIC RANDO-->
+  <item name="Grub">
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>Grub</action>
+    <pool>GrubItem</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
+    <progression>true</progression>
+  </item>
+  <item name="Mimic_Grub">
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>Mimic</action>
+    <pool>MimicItem</pool>
+    <nameKey>RANDOMIZER_NAME_GRUB</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GRUB</shopDescKey>
+    <shopSpriteKey>ShopIcons.Grub</shopSpriteKey>
     <progression>true</progression>
   </item>
   <!--MAPS-->
@@ -5391,9 +5603,9 @@
     <newShiny>true</newShiny>
     <x>68.3</x>
     <y>41.4</y>
-    <itemLogic>Mid_Basin + (RIGHTDASH | ANYCLAW | WINGS | SUPERDASH | MILDSKIPS)</itemLogic>
-    <areaLogic>Mid_Basin + (RIGHTDASH | ANYCLAW | WINGS | SUPERDASH | MILDSKIPS)</areaLogic>
-    <roomLogic>(Abyss_04[top1] + (RIGHTDASH | ANYCLAW | WINGS | SUPERDASH | MILDSKIPS)) | ((Abyss_04[left1] | Abyss_04[right1] | Abyss_04[bot1]) + (ANYCLAW | (WINGS + MILDSKIPS)))</roomLogic>
+    <itemLogic>Mid_Basin + (RIGHTDASH | ANYCLAW | WINGS | RIGHTSUPERDASH | MILDSKIPS)</itemLogic>
+    <areaLogic>Mid_Basin + (RIGHTDASH | ANYCLAW | WINGS | RIGHTSUPERDASH | MILDSKIPS)</areaLogic>
+    <roomLogic>(Abyss_04[top1] + (RIGHTDASH | ANYCLAW | WINGS | RIGHTSUPERDASH | MILDSKIPS)) | ((Abyss_04[left1] | Abyss_04[right1] | Abyss_04[bot1]) + (ANYCLAW | (WINGS + MILDSKIPS)))</roomLogic>
     <type>Trinket</type>
     <action>Map</action>
     <pool>Map</pool>
@@ -5431,8 +5643,8 @@
     <newShiny>true</newShiny>
     <x>35.1</x>
     <y>15.3</y>
-    <itemLogic>Left_Elevator</itemLogic>
-    <areaLogic>Left_Elevator</areaLogic>
+    <itemLogic>Upper_Storerooms</itemLogic>
+    <areaLogic>Upper_Storerooms</areaLogic>
     <roomLogic>(Ruins1_31 | Ruins1_31[bot1] | Ruins1_31[left1])</roomLogic>
     <type>Trinket</type>
     <action>Map</action>
@@ -5453,7 +5665,7 @@
     <y>30.5</y>
     <itemLogic>Far_Upper_Left_Waterways</itemLogic>
     <areaLogic>Far_Upper_Left_Waterways</areaLogic>
-    <roomLogic>(Waterways_09[left1] | Waterways_09[right1]) + (LEFTCLAW | (LEFTDASH + RIGHTCLAW) | WINGS)</roomLogic>
+    <roomLogic>(Waterways_09[left1] | Waterways_09[right1]) + (LEFTCLAW | ((LEFTDASH | LEFTSUPERDASH) + RIGHTCLAW) | WINGS)</roomLogic>
     <type>Trinket</type>
     <action>Map</action>
     <pool>Map</pool>
@@ -5493,7 +5705,7 @@
     <y>8.4</y>
     <itemLogic>Upper_Crystal_Peak</itemLogic>
     <areaLogic>Upper_Crystal_Peak</areaLogic>
-    <roomLogic>Mines_30[right1] | (SUPERDASH + Mines_30[left1])</roomLogic>
+    <roomLogic>Mines_30[right1] | (RIGHTSUPERDASH + Mines_30[left1])</roomLogic>
     <type>Trinket</type>
     <action>Map</action>
     <pool>Map</pool>
@@ -5511,8 +5723,8 @@
     <newShiny>true</newShiny>
     <x>53.7</x>
     <y>22.3</y>
-    <itemLogic>(Top_Left_Queen's_Gardens | (Top_Right_Queen's_Gardens + (LEFTDASH | WINGS | RIGHTCLAW))) + (ANYCLAW | WINGS)</itemLogic>
-    <areaLogic>(Top_Left_Queen's_Gardens | (Top_Right_Queen's_Gardens + (LEFTDASH | WINGS | RIGHTCLAW))) + (ANYCLAW | WINGS)</areaLogic>
+    <itemLogic>(Top_Left_Queen's_Gardens | (Top_Right_Queen's_Gardens + (LEFTDASH | WINGS | (RIGHTCLAW + (LEFTSUPERDASH | MILDSKIPS))))) + (ANYCLAW | WINGS)</itemLogic>
+    <areaLogic>(Top_Left_Queen's_Gardens | (Top_Right_Queen's_Gardens + (LEFTDASH | WINGS | (RIGHTCLAW + (LEFTSUPERDASH | MILDSKIPS))))) + (ANYCLAW | WINGS)</areaLogic>
     <roomLogic>Fungus1_24[left1] + (ANYCLAW | WINGS)</roomLogic>
     <type>Trinket</type>
     <action>Map</action>
@@ -5642,8 +5854,8 @@
     <newShiny>true</newShiny>
     <x>28.1</x>
     <y>6.4</y>
-    <itemLogic>Left_Elevator</itemLogic>
-    <areaLogic>Left_Elevator</areaLogic>
+    <itemLogic>Upper_Storerooms</itemLogic>
+    <areaLogic>Upper_Storerooms</areaLogic>
     <roomLogic>Ruins1_29[left1] | (City_Storerooms_Stag + CANSTAG-R)</roomLogic>
     <type>Trinket</type>
     <action>Stag</action>
@@ -5709,8 +5921,8 @@
     <newShiny>true</newShiny>
     <x>27.6</x>
     <y>6.4</y>
-    <itemLogic>(Distant_Village + (FULLCLAW | (RIGHTCLAW + FULLDASH) | WINGS | (Beast's_Den + (RIGHTDASH | SUPERDASH)))) | (Distant_Village_Stag + Can_Stag + GEO)</itemLogic>
-    <areaLogic>((Deepnest_10[door1] | Deepnest_10[right2] | Distant_Village) + (FULLCLAW | (RIGHTCLAW + FULLDASH) | WINGS | (Deepnest_10[door1] + (RIGHTDASH | SUPERDASH)))) | (Distant_Village_Stag + Can_Stag)</areaLogic>
+    <itemLogic>(Distant_Village + (FULLCLAW | (RIGHTCLAW + FULLDASH) | WINGS | (Beast's_Den + (RIGHTDASH | RIGHTSUPERDASH)))) | (Distant_Village_Stag + Can_Stag + GEO)</itemLogic>
+    <areaLogic>((Deepnest_10[door1] | Deepnest_10[right2] | Distant_Village) + (FULLCLAW | (RIGHTCLAW + FULLDASH) | WINGS | (Deepnest_10[door1] + (RIGHTDASH | RIGHTSUPERDASH)))) | (Distant_Village_Stag + Can_Stag)</areaLogic>
     <roomLogic>Deepnest_09[left1] | (Distant_Village_Stag + CANSTAG-R)</roomLogic>
     <type>Trinket</type>
     <action>Stag</action>
@@ -5783,9 +5995,9 @@
     <objectName>Health Cocoon</objectName>
     <replace>true</replace>
     <elevation>1.9</elevation>
-    <itemLogic>Ancestral_Mound + (UPWALLBREAK | (SUPERDASH + ANYCLAW + MILDSKIPS))</itemLogic>
-    <areaLogic>Ancestral_Mound + (UPWALLBREAK | (SUPERDASH + ANYCLAW + MILDSKIPS))</areaLogic>
-    <roomLogic>Crossroads_ShamanTemple[left1] + (UPWALLBREAK | (SUPERDASH + ANYCLAW + MILDSKIPS))</roomLogic>
+    <itemLogic>Ancestral_Mound + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</itemLogic>
+    <areaLogic>Ancestral_Mound + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</areaLogic>
+    <roomLogic>Crossroads_ShamanTemple[left1] + (UPWALLBREAK | (((LEFTSUPERDASH + RIGHTCLAW) | (RIGHTSUPERDASH + LEFTCLAW)) + MILDSKIPS))</roomLogic>
     <type>Lifeblood</type>
     <lifeblood>6</lifeblood>
     <action>Lifeblood</action>
@@ -5834,9 +6046,9 @@
     <objectName>Health Cocoon</objectName>
     <replace>true</replace>
     <elevation>2.5</elevation>
-    <itemLogic>Lower_Mantis_Village + ((LEFTCLAW + WINGS) | (RIGHTCLAW + SUPERDASH))</itemLogic>
-    <areaLogic>(Lower_Mantis_Village | Fungus2_15[left1]) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + SUPERDASH))</areaLogic>
-    <roomLogic>(Fungus2_15 | Fungus2_15[left1]) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + SUPERDASH))</roomLogic>
+    <itemLogic>Lower_Mantis_Village + ((LEFTCLAW + WINGS) | (RIGHTCLAW + LEFTSUPERDASH))</itemLogic>
+    <areaLogic>(Lower_Mantis_Village | Fungus2_15[left1]) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + LEFTSUPERDASH))</areaLogic>
+    <roomLogic>(Fungus2_15 | Fungus2_15[left1]) + ((LEFTCLAW + WINGS) | (RIGHTCLAW + LEFTSUPERDASH))</roomLogic>
     <type>Lifeblood</type>
     <lifeblood>6</lifeblood>
     <action>Lifeblood</action>
@@ -5903,8 +6115,8 @@
     <sceneName>Ruins1_28</sceneName>
     <objectName>Flamebearer Spawn</objectName>
     <fsmName>Spawn Control</fsmName>
-    <itemLogic>Left_Elevator + Grimmchild</itemLogic>
-    <areaLogic>Left_Elevator + Grimmchild</areaLogic>
+    <itemLogic>Upper_Storerooms + Grimmchild</itemLogic>
+    <areaLogic>Upper_Storerooms + Grimmchild</areaLogic>
     <roomLogic>Ruins1_28 + Grimmchild</roomLogic>
     <type>Flame</type>
     <action>Int</action>
@@ -5937,9 +6149,9 @@
     <sceneName>Mines_10</sceneName>
     <objectName>Flamebearer Spawn</objectName>
     <fsmName>Spawn Control</fsmName>
-    <itemLogic>((Upper_Crystal_Peak + SUPERDASH) | (King's_Pass + WINGS + SUPERDASH + (FULLCLAW | (RIGHTDASH + AIRSTALL + SHADESKIPS + 4MASKS)))) + Grimmchild</itemLogic>
-    <areaLogic>((Upper_Crystal_Peak + SUPERDASH) | (Mines_10[left1] + ((WINGS + RIGHTDASH + AIRSTALL + FULLCLAW) | (FULLCLAW + SUPERDASH)))) + Grimmchild</areaLogic>
-    <roomLogic>(((Mines_10[left1] | Mines_10[bot1]) + ((WINGS + RIGHTDASH + AIRSTALL + FULLCLAW) | (FULLCLAW + SUPERDASH))) | (Mines_10[right1] + (SUPERDASH | (LEFTDASH + WINGS + (FULLCLAW + AIRSTALL))))) + Grimmchild</roomLogic>
+    <itemLogic>((Upper_Crystal_Peak + LEFTSUPERDASH) | (King's_Pass + WINGS + RIGHTSUPERDASH + (FULLCLAW | (RIGHTDASH + AIRSTALL + SHADESKIPS + 4MASKS)))) + Grimmchild</itemLogic>
+    <areaLogic>((Upper_Crystal_Peak + LEFTSUPERDASH) | (Mines_10[left1] + ((WINGS + RIGHTDASH + AIRSTALL + FULLCLAW) | (FULLCLAW + RIGHTSUPERDASH)))) + Grimmchild</areaLogic>
+    <roomLogic>(((Mines_10[left1] | Mines_10[bot1]) + ((WINGS + RIGHTDASH + AIRSTALL + FULLCLAW) | (FULLCLAW + RIGHTSUPERDASH))) | (Mines_10[right1] + (LEFTSUPERDASH | (LEFTDASH + WINGS + FULLCLAW + AIRSTALL)))) + Grimmchild</roomLogic>
     <type>Flame</type>
     <action>Int</action>
     <pool>Flame</pool>
@@ -6022,9 +6234,9 @@
     <sceneName>Abyss_02</sceneName>
     <objectName>Flamebearer Spawn</objectName>
     <fsmName>Spawn Control</fsmName>
-    <itemLogic>(Waterways_Shaft | (Upper_Basin + (RIGHTCLAW | WINGS | RIGHTDASH | SUPERDASH | MILDSKIPS))) + Grimmchild + 6FLAMES + Dirtmouth + BOSS</itemLogic>
-    <areaLogic>(Abyss_02[right1] | (Upper_Basin + (RIGHTCLAW | WINGS | RIGHTDASH | SUPERDASH | MILDSKIPS))) + Grimmchild + 6FLAMES + Dirtmouth + BOSS</areaLogic>
-    <roomLogic>(Abyss_02[right1] | (Abyss_02[bot1] + (LEFTCLAW | WINGS) + (RIGHTCLAW | WINGS | RIGHTDASH | SUPERDASH | MILDSKIPS))) + Grimmchild + 6FLAMES + Grimm_Main_Tent[left1] + BOSS</roomLogic>
+    <itemLogic>(Waterways_Shaft | (Upper_Basin + (RIGHTCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | MILDSKIPS))) + Grimmchild + 6FLAMES + Dirtmouth + BOSS</itemLogic>
+    <areaLogic>(Abyss_02[right1] | (Upper_Basin + (RIGHTCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | MILDSKIPS))) + Grimmchild + 6FLAMES + Dirtmouth + BOSS</areaLogic>
+    <roomLogic>(Abyss_02[right1] | (Abyss_02[bot1] + (LEFTCLAW | WINGS) + (RIGHTCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | MILDSKIPS))) + Grimmchild + 6FLAMES + Grimm_Main_Tent[left1] + BOSS</roomLogic>
     <type>Flame</type>
     <action>Int</action>
     <pool>Flame</pool>
@@ -6067,6 +6279,133 @@
     <shopSpriteKey>ShopIcons.Flame</shopSpriteKey>
     <areaName>Distant_Village</areaName>
     <progression>true</progression>
+  </item>
+  <!--Journal Entries-->
+  <item name="Hunter's_Journal">
+    <boolName>hasJournal</boolName>
+    <sceneName>Fungus1_08</sceneName>
+    <objectName>Shiny Item</objectName>
+    <!-- The Hunter's original shiny's FSM does not have the states that ChangeShinyInto* look for. -->
+    <replace>true</replace>
+    <itemLogic>Greenpath</itemLogic>
+    <areaLogic>Greenpath</areaLogic>
+    <roomLogic>Fungus1_08[left1]</roomLogic>
+    <type>Big</type>
+    <action>Bool</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_HUNTER_JOURNAL</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_HUNTER_JOURNAL</shopDescKey>
+    <shopSpriteKey>ShopIcons.Journal</shopSpriteKey>
+    <bigSpriteKey>Prompts.Journal</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_MEME</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <areaName>Greenpath</areaName>
+  </item>
+  <item name="Journal_Entry-Void_Tendrils">
+    <boolName>killedAbyssTendril</boolName>
+    <sceneName>Abyss_09</sceneName>
+    <objectName>AbyssTendril Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.4</elevation>
+    <itemLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS) | ((RIGHTSHADOWDASH | VOIDHEART) + (LEFTCLAW | WINGS))) + LEFTSHADOWDASH</itemLogic>
+    <areaLogic>Abyss_Ocean + (RIGHTCLAW | (WINGS + SHADESKIPS + 4MASKS) | ((RIGHTSHADOWDASH | VOIDHEART) + (LEFTCLAW | WINGS))) + LEFTSHADOWDASH</areaLogic>
+    <roomLogic>Abyss_09[right3]</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_VOID_TENDRILS</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_VOID_TENDRILS</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Abyss</areaName>
+  </item>
+  <item name="Journal_Entry-Charged_Lumafly">
+    <boolName>killedZapBug</boolName>
+    <sceneName>Fungus3_archive_02</sceneName>
+    <objectName>Zap Bug Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.2</elevation>
+    <itemLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</itemLogic>
+    <areaLogic>Teacher's_Archives + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</areaLogic>
+    <roomLogic>Fungus3_archive_02[top1] + AERIALMINIBOSS + (((RIGHTCLAW | (LEFTCLAW + WINGS)) + (FULLSUPERDASH | ACID)) | (ACIDSKIPS + FULLDASH + FULLCLAW + WINGS))</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_CHARGED_LUMAFLY</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_CHARGED_LUMAFLY</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Teachers_Archives</areaName>
+  </item>
+  <item name="Journal_Entry-Goam">
+    <boolName>killedWorm</boolName>
+    <sceneName>Crossroads_52</sceneName>
+    <objectName>Goam Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.2</elevation>
+    <itemLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | (Main_Fungal_Wastes + (ACID | RIGHTCLAW | RIGHTDASH | RIGHTSUPERDASH | AIRSTALL)))</itemLogic>
+    <areaLogic>Crossroads + QUAKE + (LEFTDASH | WINGS | INFECTED | (LEFTCLAW + AIRSTALL) | Crossroads_18[bot1])</areaLogic>
+    <roomLogic>Crossroads_52[left1] + QUAKE</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_GOAM</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GOAM</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Forgotten_Crossroads</areaName>
+  </item>
+  <item name="Journal_Entry-Garpede">
+    <boolName>killedBigCentipede</boolName>
+    <sceneName>Deepnest_44</sceneName>
+    <objectName>Centipede Inspect</objectName>
+    <replace>true</replace>
+    <elevation>0.3</elevation>
+    <itemLogic>Deepnest</itemLogic>
+    <areaLogic>Deepnest</areaLogic>
+    <roomLogic>Deepnest_44[top1]</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>Journal</pool>
+    <nameKey>RANDOMIZER_NAME_GARPEDE</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GARPEDE</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+  </item>
+  <item name="Journal_Entry-Seal_of_Binding">
+    <boolName>killedBindingSeal</boolName>
+    <sceneName>White_Palace_20</sceneName>
+    <newShiny>true</newShiny>
+    <x>275.1</x>
+    <y>122.4</y>
+    <elevation>0.001</elevation>
+    <itemLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</itemLogic>
+    <areaLogic>Palace_Grounds + AWOKEN + FULLCLAW + WINGS + FULLDASH + FULLSUPERDASH + BOSS</areaLogic>
+    <roomLogic>White_Palace_20[bot1] + FULLCLAW + RIGHTDASH + WINGS + BOSS</roomLogic>
+    <type>Trinket</type>
+    <action>Journal</action>
+    <pool>PalaceJournal</pool>
+    <nameKey>RANDOMIZER_NAME_BINDING_SEAL</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_BINDING_SEAL</shopDescKey>
+    <shopSpriteKey>ShopIcons.JournalEntry</shopSpriteKey>
+    <areaName>Palace_Grounds</areaName>
+  </item>
+  <!--Elevator Pass-->
+  <item name="Elevator_Pass">
+    <sceneName>Crossroads_49b</sceneName>
+    <objectName>Toll Machine Lift</objectName>
+    <replace>true</replace>
+    <itemLogic>Upper_Storerooms</itemLogic>
+    <areaLogic>Upper_Storerooms</areaLogic>
+    <roomLogic>Crossroads_49b[right1]</roomLogic>
+    <type>Trinket</type>
+    <action>ElevatorPass</action>
+    <pool>ElevatorPass</pool>
+    <nameKey>RANDOMIZER_NAME_ELEVATOR_PASS</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_ELEVATOR_PASS</shopDescKey>
+    <shopSpriteKey>ShopIcons.ElevatorPass</shopSpriteKey>
+    <areaName>City_of_Tears</areaName>
+    <progression>true</progression>
+    <cost>150</cost>
   </item>
   <!--Split Cloak-->
     <item name="Left_Mothwing_Cloak">
@@ -6158,6 +6497,8 @@
     <itemLogic>Greenpath</itemLogic>
     <areaLogic>Greenpath</areaLogic>
     <roomLogic>Fungus1_04</roomLogic>
+    <enemyName>Hornet Boss 1</enemyName>
+    <pdBool>hornet1Defeated</pdBool>
     <pool>SplitCloakLocation</pool>
     <areaName>Greenpath</areaName>
   </item>
@@ -6169,9 +6510,9 @@
     <x>13.5</x>
     <y>20.4</y>
     <elevation>0.001</elevation>
-    <itemLogic>Mantis_Village + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</itemLogic>
-    <areaLogic>Mantis_Village + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</areaLogic>
-    <roomLogic>Fungus2_14 + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</roomLogic>
+    <itemLogic>Mantis_Village + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</itemLogic>
+    <areaLogic>Mantis_Village + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</areaLogic>
+    <roomLogic>Fungus2_14 + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</roomLogic>
     <type>Big</type>
     <pool>SplitClaw</pool>
     <bigSpriteKey>Prompts.Walljump</bigSpriteKey>
@@ -6194,9 +6535,9 @@
     <x>18.5</x>
     <y>20.4</y>
     <elevation>0.001</elevation>
-    <itemLogic>Mantis_Village + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</itemLogic>
-    <areaLogic>Mantis_Village + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</areaLogic>
-    <roomLogic>Fungus2_14 + (LEFTDASH | WINGS | (SUPERDASH + ANYCLAW) | MILDSKIPS)</roomLogic>
+    <itemLogic>Mantis_Village + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</itemLogic>
+    <areaLogic>Mantis_Village + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</areaLogic>
+    <roomLogic>Fungus2_14 + (LEFTDASH | WINGS | (LEFTSUPERDASH + ANYCLAW) | MILDSKIPS)</roomLogic>
     <type>Big</type>
     <pool>SplitClaw</pool>
     <bigSpriteKey>Prompts.WalljumpReflected</bigSpriteKey>
@@ -6270,6 +6611,122 @@
     <progression>true</progression>
   </item>
   
+  <!--Egg Shop-->
+  <item name="450_Geo-Egg_Shop_1">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>20.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>RancidEggs</costType>
+    <cost>3</cost>
+  </item>
+  <item name="450_Geo-Egg_Shop_2">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>22.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>RancidEggs</costType>
+    <cost>4</cost>
+  </item>
+  <item name="450_Geo-Egg_Shop_3">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>24.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>RancidEggs</costType>
+    <cost>7</cost>
+  </item>
+  <item name="450_Geo-Egg_Shop_4">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>26.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>RancidEggs</costType>
+    <cost>10</cost>
+  </item>
+  <item name="450_Geo-Egg_Shop_5">
+    <sceneName>Room_Ouiji</sceneName>
+    <objectName>Spawn Point</objectName>
+    <newShiny>true</newShiny>
+    <x>28.5</x>
+    <y>7.4</y>
+    <itemLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4 + EGGCOUNT</areaLogic>
+    <roomLogic>Room_Ouiji[left1] + EGGCOUNT</roomLogic>
+    <type>Geo</type>
+    <action>SpawnGeo</action>
+    <pool>EggShopLocation</pool>
+    <geo>450</geo>
+    <nameKey>RANDOMIZER_NAME_450GEO</nameKey>
+    <shopDescKey>RANDOMIZER_DESC_GEO</shopDescKey>
+    <shopSpriteKey>ShopIcons.Geo</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <costType>RancidEggs</costType>
+    <cost>12</cost>
+  </item>
+  <!--Use a separate item with egg shop active so we can have the progression flag be active-->
+  <item name="Rancid_Egg">
+    <intName>rancidEggs</intName>
+    <itemLogic></itemLogic>
+    <areaLogic></areaLogic>
+    <roomLogic></roomLogic>
+    <type>Trinket</type>
+    <action>Int</action>
+    <pool>EggShopItem</pool>
+    <nameKey>INV_NAME_RANCIDEGG</nameKey>
+    <shopDescKey>INV_DESC_RANCIDEGG</shopDescKey>
+    <shopSpriteKey>ShopIcons.RancidEgg</shopSpriteKey>
+    <progression>true</progression>
+  </item>
+  
 <!--REFERENCES-->
   <item name="Grubfather">
     <boolName></boolName>
@@ -6296,6 +6753,19 @@
     <shopDescKey></shopDescKey>
     <shopSpriteKey></shopSpriteKey>
     <areaName>Resting_Grounds</areaName>
+  </item>
+  <item name="Jiji">
+    <boolName></boolName>
+    <sceneName></sceneName>
+    <itemLogic>Dirtmouth + SIMPLE4</itemLogic>
+    <areaLogic>Dirtmouth + SIMPLE4</areaLogic>
+    <roomLogic>Room_Ouiji[left1]</roomLogic>
+    <type>Trinket</type>
+    <pool>Fake</pool>
+    <nameKey></nameKey>
+    <shopDescKey></shopDescKey>
+    <shopSpriteKey></shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
   </item>
   <item name="Equipped">
     <boolName></boolName>

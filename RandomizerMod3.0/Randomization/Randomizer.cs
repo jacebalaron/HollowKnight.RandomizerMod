@@ -2,12 +2,11 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
-using RandomizerMod.Actions;
 using static RandomizerMod.LogHelper;
-using System.Text;
 using static RandomizerMod.Randomization.PreRandomizer;
 using static RandomizerMod.Randomization.PostRandomizer;
 using static RandomizerMod.Randomization.SpanningTree;
+using RandomizerMod.Actions;
 
 namespace RandomizerMod.Randomization
 {
@@ -24,6 +23,11 @@ namespace RandomizerMod.Randomization
     {
         public const int MAX_GRUB_COST = 23;
         public static int MAX_ESSENCE_COST => RandomizerMod.Instance.Settings.RandomizeBossEssence ? 1800 : 900;
+        public const int MAX_EGG_COST = 14;
+        public const int MIN_EGG_COST = 4;
+
+        public const int MIN_MIMIC_COUNT = 4;
+        public const int MAX_MIMIC_COUNT = 14;
 
         public static ItemManager im;
         public static TransitionManager tm;
@@ -55,6 +59,7 @@ namespace RandomizerMod.Randomization
                 StartName = null;
 
                 RandomizerMod.Instance.Settings.ResetPlacements();
+                RandomizeMimics();
                 RandomizeNonShopCosts();
                 RandomizeStartingItems();
                 RandomizeStartingLocation();
@@ -63,8 +68,7 @@ namespace RandomizerMod.Randomization
                 if (!randomizationError) break;
             }
 
-            PostRandomizationTasks();
-            RandomizerAction.CreateActions(RandomizerMod.Instance.Settings.ItemPlacements, RandomizerMod.Instance.Settings);
+            RunPostRandomizationTasks();
         }
 
         private static void RandomizeTransitions()

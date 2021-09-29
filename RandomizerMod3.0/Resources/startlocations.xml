@@ -127,14 +127,14 @@
     <waypoint>Right_Blue_Lake</waypoint>
     <areaTransition>Crossroads_50[right1]</areaTransition>
     <roomTransition>Crossroads_50[right1]</roomTransition>
-    <logic>ANY</logic>
+    <logic>NONRANDOMELEVATORS | MILDSKIPS | AREARANDO | ROOMRANDO | VERTICAL</logic>
   </start>
   <start name="City Storerooms">
     <sceneName>Ruins1_17</sceneName>
     <x>61.6</x>
     <y>3.4</y>
     <zone>CITY</zone>
-    <waypoint>Left_Elevator</waypoint>
+    <waypoint>Upper_Storerooms</waypoint>
     <areaTransition>Ruins1_01[left1]</areaTransition>
     <roomTransition>Ruins1_17[right1]</roomTransition>
     <logic>ANY</logic>
@@ -144,7 +144,7 @@
     <x>20.9</x>
     <y>136.3</y>
     <zone>CITY</zone>
-    <waypoint>Right_Elevator</waypoint>
+    <waypoint>Upper_King's_Station</waypoint>
     <areaTransition>Ruins2_10b[right1]</areaTransition>
     <roomTransition>Ruins2_10b[right1]</roomTransition>
     <logic>ANY</logic>
@@ -207,7 +207,7 @@
     <waypoint>Top_Left_Queen's_Gardens</waypoint>
     <areaTransition>Fungus3_34[right1]</areaTransition>
     <roomTransition>Fungus3_13[left1]</roomTransition>
-    <logic>(ITEMRANDO + SPICYSKIPS) | AREARANDO | ROOMRANDO</logic>
+    <logic>(ITEMRANDO + SPICYSKIPS) | (AREARANDO + SHADESKIPS) | ROOMRANDO</logic>
   </start>
   <start name="Distant Village">
     <sceneName>Room_spider_small</sceneName>

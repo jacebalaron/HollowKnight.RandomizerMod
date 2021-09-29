@@ -19,10 +19,11 @@ using RandomizerMod.SceneChanges;
 using System.Security.Cryptography;
 
 using Object = UnityEngine.Object;
+using RandomizerMod.MultiWorld;
 
 namespace RandomizerMod
 {
-    public class RandomizerMod : Mod
+    public class RandomizerMod : Mod, IMultiWorldCompatibleRandomizer
     {
         private static Dictionary<string, Sprite> _sprites;
         private static Dictionary<string, string> _secondaryBools;
@@ -114,12 +115,16 @@ namespace RandomizerMod
                 (SceneNames.Tutorial_01, "_Scenery/plat_float_17"),
                 (SceneNames.Tutorial_01, "_Props/Tut_tablet_top"),
                 (SceneNames.Tutorial_01, "_Props/Geo Rock 1"),
-                (SceneNames.Cliffs_02, "Soul Totem 5"),
+                (SceneNames.Deepnest_East_17, "Soul Totem mini_two_horned"),
                 //(SceneNames.Room_Jinn, "Jinn NPC"),
-                (SceneNames.Abyss_19, "Grub Bottle/Grub"),
-                (SceneNames.Abyss_19, "Grub Bottle")
+                (SceneNames.Deepnest_36, "Grub Bottle/Grub"),
+                (SceneNames.Deepnest_36, "Grub Bottle"),
+                (SceneNames.Deepnest_36, "Grub Mimic Bottle"),
+                (SceneNames.Deepnest_36, "Grub Mimic Top"),
+                (SceneNames.Deepnest_36, "Dream Dialogue"),
+                (SceneNames.Deepnest_36, "d_break_0047_deep_lamp2/lamp_bug_escape (7)")
             };
-            if (!globalSettings.ReducePreloads)
+            if (!globalSettings.ReduceRockPreloads)
             {
                 preloads.AddRange(new List<(string, string)>
                 {
@@ -135,7 +140,22 @@ namespace RandomizerMod
                     (SceneNames.Hive_01, "Geo Rock Hive"),
                     (SceneNames.Mines_20, "Geo Rock Mine (4)"),
                     (SceneNames.Deepnest_East_17, "Geo Rock Outskirts"),
-                    (SceneNames.Deepnest_East_17, "Giant Geo Egg")
+                    (SceneNames.Deepnest_East_17, "Giant Geo Egg"),
+                });
+            }
+
+            if (!globalSettings.ReduceTotemPreloads)
+            {
+                preloads.AddRange(new List<(string, string)>
+                {   
+                    (SceneNames.Cliffs_02, "Soul Totem 5"),
+                    (SceneNames.Abyss_04, "Soul Totem mini_horned"),
+                    (SceneNames.Deepnest_10, "Soul Totem 1"),
+                    (SceneNames.RestingGrounds_05, "Soul Totem 4"),
+                    (SceneNames.Crossroads_ShamanTemple, "Soul Totem 2"),
+                    (SceneNames.Ruins1_32, "Soul Totem 3"),
+                    (SceneNames.White_Palace_02, "Soul Totem white"),
+                    (SceneNames.White_Palace_18, "Soul Totem white_Infinte")
                 });
             }
             return preloads;
@@ -149,7 +169,8 @@ namespace RandomizerMod
             ModHooks.Instance.GetPlayerBoolHook += BoolGetOverride;
             ModHooks.Instance.SetPlayerBoolHook += BoolSetOverride;
             On.PlayMakerFSM.OnEnable += FixVoidHeart;
-            On.PlayMakerFSM.OnEnable += FixFury;
+            On.PlayMakerFSM.OnEnable += HookFury;
+            On.HeroController.MaxHealth += EnableFuryOnBench;
             On.GameManager.BeginSceneTransition += EditTransition;
             On.PlayerData.CountGameCompletion += RandomizerCompletion;
             On.PlayerData.SetInt += FixGrimmkinUpgradeCost;
@@ -171,7 +192,8 @@ namespace RandomizerMod
             ModHooks.Instance.GetPlayerBoolHook -= BoolGetOverride;
             ModHooks.Instance.SetPlayerBoolHook -= BoolSetOverride;
             On.PlayMakerFSM.OnEnable -= FixVoidHeart;
-            On.PlayMakerFSM.OnEnable -= FixFury;
+            On.PlayMakerFSM.OnEnable -= HookFury;
+            On.HeroController.MaxHealth -= EnableFuryOnBench;
             On.GameManager.BeginSceneTransition -= EditTransition;
             On.PlayerData.CountGameCompletion -= RandomizerCompletion;
             On.PlayerData.SetInt -= FixGrimmkinUpgradeCost;
@@ -236,9 +258,30 @@ namespace RandomizerMod
             return null;
         }
 
+        public bool TrySetSprite(string name, Sprite sprite, bool overwrite = false)
+        {
+            if (_sprites != null)
+            {
+                if (_sprites.ContainsKey(name) && !overwrite)
+                {
+                    LogWarn($"Sprites already contain a sprite called `{name}`, to overwrite please call function with `overwrite: true`");
+                    return false;
+                }
+
+                _sprites[name] = sprite;
+                return true;
+            }
+            return false;
+        }
+
         public static bool LoadComplete()
         {
             return _logicParseThread == null || !_logicParseThread.IsAlive;
+        }
+
+        public MultiWorldMenu CreateMultiWorldMenu()
+        {
+            return MenuChanger.CreateMultiWorldMenu();
         }
 
         public void StartNewGame()
@@ -293,7 +336,7 @@ namespace RandomizerMod
 
         public override string GetVersion()
         {
-            string ver = "3.12b";
+            string ver = "3.12c";
 
             ver += $"({Math.Abs(MakeAssemblyHash() % 997)})";
 
@@ -317,7 +360,7 @@ namespace RandomizerMod
             }
 
             float placedItems = (float)RandomizerMod.Instance.Settings.GetNumLocations();
-            float foundItems = (float)RandomizerMod.Instance.Settings.GetItemsFound().Length;
+            float foundItems = (float)RandomizerMod.Instance.Settings.NumItemsFound;
 
             // Count a pair (in, out) as a single transition check
             float randomizedTransitions = RandomizerMod.Instance.Settings.RandomizeRooms ? 445f :
@@ -591,7 +634,53 @@ namespace RandomizerMod
                 // Check for Salubra notches if it's a charm
                 UpdateCharmNotches(pd);
             }
+            // The Fury FSM assumes that the player cannot possibly have Fury when sitting
+            // at a bench. With cursed masks, this can be the case, which also implies that
+            // equipping or unequipping Fury, Unbreakable Heart, or Joni's Blessing can
+            // turn Fury on or off.
+            else if (boolName == nameof(PlayerData.equippedCharm_6))
+            {
+                if (value)
+                {
+                    if (pd.health == 1 && !pd.GetBool(nameof(PlayerData.equippedCharm_27)))
+                    {
+                        EnableFury();
+                    }
+                }
+                else
+                {
+                    DisableFury();
+                }
+            }
+            else if (boolName == nameof(PlayerData.equippedCharm_23))
+            {
+                if (value)
+                {
+                    DisableFury();
+                }
+                else if (pd.maxHealthBase == 1 && pd.GetBool(nameof(PlayerData.equippedCharm_6)) && !pd.GetBool(nameof(PlayerData.equippedCharm_27)))
+                {
+                    EnableFury();
+                }
+            }
+            else if (boolName == nameof(PlayerData.equippedCharm_27))
+            {
+                if (value)
+                {
+                    DisableFury();
+                }
+                // This set happens before the health property is set back to its normal
+                // without-Joni's value, so we can't check that. Instead check that the player
+                // has 1 base mask and doesn't have Unbreakable Heart on.
+                else if (pd.maxHealthBase == 1 && pd.GetBool(nameof(PlayerData.equippedCharm_6)) && !pd.GetBool(nameof(PlayerData.equippedCharm_23)))
+                {
+                    EnableFury();
+                }
+            }
         }
+
+        private static void EnableFury() { PlayMakerFSM.BroadcastEvent("ENABLE FURY"); }
+        private static void DisableFury() { PlayMakerFSM.BroadcastEvent("DISABLE FURY"); }
 
         private int IntOverride(string intName)
         {
@@ -648,45 +737,27 @@ namespace RandomizerMod
             }
         }
 
-        // Make Fury work properly when the player only has 1 max mask due to
-        // Cursed Masks.
-        // The game doesn't really expect the player to ever have Fury active when
-        // loading in or sitting at a bench.
-        private void FixFury(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
+        // Add some transitions to the Fury FSM so we can turn Fury on or off manually
+        // when Cursed Masks are on.
+        private void HookFury(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
         {
             orig(self);
             if (self.FsmName == "Fury" && self.gameObject.name == "Charm Effects")
             {
-                var init = self.GetState("Init");
-                init.ClearTransitions();
-                init.AddTransition("FINISHED", "Check HP");
+                self.GetState("Idle").AddTransition("ENABLE FURY", "Activate");
+                self.GetState("Activate").AddTransition("DISABLE FURY", "Deactivate");
+                self.GetState("Stay Furied").AddTransition("DISABLE FURY", "Deactivate");
+            }
+        }
 
-                // Make Fury activate when equipped at 1 health
-                // (The game broadcasts an UPDATE BLUE HEALTH event whenever the player
-                // equips or unequips a charm)
-                self.GetState("Idle").AddTransition("UPDATE BLUE HEALTH", "Check HP");
-
-                // Make Fury deactivate when unequipped at 1 health
-                var checkEquipped = new FsmState(init) { Name = "Check Equipped" };
-                checkEquipped.ClearTransitions();
-                checkEquipped.AddTransition("EQUIPPED", "Stay Furied");
-                checkEquipped.AddTransition("NOT EQUIPPED", "Deactivate");
-                checkEquipped.Actions = new FsmStateAction[] {
-                    new RandomizerExecuteLambda(() => self.SendEvent(Ref.PD.equippedCharm_6 ? "EQUIPPED" : "NOT EQUIPPED"))
-                };
-                self.AddState(checkEquipped);
-
-                void PatchRecheck(FsmState s)
-                {
-                    s.RemoveTransitionsTo("Deactivate");
-                    s.AddTransition("HERO HEALED FULL", "Recheck");
-                    // This is an original transition that we don't want to change
-                    s.AddTransition("ALL CHARMS END", "Deactivate");
-                    s.AddTransition("UPDATE BLUE HEALTH", checkEquipped.Name);
-                }
-
-                PatchRecheck(self.GetState("Activate"));
-                PatchRecheck(self.GetState("Stay Furied"));
+        private void EnableFuryOnBench(On.HeroController.orig_MaxHealth orig, HeroController self)
+        {
+            orig(self);
+            // Enable Fury, if appropriate, when sitting on a bench, benchwarping, or
+            // loading into a hardsave from the menu.
+            if (Ref.PD.health == 1 && Ref.PD.GetBool(nameof(PlayerData.equippedCharm_6)) && !Ref.PD.GetBool(nameof(PlayerData.equippedCharm_27)))
+            {
+                EnableFury();
             }
         }
 
@@ -699,6 +770,7 @@ namespace RandomizerMod
         {
             if (PlayerData.instance.bossRushMode && info.SceneName == "GG_Entrance_Cutscene")
             {
+                RandoLogger.LogMimicsToSpoiler();    // No ideal time to do this
                 StartSaveChanges.StartDataChanges();
                 info.SceneName = PlayerData.instance.respawnScene;
                 SceneEditor.ApplySaveDataChanges(info.SceneName, info.EntryGateName ?? string.Empty);
@@ -788,7 +860,6 @@ namespace RandomizerMod
             orig(self, info);
         }
 
-
         private void OnMainMenu(Scene from, Scene to)
         {
             if (Ref.GM.GetSceneNameString() != SceneNames.Menu_Title) return;
@@ -806,7 +877,6 @@ namespace RandomizerMod
                 LogError("Error editing menu:\n" + e);
             }
         }
-        
 
         private void HandleSceneChanges(Scene from, Scene to)
         {

@@ -1,4 +1,4 @@
-using HutongGames.PlayMaker;
+﻿using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using SereCore;
 using UnityEngine;
@@ -15,8 +15,9 @@ namespace RandomizerMod.Actions
         private readonly string _item;
         private readonly string _location;
         private readonly float _elevation;
+        private readonly bool _unrandomized;
 
-        public ReplaceObjectWithGrubJar(string sceneName, string objectName, float elevation, string jarName, string item, string location)
+        public ReplaceObjectWithGrubJar(string sceneName, string objectName, float elevation, string jarName, string item, string location, bool unrandomized = false)
         {
             _sceneName = sceneName;
             _objectName = objectName;
@@ -24,6 +25,7 @@ namespace RandomizerMod.Actions
             _item = item;
             _location = location;
             _elevation = elevation;
+            _unrandomized = unrandomized;
         }
 
         public override ActionType Type => ActionType.GameObject;
@@ -64,7 +66,7 @@ namespace RandomizerMod.Actions
             grub.position = new Vector3(grub.position.x, grub.position.y, pos.z);
             jar.SetActive(obj.activeSelf);
 
-            CreateNewGrubJar.FixBottleFSM(jar, _item, _location);
+            CreateNewGrubJar.FixBottleFSM(jar, _item, _location, _unrandomized);
 
 
             // Destroy the original

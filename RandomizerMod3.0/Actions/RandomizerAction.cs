@@ -15,7 +15,8 @@ namespace RandomizerMod.Actions
         public enum ActionType
         {
             GameObject,
-            PlayMakerFSM
+            PlayMakerFSM,
+            EnemyDeath
         }
 
         private static readonly List<RandomizerAction> Actions = new List<RandomizerAction>();
@@ -39,6 +40,7 @@ namespace RandomizerMod.Actions
             int newShinies = 0;
             int newGrubs = 0;
             int newRocks = 0;
+            int newTotems = 0;
             string[] shopNames = LogicManager.ShopNames;
 
             // Loop non-shop items
@@ -47,33 +49,29 @@ namespace RandomizerMod.Actions
                 ReqDef oldItem = LogicManager.GetItemDef(location);
                 ReqDef newItem = LogicManager.GetItemDef(newItemName);
 
-                if (!settings.RandomizeMaps && newItem.pool == "Map")
+                // Solution done for MW with different settings compatibility
+                if (newItemName == location)
                 {
-                    continue;
-                }
-                if (!settings.RandomizeStags && newItem.pool == "Stag") 
-                {
-                    continue;
-                }
-                if (!settings.RandomizeRocks && newItem.pool == "Rock") 
-                {
-                    continue;
-                }
-                if (!settings.RandomizeSoulTotems && newItem.pool == "Soul") 
-                {
-                    continue;
-                }
-                if (!settings.RandomizePalaceTotems && newItem.pool == "PalaceSoul") 
-                {
-                    continue;
-                }
-                if (!settings.RandomizePalaceTablets && newItem.pool == "PalaceLore")
-                {
-                    continue;
-                }
-                if (!settings.RandomizeLoreTablets && newItem.pool == "Lore") 
-                {
-                    continue;
+                    if (!settings.RandomizeMaps && newItem.pool == "Map")
+                        continue;
+                
+                    if (!settings.RandomizeStags && newItem.pool == "Stag")
+                        continue;
+                    
+                    if (!settings.RandomizeRocks && newItem.pool == "Rock")
+                        continue;
+                    
+                    if (!settings.RandomizeSoulTotems && newItem.pool == "Soul")
+                        continue;
+                    
+                    if (!settings.RandomizePalaceTotems && newItem.pool == "PalaceSoul")
+                        continue;
+                    
+                    if (!settings.RandomizePalaceTablets && newItem.pool == "PalaceLore")
+                        continue;
+                    
+                    if (!settings.RandomizeLoreTablets && newItem.pool == "Lore")
+                        continue;
                 }
 
                 if (settings.NPCItemDialogue)
@@ -129,10 +127,26 @@ namespace RandomizerMod.Actions
                     }
                 }
 
-                bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue);
-                bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && !hasCost;
-                bool replacedWithGrub = newItem.pool == "Grub" && canReplaceWithObj;
+                bool hasCost = (oldItem.cost != 0 || oldItem.costType != AddYNDialogueToShiny.CostType.Geo) 
+                    && !(location == "Vessel_Fragment-Basin" && settings.NPCItemDialogue)
+                    && oldItem.costType != AddYNDialogueToShiny.CostType.RancidEggs;
+                bool canReplaceWithObj = oldItem.elevation != 0 && !(settings.NPCItemDialogue && location == "Vengeful_Spirit") && location != "Hunter's_Journal" && !hasCost;
+                bool replacedWithGrub = newItem.pool.StartsWith("Grub") && canReplaceWithObj;
                 bool replacedWithGeoRock = newItem.pool == "Rock" && canReplaceWithObj;
+                bool replacedWithSoulTotem = newItem.type == ItemType.Soul && canReplaceWithObj;
+                bool replacedWithMimic = newItem.pool.StartsWith("Mimic") && canReplaceWithObj;
+                bool replaced = replacedWithGrub || replacedWithGeoRock || replacedWithSoulTotem || replacedWithMimic;
+
+                void preventSelfDestruct()
+                {
+                    // Add a PreventSelfDestruct for shiny items not typically replaced.
+                    // Add the action only for items which set a bool, because only those will use a
+                    // PlayerData rather than a SceneData check for their original Self Destruction.
+                    if (!oldItem.replace && oldItem.fsmName == "Shiny Control" && !string.IsNullOrEmpty(oldItem.boolName))
+                    {
+                        Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
+                    }
+                }
 
                 if (replacedWithGrub)
                 {
@@ -144,14 +158,20 @@ namespace RandomizerMod.Actions
                     else
                     {
                         Actions.Add(new ReplaceObjectWithGrubJar(oldItem.sceneName, oldItem.objectName, oldItem.elevation, jarName, newItemName, location));
-                        // Add a PreventSelfDestruct for shiny items not typically replaced.
-                        // Add the action only for items which set a bool, because only those will use a
-                        // PlayerData rather than a SceneData check for their original Self Destruction.
-                        if (!oldItem.replace && oldItem.fsmName == "Shiny Control" && !string.IsNullOrEmpty(oldItem.boolName))
-                        {
-                            Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
-                        }
-
+                        preventSelfDestruct();
+                    }
+                }
+                else if (replacedWithMimic)
+                {
+                    string bottleName = "Randomizer Mimic Bottle " + newGrubs++;
+                    if (oldItem.newShiny)
+                    {
+                        Actions.Add(new CreateNewMimicBottle(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewMimicBottle.MIMIC_BOTTLE_ELEVATION - oldItem.elevation, bottleName, newItemName, location));
+                    }
+                    else
+                    {
+                        Actions.Add(new ReplaceObjectWithMimicBottle(oldItem.sceneName, oldItem.objectName, oldItem.elevation, bottleName, newItemName, location));
+                        preventSelfDestruct();
                     }
                 }
                 else if (replacedWithGeoRock)
@@ -171,14 +191,76 @@ namespace RandomizerMod.Actions
                     else
                     {
                         Actions.Add(new ReplaceObjectWithGeoRock(oldItem.sceneName, oldItem.objectName, oldItem.elevation, rockName, newItemName, location, geo, subtype));
-                        // Add a PreventSelfDestruct for shiny items not typically replaced 
-                        // Add the action only for items which set a bool, because only those will use a
-                        // PlayerData rather than a SceneData check for their original Self Destruction.
-                        if (!oldItem.replace && oldItem.fsmName == "Shiny Control" && !string.IsNullOrEmpty(oldItem.boolName))
-                        {
-                            Actions.Add(new PreventSelfDestruct(oldItem.sceneName, oldItem.objectName, "Shiny Control"));
-                        }
+                        preventSelfDestruct();
                     }
+                }
+                else if (replacedWithSoulTotem)
+                {
+                    bool infinite = newItem.objectName.Contains("nfinte");              // Not a typo
+                    string totemName = "Randomizer Soul Totem " + newTotems++;
+                    SoulTotemSubtype intendedSubtype = GetTotemSubtype(newItem.objectName);
+                    SoulTotemSubtype subtype = ObjectCache.GetPreloadedTotemType(intendedSubtype);
+
+
+                    if (oldItem.newShiny)
+                    {
+                        Actions.Add(new CreateNewSoulTotem(oldItem.sceneName, oldItem.x, oldItem.y + CreateNewSoulTotem.Elevation[subtype] - oldItem.elevation, totemName, newItemName, location, subtype, intendedSubtype));
+                    }
+                    else
+                    {
+                        Actions.Add(new ReplaceObjectWithSoulTotem(oldItem.sceneName, oldItem.objectName, oldItem.elevation, totemName, newItemName, location, subtype, intendedSubtype));
+                        preventSelfDestruct();
+                    }
+                }
+                else if (location.StartsWith("450_Geo-Egg_Shop"))
+                {
+                    string newShinyName = "Randomizer Shiny " + location;     // lazy way to let the Jiji FSM edit determine what to do about the shiny
+
+                    int cost = settings.GetVariableCost(location);
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, oldItem.objectName, newShinyName, oldItem.x, oldItem.y,
+                        () => Ref.PD.jinnEggsSold >= cost));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
+                else if (location == "Boss_Geo-Gruz_Mother")
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y,
+                        oldItem.boolDataScene, oldItem.boolDataId));
+                    Actions.Add(new ChangeGruzMomReward(parentName));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
+                else if (!string.IsNullOrEmpty(oldItem.pdBool))
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y, oldItem.pdBool));
+                    Actions.Add(new ActivateEnemyShiny(oldItem.sceneName, oldItem.enemyName, parentName));
+                    
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
+                }
+                else if (!string.IsNullOrEmpty(oldItem.boolDataId))
+                {
+                    string newShinyName = "Randomizer Shiny " + newShinies++;
+                    string parentName = newShinyName + " Parent";
+
+                    Actions.Add(new CreateInactiveShiny(oldItem.sceneName, parentName, newShinyName, oldItem.x, oldItem.y, 
+                        oldItem.boolDataScene, oldItem.boolDataId));
+                    Actions.Add(new ActivateEnemyShiny(oldItem.sceneName, oldItem.enemyName, parentName));
+
+                    oldItem.objectName = newShinyName;
+                    oldItem.fsmName = "Shiny Control";
+                    oldItem.type = ItemType.Charm;
                 }
                 else if (oldItem.replace)
                 {
@@ -208,8 +290,18 @@ namespace RandomizerMod.Actions
                             oldItem.fsmName = "Shiny Control";
                         }
                     }
+                    else if (settings.NPCItemDialogue && oldItem.objectName == "Egg Sac")
+                    {
+                        Actions.Add(new CreateInactiveShiny(oldItem.sceneName, replaceShinyName + " Parent", replaceShinyName, oldItem.x, oldItem.y, 
+                            oldItem.sceneName, oldItem.objectName));
+                        Actions.Add(new ReplaceBluggsacReward(oldItem.sceneName, replaceShinyName));
+                    }
                     else
                     {
+                        if (location == "Hunter's_Journal")
+                        {
+                            Actions.Add(new ReplaceJournalWithShiny(replaceShinyName));
+                        }
                         Actions.Add(new ReplaceObjectWithShiny(oldItem.sceneName, oldItem.objectName, replaceShinyName));
                     }
                     oldItem.objectName = replaceShinyName;
@@ -222,13 +314,9 @@ namespace RandomizerMod.Actions
                     {
                         newShinyName = "New Shiny"; // legacy name for scene edits
                     }
-                    else if (location.StartsWith("Boss_Geo"))
+                    else if (location.StartsWith("Boss_Geo-Gruz_Mother"))
                     {
                         newShinyName = "New Shiny Boss Geo";
-                    }
-                    else if (location == "Split_Mothwing_Cloak")
-                    {
-                        newShinyName = "New Shiny Split Cloak";
                     }
                     Actions.Add(new CreateNewShiny(oldItem.sceneName, oldItem.x, oldItem.y, newShinyName));
                     oldItem.objectName = newShinyName;
@@ -236,11 +324,12 @@ namespace RandomizerMod.Actions
                     oldItem.type = ItemType.Charm;
                 }
 
-                else if (oldItem.type == ItemType.Geo && newItem.type != ItemType.Geo)
+                else if ((oldItem.type == ItemType.Geo || oldItem.pool == "JunkPitChest") && newItem.type != ItemType.Geo)
                 {
+                    string newShinyName = "Randomizer Chest Shiny " + newShinies++;
                     Actions.Add(new AddShinyToChest(oldItem.sceneName, oldItem.objectName, oldItem.fsmName,
-                        "Randomizer Chest Shiny"));
-                    oldItem.objectName = "Randomizer Chest Shiny";
+                        newShinyName));
+                    oldItem.objectName = newShinyName;
                     oldItem.fsmName = "Shiny Control";
                     oldItem.type = ItemType.Charm;
                 }
@@ -278,7 +367,7 @@ namespace RandomizerMod.Actions
                         altTest: () => RandomizerMod.Instance.Settings.CheckLocationFound(location)));
                 }
 
-                if (replacedWithGrub || replacedWithGeoRock)
+                if (replaced)
                 {
                     continue;
                 }
@@ -315,7 +404,7 @@ namespace RandomizerMod.Actions
                             Actions.Add(new ChangeChestGeo(oldItem.sceneName, oldItem.chestName,
                                 oldItem.chestFsmName, newItem.geo, newItemName, location));
                         }
-                        else if (oldItem.type == ItemType.Geo)
+                        else if (oldItem.type == ItemType.Geo || oldItem.pool == "JunkPitChest")
                         {
                             Actions.Add(new ChangeChestGeo(oldItem.sceneName, oldItem.objectName, oldItem.fsmName,
                                     newItem.geo, newItemName, location));
@@ -372,7 +461,7 @@ namespace RandomizerMod.Actions
                     int cost = oldItem.cost;
                     if (oldItem.costType == AddYNDialogueToShiny.CostType.Essence || oldItem.costType == AddYNDialogueToShiny.CostType.Grub)
                     {
-                        cost = settings.VariableCosts.First(pair => pair.Item1 == location).Item2;
+                        cost = settings.GetVariableCost(location);
                     }
 
                     Actions.Add(new AddYNDialogueToShiny(
@@ -452,6 +541,41 @@ namespace RandomizerMod.Actions
                 Actions.Add(new ShowLoreTextInShop(SceneNames.Room_Charm_Shop, "UI List", "Confirm Control"));
                 Actions.Add(new ShowLoreTextInShop(SceneNames.Fungus2_26, "UI List", "Confirm Control"));
             }
+
+            // Mimics/Grubs when grubs aren't rando
+            if (settings.RandomizeMimics && !settings.RandomizeGrubs)
+            {
+                foreach (var kvp in settings._mimicPlacements)
+                {
+                    ReqDef def = LogicManager.GetItemDef(kvp.Key);
+                    if (kvp.Value)
+                    {
+                        if (def.replace)
+                        {
+                            Actions.Add(new ReplaceObjectWithMimicBottle(def.sceneName, def.objectName, def.elevation,
+                                "Randomizer Mimic " + kvp.Key, "Mimic_Grub", kvp.Key, unrandomized: true));
+                        }
+                        else
+                        {
+                            Actions.Add(new CreateNewMimicBottle(def.sceneName, def.x, def.y + CreateNewMimicBottle.MIMIC_BOTTLE_ELEVATION - def.elevation,
+                                "Randomizer Mimic " + kvp.Key, "Mimic_Grub", kvp.Key, unrandomized:true));
+                        }
+                    }
+                    else
+                    {
+                        if (def.replace)
+                        {
+                            Actions.Add(new ReplaceObjectWithGrubJar(def.sceneName, def.objectName, def.elevation,
+                                "Randomizer Grub " + kvp.Key, "Grub", kvp.Key, unrandomized:true));
+                        }
+                        else
+                        {
+                            Actions.Add(new CreateNewGrubJar(def.sceneName, def.x, def.y + CreateNewGrubJar.GRUB_JAR_ELEVATION - def.elevation,
+                                "Randomizer Grub " + kvp.Key, "Grub", kvp.Key, unrandomized:true));
+                        }
+                    }
+                }
+            }
         }
 
         private static GeoRockSubtype GetRockSubtype(string objName) {
@@ -497,6 +621,40 @@ namespace RandomizerMod.Actions
             }
 
             return ObjectCache.GetPreloadedRockType(subtype);
+        }
+
+        private static SoulTotemSubtype GetTotemSubtype(string objName)
+        {
+            var subtype = SoulTotemSubtype.A;
+            if (objName == "Soul Totem 5") {
+                subtype = SoulTotemSubtype.A;
+            }
+            else if (objName == "Soul Totem mini_two_horned") {
+                subtype = SoulTotemSubtype.B;
+            }
+            else if (objName == "Soul Totem mini_horned") {
+                subtype = SoulTotemSubtype.C;
+            }
+            else if (objName == "Soul Totem 1") {
+                subtype = SoulTotemSubtype.D;
+            }
+            else if (objName == "Soul Totem 4") {
+                subtype = SoulTotemSubtype.E;
+            }
+            else if (objName == "Soul Totem 2") {
+                subtype = SoulTotemSubtype.F;
+            }
+            else if (objName == "Soul Totem 3") {
+                subtype = SoulTotemSubtype.G;
+            }
+            else if (objName == "Soul Totem white") {
+                subtype = SoulTotemSubtype.Palace;
+            }
+            else if (objName.StartsWith("Soul Totem white_Infinte")) {
+                subtype = SoulTotemSubtype.PathOfPain;
+            }
+
+            return subtype;
         }
 
         public static string GetAdditivePrefix(string itemName)
@@ -566,11 +724,13 @@ namespace RandomizerMod.Actions
             UnHook();
 
             On.PlayMakerFSM.OnEnable += ProcessFSM;
+            On.HealthManager.Die += OnEnemyDeath;
         }
 
         public static void UnHook()
         {
             On.PlayMakerFSM.OnEnable -= ProcessFSM;
+            On.HealthManager.Die -= OnEnemyDeath;
         }
 
         public static void ProcessFSM(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM fsm)
@@ -593,7 +753,7 @@ namespace RandomizerMod.Actions
                 catch (Exception e)
                 {
                     LogError(
-                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                        $"Error processing PlayMakerFSM action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
                 }
             }
         }
@@ -616,10 +776,38 @@ namespace RandomizerMod.Actions
                 catch (Exception e)
                 {
                     LogError(
-                        $"Error processing action of type {action.GetType()}:\n{JsonUtility.ToJson(action)}\n{e}");
+                        $"Error processing GameObject action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
                 }
             }
         }
+
+        private static void OnEnemyDeath(On.HealthManager.orig_Die orig, HealthManager hm, 
+            float? attackDirection, AttackTypes attackType, bool ignoreEvasion)
+        {
+            string scene = Ref.GM.GetSceneNameString();
+
+            foreach (RandomizerAction action in Actions)
+            {
+                if (action.Type != ActionType.EnemyDeath)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    action.Process(scene, hm);
+                }
+                catch (Exception e)
+                {
+                    LogError(
+                        $"Error processing EnemyDeath action of type {action.GetType()} in scene {scene}:\n{JsonUtility.ToJson(action)}\n{e}");
+                }
+            }
+
+            orig(hm, attackDirection, attackType, ignoreEvasion);   // Call the original after we set the geo
+        }
+
+
 
         public abstract void Process(string scene, Object changeObj);
     }

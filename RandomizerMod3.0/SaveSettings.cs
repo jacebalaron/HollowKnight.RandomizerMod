@@ -29,23 +29,40 @@ namespace RandomizerMod
         private SerializableBoolDictionary _obtainedLocations = new SerializableBoolDictionary();
         private SerializableBoolDictionary _obtainedTransitions = new SerializableBoolDictionary();
 
+        public SerializableBoolDictionary _mimicPlacements = new SerializableBoolDictionary(); // Only for Mimic-but-not-Grub rando
+
         /// <remarks>item, location</remarks>
         public (string, string)[] ItemPlacements => _itemPlacements.Select(pair => (pair.Key, pair.Value)).ToArray();
+
+        public int NumItemsFound => _obtainedItems.Keys.Intersect(_itemPlacements.Keys).Count();
 
         public int MaxOrder => _orderedLocations.Count;
 
         public (string, int)[] VariableCosts => _variableCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
+        public int GetVariableCost(string item) => _variableCosts[item]; 
         public (string, int)[] ShopCosts => _shopCosts.Select(pair => (pair.Key, pair.Value)).ToArray();
 
         public bool RandomizeTransitions => RandomizeAreas || RandomizeRooms;
 
         public bool FreeLantern => !(DarkRooms || RandomizeKeys);
+
+        // Used by mods who are loaded before and have a dependency relation with RandomizerMod
+        public delegate void PreAfterDeserializeFunc(SaveSettings settings);
+        public static event PreAfterDeserializeFunc PreAfterDeserialize
+        {
+            add => PreAfterDeserializeInternal += value;
+            remove => PreAfterDeserializeInternal -= value;
+        }
+        private static event PreAfterDeserializeFunc PreAfterDeserializeInternal;
+
         public SaveSettings()
         {
             AfterDeserialize += () =>
             {
                 if (Randomizer)
                 {
+                    PreAfterDeserializeInternal?.Invoke(this);
+
                     RandomizerMod.Instance.HookRandomizer();
                     RandomizerAction.CreateActions(ItemPlacements, this);
                 }
@@ -181,6 +198,11 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool RandomizeJunkPitChests
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
         public bool RandomizeMaskShards
         {
             get => GetBool(false);
@@ -206,6 +228,17 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool EggShop
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+        public int MaxEggCost => !EggShop ? 0 : VariableCosts
+            .Where(pair => LogicManager.GetItemDef(pair.Item1).costType == AddYNDialogueToShiny.CostType.RancidEggs)
+            .Select(pair => pair.Item2)
+            .Max();
+
+
         public bool RandomizeRelics
         {
             get => GetBool(false);
@@ -225,6 +258,11 @@ namespace RandomizerMod
         }
 
         public bool RandomizeGrubs
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+        public bool RandomizeMimics
         {
             get => GetBool(false);
             set => SetBool(value);
@@ -269,6 +307,11 @@ namespace RandomizerMod
             get => GetBool(false);
             set => SetBool(value);
         }
+        public bool RandomizePalaceEntries
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
 
         public bool RandomizeLifebloodCocoons
         {
@@ -288,6 +331,12 @@ namespace RandomizerMod
         }
 
         public bool RandomizeBossEssence
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+
+        public bool RandomizeJournalEntries
         {
             get => GetBool(false);
             set => SetBool(value);
@@ -323,6 +372,11 @@ namespace RandomizerMod
         }
 
         public bool RandomizeSwim
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+        public bool ElevatorPass
         {
             get => GetBool(true);
             set => SetBool(value);
@@ -376,6 +430,9 @@ namespace RandomizerMod
                     return RandomizeGeoChests;
                 case "Egg":
                     return RandomizeRancidEggs;
+                case "EggShopItem":
+                case "EggShopLocation":
+                    return EggShop;
                 case "Relic":
                     return RandomizeRelics;
                 case "Map":
@@ -396,6 +453,10 @@ namespace RandomizerMod
                     return RandomizePalaceTablets;
                 case "Lore":
                     return RandomizeLoreTablets;
+                case "Journal":
+                    return RandomizeJournalEntries;
+                case "PalaceJournal":
+                    return RandomizePalaceEntries;
                 case "Lifeblood":
                     return RandomizeLifebloodCocoons;
                 case "Flame":
@@ -544,6 +605,11 @@ namespace RandomizerMod
             _itemPlacements[item] = location;
         }
 
+        public void RemoveItem(string oldItem)
+        {
+            _itemPlacements.Remove(oldItem);
+        }
+
         public void AddOrderedLocation(string location, int order)
         {
             _orderedLocations[location] = order;
@@ -597,6 +663,16 @@ namespace RandomizerMod
             return _shopCosts[item];
         }
 
+        public bool HasShopCost(string item)
+        {
+            return _shopCosts.ContainsKey(item);
+        }
+
+        public void RemoveShopCost(string item)
+        {
+            if (!_shopCosts.ContainsKey(item)) return;
+            _shopCosts.Remove(item);
+        }
 
         public void MarkItemFound(string item)
         {
@@ -626,6 +702,7 @@ namespace RandomizerMod
 
         public void MarkLocationFound(string location)
         {
+            if (string.IsNullOrEmpty(location)) return;
             _obtainedLocations[location] = true;
         }
 
@@ -738,7 +815,13 @@ namespace RandomizerMod
             set => SetBool(value);
         }
 
-        public bool ReducePreloads
+        public bool ReduceRockPreloads
+        {
+            get => GetBool(true);
+            set => SetBool(value);
+        }
+
+        public bool ReduceTotemPreloads
         {
             get => GetBool(true);
             set => SetBool(value);

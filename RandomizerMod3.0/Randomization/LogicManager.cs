@@ -13,7 +13,7 @@ using GlobalEnums;
 
 namespace RandomizerMod.Randomization
 {
-    internal enum ItemType
+    public enum ItemType
     {
         Big,
         Charm,
@@ -45,7 +45,7 @@ namespace RandomizerMod.Randomization
         public bool deadEnd;
         public int oneWay; // 0 == 2-way, 1 == can only go in, 2 == can only come out
     }
-    internal struct ReqDef
+    public struct ReqDef
     {
         // Control variables
         public string boolName;
@@ -120,6 +120,12 @@ namespace RandomizerMod.Randomization
         public string inspectName;
         public string inspectFsmName;
 
+        // Boss Geo flags
+        public string enemyName;
+        public string pdBool; // Some bosses (e.g. MMC) don't have a scene data check
+        public string boolDataScene; // Some bosses (e.g. soul warriors) don't have a playerdata check
+        public string boolDataId;
+
         public string chestName;
         public string chestFsmName;
 
@@ -172,7 +178,7 @@ namespace RandomizerMod.Randomization
 #pragma warning restore 0649
     // ReSharper restore InconsistentNaming
 
-    internal static class LogicManager
+    public static class LogicManager
     {
         private static Dictionary<string, TransitionDef> _areaTransitions;
         private static Dictionary<string, TransitionDef> _roomTransitions;
@@ -202,9 +208,10 @@ namespace RandomizerMod.Randomization
         public static int essenceIndex;
         public static int grubIndex;
         public static int flameIndex;
+        public static int eggIndex;
         public static int essenceTolerance => RandomizerMod.Instance.Settings.SpicySkips ? 50 : RandomizerMod.Instance.Settings.MildSkips ? 100 : 150;
         public static int grubTolerance => RandomizerMod.Instance.Settings.SpicySkips ? 1 : RandomizerMod.Instance.Settings.MildSkips ? 2 : 3;
-
+        public static int eggTolerance => 0;
 
         public static Dictionary<string, (int, int)> itemCountsByPool = null;
 
@@ -341,7 +348,7 @@ namespace RandomizerMod.Randomization
             return _roomTransitions.ContainsKey(transition);
         }
 
-        public static TransitionDef GetTransitionDef(string name)
+        internal static TransitionDef GetTransitionDef(string name)
         {
             if (RandomizerMod.Instance.Settings.RandomizeAreas && _areaTransitions.TryGetValue(name, out TransitionDef def1))
             {
@@ -399,7 +406,7 @@ namespace RandomizerMod.Randomization
             _items[item] = newDef;
         }
 
-        public static StartDef GetStartLocation(string start)
+        internal static StartDef GetStartLocation(string start)
         {
             if (!_startLocations.TryGetValue(start, out StartDef def))
             {
@@ -493,7 +500,7 @@ namespace RandomizerMod.Randomization
             return _items.Values.Where(val => val.shopBool == shopBool).Any();
         }
 
-        public static ShopDef GetShopDef(string name)
+        internal static ShopDef GetShopDef(string name)
         {
             if (!_shops.TryGetValue(name, out ShopDef def))
             {
@@ -624,6 +631,10 @@ namespace RandomizerMod.Randomization
                         break;
                     case -7:
                         stack.Push(!RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames || obtained[flameIndex] >= 6);
+                        break;
+                    // EGGCOUNT
+                    case -8:
+                        stack.Push(obtained[eggIndex] >= cost + eggTolerance);
                         break;
                     default:
                         stack.Push((logic[i].Item1 & obtained[logic[i].Item2]) == logic[i].Item1);
@@ -826,9 +837,10 @@ namespace RandomizerMod.Randomization
                 else if (infix[i] == "200ESSENCE") postfix.Add((-5, 0));
                 else if (infix[i] == "3FLAMES") postfix.Add((-6, 0));
                 else if (infix[i] == "6FLAMES") postfix.Add((-7, 0));
+                else if (infix[i] == "EGGCOUNT") postfix.Add((-8, 0));
                 else
                 {
-                    if (!progressionBitMask.TryGetValue(infix[i], out (int, int) pair)) RandomizerMod.Instance.LogWarn("Error in logic sentence for: " + itemName + 
+                    if (!progressionBitMask.TryGetValue(infix[i], out (int, int) pair)) RandomizerMod.Instance.LogWarn("Error in logic sentence for: " + itemName +
                         "\nCould not find progression value for " + infix[i]);
                     postfix.Add(pair);
                 }
@@ -855,6 +867,7 @@ namespace RandomizerMod.Randomization
             progressionBitMask.Add("NONRANDOMNAIL", (512, 0));
             progressionBitMask.Add("NONCURSEDMASKS", (1024, 0));
             progressionBitMask.Add("NONCURSEDNOTCHES", (2048, 0));
+            progressionBitMask.Add("NONRANDOMELEVATORS", (4096, 0));
 
             int i = progressionBitMask.Count;
 
@@ -896,7 +909,8 @@ namespace RandomizerMod.Randomization
             essenceIndex = bitMaskMax + 1;
             grubIndex = bitMaskMax + 2;
             flameIndex = bitMaskMax + 3;
-            bitMaskMax = flameIndex;
+            eggIndex = bitMaskMax + 4;
+            bitMaskMax = eggIndex;
 
             foreach (string itemName in ItemNames)
             {

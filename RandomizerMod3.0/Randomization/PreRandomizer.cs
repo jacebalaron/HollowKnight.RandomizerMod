@@ -39,6 +39,16 @@ namespace RandomizerMod.Randomization
                     RandomizerMod.Instance.Settings.AddNewCost(item, cost);
                     continue;
                 }
+
+                if (def.costType == Actions.AddYNDialogueToShiny.CostType.RancidEggs) //eggu cost
+                {
+                    int cost = MIN_EGG_COST + rand.Next(MAX_EGG_COST - MIN_EGG_COST + 1);
+
+                    def.cost = cost;
+                    LogicManager.EditItemDef(item, def); // blah blah blah would be nicer to have a random number of items in the eggu shop
+                    RandomizerMod.Instance.Settings.AddNewCost(item, cost);
+                    continue;
+                }
             }
         }
 
@@ -117,6 +127,7 @@ namespace RandomizerMod.Randomization
                 pm.logicFlags["VERTICAL"] = RandomizerMod.Instance.Settings.RandomizeStartItems;
                 pm.logicFlags["SWIM"] = !RandomizerMod.Instance.Settings.RandomizeSwim;
                 pm.logicFlags["2MASKS"] = !RandomizerMod.Instance.Settings.CursedMasks;
+                pm.logicFlags["NONRANDOMELEVATORS"] = !RandomizerMod.Instance.Settings.ElevatorPass;
 
                 List<string> startLocations = LogicManager.StartLocations
                     .Where(start => pm.Evaluate(LogicManager.GetStartLocation(start).logic))
@@ -151,5 +162,32 @@ namespace RandomizerMod.Randomization
                 startProgression.Add(def.roomTransition);
             }
         }
+
+        // Randomize Mimics in the PreRandomizer if the case that Mimics are on but Grubs are off
+        public static void RandomizeMimics()
+        {
+            int grubcount = 1;
+
+            if (!(!RandomizerMod.Instance.Settings.RandomizeGrubs && RandomizerMod.Instance.Settings.RandomizeMimics)) return;
+
+            List<string> locations = new List<string>();
+            locations.AddRange(LogicManager.GetItemsByPool("Grub"));
+            locations.AddRange(LogicManager.GetItemsByPool("Mimic"));
+
+            int num_mimics = rand.Next(MIN_MIMIC_COUNT, MAX_MIMIC_COUNT + 1);
+            for (int i = 0; i < num_mimics; i++)
+            {
+                string location = locations[rand.Next(locations.Count)];
+                RandomizerMod.Instance.Settings._mimicPlacements[location] = true;
+                locations.Remove(location);
+                grubcount++;
+            }
+            foreach (string loc in locations)
+            {
+                RandomizerMod.Instance.Settings._mimicPlacements[loc] = false;
+                grubcount++;
+            }
+        }
+
     }
 }

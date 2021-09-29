@@ -82,6 +82,10 @@ namespace RandomizerMod
                     {
                         altLocation = "Grubfather";
                     }
+                    else if (LogicManager.GetItemDef(location).costType == Actions.AddYNDialogueToShiny.CostType.RancidEggs)
+                    {
+                        altLocation = "Jiji";
+                    }
                 }
 
                 if (pm.CanGet(altLocation))
@@ -112,6 +116,7 @@ namespace RandomizerMod
         public static void LogHelper(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt"), message + Environment.NewLine);
+            Events.LogHelper(message);
         }
 
         public static void UpdateHelperLog()
@@ -277,6 +282,7 @@ namespace RandomizerMod
 
                 helperWatch.Stop();
                 File.Create(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt")).Dispose();
+                Events.InitHelper();
                 LogHelper("Generating helper log:");
                 LogHelper(log.ToString());
                 LogHelper("Generated helper log in " + helperWatch.Elapsed.TotalSeconds + " seconds.");
@@ -286,17 +292,20 @@ namespace RandomizerMod
         public static void LogTracker(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerTrackerLog.txt"), message + Environment.NewLine);
+            Events.LogTracker(message);
         }
+
         public static void InitializeTracker()
         {
             File.Create(Path.Combine(Application.persistentDataPath, "RandomizerTrackerLog.txt")).Dispose();
-
+            Events.InitTracker();
             StringBuilder log = new StringBuilder();
             log.AppendLine("Starting tracker log for new randomizer file.");
             void AddToLog(string s) => log.AppendLine(s);
             AddSettingsToLog(AddToLog);
             LogTracker(log.ToString());
         }
+
         public static void LogTransitionToTracker(string entrance, string exit)
         {
             string message = string.Empty;
@@ -336,11 +345,13 @@ namespace RandomizerMod
         public static void LogSpoiler(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerSpoilerLog.txt"), message + Environment.NewLine);
+            Events.LogSpoiler(message);
         }
 
         public static void InitializeSpoiler()
         {
             File.Create(Path.Combine(Application.persistentDataPath, "RandomizerSpoilerLog.txt")).Dispose();
+            Events.InitSpoiler();
             LogSpoiler("Randomization completed with seed: " + RandomizerMod.Instance.Settings.Seed);
         }
 
@@ -427,10 +438,15 @@ namespace RandomizerMod
             AddToLog($"Grimmkin flames: {RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames}");
             AddToLog($"Boss essence: {RandomizerMod.Instance.Settings.RandomizeBossEssence}");
             AddToLog($"Boss geo: {RandomizerMod.Instance.Settings.RandomizeBossGeo}");
+            AddToLog($"Journal entries: {RandomizerMod.Instance.Settings.RandomizeJournalEntries}");
+            AddToLog($"Palace entries: {RandomizerMod.Instance.Settings.RandomizePalaceEntries}");
+            AddToLog($"Junk pit chests: {RandomizerMod.Instance.Settings.RandomizeJunkPitChests}");
+            AddToLog($"Egg shop: {RandomizerMod.Instance.Settings.EggShop}");
             AddToLog($"Split cloak: {RandomizerMod.Instance.Settings.RandomizeCloakPieces}");
             AddToLog($"Split claw: {RandomizerMod.Instance.Settings.RandomizeClawPieces}");
             AddToLog($"Focus: {RandomizerMod.Instance.Settings.RandomizeFocus}");
             AddToLog($"Swim: {RandomizerMod.Instance.Settings.RandomizeSwim}");
+            AddToLog($"ElevatorPass: {RandomizerMod.Instance.Settings.ElevatorPass}");
             AddToLog($"Cursed nail: {RandomizerMod.Instance.Settings.CursedNail}");
             AddToLog($"Cursed notches: {RandomizerMod.Instance.Settings.CursedNotches}");
             AddToLog($"Cursed masks: {RandomizerMod.Instance.Settings.CursedMasks}");
@@ -438,7 +454,8 @@ namespace RandomizerMod
             AddToLog($"Randomized notch costs: {RandomizerMod.Instance.Settings.RandomizeNotchCosts}");
             AddToLog("QUALITY OF LIFE");
             AddToLog($"Salubra: {RandomizerMod.Instance.Settings.CharmNotch}");
-            AddToLog($"Reduced Preloads: {RandomizerMod.Instance.globalSettings.ReducePreloads}");
+            AddToLog($"Reduced Rock Preloads: {RandomizerMod.Instance.globalSettings.ReduceRockPreloads}");
+            AddToLog($"Reduced Totem Preloads: {RandomizerMod.Instance.globalSettings.ReduceTotemPreloads}");
             AddToLog($"Recent Items: {RandomizerMod.Instance.globalSettings.RecentItems}");
             AddToLog($"Early geo: {RandomizerMod.Instance.Settings.EarlyGeo}");
             AddToLog($"Extra platforms: {RandomizerMod.Instance.Settings.ExtraPlatforms}");
@@ -584,14 +601,31 @@ namespace RandomizerMod
             return log.ToString();
         }
 
+        public static void LogMimicsToSpoiler()
+        {
+            if (!(RandomizerMod.Instance.Settings.RandomizeMimics && !RandomizerMod.Instance.Settings.RandomizeGrubs)) return;
+            if (!RandomizerMod.Instance.Settings.CreateSpoilerLog) return;
+
+            LogSpoiler(Environment.NewLine + "GRUB LOCATIONS");
+
+            foreach (var kvp in RandomizerMod.Instance.Settings._mimicPlacements)
+            {
+                string item = kvp.Value ? "Mimic Grub" : "Grub";
+                string location = kvp.Key.Replace("_", " ");
+                LogSpoiler($"{item}<---at--->{location}");
+            }
+        }
+
         public static void LogCondensedSpoiler(string message)
         {
             File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerCondensedSpoilerLog.txt"), message + Environment.NewLine);
+            Events.LogCondensedSpoiler(message);
         }
 
         public static void InitializeCondensedSpoiler()
         {
             File.Create(Path.Combine(Application.persistentDataPath, "RandomizerCondensedSpoilerLog.txt")).Dispose();
+            Events.InitCondensedSpoiler();
             LogCondensedSpoiler("Randomization completed with seed: " + RandomizerMod.Instance.Settings.Seed + Environment.NewLine);
         }
 
@@ -669,6 +703,7 @@ namespace RandomizerMod
                 string ekey = "Elegant Key <---at---> ";
                 string love = "Love Key <---at---> ";
                 string tram = "Tram Pass <---at---> ";
+                string elev = "Elevator Pass <---at---> ";
                 string lantern = "Lumafly Lantern <---at---> ";
                 string brand = "King's Brand <---at---> ";
                 string crest = "City Crest <---at---> ";
@@ -696,10 +731,14 @@ namespace RandomizerMod
                 foreach (var triplet in orderedILPairs)
                 {
                     string cost = "";
-                    if (LogicManager.TryGetItemDef(triplet.Item3, out ReqDef itemDef)) {
+                    if (LogicManager.TryGetItemDef(triplet.Item3, out ReqDef itemDef))
+                    {
                         if (itemDef.cost != 0) cost = $" [{itemDef.cost} {itemDef.costType.ToString("g")}]";
                     }
-                    else cost = $" [{RandomizerMod.Instance.Settings.GetShopCost(triplet.Item2)} Geo]";
+                    else if (RandomizerMod.Instance.Settings.HasShopCost(triplet.Item2))
+                    {
+                        cost = $" [{RandomizerMod.Instance.Settings.GetShopCost(triplet.Item2)} Geo]";
+                    }
 
                     string itemLocation = triplet.Item3.Replace("_", " ");
 
@@ -849,6 +888,9 @@ namespace RandomizerMod
                         case "Tram_Pass":
                             tram += itemLocation + cost + Environment.NewLine;
                             break;
+                        case "Elevator_Pass":
+                            elev += itemLocation + cost + Environment.NewLine;
+                            break;
                         case "Lumafly_Lantern":
                             lantern += itemLocation + cost + Environment.NewLine;
                             break;
@@ -965,7 +1007,10 @@ namespace RandomizerMod
 
                 if (RandomizerMod.Instance.Settings.RandomizeKeys) {
                     AddToLog("----------Keys:----------");
-                    AddToLog(skeys + shopkey + ekey + love + tram + lantern + brand + crest);
+                    string keys = skeys + shopkey + ekey + love + tram 
+                        + (RandomizerMod.Instance.Settings.ElevatorPass ? elev : string.Empty) 
+                        + lantern + brand + crest;
+                    AddToLog(keys);
                 }
 
                 if (RandomizerMod.Instance.Settings.CursedNail) {

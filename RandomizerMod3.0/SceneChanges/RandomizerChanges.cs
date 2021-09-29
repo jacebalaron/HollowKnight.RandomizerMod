@@ -52,11 +52,6 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
-                // Removes the prompt to donate to the 3000 geo fountain in Basin
-                case SceneNames.Abyss_04 when !RandomizerMod.Instance.Settings.NPCItemDialogue:
-                    Object.Destroy(GameObject.Find("Fountain Donation"));
-                    break;
-
                 // Platform to climb out of Abyss with only wings
                 case SceneNames.Abyss_06_Core:
                     {
@@ -141,6 +136,14 @@ namespace RandomizerMod.SceneChanges
                     }
                     break;
 
+                case SceneNames.Deepnest_36 when RandomizerMod.Instance.Settings.RandomizeMimics:
+                    {
+                        GameObject platform = ObjectCache.SmallPlatform;
+                        platform.transform.SetPosition2D(26f, 11f);
+                        platform.SetActive(true);
+                    }
+                    break;
+
                 // Platforms to climb back up from Mantis Lords with only wings
                 case SceneNames.Fungus2_15 when !RandomizerMod.Instance.Settings.RandomizeTransitions:
                     {
@@ -170,6 +173,15 @@ namespace RandomizerMod.SceneChanges
                     coloTransition1.transform.SetPositionY(coloTransition1.transform.position.y - 9f);
                     break;
 
+                // Platform to escape from the geo rock above Lemm
+                case SceneNames.Ruins1_05 + "c":
+                    {
+                        GameObject platform = ObjectCache.SmallPlatform;
+                        platform.transform.SetPosition2D(26.6f, 73.2f);
+                        platform.SetActive(true);
+                    }
+                    break;
+
                 // Platforms to climb back up to King's Pass with no items
                 case SceneNames.Town when !RandomizerMod.Instance.Settings.RandomizeTransitions && RandomizerMod.Instance.Settings.StartName == "King's Pass":
                     {
@@ -184,12 +196,23 @@ namespace RandomizerMod.SceneChanges
                     break;
 
                 // Platforms to prevent itemless softlock when checking left waterways
-                case SceneNames.Waterways_04 when 
-                !RandomizerMod.Instance.Settings.RandomizeTransitions 
-                && RandomizerMod.Instance.Settings.StartName != "West Waterways"
-                && (!RandomizerMod.Instance.Settings.RandomizeSwim || RandomizerMod.Instance.Settings.GetBool(name: "canSwim")):
+                case SceneNames.Waterways_04 when
+                !RandomizerMod.Instance.Settings.RandomizeTransitions
+                && RandomizerMod.Instance.Settings.StartName != "West Waterways":
                     {
-                        GameObject[] platforms = new GameObject[4];
+                        GameObject[] platforms = new GameObject[2];
+                        platforms[0] = ObjectCache.SmallPlatform;
+                        platforms[0].transform.SetPosition2D(148f, 23.1f);
+                        platforms[0].SetActive(true);
+
+                        platforms[1] = ObjectCache.SmallPlatform;
+                        platforms[1].transform.SetPosition2D(139f, 32f);
+                        platforms[1].SetActive(true);
+                    }
+
+                    if (!RandomizerMod.Instance.Settings.RandomizeSwim || RandomizerMod.Instance.Settings.GetBool(name: "canSwim"))
+                    {
+                        GameObject[] platforms = new GameObject[2];
                         platforms[0] = ObjectCache.SmallPlatform;
                         platforms[0].transform.SetPosition2D(107f, 10f);
                         platforms[0].SetActive(true);
@@ -197,14 +220,6 @@ namespace RandomizerMod.SceneChanges
                         platforms[1] = ObjectCache.SmallPlatform;
                         platforms[1].transform.SetPosition2D(107f, 15f);
                         platforms[1].SetActive(true);
-
-                        platforms[2] = ObjectCache.SmallPlatform;
-                        platforms[2].transform.SetPosition2D(148f, 23.1f);
-                        platforms[2].SetActive(true);
-
-                        platforms[3] = ObjectCache.SmallPlatform;
-                        platforms[3].transform.SetPosition2D(139f, 32f);
-                        platforms[3].SetActive(true);
                     }
                     break;
             }
@@ -239,6 +254,11 @@ namespace RandomizerMod.SceneChanges
                     GameObject.Find("Tut_tablet_top").LocateMyFSM("Inspection").GetState("Init").ClearTransitions();
                     break;
                 */
+
+                // Removes the prompt to donate to the 3000 geo fountain in Basin
+                case SceneNames.Abyss_04 when !RandomizerMod.Instance.Settings.NPCItemDialogue:
+                    Object.Destroy(GameObject.Find("Fountain Donation"));
+                    break;
 
                 // Opens lifeblood door in Abyss with any amount of blue health
                 case SceneNames.Abyss_06_Core:
@@ -307,7 +327,7 @@ namespace RandomizerMod.SceneChanges
 
                 // Remove Beast's Den hardsave, allow rear access from entrance, destroy Herrah
                 case SceneNames.Deepnest_Spider_Town:
-                    GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                    SavePersistentBoolItemState(new PersistentBoolData
                     {
                         sceneName = "Deepnest_Spider_Town",
                         id = "Collapser Small (12)",
@@ -383,7 +403,7 @@ namespace RandomizerMod.SceneChanges
                         && !RandomizerMod.Instance.Settings.MildSkips
                         && !RandomizerMod.Instance.Settings.RandomizeRooms)
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Fungus1_06",
                             id = "Vine Platform (1)",
@@ -391,6 +411,13 @@ namespace RandomizerMod.SceneChanges
                             semiPersistent = false
                         });
                     }
+                    break;
+                
+                // Make the PoP end cutscene not give a journal entry when those are randomized
+                case SceneNames.White_Palace_20 when RandomizerMod.Instance.Settings.RandomizeJournalEntries:
+                    var popFadeout = FSMUtility.LocateFSM(GameObject.Find("End Scene"), "Conversation Control").GetState("Fade Out");
+                    popFadeout.ClearTransitions();
+                    popFadeout.AddTransition("FINISHED", "New Scene");
                     break;
 
                 // Destroy the Mantis Claw pickup when playing with split claw
@@ -445,7 +472,7 @@ namespace RandomizerMod.SceneChanges
                     }
                     else
                     {
-                        GameObject.Find("New Shiny").transform.SetPositionY(200f);
+                        newScene.FindGameObject("New Shiny").transform.SetPositionY(200f);
                         IEnumerator LurkerKilled()
                         {
                             yield return new WaitUntil(() => PlayerData.instance.killedPaleLurker || GameManager.instance.sceneName != "GG_Lurker");
@@ -459,6 +486,11 @@ namespace RandomizerMod.SceneChanges
                         }
                         GameManager.instance.StartCoroutine(LurkerKilled());
                     }
+                    break;
+
+                case SceneNames.GG_Waterways when RandomizerMod.Instance.Settings.RandomizeJunkPitChests:
+                    // Simply replacing the object with shiny causes the shiny not to be flung
+                    Object.Destroy(newScene.FindGameObject("lamp_bug_escape"));
                     break;
 
                 case SceneNames.Hive_03 when RandomizerMod.Instance.Settings.StartName == "Hive":
@@ -487,14 +519,14 @@ namespace RandomizerMod.SceneChanges
                                 rightGPQGplat.transform.SetPosition2D(64f, 16.5f);
                                 rightGPQGplat.SetActive(true);
                             }
-                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            SavePersistentBoolItemState(new PersistentBoolData
                             {
                                 sceneName = "Fungus1_13",
                                 id = "Vine Platform (1)",
                                 activated = true,
                                 semiPersistent = false
                             });
-                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            SavePersistentBoolItemState(new PersistentBoolData
                             {
                                 sceneName = "Fungus1_13",
                                 id = "Vine Platform (2)",
@@ -505,7 +537,7 @@ namespace RandomizerMod.SceneChanges
                         // With the Lower Greenpath start, getting to the rest of Greenpath requires
                         // cutting the vine to the right of the vessel fragment.
                         case "Lower Greenpath" when RandomizerMod.Instance.Settings.CursedNail:
-                            GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                            SavePersistentBoolItemState(new PersistentBoolData
                             {
                                 sceneName = "Fungus1_13",
                                 id = "Vine Platform",
@@ -598,12 +630,6 @@ namespace RandomizerMod.SceneChanges
                     {
                         if (go.name.StartsWith("Gate Switch")) Object.Destroy(go);
                     }
-                    break;
-
-                case SceneNames.Ruins1_05 + "c":
-                    GameObject platform = ObjectCache.SmallPlatform;
-                    platform.transform.SetPosition2D(26.6f, 73.2f);
-                    platform.SetActive(true);
                     break;
 
                 // Many changes to make the desolate dive pickup work properly
@@ -726,14 +752,14 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Deepnest_East_17:
                     if (RandomizerMod.Instance.Settings.RandomizeRooms)
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_East_17",
                             id = "Quake Floor",
                             activated = true,
                             semiPersistent = false
                         });
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_East_17",
                             id = "Quake Floor (1)",
@@ -748,7 +774,7 @@ namespace RandomizerMod.SceneChanges
                     if (RandomizerMod.Instance.Settings.RandomizeSoulTotems && RandomizerMod.Instance.Settings.RandomizeRooms
                         && GameManager.instance.entryGateName == "top2")
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Deepnest_East_14",
                             id = "Quake Floor (1)",
@@ -761,7 +787,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Fungus2_21:
                     if (RandomizerMod.Instance.Settings.RandomizeTransitions && GameManager.instance.entryGateName == "right1")
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Fungus2_21",
                             id = "Quake Floor",
@@ -775,7 +801,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Mines_01:
                     if (RandomizerMod.Instance.Settings.RandomizeTransitions && GameManager.instance.entryGateName == "left1")
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Mines_01",
                             id = "mine_1_quake_floor",
@@ -789,7 +815,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Mines_35:
                     if (RandomizerMod.Instance.Settings.RandomizeTransitions || RandomizerMod.Instance.Settings.RandomizeSoulTotems)
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Mines_35",
                             id = "mine_1_quake_floor",
@@ -803,7 +829,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.RestingGrounds_05:
                     if (RandomizerMod.Instance.Settings.RandomizeSoulTotems)
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "RestingGrounds_05",
                             id = "Quake Floor",
@@ -817,7 +843,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Crossroads_52:
                     if (RandomizerMod.Instance.Settings.RandomizeRooms)
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Crossroads_52",
                             id = "Quake Floor",
@@ -831,7 +857,7 @@ namespace RandomizerMod.SceneChanges
                 case SceneNames.Waterways_05:
                     if (RandomizerMod.Instance.Settings.RandomizeRooms)
                     {
-                        GameManager.instance.sceneData.SaveMyState(new PersistentBoolData
+                        SavePersistentBoolItemState(new PersistentBoolData
                         {
                             sceneName = "Waterways_05",
                             id = "Quake Floor",
@@ -1048,7 +1074,7 @@ namespace RandomizerMod.SceneChanges
         {
             foreach (GameObject go in GameObject.FindObjectsOfType<GameObject>())
             {
-                if (go.name.Contains(name))
+                if (go.name.StartsWith(name))
                 {
                     Object.Destroy(go);
                 }
@@ -1093,7 +1119,7 @@ namespace RandomizerMod.SceneChanges
 
         public static void DeleteCollectorGrubs(Scene newScene)
         {
-            if (!RandomizerMod.Instance.Settings.RandomizeGrubs) return;
+            if (!RandomizerMod.Instance.Settings.RandomizeGrubs && !RandomizerMod.Instance.Settings.RandomizeMimics) return;
 
             switch (newScene.name)
             {
@@ -1103,6 +1129,27 @@ namespace RandomizerMod.SceneChanges
                     {
                         if (g.name.Contains("Grub Bottle")) Object.Destroy(g);
                     }
+                    break;
+            }
+        }
+        public static void DestroyMimicObjects(Scene newScene)
+        {
+            if (!RandomizerMod.Instance.Settings.RandomizeMimics) return;
+
+            switch (newScene.name)
+            {
+                case SceneNames.Deepnest_36:
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top (1)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top (2)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle (1)"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle (2)"));
+                    break;
+
+                case SceneNames.Mines_16:
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Top"));
+                    Object.Destroy(newScene.FindGameObject("Grub Mimic Bottle"));
                     break;
             }
         }
