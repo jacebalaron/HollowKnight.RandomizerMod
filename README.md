@@ -23,13 +23,11 @@ In Split Claw mode, obtain:
 
 ## Quality of Life
 
-- Salubra Notches: automatically gives you each Salubra charm notch upon acquiring the required number of charms.
-- Reduce Preloads: Only preload a single geo rock type; randomized geo rocks will all look like KP rocks instead of the correct original rock type. The game must be restarted for changes to this setting to take effect.
+- Reduce Rock/Totem Preloads: Only preload a single geo rock/soul totem type; randomized geo rocks/soul totems will all look like KP rocks/generic totems instead of the correct original rock type. The game must be restarted for changes to this setting to take effect.
 - Early Geo: start the game with between 300 and 600 geo.
 - Extra Platforms: platforms in various places that prevent softlocks. For example, there are several platforms added to Ancient Basin to prevent having to quit-out after checking certain locations without vertical movement.
 - Recent Items: Display the last 5 randomized items collected
 - NPC Item Dialogue: certain checks (Cornifer maps, Nailmasters' nail arts, Nailmaster's Glory, Vengeful Spirit, Shade Soul, Descending Dark) will be given by the relevant NPCs instead of a shiny item on the ground.
-- Jiji Hints: trade a rancid egg for information on which areas contain which items. Hints are given for progression items, in the order that they were intended to be collected. Already obtained items are skipped.
 
 ## Randomization
 
@@ -56,7 +54,11 @@ These settings control which items are randomized.
 - Geo Rocks
 - Boss Essence: essence drops from Dream Warriors and Dream Bosses
 - Boss Geo: geo drops from Gruz Mother, Massive Moss Charger, Vengefly King, Gorgeous Husk, Crystal/Enraged Guardian and both Soul Warriors
-- Palace Totems/Tablets: Disable this to remove the totems and tablets in White Palace from the randomization pool
+- Journal Entries: The Hunter's Journal, along with the Goam, Garpede, Charged Lumafly and Void Tendrils and Seal of Binding locations.
+- Junk Pit Chests
+- Palace Totems/Tablets/Entries: Disable this to remove the totems and tablets in White Palace from the randomization pool, along with the Seal of Binding
+- Egg Shop: instead of summoning your shade, Jiji will now let you buy items for rancid eggs. If you've given her enough rancid eggs, any items you've reached the cost for will be summoned.
+- Mimics: Add the four non-colo mimic locations to the randomization pool (some grubs may turn into mimics). With grubs unrandomized, instead randomize the mimics and grubs among themselves (some grubs may turn into mimics).
 
 Note: several items are randomized progressively, meaning that collecting any item in a given family always gives the first upgrade, collecting another gives the second upgrade, etc. The families this pertains to are:
 - Dream Nail, Dream Gate, Awoken Dream Nail
@@ -116,6 +118,10 @@ Activating the "split cloak" option replaces Mothwing Cloak with two items, a "L
 
 Activating the "cursed nail" option adds three extra items to the pool, that let you swing your nail left, right and up; by default in this mode, the nail can only be swung down.
 
+Activating the Randomize Swim option causes all pools of water to be dangerous, until the Swim item is found.
+
+Activating the Elevator Pass option prevents you from being able to use the two large city elevators until the elevator pass item is found; a new location is added in city storerooms where the toll used to be.
+
 ## Area/Room randomizer
 
 - Area randomizer randomizes items and connections between areas, which are understood to be any region of the game with a name which appears as onscreen text, excluding dream areas, trams, and elevators.
@@ -127,7 +133,7 @@ Activating the "cursed nail" option adds three extra items to the pool, that let
 - The Connected-Area Room randomizer works similarly to Room randomizer, with the additional constraint that it attempts to keep rooms from the same area connected, up to a certain extent, and not affecting single entrance rooms.
 Also, note the following:
 - Due to an imbalance in the number of left and right transitions, the Divine and Grimm tents are included in the randomization, but their vanilla entrances have been removed, and will not spawn in Dirtmouth
-- The nightmare lantern must be lit to obtain Grimmchild
+- The nightmare lantern must be lit to check Grimmchild
 - Sly must be rescued to use his shop
 
 ## New game mechanics
@@ -137,4 +143,3 @@ Also, note the following:
 
 ## Known issues
 - Using Benchwarp may cause some room changes to fail to occur. This can be fixed by exiting and reentering the room.
-- Minion charms may fail to spawn. This can cause a soft-lock if you attempt to start the Grimm fight without Grimmchild spawned. This can be fixed by reequipping at a bench.
