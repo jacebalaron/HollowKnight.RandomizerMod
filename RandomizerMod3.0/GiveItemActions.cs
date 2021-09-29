@@ -13,6 +13,9 @@ namespace RandomizerMod
     // WORK IN PROGRESS
     public static class GiveItemActions
     {
+        public static List<Func<GiveAction, string, string, int, bool>> ExternItemHandlers { get; set; } =
+            new List<Func<GiveAction, string, string, int, bool>>();
+
         public enum GiveAction
         {
             Bool = 0,
@@ -45,7 +48,11 @@ namespace RandomizerMod
             AddSoul,
             Lore,
 
-            Lifeblood
+            Lifeblood,
+            ElevatorPass,
+            Journal,
+            SpawnLumaflies,
+            Mimic
         }
 
         public static void ShowEffectiveItemPopup(string item)
@@ -57,13 +64,25 @@ namespace RandomizerMod
         private static void ShowItemPopup(string nameKey, string spriteName)
         {
             GameObject popup = ObjectCache.RelicGetMsg;
-            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = LanguageStringManager.GetLanguageString(nameKey, "UI");
+            popup.transform.Find("Text").GetComponent<TMPro.TextMeshPro>().text = Language.Language.Get(nameKey, "UI");
             popup.transform.Find("Icon").GetComponent<SpriteRenderer>().sprite = RandomizerMod.GetSprite(spriteName);
             popup.SetActive(true);
         }
 
+        private static bool TryExternHandleItem(GiveAction action, string item, string location, int geo)
+        {
+            foreach (var externItemHandler in ExternItemHandlers)
+                if (externItemHandler(action, item, location, geo))
+                    return true;
+            
+            return false;
+        }
+
         public static void GiveItem(GiveAction action, string item, string location, int geo = 0)
         {
+            if (TryExternHandleItem(action, item, location, geo))
+                return;
+
             LogItemToTracker(item, location);
             RandomizerMod.Instance.Settings.MarkItemFound(item);
             RandomizerMod.Instance.Settings.MarkLocationFound(location);
@@ -73,7 +92,7 @@ namespace RandomizerMod
 
             if (RandomizerMod.Instance.globalSettings.RecentItems)
             {
-                RecentItems.AddItem(item, location, showArea: true);
+                RecentItems.AddItem(item, location);
             }
 
             switch (action)
@@ -126,7 +145,7 @@ namespace RandomizerMod
                     {
                         HeroController.instance.AddGeo(LogicManager.GetItemDef(item).geo);
                     }
-                    
+
                     break;
 
                 // Disabled because it's more convenient to do this from the fsm. Use GiveAction.None for geo spawns.
@@ -165,6 +184,13 @@ namespace RandomizerMod
                     PlayerData.instance.stationsOpened++;
                     break;
 
+                case GiveAction.Journal:
+                    var boolName = LogicManager.GetItemDef(item).boolName;
+                    PlayerData.instance.SetBool(boolName, true);
+                    PlayerData.instance.SetInt(boolName.Replace("killed", "kills"), 0);
+                    PlayerData.instance.SetBool(boolName.Replace("killed", "newData"), true);
+                    break;
+
                 case GiveAction.DirtmouthStag:
                     PlayerData.instance.SetBool(nameof(PlayerData.openedTown), true);
                     PlayerData.instance.SetBool(nameof(PlayerData.openedTownBuilding), true);
@@ -180,6 +206,21 @@ namespace RandomizerMod
                             Camera.main.transform.position.z + 2
                         ));
                     AudioSource.PlayClipAtPoint(ObjectCache.GrubCry[clipIndex],
+                        new Vector3(
+                            Camera.main.transform.position.x + 2,
+                            Camera.main.transform.position.y,
+                            Camera.main.transform.position.z + 2
+                        ));
+                    break;
+
+                case GiveAction.Mimic:
+                    AudioSource.PlayClipAtPoint(ObjectCache.MimicScream,
+                        new Vector3(
+                            Camera.main.transform.position.x - 2,
+                            Camera.main.transform.position.y,
+                            Camera.main.transform.position.z + 2
+                        ));
+                    AudioSource.PlayClipAtPoint(ObjectCache.MimicScream,
                         new Vector3(
                             Camera.main.transform.position.x + 2,
                             Camera.main.transform.position.y,
@@ -385,7 +426,7 @@ namespace RandomizerMod
                             semiPersistent = false
                         });
                     }
-                    
+
                     break;
 
                 case GiveAction.SettingsBool:
@@ -394,13 +435,37 @@ namespace RandomizerMod
 
                 case GiveAction.None:
                     break;
-                
+
                 case GiveAction.Lifeblood:
                     int n = LogicManager.GetItemDef(item).lifeblood;
                     for (int i = 0; i < n; i++)
                     {
                         EventRegister.SendEvent("ADD BLUE HEALTH");
                     }
+                    break;
+
+                case GiveAction.ElevatorPass:
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift1), true);
+                    PlayerData.instance.SetBool(nameof(PlayerData.cityLift2), true);
+                    break;
+
+                case GiveAction.SpawnLumaflies:
+                    // I think, ideally, we'd pass the shiny GameObject as a parameter of GiveItem, and spawn from the shiny's 
+                    // location if not null. 
+                    if (HeroController.instance == null) break;
+
+                    Transform hero = HeroController.instance.transform;
+                    GameObject lumafly = ObjectCache.LumaflyEscape;
+
+                    Vector3 pos = hero.position;
+                    pos.z = lumafly.transform.position.z - 5f;
+                    // Slight tweaks to the lumafly's position, that I'm not sure are helpful but I think generally improve the spawn location.
+                    pos.x += (-0.2f) * hero.localScale.x;
+                    pos.y -= 0.05f;
+                    lumafly.transform.position = pos;
+
+                    lumafly.SetActive(true);
+
                     break;
             }
 
@@ -415,6 +480,20 @@ namespace RandomizerMod
                     if (!activated) vinecut.Cut();
                 }
             }
+
+            // If the location is a grub, it seems polite to mark it as obtained for the purpose of the Collector's Map
+            try
+            {
+                if (!LogicManager.ShopNames.Contains(location) && LogicManager.GetItemDef(location).pool == "Grub")
+                {
+                        GameManager.instance.AddToGrubList();
+                }
+            }
+            catch (Exception e)
+            {
+                LogError("Error Marking Grub Location:\n" + e);
+            }
+
 
             // additive, kingsoul, bool type items can all have additive counts
             if (LogicManager.AdditiveItemSets.Any(set => set.Contains(item)))

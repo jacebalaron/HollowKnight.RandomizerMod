@@ -11,7 +11,7 @@ using RandomizerMod.Randomization;
 
 namespace RandomizerMod
 {
-    internal static class LanguageStringManager
+    public static class LanguageStringManager
     {
         private static readonly Dictionary<string, Dictionary<string, string>> LanguageStrings =
             new Dictionary<string, Dictionary<string, string>>();
@@ -79,7 +79,7 @@ namespace RandomizerMod
         private static string NameOfItemPlacedAt(string location)
         {
             ReqDef item = LogicManager.GetItemDef(RandomizerMod.Instance.Settings.GetItemPlacedAt(location));
-            return GetLanguageString(item.nameKey, "UI");
+            return Language.Language.Get(item.nameKey, "UI");
         }
 
         public static string GetLanguageString(string key, string sheetTitle)
@@ -181,6 +181,56 @@ namespace RandomizerMod
             {
                 return Language.Language.GetInternal(key, sheetTitle).Replace("?", $" for a {NameOfItemPlacedAt("Vessel_Fragment-Basin")}?");
             }
+
+            #region Egg Shop
+
+            if (RandomizerMod.Instance.Settings.EggShop)
+            {
+                if (key == "JIJI_OFFER" && sheetTitle == "Prompts")
+                {
+                    return "Give Jiji all your rancid eggs?";
+                }
+                else if (key == "DECLINE" && sheetTitle == "Jiji")
+                {
+                    return "Oh? Well, if you have no desire to get my items, I can not help you.";
+                }
+                else if (key == "RITUAL_BEGIN" && sheetTitle == "Jiji")
+                {
+                    // return "Mmmm... I will enjoy this morsel tremendously. Now, as promised, we will begin the ritual."
+                }
+                else if (key == "GREET" && sheetTitle == "Jiji")
+                {
+                    return "Ah, hello. How have you been faring? Have you come to me because of your eggs? Let me see...";
+                }
+
+                else if (key == "SHADE_OFFER" && sheetTitle == "Jiji")
+                {
+                    List<(string, int)> eggShopItems = LogicManager.GetItemsByPool("EggShopLocation")
+                        .Select(loc => (loc, RandomizerMod.Instance.Settings.GetVariableCost(loc)))
+                        .ToList();
+
+                    eggShopItems.Sort((pair1, pair2) => pair1.Item2.CompareTo(pair2.Item2));
+
+                    StringBuilder convo = new StringBuilder();
+                    int ctr = 0;
+                    foreach ((string location, int cost) in eggShopItems)
+                    {
+                        int topay = cost - Ref.PD.jinnEggsSold;
+                        if (topay <= 0) continue;
+
+                        convo.Append(ctr == 0 ? "" : "<br>");
+
+                        string item = NameOfItemPlacedAt(location);
+                        convo.Append($"{topay} more eggs: {item}");
+
+                        ctr++;
+                    }
+                    return convo.ToString();
+                }
+
+            }
+            #endregion
+
 
             // Used to show which mantis claw piece we have in inventory. Changed the Mantis Claw shop name/description to
             // use a different entry, for the unlikely event that Mantis Claw and claw pieces can appear in the same seed in the future.
@@ -313,23 +363,68 @@ namespace RandomizerMod
 
             if (key == "INV_DESC_SPELL_FOCUS" && sheetTitle == "UI")
             {
-                string focus = RandomizerMod.Instance.Settings.RandomizeFocus
-                    ? "\n" + (RandomizerMod.Instance.Settings.GetBool(name: "canFocus") ? "You can focus." : "You cannot focus.")
-                    : string.Empty;
-                string essence = Ref.PD.GetInt(nameof(Ref.PD.dreamOrbs)) > 0 && !Ref.PD.GetBool(nameof(Ref.PD.hasDreamNail))
-                    ? $"\nYou have {Ref.PD.GetInt(nameof(Ref.PD.dreamOrbs))} Essence."
-                    : string.Empty;
-                string flames = (!RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames || Ref.PD.grimmChildLevel > 3)
-                    // GC level 4 : NKG defeated; GC level 5 : Banishment. In either case collected flames are irrelevant.
-                    // Otherwise, this information may be useful.
-                    ? string.Empty
-                    : $"\nYou have {Ref.PD.flamesCollected} unspent Flames.";
-                return 
-                    $"You've rescued {PlayerData.instance.grubsCollected} grub(s) so far!"
-                    + $"\nYou've found {PlayerData.instance.guardiansDefeated} dreamer(s), including\n"
-                    + (PlayerData.instance.lurienDefeated ? "Lurien, " : string.Empty) + (PlayerData.instance.monomonDefeated ? "Monomon, " : string.Empty) + (PlayerData.instance.hegemolDefeated ? "Herrah" : string.Empty)
-                    + "\n" + focus + essence + flames
-                    ;
+                StringBuilder sb = new StringBuilder();
+                if (RandomizerMod.Instance.Settings.RandomizeFocus)
+                {
+                    if (RandomizerMod.Instance.Settings.GetBool(name: "canFocus")) sb.AppendLine("You can focus.");
+                    else sb.AppendLine("You cannot focus.");
+                }
+
+                if (RandomizerMod.Instance.Settings.RandomizeSwim)
+                {
+                    if (RandomizerMod.Instance.Settings.GetBool(name: "canSwim")) sb.AppendLine("You can swim.");
+                    else sb.AppendLine("You cannot swim.");
+                }
+
+                if (!Ref.PD.GetBool(nameof(Ref.PD.hasDreamNail)))
+                {
+                    int essence = Ref.PD.GetInt(nameof(Ref.PD.dreamOrbs));
+                    if (essence > 0) sb.AppendLine($"You have {essence} essence.");
+                }
+
+                if (RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames && PlayerData.instance.GetInt(nameof(PlayerData.grimmChildLevel)) <= 3)
+                {
+                    sb.AppendLine($"You have {Ref.PD.flamesCollected} unspent Flames.");
+                }
+
+                sb.AppendLine($"You've rescued {PlayerData.instance.grubsCollected} grub(s) so far!");
+                int dreamers = Ref.PD.GetInt(nameof(PlayerData.guardiansDefeated));
+                sb.Append($"You've found {dreamers} dreamer(s)");
+                if (dreamers > 0)
+                {
+                    sb.AppendLine(", including:");
+                    bool lurien = Ref.PD.GetBool(nameof(PlayerData.lurienDefeated));
+                    bool monomon = Ref.PD.GetBool(nameof(PlayerData.monomonDefeated));
+                    bool herrah = Ref.PD.GetBool(nameof(PlayerData.hegemolDefeated));
+
+                    if (lurien)
+                    {
+                        sb.Append("Lurien, ");
+                        dreamers--;
+                    }
+                    if (monomon)
+                    {
+                        sb.Append("Monomon, ");
+                        dreamers--;
+                    }
+                    if (herrah)
+                    {
+                        sb.Append("Herrah, ");
+                        dreamers--;
+                    }
+                    if (dreamers > 0)
+                    {
+                        sb.Append("Duplicate Dreamer(s)");
+                    }
+                }
+
+                return sb.ToString();
+            }
+
+            if (RandomizerMod.Instance.Settings.RandomizeNotchCosts && sheetTitle == "UI" && key.StartsWith("CHARM_NAME_")) {
+                string i = key.Substring(11);
+                if (i.IndexOf("_") != -1) i = i.Substring(0, i.IndexOf("_"));
+                return Language.Language.GetInternal(key, "UI") + $" [{PlayerData.instance.GetInt($"charmCost_{i}")}]";
             }
 
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(sheetTitle))
@@ -735,7 +830,7 @@ namespace RandomizerMod
                 int order = rand.Next(RandomizerMod.Instance.Settings.MaxOrder);
                 string[] itemList = RandomizerMod.Instance.Settings.GetNthLocationItems(order);
                 string item = itemList[rand.Next(itemList.Length)];
-                item = GetLanguageString(LogicManager.GetItemDef(item).nameKey, "UI");
+                item = Language.Language.Get(LogicManager.GetItemDef(item).nameKey, "UI");
                 if (item.StartsWith("A grub")) item = "grub";
                 int difficulty = Math.Min((itemHintSecondPart.Count * order) / RandomizerMod.Instance.Settings.MaxOrder, itemHintSecondPart.Count);
 

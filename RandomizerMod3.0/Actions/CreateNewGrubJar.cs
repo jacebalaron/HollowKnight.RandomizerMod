@@ -17,8 +17,9 @@ namespace RandomizerMod.Actions
         private readonly float _y;
         private readonly string _item;
         private readonly string _location;
+        private readonly bool _unrandomized;
 
-        public CreateNewGrubJar(string sceneName, float x, float y, string newGrubJarName, string item, string location)
+        public CreateNewGrubJar(string sceneName, float x, float y, string newGrubJarName, string item, string location, bool unrandomized = false)
         {
             _sceneName = sceneName;
             _x = x;
@@ -26,6 +27,7 @@ namespace RandomizerMod.Actions
             _newGrubJarName = newGrubJarName;
             _item = item;
             _location = location;
+            _unrandomized = unrandomized;
         }
 
         public override ActionType Type => ActionType.GameObject;
@@ -40,26 +42,40 @@ namespace RandomizerMod.Actions
             GameObject GrubJar = ObjectCache.GrubJar;
             GrubJar.name = _newGrubJarName;
 
+            var z = GrubJar.transform.position.z;
             // Move the jar forward so it appears in front of any background objects
-            GrubJar.transform.position = new Vector3(_x, _y, GrubJar.transform.position.z - 0.1f);
+            GrubJar.transform.position = new Vector3(_x, _y, z - 0.1f);
             var grub = GrubJar.transform.Find("Grub");
-            grub.position = new Vector3(grub.position.x, grub.position.y, GrubJar.transform.position.z);
+            grub.position = new Vector3(grub.position.x, grub.position.y, z);
 
-            FixBottleFSM(GrubJar, _item, _location);
+            FixBottleFSM(GrubJar, _item, _location, _unrandomized);
             
             GrubJar.SetActive(true);
         }
 
-        public static void FixBottleFSM(GameObject jar, string item, string location)
+        public static void FixBottleFSM(GameObject jar, string item, string location, bool unrandomized)
         {
-            var fsm = FSMUtility.LocateFSM(jar, "Bottle Control");
-            var init = fsm.GetState("Init");
-            init.RemoveActionsOfType<BoolTest>();
-            init.AddFirstAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "ACTIVATE" : null)));
-            // The bottle FSM already takes care of granting the grub and playing happy grub noises
-            // We have to add the GiveItem action before incrementing the grub count so the RecentItems
-            // correctly notes the grub index
-            fsm.GetState("Shatter").AddFirstAction(new RandomizerExecuteLambda(() => GiveItem(GiveAction.None, item, location)));
+            PersistentBoolData pbd = jar.GetComponent<PersistentBoolItem>().persistentBoolData;
+            pbd.id = location;
+            pbd.sceneName = jar.scene.name;
+
+            PlayMakerFSM fsm = FSMUtility.LocateFSM(jar, "Bottle Control");
+
+            if (!unrandomized)
+            {
+                // When grubs aren't randomized, simply use the scene data to decide whether to break the grub jar
+                FsmState init = fsm.GetState("Init");
+                init.RemoveActionsOfType<BoolTest>();
+                init.AddFirstAction(new RandomizerExecuteLambda(() => fsm.SendEvent(RandomizerMod.Instance.Settings.CheckLocationFound(location) ? "ACTIVATE" : null)));
+
+                // The bottle FSM already takes care of granting the grub and playing happy grub noises
+                // We have to add the GiveItem action before incrementing the grub count so the RecentItems
+                // correctly notes the grub index
+                fsm.GetState("Shatter").AddFirstAction(new RandomizerExecuteLambda(() => GiveItem(GiveAction.None, item, location)));
+            }
+
+            // It seems pointless to mark this scene as having been cleared of grub jars
+            fsm.GetState("Set Map?").ClearTransitions();
         }
     }
 }

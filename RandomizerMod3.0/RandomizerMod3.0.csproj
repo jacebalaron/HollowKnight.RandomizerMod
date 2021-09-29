@@ -30,16 +30,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+	<ModdingAPI>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed</ModdingAPI>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(ModdingAPI)\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="PlayMaker">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\PlayMaker.dll</HintPath>
+      <HintPath>$(ModdingAPI)\PlayMaker.dll</HintPath>
     </Reference>
     <Reference Include="SereCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\SereCore.dll</HintPath>
+      <HintPath>$(ModdingAPI)\Mods\SereCore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,44 +51,46 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.JSONSerializeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>$(ModdingAPI)\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\ActivateEnemyShiny.cs" />
     <Compile Include="Actions\AddYNDialogueToShiny.cs" />
+    <Compile Include="Actions\ChangeGruzMomReward.cs" />
     <Compile Include="Actions\ChangeShinyIntoGeo.cs" />
     <Compile Include="Actions\AddShinyToChest.cs" />
     <Compile Include="Actions\ChangeBoolTest.cs" />
@@ -94,9 +99,12 @@
     <Compile Include="Actions\ChangeShopContents.cs" />
     <Compile Include="Actions\ChangeChestGeo.cs" />
     <Compile Include="Actions\ChangeShinyIntoItem.cs" />
+    <Compile Include="Actions\CreateInactiveShiny.cs" />
+    <Compile Include="Actions\CreateNewMimicBottle.cs" />
     <Compile Include="Actions\CreateNewShiny.cs" />
     <Compile Include="Actions\CreateNewGrubJar.cs" />
     <Compile Include="Actions\CreateNewGeoRock.cs" />
+    <Compile Include="Actions\CreateNewSoulTotem.cs" />
     <Compile Include="Actions\ChangeShinyIntoLifeblood.cs" />
     <Compile Include="Actions\ChangeShinyIntoSoul.cs" />
     <Compile Include="Actions\ChangeGrimmkinReward.cs" />
@@ -106,15 +114,24 @@
     <Compile Include="Actions\ChangeCorniferReward.cs" />
     <Compile Include="Actions\DisableLoreTablet.cs" />
     <Compile Include="Actions\PreventSelfDestruct.cs" />
+    <Compile Include="Actions\ReplaceBluggsacReward.cs" />
+    <Compile Include="Actions\ReplaceObjectWithMimicBottle.cs" />
     <Compile Include="Actions\ReplaceVengefulSpiritWithShiny.cs" />
     <Compile Include="Actions\ReplaceBasinVesselWithShiny.cs" />
+    <Compile Include="Actions\ReplaceJournalWithShiny.cs" />
     <Compile Include="Actions\ChangeCrystalShamanReward.cs" />
     <Compile Include="Actions\ChangeSanctumShamanReward.cs" />
     <Compile Include="Actions\ShowLoreTextInShop.cs" />
+    <Compile Include="Extensions\RandoMenuItem.cs" />
+    <Compile Include="MultiWorld\IMultiWorldCompatibleRandomizer.cs" />
+    <Compile Include="MultiWorld\MultiWorldMenu.cs" />
+    <Compile Include="Events.cs" />
+    <Compile Include="Randomization\MiniPM.cs" />
     <Compile Include="RecentItems.cs" />
     <Compile Include="CustomSkills.cs" />
     <Compile Include="GiveItemActions.cs" />
-    <Compile Include="SceneChanges\BossRewardReplacement.cs" />
+    <Compile Include="SceneChanges\PersistentBoolSaver.cs" />
+    <Compile Include="SceneChanges\Jiji.cs" />
     <Compile Include="StartSaveChanges.cs" />
     <Compile Include="RandoLogger.cs" />
     <Compile Include="Components\RandomizerTinkEffect.cs" />
@@ -127,7 +144,9 @@
     <Compile Include="Actions\ReplaceObjectWithShiny.cs" />
     <Compile Include="Actions\ReplaceObjectWithGrubJar.cs" />
     <Compile Include="Actions\ReplaceObjectWithGeoRock.cs" />
+    <Compile Include="Actions\ReplaceObjectWithSoulTotem.cs" />
     <Compile Include="GeoRockSubtype.cs" />
+    <Compile Include="SoulTotemSubtype.cs" />
     <Compile Include="Components\BigItemPopup.cs" />
     <Compile Include="Components\ObjectDestroyer.cs" />
     <Compile Include="FsmStateActions\RandomizerCallStaticMethod.cs" />
@@ -172,6 +191,7 @@
     <EmbeddedResource Include="Resources\Prompts\Fireball1.png" />
     <EmbeddedResource Include="Resources\Prompts\Fireball2.png" />
     <EmbeddedResource Include="Resources\Prompts\Isma.png" />
+    <EmbeddedResource Include="Resources\Prompts\Journal.png" />
     <EmbeddedResource Include="Resources\Prompts\Kingsbrand.png" />
     <EmbeddedResource Include="Resources\Prompts\Quake1.png" />
     <EmbeddedResource Include="Resources\Prompts\Quake2.png" />
@@ -244,6 +264,8 @@
     <EmbeddedResource Include="Resources\ShopIcons\Fireball1.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Fireball2.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Isma.png" />
+    <EmbeddedResource Include="Resources\ShopIcons\Journal.png" />
+    <EmbeddedResource Include="Resources\ShopIcons\JournalEntry.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Quake1.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Quake2.png" />
     <EmbeddedResource Include="Resources\ShopIcons\Scream1.png" />
@@ -432,6 +454,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Prompts\ShadowdashReflected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Prompts\Swim.png" />
+    <EmbeddedResource Include="Resources\ShopIcons\Swim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ShopIcons\ElevatorPass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ShopIcons\LampBug.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

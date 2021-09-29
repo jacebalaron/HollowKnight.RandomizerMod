@@ -42,6 +42,16 @@ namespace RandomizerMod.Randomization
         public bool anyLocations => unplacedLocations.Any();
         public bool anyItems => unplacedItems.Any();
         public bool canGuess => unplacedProgression.Any(i => LogicManager.GetItemDef(i).itemCandidate);
+
+        // Used by mods who wish to add items to the randomized items pool
+        public delegate void AddItemsToRandomizedItemsSetFunc(HashSet<string> items);
+        public static event AddItemsToRandomizedItemsSetFunc AddItemsToRandomizedItemsSet
+        {
+            add => AddItemsToRandomizedItemsSetInternal += value;
+            remove => AddItemsToRandomizedItemsSetInternal -= value;
+        }
+        private static event AddItemsToRandomizedItemsSetFunc AddItemsToRandomizedItemsSetInternal;
+
         internal ItemManager(Random rnd)
         {
             // takes approximately .004s to construct
@@ -92,6 +102,7 @@ namespace RandomizerMod.Randomization
                 if (RandomizerMod.Instance.Settings.Cursed)
                 {
                     if (LogicManager.GetItemDef(i).majorItem) i = items[rnd.Next(items.Count)];
+                    else if ((i == "Swim" || i == "Isma's_Tear") && rnd.Next(3) != 0) i = items[rnd.Next(items.Count)];
                 }
 
                 if (!LogicManager.GetItemDef(i).progression)
@@ -141,11 +152,41 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.RandomizePaleOre) items.UnionWith(LogicManager.GetItemsByPool("Ore"));
             if (RandomizerMod.Instance.Settings.RandomizeCharmNotches) items.UnionWith(LogicManager.GetItemsByPool("Notch"));
             if (RandomizerMod.Instance.Settings.RandomizeGeoChests) items.UnionWith(LogicManager.GetItemsByPool("Geo"));
-            if (RandomizerMod.Instance.Settings.RandomizeRancidEggs) items.UnionWith(LogicManager.GetItemsByPool("Egg"));
+
+            if (RandomizerMod.Instance.Settings.EggShop) items.UnionWith(LogicManager.GetItemsByPool("EggShopLocation"));
+            if (RandomizerMod.Instance.Settings.RandomizeRancidEggs)
+            {
+                if (!RandomizerMod.Instance.Settings.EggShop)
+                {
+                    items.UnionWith(LogicManager.GetItemsByPool("Egg"));
+                }
+                else
+                {
+                    for (int i = 0; i < 20; i++)
+                    {
+                        items.Add($"Rancid_Egg_({i})");
+                    }
+                }
+            }
+
             if (RandomizerMod.Instance.Settings.RandomizeRelics) items.UnionWith(LogicManager.GetItemsByPool("Relic"));
             if (RandomizerMod.Instance.Settings.RandomizeMaps) items.UnionWith(LogicManager.GetItemsByPool("Map"));
             if (RandomizerMod.Instance.Settings.RandomizeStags) items.UnionWith(LogicManager.GetItemsByPool("Stag"));
-            if (RandomizerMod.Instance.Settings.RandomizeGrubs) items.UnionWith(LogicManager.GetItemsByPool("Grub"));
+
+            if (RandomizerMod.Instance.Settings.RandomizeGrubs)
+            {
+                if (RandomizerMod.Instance.Settings.RandomizeMimics)
+                {
+                    int numMimics = new Random(RandomizerMod.Instance.Settings.Seed + 101).Next(Randomizer.MIN_MIMIC_COUNT, 1 + Randomizer.MAX_MIMIC_COUNT);
+                    for (int i = 0; i < 50; i++)
+                    {
+                        if (i < numMimics) items.Add($"Mimic_Grub_({i})");
+                        else items.Add($"Grub_({i - numMimics})");
+                    }
+                }
+                else items.UnionWith(LogicManager.GetItemsByPool("Grub"));
+            }
+
             if (RandomizerMod.Instance.Settings.RandomizeWhisperingRoots) items.UnionWith(LogicManager.GetItemsByPool("Root"));
             if (RandomizerMod.Instance.Settings.RandomizeRocks) items.UnionWith(LogicManager.GetItemsByPool("Rock"));
             if (RandomizerMod.Instance.Settings.RandomizeSoulTotems) items.UnionWith(LogicManager.GetItemsByPool("Soul"));
@@ -156,8 +197,16 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames) items.UnionWith(LogicManager.GetItemsByPool("Flame"));
             if (RandomizerMod.Instance.Settings.RandomizeBossEssence) items.UnionWith(LogicManager.GetItemsByPool("Essence_Boss"));
             if (RandomizerMod.Instance.Settings.RandomizeBossGeo) items.UnionWith(LogicManager.GetItemsByPool("Boss_Geo"));
-            if (RandomizerMod.Instance.Settings.RandomizeFocus) items.UnionWith(LogicManager.GetItemsByPool("Cursed"));
+            if (RandomizerMod.Instance.Settings.RandomizeJournalEntries) items.UnionWith(LogicManager.GetItemsByPool("Journal"));
+            if (RandomizerMod.Instance.Settings.RandomizePalaceEntries) items.UnionWith(LogicManager.GetItemsByPool("PalaceJournal"));
+            if (RandomizerMod.Instance.Settings.RandomizeFocus) items.UnionWith(LogicManager.GetItemsByPool("Focus"));
+            if (RandomizerMod.Instance.Settings.RandomizeSwim) items.UnionWith(LogicManager.GetItemsByPool("Swim"));
             if (RandomizerMod.Instance.Settings.CursedNail) items.UnionWith(LogicManager.GetItemsByPool("CursedNail"));
+            if (RandomizerMod.Instance.Settings.CursedNotches) items.UnionWith(LogicManager.GetItemsByPool("CursedNotch"));
+            if (RandomizerMod.Instance.Settings.CursedMasks) items.UnionWith(LogicManager.GetItemsByPool("CursedMask"));
+            if (RandomizerMod.Instance.Settings.ElevatorPass) items.UnionWith(LogicManager.GetItemsByPool("ElevatorPass"));
+
+            if (RandomizerMod.Instance.Settings.RandomizeJunkPitChests) items.UnionWith(LogicManager.GetItemsByPool("JunkPitChest"));
 
             if (RandomizerMod.Instance.Settings.RandomizeClawPieces && RandomizerMod.Instance.Settings.RandomizeSkills)
             {
@@ -180,6 +229,7 @@ namespace RandomizerMod.Randomization
                 items.Remove("Abyss_Shriek");
 
                 int i = 0;
+                Random rand = new Random(RandomizerMod.Instance.Settings.Seed + 163);
 
                 List<string> iterate = items.ToList();
                 foreach (string item in iterate)
@@ -187,10 +237,13 @@ namespace RandomizerMod.Randomization
                     switch (LogicManager.GetItemDef(item).pool)
                     {
                         case "Mask":
+                        case "CursedMask":
                         case "Vessel":
                         case "Ore":
                         case "Notch":
+                        case "CursedNotch":
                         case "Geo":
+                        case "JunkPitChest":
                         case "Egg":
                         case "Relic":
                         case "Rock":
@@ -198,7 +251,10 @@ namespace RandomizerMod.Randomization
                         case "PalaceSoul":
                         case "Boss_Geo":
                             items.Remove(item);
-                            items.Add("1_Geo_(" + i + ")");
+
+                            string junk = rand.Next(4) == 0 ? "Lumafly_Escape_" : "1_Geo_";
+                            junk += "(" + i + ")";
+                            items.Add(junk);
                             i++;
                             break;
                     }
@@ -209,7 +265,7 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.DuplicateMajorItems)
             {
                 duplicatedItems = new List<string>();
-                
+
                 // Add support for duplicate major items without all four main pools randomized - only add dupes for the randomized pools.
                 foreach (string majorItem in items
                     .Where(_item => LogicManager.GetItemDef(_item).majorItem)
@@ -217,10 +273,10 @@ namespace RandomizerMod.Randomization
                 {
                     if (Randomizer.startItems.Contains(majorItem)) continue;
                     if (RandomizerMod.Instance.Settings.Cursed && (majorItem == "Vengeful_Spirit" || majorItem == "Desolate_Dive" || majorItem == "Howling_Wraiths")) continue;
-                    
+
                     // Do not duplicate claw pieces
                     if (LogicManager.GetItemDef(majorItem).pool == "SplitClaw") continue;
-                    
+
                     duplicatedItems.Add(majorItem);
                 }
 
@@ -252,7 +308,9 @@ namespace RandomizerMod.Randomization
                         if (RandomizerMod.Instance.Settings.DuplicateMajorItems) duplicatedItems.Remove("Left_Shade_Cloak");
                         break;
                 }
-            }    
+            }
+
+            AddItemsToRandomizedItemsSetInternal?.Invoke(items);
 
             return items;
         }
@@ -284,7 +342,20 @@ namespace RandomizerMod.Randomization
             if (RandomizerMod.Instance.Settings.RandomizeGrimmkinFlames) locations.UnionWith(LogicManager.GetItemsByPool("Flame"));
             if (RandomizerMod.Instance.Settings.RandomizeBossEssence) locations.UnionWith(LogicManager.GetItemsByPool("Essence_Boss"));
             if (RandomizerMod.Instance.Settings.RandomizeBossGeo) locations.UnionWith(LogicManager.GetItemsByPool("Boss_Geo"));
-            if (RandomizerMod.Instance.Settings.RandomizeFocus) locations.UnionWith(LogicManager.GetItemsByPool("Cursed"));
+            if (RandomizerMod.Instance.Settings.RandomizeJournalEntries) locations.UnionWith(LogicManager.GetItemsByPool("Journal"));
+            if (RandomizerMod.Instance.Settings.RandomizePalaceEntries) locations.UnionWith(LogicManager.GetItemsByPool("PalaceJournal"));
+            if (RandomizerMod.Instance.Settings.ElevatorPass) locations.UnionWith(LogicManager.GetItemsByPool("ElevatorPass"));
+
+            if (RandomizerMod.Instance.Settings.RandomizeJunkPitChests) locations.UnionWith(LogicManager.GetItemsByPool("JunkPitChest"));
+
+            if (RandomizerMod.Instance.Settings.RandomizeFocus) locations.UnionWith(LogicManager.GetItemsByPool("Focus"));
+            // the other restriction options do not have locations, so they are omitted.
+
+            if (RandomizerMod.Instance.Settings.EggShop) locations.UnionWith(LogicManager.GetItemsByPool("EggShopLocation"));
+            if (RandomizerMod.Instance.Settings.RandomizeMimics && RandomizerMod.Instance.Settings.RandomizeGrubs)
+            {
+                locations.UnionWith(LogicManager.GetItemsByPool("Mimic"));
+            }
 
             // With Lore tablets randomized, we need to remove the World Sense and Focus locations from the pool
             if (RandomizerMod.Instance.Settings.RandomizeLoreTablets)
@@ -297,6 +368,7 @@ namespace RandomizerMod.Randomization
 
             // Adding *three* new locations to KP throws off the balance a bit. Put 3 more items in shops instead.
             // if (RandomizerMod.Instance.Settings.CursedNail) locations.UnionWith(LogicManager.GetItemsByPool("CursedNail"));
+            // Cursed notches and masks are not added here for the same reason.
 
             // Split Claw
             if (RandomizerMod.Instance.Settings.RandomizeClawPieces && RandomizerMod.Instance.Settings.RandomizeSkills)
@@ -352,7 +424,7 @@ namespace RandomizerMod.Randomization
                         if (vm.progressionLocations.Contains(location)) vm.UpdateVanillaLocations(location);
                     }
                 }
-                
+
                 if (RandomizerMod.Instance.Settings.RandomizeTransitions)
                 {
                     if (TransitionManager.transitionPlacements.TryGetValue(item, out string transition1) && !pm.Has(transition1))
@@ -506,7 +578,7 @@ namespace RandomizerMod.Randomization
             }
             else unplacedItems.Remove(item);
 
-            if (LogicManager.GetItemDef(item).pool == "Grub")
+            if (LogicManager.GetItemDef(item).pool.StartsWith("Grub"))
             {
                 pm.AddGrubLocation(location);
             }
@@ -517,6 +589,10 @@ namespace RandomizerMod.Randomization
             else if (LogicManager.GetItemDef(item).pool == "Flame")
             {
                 pm.AddFlameLocation(location);
+            }
+            else if (LogicManager.GetItemDef(item).pool == "EggShopItem")
+            {
+                pm.AddEggLocation(location);
             }
         }
 
